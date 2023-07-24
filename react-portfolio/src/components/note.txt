@@ -1,0 +1,168 @@
+import React from 'react';
+import Marquee from 'react-fast-marquee';
+import { TypeAnimation } from 'react-type-animation';
+import Carousel from './Carousel';
+import sign from '../assets/sign.jpg';
+import { FaCamera, FaPencilAlt } from 'react-icons/fa';
+import { BiCodeBlock, BiBook } from 'react-icons/bi';
+import { FaGlobe } from 'react-icons/fa';
+import { SiTiktok } from 'react-icons/si';
+import workOne from '../assets/blog.jpg';
+
+
+const Intro = () => {
+  const images = [
+    require('../assets/photo_5884139100448079557_y.jpg'),
+    require('../assets/photo_5884139100448079555_y.jpg'),
+    require('../assets/photo_5884139100448079558_y.jpg'),
+  ];
+
+  return (
+    <div className="intro mt-7 px-2">
+      <div className="block md:flex gap-2 items-center">
+        <div className="first block rounded-[20px] one sm:flex gap-2 justify-between items-center py-7 w-auto  md:w-[50%] px-5 " style={{boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+          <div className="w-[270px] h-[full] mx-auto rounded-tl-[50px] rounded-br-[50px] overflow-hidden">
+            <Carousel images={images} />
+          </div>
+          <div className="px-2 flex-grow mt-6 sm:mt-0">
+            <p className="text-[#5F666D] uppercase font-semibold">
+              <TypeAnimation
+                sequence={[
+                  'A Web Designer',
+                  1000,
+                  'A Web Developer',
+                  1000,
+                  'A Frontend Engineer',
+                  1000,
+                  'A React Developer',
+                  1000,
+                  'A JavaScript Enthusiast',
+                  1000,
+                  'A Content Creator',
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                style={{ fontSize: '0.9em', display: 'inline-block' }}
+                repeat={Infinity}
+              />
+            </p>
+            <h1 className="font-bold text-xl sm:text-2xl mb-2">Oluwadamisi Damilola</h1>
+            <p>Am a Web Designer Based in Lagos, Nigeria.</p>
+          </div>
+        </div>
+
+        <div className="w-auto md:w-[50%] h-full my-2 md:my-0">
+          <div className="py-3 px-3 mb-2 rounded-[20px]" style={{boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+            <Marquee className="text-[#6c757d] text-xs md:text-sm">
+              *LATEST WORK AND <span className="font-bold mx-2 text-black">FEATURES</span>
+              *LATEST WORK AND <span className="font-bold mx-2 text-black">FEATURES</span>
+              *LATEST WORK AND <span className="font-bold mx-2 text-black">FEATURES</span>
+              *LATEST WORK AND <span className="font-bold mx-2 text-black">FEATURES</span>
+              *LATEST WORK AND <span className="font-bold mx-2 text-black">FEATURES</span>
+              *LATEST WORK AND <span className="font-bold mx-2 text-black">FEATURES</span>
+              *LATEST WORK AND <span className="font-bold mx-2">FEATURES</span>
+            </Marquee>
+       
+          </div>
+          <div className="flex gap-4 py-3 flex-1">
+              <div className="px-3 py-3  flex-1 h-full rounded-[20px]" style={{boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+                <img src={sign} className="w-full h-auto object-cover mb-5" alt="" />
+                <div>
+                  <p className="uppercase text-[#5F666D]">More about me</p>
+                  <h1 className="font-bold text-xl sm:text-2xl">Credentials</h1>
+                </div>
+              </div>
+              <div className="px-3 py-3 flex-1 rounded-[20px]  h-full" style={{boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+                <img src={sign} className="w-full h-auto object-cover mb-5" alt="" />
+                <div>
+                  <p className="uppercase text-[#5F666D]">Showcase</p>
+                  <h1 className="font-bold text-xl sm:text-2xl">Projects</h1>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      {/* second -------------------------------------------------------------------------------------- */}
+      <div className="block md:flex h-full mt-2 gap-2">
+
+<div className="block sm:flex w-[100%] gap-2">
+<div className=" sm:w-[50%] order-1 my-3 sm:my-0 md:w-[35%] rounded-[20px] h-[300px] px-4" style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+  <div className="w-full h-[220px]">
+    <img src={workOne} className="w-full h-[100%] object-cover" alt="" />
+  </div>
+  <div className='py-1 px-4'>
+    <p className="uppercase text-[#5F666D]">Blog</p>
+    <h1 className="font-bold text-xl sm:text-2xl">G-Fonts</h1>
+  </div>
+</div>
+
+<div className=" sm:w-[50%] md:w-[63%] flex flex-col my-3 sm:my-0 justify-center order-3 rounded-[20px] bg-white px-4" style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+  <div className="flex justify-evenly text-purple-300 pt-6">
+    <FaCamera size={50} />
+    <FaPencilAlt size={50} />
+    <BiCodeBlock size={50} />
+    <BiBook size={50} />
+  </div>
+  <div className='py-5 mt-[80px] px-4'>
+    <p className="uppercase text-[#5F666D]">Specialization</p>
+    <h1 className="font-bold text-xl sm:text-2xl">Services Offering</h1>
+  </div>
+</div>
+</div>
+
+<div className="w-full md:w-[35%] my-2 md:my-0 rounded-[20px] px-4 pt-1 sm:pt-1 order-2" style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+  <div className="flex justify-evenly text-white py-6 mt-9  w-[95%] bg-[#000] m-auto mb-10 rounded-[30px]"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+  <SiTiktok size={60} className='border-2 border-dashed border-white bg-[#222] rounded-[50%] p-3' style={{boxShadow: ' rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px'}} />
+    <FaGlobe size={60} className='border-2 border-dashed border-white bg-[#222] rounded-[50%]  p-3' style={{boxShadow: ' rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px'}} />
+  </div>
+  <div className='py-2'>
+    <p className="uppercase text-[#5F666D]">Stay with me</p>
+    <h1 className="font-bold text-xl sm:text-2xl">Profiles</h1>
+  </div>
+</div>
+
+</div>
+
+<div className="block md:flex justify-between gap-3 bg-black py-[3rem] mt-3 mb-7 px-3">
+  
+<div className="block w-full md:flex gap-5 justify-evenly md:w-[60%]">
+<div className="flex-1 text-center text-black my-2 md:my-0 p-6 bg-[#222]  rounded-[20px]">
+<div className='p-2  bg-white  rounded-[20px]' style={{boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px'}}>
+<h1 className="font-bold text-xl sm:text-3xl">7</h1>
+    <p className="font-semibold">Years</p>
+    <p className="font-semibold">Expreiences</p>
+  </div>
+</div>
+
+<div className="flex-1 text-center text-black my-2 md:my-0 p-6 bg-[#222] rounded-[20px]">
+<div className='p-2 bg-white  rounded-[20px]' style={{boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px'}}>
+<h1 className="font-bold text-xl sm:text-3xl">2</h1>
+    <p className="font-semibold"> Happy</p>
+    <p className="font-semibold">Clients</p>
+  </div>
+</div>
+
+<div className="flex-1 text-center text-black my-2 md:my-0 p-6 bg-[#222]  rounded-[20px]">
+<div className='p-2 bg-white  rounded-[20px]' style={{boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px'}}>
+<h1 className="font-bold text-xl sm:text-3xl">3</h1>
+    <p className="font-semibold">Total</p>
+    <p className="font-semibold">Projects</p>
+  </div>
+</div>
+
+</div>
+
+<div className="font-bold pt-5 md:pt-0 px-10 text-xl flex flex-col justify-center text-white bg-[#222] sm:text-2xl w-full md:w-[38%] rounded-[30px]"style={{boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px'}}>
+  <h1>Let's</h1>
+  <h1 className='pb-5 md:pb-0'>Work <span className='text-[#DEAAFF]'>Together</span></h1>
+</div>
+</div>
+
+
+    </div>
+  );
+};
+
+export default Intro;
