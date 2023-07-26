@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong);
+@import url(https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple);
+
+body{
+    background-color: #ffff;
+    color: #000300;
+}
+.myH1{
+   font-family: "Trirong", serif;
+}
+
+.myUl li a:hover {
+    position: relative;
+  }
+  
+  @keyframes underline {
+    0% {
+      width: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    100% {
+      width: 100%;
+      left: 0;
+      transform: translateX(0);
+    }
+  }
+  
+  .myUl li a:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    border-radius: 5px;
+    background-color: #000300;
+    animation: underline 0.3s forwards;
+    transform: translateX(-50%);
+    transform-origin: center;
+  }
+  .myUl li:last-child a::before {
+    content: none;
+  }
+  .imgContainer{
+    border: #ffff 2px solid;
+    margin-top: 0.5rem;
+  }
+
