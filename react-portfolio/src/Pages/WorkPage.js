@@ -1,5 +1,8 @@
 import React from 'react'
 import MainLayout from '../layouts/MainLayout'
+import WorkComponent from '../components/WorkComponent'
+
+
 
 const WorkPage = () => {
   return (
@@ -7,8 +10,8 @@ const WorkPage = () => {
 
     
     <h1>WorkPage</h1>
-      
-
+    <WorkComponent />
+    
    </MainLayout>
   )
 }
