@@ -11,27 +11,36 @@ import imgfour from "../assets/photo_5884139100448079557_y.jpg";
 import imgfive from "../assets/photo_5884139100448079558_y.jpg";
 import sign from "../assets/sign.jpg";
 
+
 const ImagesComponents = () => {
   const images = [
     {
       url: blog,
       isPortrait: false,
       alt: "Blog Post Cover",
+      description: "My first",
+      externalURL: "https://www.google.com", 
     },
     {
       url: bloggy,
       isPortrait: true,
       alt: "Bloggy in the Garden",
+      description: "My second",
+      externalURL: "https://www.youtube.com", 
     },
     {
       url: peakone,
       isPortrait: false,
       alt: "Mountain Peak One",
+      description: "My third",
+      externalURL: "https://getcssscan.com/css-box-shadow-examples", 
     },
     {
       url: peaktwo,
       isPortrait: false,
       alt: "Mountain Peak Two",
+      description: "My fourth",
+      
     },
     {
       url: peakthree,
@@ -73,29 +82,35 @@ const ImagesComponents = () => {
 
   const TextItem = ({ title, description, image }) => {
     return (
-      <div className=''>
-       <div className="shadow-sm p-2 sm:p-3">
-       <img src={image.url} alt={image.alt} />
-       </div>
-       <div className='shadow-sm p-2 sm:p-3 text-xs sm:text-[15px]'>
-       <h4>{title}</h4>
-        <h2>{description}</h2>
-       </div>
-      </div>
+      <a
+        href={image.externalURL}
+        target="_blank" // Open the link in a new tab/window
+        rel="noopener noreferrer" // Required for security and to prevent tab-nabbing
+        className='grid-item'
+      >
+        <div className="p-2 sm:p-3" style={{ boxShadow: "rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset" }}>
+          <img src={image.url} alt={image.alt} />
+        </div>
+        <div className='p-2 sm:p-3 text-xs sm:text-[15px]' style={{ boxShadow: "rgba(0, 0, 0, 0.04) 0px 3px 5px" }}>
+          <h4 className='uppercase text-gray-400'>{title}</h4>
+          <h2 className='capitalize font-bold my-1 py-1'>{description}</h2>
+        </div>
+      </a>
     );
   };
 
   return (
-    <div className="container mx-auto my-8">
-      <h1 className="text-2xl font-bold mb-4">Gallery</h1>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+       <div className="container w-[95%] mt-2 mb-8 md:w-[90%] mx-auto">
+      <div className="grid grid-cols-2 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <h1 className="text-2xl sm:text-5xl font-bold col-span-2 md:col-span-2 lg:col-span-2 text-center px-4">ALL PROJECTS</h1>
         {images.map((image, index) => (
           <TextItem
             key={index}
             title={image.alt}
-            description="Description for this image goes here" // Replace with the actual description
+            description={image.description} // Replace with the actual description
             image={image}
           />
+          
         ))}
       </div>
     </div>

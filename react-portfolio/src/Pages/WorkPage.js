@@ -7,9 +7,7 @@ import WorkComponent from '../components/WorkComponent'
 const WorkPage = () => {
   return (
     <MainLayout>
-
-    
-    <h1>WorkPage</h1>
+      
     <WorkComponent />
     
    </MainLayout>

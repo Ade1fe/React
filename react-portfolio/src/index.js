@@ -6,11 +6,13 @@ import AboutPage from './Pages/AboutPage';
 import WorkPage from './Pages/WorkPage';
 import ContactPage from './Pages/ContactPage';
 import LetUsTalkPage from './Pages/LetUsTalkPage';
+import Error from './Pages/Error';
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import ServicePage from './Pages/ServicePage';
 
 
 
@@ -36,6 +38,16 @@ const router = createBrowserRouter([
     path: "/letUsTalk",
     element: <LetUsTalkPage />,
   },
+  {
+    path: "/service",
+    element: <ServicePage />,
+  },
+  {
+    path: "/notfound",
+    element: <Error />,
+  },
+
+
 ]);
 
 

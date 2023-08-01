@@ -1,16 +1,12 @@
 // about.jsx
 import React from 'react';
-import MainLayout from '../layouts/MainLayout';
+import ContactCom from '../components/ContactCom';
+
+
 
 const ContactPage = () => {
   return (
-    <MainLayout>
-
-    
-    <h1>Contact</h1>
-      
-
-   </MainLayout>
+ <ContactCom />
   );
 };
 
