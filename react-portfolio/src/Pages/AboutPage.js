@@ -10,6 +10,7 @@ const AboutPage = () => {
     <AboutProfileFstCom />
     </MainLayout>
   );
+  
 };
 
 export default AboutPage;

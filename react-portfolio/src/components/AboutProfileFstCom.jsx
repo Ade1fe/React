@@ -28,8 +28,8 @@ const AboutProfileFstCom = () => {
               <h2 className='text-xl sm:text-3xl text-center px-2 py-2 my-2 mx-auto'>SELF-SUMMARY</h2>
             </div>
             <div className="px-5 py-4  rounded-[20px] " style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
-              <Header first="David Henderson" headerClassName="font-bold text-xl sm:text-2xl mb-2"
-              pClassame="text-xl sm:text-2xl mb-2" second="I am a San Francisco-based product designer with a focus on web design, illustration, and visual development. I have a diverse range of experience having worked across various fields and industries." />
+              <Header first="David Henderson" headerClassName="font-bold text-xl sm:text-2xl mb-2 my-0 sm:my-6"
+              pClassame="text-xl sm:text-2xl mb-2 my-0 sm:my-6" second="I am a San Francisco-based product designer with a focus on web design, illustration, and visual development. I have a diverse range of experience having worked across various fields and industries." />
             </div>
           </div>
         </div>
