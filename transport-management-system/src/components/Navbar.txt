@@ -1,0 +1,139 @@
+import React, { useState } from 'react';
+import Overview from './Overview';
+import EmployeeStatistics from './EmployeeStatistics';
+import SlotStatus from './SlotStatus';
+import PendingRequests from './PendingRequests';
+import RecentActivity from './RecentActivity';
+import EmployeeManagement from './EmployeeManagement';
+import SlotManagement from './SlotManagement';
+import SlotAssignment from './SlotAssignment';
+import ReportingAndAnalytics from './ReportingAndAnalytics';
+import Notifications from './Notifications';
+import UserAccessControl from './UserAccessControl';
+import SystemConfiguration from './SystemConfiguration';
+import Sidebar from './Sidebar';
+
+const AdminDashboard = () => {
+  // State to manage the active component to display
+  const [activeComponent, setActiveComponent] = useState('overview');
+
+  // Dummy data for demonstration purposes
+  const totalEmployees = 120;
+  const bookedSlots = 85;
+  const pendingRequests = 10;
+  const criticalAlerts = 2;
+  const activeEmployees = 100;
+  const deactivatedAccounts = 10;
+  const deletedAccounts = 5;
+
+  // Dummy data for additional components
+  const availableSlots = 50;
+  const unavailableSlots = 5;
+  const canceledSlots = 10;
+  const requests = [
+    { id: 1, employeeName: 'John Doe', slotDate: '2023-06-28', slotTime: '08:00 AM' },
+    { id: 2, employeeName: 'Jane Smith', slotDate: '2023-06-29', slotTime: '10:00 AM' },
+  ];
+  const activities = [
+    { id: 1, description: 'Slot assigned to John Doe', date: '2023-06-20' },
+    { id: 2, description: 'Employee data changed for Jane Smith', date: '2023-06-19' },
+  ];
+  const employees = [
+    { id: 1, name: 'John Doe', role: 'Driver' },
+    { id: 2, name: 'Jane Smith', role: 'Manager' },
+  ];
+  const slots = [
+    { id: 1, date: '2023-06-28', time: '08:00 AM', status: 'Available' },
+    { id: 2, date: '2023-06-29', time: '10:00 AM', status: 'Booked' },
+  ];
+  const assignedSlots = [
+    { id: 1, employeeName: 'John Doe', date: '2023-06-28', time: '08:00 AM' },
+    { id: 2, employeeName: 'Jane Smith', date: '2023-06-29', time: '10:00 AM' },
+  ];
+  const utilization = {
+    // Add utilization data
+  };
+  const feedback = {
+    // Add feedback data
+  };
+  const performance = {
+    // Add performance data
+  };
+  const notifications = [
+    { id: 1, message: 'New slot available for booking', date: '2023-06-20' },
+    { id: 2, message: 'Transportation system update', date: '2023-06-19' },
+  ];
+  const users = [
+    { id: 1, name: 'Admin 1', role: 'Administrator', accessLevel: 'Full Access' },
+    { id: 2, name: 'Admin 2', role: 'Superuser', accessLevel: 'Limited Access' },
+  ];
+  const workingHours = '08:00 AM - 05:00 PM';
+  const maxSlotCapacity = 100;
+  const notificationPreferences = 'Email, SMS';
+
+  // Function to handle item clicks and update the active component
+  const handleItemClick = (component) => {
+    setActiveComponent(component);
+  };
+
+  return (
+    <div className="admin-dashboard px-6 py-4">
+      <h1 className="text-2xl font-semibold mb-4">Admin Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="md:col-span-1">
+          <Sidebar handleItemClick={handleItemClick} />
+        </div>
+        <div className="md:col-span-3">
+          {/* Render the corresponding component based on the activeComponent state */}
+          {activeComponent === 'overview' && (
+            <Overview
+              totalEmployees={totalEmployees}
+              bookedSlots={bookedSlots}
+              pendingRequests={pendingRequests}
+              criticalAlerts={criticalAlerts}
+            />
+          )}
+          {activeComponent === 'employee-statistics' && (
+            <EmployeeStatistics
+              totalEmployees={totalEmployees}
+              activeEmployees={activeEmployees}
+              deactivatedAccounts={deactivatedAccounts}
+              deletedAccounts={deletedAccounts}
+            />
+          )}
+          {activeComponent === 'slot-status' && (
+            <SlotStatus
+              availableSlots={availableSlots}
+              bookedSlots={bookedSlots}
+              unavailableSlots={unavailableSlots}
+              canceledSlots={canceledSlots}
+            />
+          )}
+          {activeComponent === 'pending-requests' && <PendingRequests requests={requests} />}
+          {activeComponent === 'recent-activity' && <RecentActivity activities={activities} />}
+          {activeComponent === 'employee-management' && <EmployeeManagement employees={employees} />}
+          {activeComponent === 'slot-management' && <SlotManagement slots={slots} />}
+          {activeComponent === 'slot-assignment' && <SlotAssignment assignedSlots={assignedSlots} />}
+          {activeComponent === 'reporting-analytics' && (
+            <ReportingAndAnalytics
+              utilization={utilization}
+              feedback={feedback}
+              performance={performance}
+            />
+          )}
+          {activeComponent === 'notifications' && <Notifications notifications={notifications} />}
+          {activeComponent === 'user-access-control' && <UserAccessControl users={users} />}
+          {activeComponent === 'system-configuration' && (
+            <SystemConfiguration
+              workingHours={workingHours}
+              maxSlotCapacity={maxSlotCapacity}
+              notificationPreferences={notificationPreferences}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminDashboard;

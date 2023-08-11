@@ -2,26 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import GamePage     from './pages/GamePage';
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import AdminPage from './Pages/AdminPage';
-
 
 
 const router = createBrowserRouter([
   {
-    path: "/app",
+    path: "/",
     element: <App />,
   },
- 
-
   {
-    path: "/admin",
-    element: <AdminPage />,
+    path: "/game",
+    element: <GamePage />,
   },
+
+
 
 ]);
 

@@ -1,0 +1,66 @@
+import React, { useState } from 'react';
+import MainLayout from '../layout/MainLayout';
+import Questions from './../components/Ouestions';
+
+const GamePage = () => {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [showWinMessage, setShowWinMessage] = useState(false);
+
+  const currentQuestion = {
+    ...Questions[currentQuestionIndex],
+    question: Questions[currentQuestionIndex].question.replace('{answer}', selectedAnswer),
+  };
+
+  const handleAnswerSelect = (answer) => {
+    setSelectedAnswer(answer);
+  };
+
+  const handleSubmit = () => {
+    if (selectedAnswer === currentQuestion.correctAnswer) {
+      setShowWinMessage(true);
+      alert("Congratulations! You won!");
+    } else {
+      alert("Oops! Try again.");
+    }
+  };
+
+  const handleNextQuestion = () => {
+    setSelectedAnswer("");
+    setShowWinMessage(false);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  return (
+    <MainLayout>
+      <div className="">
+        <h1>Quiz App</h1>
+        <p>{currentQuestion.question}</p>
+        <ul>
+          {Object.values(currentQuestion).slice(1).map((answer, index) => (
+            <li key={index}>
+              <button
+                onClick={() => handleAnswerSelect(answer)}
+                disabled={showWinMessage}
+              >
+                {answer}
+              </button>
+            </li>
+          ))}
+        </ul>
+        {showWinMessage && (
+          <div>
+            <button onClick={handleNextQuestion}>Next Question</button>
+          </div>
+        )}
+        {!showWinMessage && (
+          <button onClick={handleSubmit} disabled={!selectedAnswer}>
+            Submit
+          </button>
+        )}
+      </div>
+    </MainLayout>
+  );
+};
+
+export default GamePage;

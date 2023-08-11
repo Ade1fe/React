@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* a2d2ff */
+.button {
+  background-color: transparent;
+  border: 1px solid #000; /* Add your desired border properties */
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.button.clicked {
+  /* background-color: blue; */
+  border: 2px solid #a2d2ff;
+  text-decoration: line-through;
+}
+
+
+.button-correct {
+  border-color: 2px solid white !important;
+  text-decoration: none !important;
+  background-color: green !important;
+  /* Add more styles as needed */
+}
+
+.placeholder {
+  background-color: #f0f0f0;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+
+
+
+/* .question-section {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.correct-answer {
+  border: 2px solid green;
+}
+
+.wrong-answer {
+  border: 2px solid red;
+} */
+
+
+
+  
