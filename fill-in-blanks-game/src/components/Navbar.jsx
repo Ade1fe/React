@@ -33,15 +33,15 @@ const Navbar = () => {
                 <FaSearch size={15} />
               </div>
             </div>
-            <h3 className='whitespace-nowrap'>All the Activities</h3>
+            <h3 className='whitespace-nowrap'><Link to='/comingSoon'>All the activities</Link></h3>
           </div>
 
           <div className="flex gap-4 items-center mt-4 md:mt-0 lg:mt-0">
             <div className="flex gap-1 items-center bg-white p-2 rounded-[20px] px-3">
               <FaPuzzlePiece />
-              <h2>New Activities</h2>
+              <h2><Link to='/comingSoon'>New Activities</Link></h2>
             </div>
-            <h2>Log in</h2>
+            <h2><Link to='/login'>Log in</Link></h2>
           </div>
         </div>
       )}
@@ -57,16 +57,16 @@ const Navbar = () => {
             <FaSearch size={15} />
           </div>
         </div>
-          <h3 className='whitespace-nowrap'>All the Activities</h3>
+        <h2 className='whitespace-nowrap'><Link to='/comingSoon'>All the activities</Link></h2>
 
       </div>
 
       <div className="hidden lg:flex gap-4 items-center mt-4 lg:mt-0">
         <div className="flex gap-1 items-center bg-white p-2 rounded-[20px] px-3">
           <FaPuzzlePiece />
-          <h2>New Activities</h2>
+          <h2><Link to='/comingSoon'>New Activities</Link></h2>
         </div>
-        <h2>Log in</h2>
+        <h2><Link to='/login'>Log in</Link></h2>
       </div>
     </div>
   );
