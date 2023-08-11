@@ -1,11 +1,12 @@
 import React from 'react'
 import MainLayout from '../layout/MainLayout'
-import GameComponent from '../components/GameComponent'
+import ImgContainerReact from '../components/ImgContainerReact'
+
 
 const GamePage = () => {
   return (
     <MainLayout>
-      <GameComponent />
+      <ImgContainerReact />
     </MainLayout>
   )
 }

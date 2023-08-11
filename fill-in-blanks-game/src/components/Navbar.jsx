@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaSearch, FaPuzzlePiece } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ const Navbar = () => {
   return (
     <div className="relative  items-center bg-[#a2d2ff] py-3  flex flex-row lg:flex-row justify-between px-4">
       <div>
-        <h1 className="text-3xl md:text-4xl font-bold">educaplay</h1>
+        <h1 className="text-3xl md:text-4xl font-bold"><Link to='/app'>Deife-Quiz</Link></h1>
       </div>
 
       <div className="absolute top-6 right-4">
@@ -32,7 +33,7 @@ const Navbar = () => {
                 <FaSearch size={15} />
               </div>
             </div>
-            <h2 className="whitespace-nowrap">All the Activities</h2>
+            <h3 className='whitespace-nowrap'>All the Activities</h3>
           </div>
 
           <div className="flex gap-4 items-center mt-4 md:mt-0 lg:mt-0">
@@ -56,7 +57,8 @@ const Navbar = () => {
             <FaSearch size={15} />
           </div>
         </div>
-        <h2 className="whitespace-nowrap">All the Activities</h2>
+          <h3 className='whitespace-nowrap'>All the Activities</h3>
+
       </div>
 
       <div className="hidden lg:flex gap-4 items-center mt-4 lg:mt-0">
