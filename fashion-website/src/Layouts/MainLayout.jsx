@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
-const MainLayout = () => {
+const MainLayout = ({children}) => {
   return (
     <div>
+      <Navbar />
+      <div className="">{children}</div>
+      <Footer />
         
     </div>
   )

@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='mb-2 px-3'>
+    <div className='mb-2 px-3 '>
 
       
 <div className='flex justify-between items-center border-b-2 border-gray-200 py-3 gap-3'>

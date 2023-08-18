@@ -4,7 +4,7 @@ import suit1 from "../assests/suit.jpg";
 
 const ArticleThree = () => {
   return (
-    <div className=" px-3 mt-[50px]">
+    <div className=" px-3 mt-[100px]">
 
 <div className='grid md:flex items-center justify-center'>
       <div className="z-[99999999999]">

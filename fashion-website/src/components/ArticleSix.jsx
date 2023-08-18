@@ -2,23 +2,23 @@ import React from 'react'
 import ImgCard from './ImgCard'
 import bag from '../assests/bag.jpg'
 
-const ArticleFour = () => {
+const ArticleSix = () => {
   return (
 <div className="text-center mt-[100px]">
 
  
    <div className="hidden sm:block title">
-   <span className='text-gray-500 text-sm uppercase'>Latest Wardrobe</span>
+   <span className='text-gray-500 text-sm uppercase'>Top sale of the week</span>
         <h2 className="text-2xl sm:text-4xl font-semibold mb-4 ">
-          <span className="border-t border-gray-200 w-1/4 inline-block "></span>    <span className='px-6 uppercase'>   New Arrivals   </span>    <span className="border-t border-gray-200 w-1/4  inline-block"></span>
+          <span className="border-t border-gray-200 w-1/4 inline-block uppercase"></span>    <span className='px-6 uppercase'>   Featured product  </span>    <span className="border-t border-gray-200 w-1/4  inline-block"></span>
         </h2>
       </div>
 
       <div className="title grid sm:hidden   align-middle items-center justify-center text-center">
         <p className='border-t mb-3 text-center w-[250px] sm:w-[450px] border-gray-200'></p>
-        <span className='text-gray-500 text-sm uppercase'>Latest Wardrobe</span>
+        <span className='text-gray-500 text-sm uppercase'>Top sale of the week</span>
         <h2 className="text-2xl sm:text-4xl font-semibold uppercase">
-           New Arrivals 
+        Featured product
         </h2>
         <p className='border-t mt-3 text-center border-gray-200'></p>
       </div>
@@ -49,4 +49,4 @@ const ArticleFour = () => {
   )
 }
 
-export default ArticleFour
+export default ArticleSix
