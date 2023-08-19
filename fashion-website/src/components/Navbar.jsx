@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { FaBars, FaPhoneAlt, FaCartPlus, FaSearch, FaTiktok, FaTwitter, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 const Navbar = () => {
