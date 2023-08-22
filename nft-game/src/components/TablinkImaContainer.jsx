@@ -1,8 +1,10 @@
 import React from 'react'
 
-const TablinkImaContainer = () => {
+
+const TablinkImaContainer = ({child}) => {
   return (
-    <div>
+    <div className='mt-[30px] w-full'>
+    {child}
       
     </div>
   )

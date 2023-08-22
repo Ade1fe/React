@@ -4,6 +4,7 @@ import All from './All';
 import Arts from './Arts';
 import Sport from './Sport';
 import Music from './Music';
+import VirtualWorld from './VirtualWorld';
 
 const TabLinks = () => {
   const [activeTab, setActiveTab] = useState('All'); // State to keep track of the active tab
@@ -25,6 +26,8 @@ const TabLinks = () => {
                     return <Sport />;
                     case 'Music':
                         return <Music />;
+                        case 'VirtualWorld':
+                          return <VirtualWorld />;
       
       default:
         return <div>Default content</div>;
@@ -59,10 +62,10 @@ const TabLinks = () => {
           Photography
         </li>
         <li 
-          className={activeTab === 'Virtul World' ? 'active border-2 border-gray-800 bg-gray-800 px-3 py-1 rounded-2xl' : ' border-2 border-gray-800 bg-gray-800 px-3 py-1 rounded-2xl'}
-          onClick={() => handleTabClick('Virtul World')}
+          className={activeTab === 'VirtualWorld' ? 'active border-2 border-gray-800 bg-gray-800 px-3 py-1 rounded-2xl' : ' border-2 border-gray-800 bg-gray-800 px-3 py-1 rounded-2xl'}
+          onClick={() => handleTabClick('VirtualWorld')}
         >
-          Virtul World
+          Virtual World
         </li>
         <li
           className={activeTab === 'Music' ? 'active border-2 border-gray-800 bg-gray-800 px-3 py-1 rounded-2xl' : ' border-2 border-gray-800 bg-gray-800 px-3 py-1 rounded-2xl'}

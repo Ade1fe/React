@@ -3,7 +3,7 @@ import HeaderTitle from './HeaderTitle'
 
 const ArticleFour = () => {
   return (
-    <div>
+    <div className='mt-[60px] bg-gray-950 text-white'>
       <HeaderTitle />
     </div>
   )

@@ -1,9 +1,11 @@
 import React from 'react'
+import TablinkImaContainer from './TablinkImaContainer'
+import CarouselT from './CarouselT'
 
 const All = () => {
   return (
     <div>
-      all
+     <TablinkImaContainer child={<CarouselT />} />
     </div>
   )
 }

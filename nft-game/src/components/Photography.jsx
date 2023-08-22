@@ -1,10 +1,12 @@
 import React from 'react'
+import CarouselA from './CarouselA'
+import TablinkImaContainer from './TablinkImaContainer';
 
 const Photography = () => {
   return (
     <div>
-      photography
-    </div>
+    <TablinkImaContainer child={<CarouselA />} />
+   </div>
   )
 }
 

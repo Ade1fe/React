@@ -1,0 +1,14 @@
+/* Navbar Animation */
+.nav-menu-closed {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+  }
+  
+  .nav-menu-open {
+    opacity: 1;
+    max-height: 300px; /* Set your desired max height */
+    transition: opacity 0.3s ease, max-height 0.5s ease;
+  }
+  
