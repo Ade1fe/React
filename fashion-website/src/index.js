@@ -7,12 +7,32 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import AboutUsPage from './pages/AboutUsPage';
+import BlogPage from './pages/BlogPage';
+import BlShowBlog from './pages/BlShowBlog';
+import BlShowBlogTwo from './pages/BlShowBlogTwo';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/aboutus",
+    element: <AboutUsPage />,
+  },
+  {
+    path: "/blog",
+    element: <BlogPage />,
+  },
+  {
+    path: "/showblogs",
+    element: <BlShowBlog />,
+  },
+  {
+    path: "/showblogs2",
+    element: <BlShowBlogTwo />,
   },
 ]);
 

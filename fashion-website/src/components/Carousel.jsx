@@ -4,9 +4,9 @@ import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import img1 from "../assests/woman-3299379_1280.jpg";
-import img2 from "../assests/fashion-835219_1280.jpg";
-import img3 from "../assests/girl-4266712_1280.jpg";
+import img1 from "../assests/sensual-woman-with-voluminous-curly-hairstyle-elegant-party-outfit-posing.jpg";
+import img2 from "../assests/details-black-woman-wearing-grey-leather-coat-posing-beige-background-brown-bag-white-sunglasses-hands-autumn-winter-fashion-concept.jpg";
+import img3 from "../assests/woman-with-shopping-bags-studio-yellow-background-isolated.jpg";
 import '../css/styles.css'; // Include your other styles if needed
 
 const Carousel = () => {

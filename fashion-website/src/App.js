@@ -27,7 +27,7 @@ function App() {
     <ArticleSix />
     <ShopFor />
     <Blog />
-    <SecondSwiper />
+    <SecondSwiper classnamee="px-4 mt-[100px]" />
   <Footer />
     </div>
   );

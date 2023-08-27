@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import { FaBars, FaPhoneAlt, FaCartPlus, FaSearch, FaTiktok, FaTwitter, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
@@ -57,11 +58,11 @@ const Navbar = () => {
             }`}
           >
             <li className='cursor-pointer  hover:text-cyan-400 hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'>Home</li>
-            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'>About Us</li>
+            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><Link to="/aboutus">About Us</Link></li>
             <li className='hidden sm:block  hover:text-cyan-400  hover:font-semibold relative group  my-4  sm:my-0 mx-1 md:mx-2 cursor-pointer'>
               Pages  <span className={`transform  ${isExpanded ? ' rotate-0' : 'md:-rotate-90'}`}>▼</span>
               <ul className='hidden z-[99999999999] absolute top-4 border-r-2 border-l-2 border-b-2 border-cyan-300 right-[-80PX] text-black bg-white w-[200px] p-2 mt-2 rounded shadow-md group-hover:block'>
-                <li className='cursor-pointer  text-black hover:text-cyan-800'>Page1</li>
+                <li className='cursor-pointer  text-black hover:text-cyan-800'><Link>Page1</Link></li>
                 <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page2</li>
                 <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page3</li>
                 <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page4</li>
@@ -83,7 +84,7 @@ const Navbar = () => {
                 </ul>
               )}
             </details>
-            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'>Blog</li>
+            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'> <Link to="/blog"> Blog </Link></li>
             <li className='cursor-pointer  hover:text-cyan-400 hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'>Shop</li>
             <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'>Contact</li>
           </ul>

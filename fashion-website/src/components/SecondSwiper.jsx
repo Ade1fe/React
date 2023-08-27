@@ -14,9 +14,9 @@ import '../css/styles.css';
 import { FreeMode, Pagination } from 'swiper/modules';
 import immp from "../assests/fashion-img20.png"
 
-export default function SecondSwiper() {
+export default function SecondSwiper({classnamee}) {
   return (
-    <div className='px-4 mt-[100px]'>
+    <div className={classnamee}>
       <Swiper
         slidesPerView={6}
         spaceBetween={20}
