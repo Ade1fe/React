@@ -1,0 +1,165 @@
+import React, { useEffect, useState } from 'react';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../css/MenuTwo.css';
+import FoodItemCard from './FoodItemCard';
+import picmain from "../assets/main.jpg";
+
+const MenuTwo = () => {
+    const [categories, setCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [mealCounts, setMealCounts] = useState({});
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [foodItems, setFoodItems] = useState([]); // Store food items for selected categories
+
+    useEffect(() => {
+        fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+            .then((response) => response.json())
+            .then((data) => {
+                const categoryList = data.meals.map((meal) => meal.strCategory);
+                setCategories(categoryList);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching categories:', error);
+                setIsLoading(false);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (categories.length > 0) {
+            const mealCountPromises = categories.map((category) => {
+                return fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        return { category, count: data.meals ? data.meals.length : 0 };
+                    })
+                    .catch((error) => {
+                        console.error(`Error fetching meal count for ${category}:`, error);
+                        return { category, count: 0 };
+                    });
+            });
+
+            Promise.all(mealCountPromises)
+                .then((counts) => {
+                    const mealCountMap = {};
+                    counts.forEach(({ category, count }) => {
+                        mealCountMap[category] = count;
+                    });
+                    setMealCounts(mealCountMap);
+                });
+        }
+    }, [categories]);
+
+    const breakpoints = {};
+
+    function generateRandomPrice() {
+        const randomDecimal = (Math.random() * 100) + 1;
+        const roundedPrice = Math.round(randomDecimal * 100) / 100;
+        const formattedPrice = `$${roundedPrice.toFixed(2)}`;
+        return formattedPrice;
+    }
+
+    const price = generateRandomPrice();
+
+    const fetchFoodItemsForCategory = (category) => {
+        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+            .then((response) => response.json())
+            .then((data) => {
+                const items = data.meals || [];
+                setFoodItems((prevItems) => [...prevItems, { category, items }]);
+            })
+            .catch((error) => {
+                console.error(`Error fetching food items for ${category}:`, error);
+            });
+    };
+
+    const handleCheckboxChange = (event) => {
+        const { value, checked } = event.target;
+        if (checked) {
+            setSelectedCategories([...selectedCategories, value]);
+            fetchFoodItemsForCategory(value);
+        } else {
+            setSelectedCategories(selectedCategories.filter((category) => category !== value));
+            setFoodItems(foodItems.filter((item) => item.category !== value));
+        }
+    };
+
+    return (
+        <div className="container mx-auto p-4">
+            <div className="my-4">
+                <div className="flex justify-between gap-4">
+                    <div className="w-2/4">
+                        <select className="w-full bg-white border border-gray-300 rounded-md px-2 py-1">
+                            <option value="Lagos">Lagos</option>
+                            <option value="Kano">Kano</option>
+                            <option value="Rivers">Rivers</option>
+                        </select>
+                    </div>
+
+                    <div className="w-2/4">
+                        <input
+                            type="text"
+                            placeholder="Search food here"
+                            className="w-full bg-white border border-gray-300 rounded-md px-2 py-1"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex items-start">
+                <ul className="w-[20%] px-5">
+                    {categories.map((category) => (
+                        <li key={category} className="flex justify-between gap-3 my-2">
+                            <label className="flex items-center space-x-2 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    className="form-checkbox text-blue-500 h-4 w-4"
+                                    value={category}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <span className="text-gray-800">{category}</span>
+                            </label>
+                            <span className="text-gray-600">{mealCounts[category] || 0}</span>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="w-[80%]">
+                    {selectedCategories.map((selectedCategory) => (
+                        <div key={selectedCategory}>
+                            <h2 className="text-2xl font-semibold mt-4">{selectedCategory} Items</h2>
+                            <Swiper
+                                slidesPerView={3}
+                                spaceBetween={30}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                breakpoints={breakpoints}
+                                modules={[Pagination]}
+                                className="mySwiper"
+                            >
+                                {foodItems
+                                    .find((item) => item.category === selectedCategory)
+                                    ?.items.map((item) => (
+                                        <SwiperSlide key={item.idMeal}>
+                                            <FoodItemCard
+                                                details={item.strInstructions}
+                                                img={item.strMealThumb}
+                                                price={price}
+                                                title={item.strMeal}
+                                            />
+                                        </SwiperSlide>
+                                    ))}
+                            </Swiper>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default MenuTwo;

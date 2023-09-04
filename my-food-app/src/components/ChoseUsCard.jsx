@@ -4,7 +4,7 @@ import React from 'react'
 
 const ChoseUsCard = ({icons, title}) => {
   return (
-    <div className='py-7 px-3 md:py-5 rounded-2xl w-fit md:w-[400px] bg-orange-500 '>
+    <div className='py-5 px-3 md:py-5  rounded-2xl w-fit md:w-[400px] bg-slate-50 shadow-lg'>
         <div className="">
         {/* 
       <IoMdCash size={30} />

@@ -1,0 +1,113 @@
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import FoodItemCard from './FoodItemCard';
+import "../css/MenuCarousel.css"
+
+
+
+const MenuCarouselOne = ({ foodData }) => {
+    function generateRandomPrice() {
+        const randomDecimal = (Math.random() * 100) + 1;
+        const roundedPrice = Math.round(randomDecimal * 100) / 100;
+        const formattedPrice = `$${roundedPrice.toFixed(2)}`;
+        return formattedPrice;
+    }
+    const price = generateRandomPrice();
+    console.log(price);
+
+    if (!foodData || !Array.isArray(foodData)) {
+        return <p>No data available</p>;
+    }
+
+    const pagination = {
+      clickable: true,
+      renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+  };
+
+    const breakpoints = {
+      0: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+
+      310: {
+        slidesPerView: 1.48,
+        spaceBetween: 20,
+      },
+
+      370: {
+        slidesPerView: 1.90,
+        spaceBetween: 20,
+      },
+
+      428: {
+        slidesPerView: 2.10,
+        spaceBetween: 10,
+      },
+
+      478: {
+        slidesPerView: 2.40,
+        spaceBetween: 10,
+      },
+
+      568: {
+        slidesPerView: 2.70,
+        spaceBetween: 20,
+      },
+
+      668: {
+        slidesPerView: 2.90,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 3.70,
+        spaceBetween: 10,
+      },
+      
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+      },
+     
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 30,
+      },
+      
+     
+    };
+
+    return (
+        <div className="swiper-container mx-auto" style={{ maxWidth: '1240px', border: "2px solid red" }}>
+            <Swiper
+                slidesPerView={5}
+                spaceBetween={30}
+                // pagination={{
+                //     clickable: true,
+                // }}
+                breakpoints={breakpoints}
+                pagination={pagination}
+                 modules={[Pagination]}
+                className="mySwiper"
+            >
+                {foodData.map((foodItem, index) => (
+                    <SwiperSlide key={index} className="swiper-slide">
+                        <FoodItemCard
+                            img={foodItem.strMealThumb}
+                            details={foodItem.strInstructions}
+                            title={foodItem.strMeal}
+                            price={foodItem.price || generateRandomPrice()} 
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+    );
+};
+
+export default MenuCarouselOne;

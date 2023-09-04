@@ -1,0 +1,40 @@
+import React, { useState } from 'react';
+import Ingredient from './Ingredient';
+import MenuCarouselOne from './MenuCarouselOne';
+
+const IngredientMenu = () => {
+  const [selectedIngredient, setSelectedIngredient] = useState('');
+  const [mealsByIngredient, setMealsByIngredient] = useState([]);
+
+  // Callback function to update mealsByIngredient when a new ingredient is selected
+  const handleIngredientSelect = async (ingredient) => {
+    setSelectedIngredient(ingredient);
+
+    try {
+      const response = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const mealData = data.meals || [];
+
+      setMealsByIngredient(mealData);
+    } catch (error) {
+      console.error('Error fetching meals:', error);
+    }
+  };
+
+  return (
+    <div>
+      <Ingredient onIngredientSelect={handleIngredientSelect} />
+      <h2>Meals with {selectedIngredient}:</h2>
+      <MenuCarouselOne foodData={mealsByIngredient} />
+    </div>
+  );
+};
+
+export default IngredientMenu;

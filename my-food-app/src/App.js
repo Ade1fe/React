@@ -6,6 +6,9 @@ import ArticleTwo from './components/ArticleTwo';
 import ArticleThree from './components/ArticleThree';
 import ArticleFour from './components/ArticleFour';
 import ArticleFive from './components/ArticleFive';
+import ArticleSix from './components/ArticleSix';
+import ArticleSeven from './components/ArticleSeven';
+import ArticleEight from './components/ArticleEight';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
      <ArticleTwo />
      <ArticleFour />
      <ArticleFive />
+     <ArticleSix />
+     <ArticleSeven />
+     <ArticleEight />
     </div>
   );
 }
