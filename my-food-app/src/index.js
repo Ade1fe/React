@@ -9,6 +9,7 @@ import SignUpPage from './pages/SignUpPage';
 import MenuPage from './pages/MenuPage';
 import ContactUsPage from './pages/ContactUsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import CartPage from './pages/CartPage';
 // import ProductDetailsOne from './pages/ProductDetailsOne'; // Import ProductDetailsOne
 
 const router = createBrowserRouter([
@@ -37,10 +38,12 @@ const router = createBrowserRouter([
     element: <ContactUsPage />,
   },
   {
-    // path: '/productdetails/:id?',
-    // path: '/productdetails/:id/:price?',
     path: '/productdetails',
     element: <ProductDetailsPage />,
+  },
+  {
+    path: '/cart',
+    element: <CartPage />,
   },
 ]);
 

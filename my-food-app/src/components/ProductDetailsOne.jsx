@@ -40,7 +40,7 @@ const ProductDetailsPage = () => {
   }, [id]);
 
   return (
-    <div className='mt-[30px] md:mt-[50px] container mx-auto'>
+    <div className='my-[30px] md:my-[50px] container mx-auto'>
       {productDetails && (
         <div className="block md:flex items-center">
           <ProductTwo
@@ -58,39 +58,47 @@ const ProductDetailsPage = () => {
       
 
       )}
-      <div className="">
-  <div className="tab-links ">
+      <div className="mb-20 md:mb-32">
+  <div className="tab-links flex justify-evenly gap-3 mb-8 md:mb-14 px-4">
     <button
       className={`${
-        activeTab === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-      } px-4 py-2 rounded-md`}
+        activeTab === 1 ? ' text-black border-b-2 border-b-orange-500 ' : 'font-semibold bg-gray-20'
+      } px-2 py-2 text-lg md:text-2xl rounded-md`}
       onClick={() => handleTabClick(1)}
     >
-      Tab 1
+      Details
     </button>
     <button
       className={`${
-        activeTab === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-      } px-4 py-2 rounded-md`}
+        activeTab === 2 ? ' text-black border-b-2 border-b-orange-500 ' : 'font-semibold bg-gray-20'
+      } px-2 py-2 text-lg md:text-2xl rounded-md`}
       onClick={() => handleTabClick(2)}
     >
-      Tab 2
+      Ingredients
     </button>
     <button
       className={`${
-        activeTab === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-      } px-4 py-2 rounded-md`}
+        activeTab === 3 ? ' text-black border-b-2 border-b-orange-500 ' : 'bg-gray-20 font-semibold'
+      } px-2 py-2 text-lg md:text-2xl rounded-md`}
       onClick={() => handleTabClick(3)}
     >
-      Tab 3
+      Comments
     </button>
   </div>
   <div className="tab-content">
-  {activeTab === 1 && productDetails && (
+  {/* {activeTab === 1 && productDetails && (
   <ProductInfo details={productDetails.strInstructions.split('\n').map((line, index) => (
     <p key={index}>{line}</p>
   ))} />
+)} */}
+{activeTab === 1 && productDetails && (
+  <ProductInfo>
+    {productDetails.strInstructions.split('\n').map((line, index) => (
+      <p key={index}>{line}</p>
+    ))}
+  </ProductInfo>
 )}
+
 
 
 {activeTab === 2 && productDetails && (
