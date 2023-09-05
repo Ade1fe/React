@@ -85,7 +85,7 @@ const Navbar = () => {
               )}
             </details>
             <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'> <Link to="/blog"> Blog </Link></li>
-            <li className='cursor-pointer  hover:text-cyan-400 hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'>Shop</li>
+            <li className='cursor-pointer  hover:text-cyan-400 hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><Link to="/shop"> Shop </Link></li>
             <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'>Contact</li>
           </ul>
         </div>

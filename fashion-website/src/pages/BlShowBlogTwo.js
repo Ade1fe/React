@@ -23,7 +23,7 @@ const BlShowBlogTwo = () => {
 
   return (
     <MainLayout className=' '>
-      <div className='text-center bg-gray-100 text-black flex flex-col px-5 md:px-9 py-5 md:py-14'>
+      <div className=' text-center bg-gray-100 text-black flex flex-col px-5 md:px-9 py-5 md:py-14'>
       <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl  uppercase my-5'>{decodeURIComponent(h2)}</h2>
     
         <h2 className='flex flex-wrap border-t-2 border-b-2 w-fit mx-auto mb-6 md:mb-9 p-3 md:p-5 gap-6 md:gap-11 justify-center items-center my-5'>

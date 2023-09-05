@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='flex justify-between relative items-center bg-gray-950 text-white py-2 px-5 md:px-8'>
+    <nav className='flex justify-between z-[999999999999999999999] relative items-center bg-gray-950 text-white py-2 px-5 md:px-8'>
       <AiOutlineMenu
         className='block sm:hidden cursor-pointer'
         onClick={toggleMenu}

@@ -7,9 +7,11 @@ import '../css/MenuTwo.css';
 import FoodItemCard from './FoodItemCard';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import InforContainer from './InforContainer'; 
+import { useNavigate  } from 'react-router-dom';
 
 
 const MenuTwo = () => {
+  const navigate  = useNavigate();
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [mealCounts, setMealCounts] = useState({});
@@ -22,6 +24,7 @@ const MenuTwo = () => {
   const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showInfo, setShowInfo] = useState(false); 
+  
 
   
     const handleSubmit = async (e) => {
@@ -243,11 +246,17 @@ const MenuTwo = () => {
 
     const handleFoodItemCardClick = (foodItem) => {
       // const { id, title, img, price } = foodItem;
+      const { id, title, img, price } = foodItem;
       console.log('Clicked Food Item Details:');
       console.log('Title:', foodItem.title);
       console.log('Image:', foodItem.img);
       console.log('Price:', foodItem.price);
       console.log('ID:', foodItem.id);
+      const idMeal = foodItem.id;
+      console.log(idMeal);
+      console.log('Clicked Food Item Details:', foodItem);
+      navigate('/productdetails', { state: { id, title, img, price } });
+    
       
       
      

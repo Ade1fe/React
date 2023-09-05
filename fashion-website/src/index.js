@@ -11,6 +11,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import BlogPage from './pages/BlogPage';
 import BlShowBlog from './pages/BlShowBlog';
 import BlShowBlogTwo from './pages/BlShowBlogTwo';
+import ShopPage from './pages/ShopPage';
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/showblogs2",
     element: <BlShowBlogTwo />,
+  },
+  {
+    path: "/shop",
+    element: <ShopPage />,
   },
 ]);
 

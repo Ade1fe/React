@@ -6,7 +6,7 @@ import DemoteamCard from './DemoteamCard'
 
 const BlShowComOne = () => {
   return (
-    <div className=" block lg:flex px-3 md:px-5 gap-3">
+    <div className=" block lg:flex px-3 md:px-5 gap-3 ">
     
 
 

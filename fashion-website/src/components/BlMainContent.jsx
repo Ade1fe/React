@@ -6,7 +6,7 @@ import BlRecentPostContainer from './BlRecentPostContainer'
 
 const BlMainContent = () => {
   return (
-    <div className='block lg:flex'>
+    <div className='block lg:flex my-[40px] sm:my-[60px] md:my-[80px] lg:my-[100px]'>
       <div className="w-full lg:w-[60%]">
       <BlBlogTemp />
       </div>

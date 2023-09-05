@@ -29,7 +29,7 @@ const FoodItemCard = ({id, img, title, price, onCardClick }) => {
           >
             Add to Cart
           </button>
-          <Link to="/productdetails" > 
+          {/* <Link to="/productdetails/:id" >  */}
           <button
             onClick={handleCardClick} // Handle the click event here
             className="border-2 border-orange-500 text-black px-2 py-1 hover:text-white rounded-sm
@@ -37,7 +37,7 @@ const FoodItemCard = ({id, img, title, price, onCardClick }) => {
           >
             Details
           </button>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </div>
