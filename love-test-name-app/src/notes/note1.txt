@@ -1,0 +1,201 @@
+import React, { useState } from 'react';
+
+
+function LoveCalculator() {
+  const [name1, setName1] = useState('');
+  const [name2, setName2] = useState('');
+  const [lovePercentage, setLovePercentage] = useState(null);
+
+  const calculateLove = () => {
+  // Validate that both names are not empty
+  if (name1.trim() === '' || name2.trim() === '') {
+    alert('Please enter both names before calculating love.');
+    return;
+  }
+
+  const name1Lower = name1.toLowerCase().replace(/\s/g, '');
+  const name2Lower = name2.toLowerCase().replace(/\s/g, '');
+
+  const name1Chars = name1Lower.split('');
+  const name2Chars = name2Lower.split('');
+
+  for (const char of name1Chars) {
+    if (name2Chars.includes(char)) {
+      name1Chars.splice(name1Chars.indexOf(char), 1);
+      name2Chars.splice(name2Chars.indexOf(char), 1);
+    }
+  }
+
+  const totalCharsLeft = name1Chars.length + name2Chars.length;
+  const flamesOrder = ['Friendship', 'Love', 'Affection', 'Marriage', 'Enemy', 'Sibling'];
+
+  const resultIndex = (totalCharsLeft % flamesOrder.length) - 1;
+  const result = flamesOrder[resultIndex < 0 ? flamesOrder.length - 1 : resultIndex];
+
+  // Check if the values are already in localStorage
+  const storedLovePercentage = localStorage.getItem('lovePercentage');
+  const storedName1 = localStorage.getItem('name1');
+  const storedName2 = localStorage.getItem('name2');
+
+  if (result !== storedLovePercentage || name1 !== storedName1 || name2 !== storedName2) {
+    // Values are different, update localStorage
+    localStorage.setItem('lovePercentage', result);
+    localStorage.setItem('name1', name1);
+    localStorage.setItem('name2', name2);
+  }
+
+  setLovePercentage(result);
+
+  console.log(`Name 1: ${name1}`);
+  console.log(`Name 2: ${name2}`);
+  console.log(`Love Percentage: ${result}`);
+};
+
+
+  // const calculateLove = () => {
+  //   // Validate that both names are not empty
+  //   if (name1.trim() === '' || name2.trim() === '') {
+  //     alert('Please enter both names before calculating love.');
+  //     return;
+  //   }
+  
+   
+  //   const name1Lower = name1.toLowerCase().replace(/\s/g, '');
+  //   const name2Lower = name2.toLowerCase().replace(/\s/g, '');
+  
+    
+  //   const name1Chars = name1Lower.split('');
+  //   const name2Chars = name2Lower.split('');
+  
+  //   for (const char of name1Chars) {
+  //     if (name2Chars.includes(char)) {
+        
+  //       name1Chars.splice(name1Chars.indexOf(char), 1);
+  //       name2Chars.splice(name2Chars.indexOf(char), 1);
+  //     }
+  //   }
+  
+  //   const totalCharsLeft = name1Chars.length + name2Chars.length;
+  //   const flamesOrder = ['Friendship', 'Love', 'Affection', 'Marriage', 'Enemy', 'Sibling'];
+  
+   
+  //   const resultIndex = (totalCharsLeft % flamesOrder.length) - 1;
+  //   const result = flamesOrder[resultIndex < 0 ? flamesOrder.length - 1 : resultIndex];
+  
+    
+  //   setLovePercentage(result);
+  
+    
+  //   localStorage.setItem('lovePercentage', result);
+  
+    
+  //   localStorage.setItem('name1', name1);
+  //   localStorage.setItem('name2', name2);
+  
+    
+  //   console.log(`Name 1: ${name1}`);
+  //   console.log(`Name 2: ${name2}`);
+  //   console.log(`Love Percentage: ${result}`);
+  // };
+  const resultInfo = {
+    Friendship: "You have a great friendship!",
+    Love: "It's true love!",
+    Affection: "You share deep affection!",
+    Marriage: "A match made in heaven!",
+    Enemy: "Uh-oh, not a great match!",
+    Sibling: "You're like siblings!",
+  };  
+  
+
+  return (
+    
+    <div className=" flex items-center justify-center mt-[10px]">
+      <div className="bg-white p-8 ">
+       
+        <div className="text-center mb-4">
+          <h1 className="text-4xl font-extrabold text-purple-600">
+            Love Calculator Pro
+          </h1>
+          <p className="text-gray-600">Find out your love percentage</p>
+        </div>
+        <div className="space-y-4">
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:border-purple-600"
+            value={name1}
+            onChange={(e) => setName1(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Enter Your Partner's Name"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:border-purple-600"
+            value={name2}
+            onChange={(e) => setName2(e.target.value)}
+          />
+        </div>
+        <button
+          className="w-full py-3 mt-6 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none"
+          onClick={calculateLove}
+        >
+          Calculate Love
+        </button>
+        {lovePercentage !== null && (
+  <div className="mt-6 text-center">
+    <div className="relative h-10 rounded-full bg-gray-300">
+      <div
+        className="absolute h-10 rounded-full bg-purple-600"
+        style={{ width: `${lovePercentage}%` }}
+      ></div>
+    </div>
+    <p className="mt-3 text-3xl font-extrabold text-purple-600">
+      {lovePercentage}%
+    </p>
+    <p className="text-gray-600">{resultInfo[lovePercentage]}</p>
+    <div className="mt-4">
+      <button
+        className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none"
+        onClick={() => alert('Shared on social media!')}
+      >
+        Share on Social Media
+      </button>
+    </div>
+  </div>
+)}
+        <hr className="my-6 border-t border-gray-300" />
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-600 mb-2">
+            How It Works
+          </h2>
+          <p className="text-gray-600">
+            Our advanced algorithm calculates your love compatibility based on
+            the names you provide. It's fun, entertaining, and who knows, maybe
+            it's a glimpse into your future!
+          </p>
+        </section>
+        <hr className="my-6 border-t border-gray-300" />
+        <section>
+          <h2 className="text-2xl font-semibold text-purple-600 mb-2">
+            Privacy and Terms
+          </h2>
+          <p className="text-gray-600">
+            By using this app, you agree to our{' '}
+            <a href="/privacy-policy" className="text-purple-600">
+              Privacy Policy
+            </a>{' '}
+            and{' '}
+            <a href="/terms-of-use" className="text-purple-600">
+              Terms of Use
+            </a>
+            .
+          </p>
+        </section>
+        <footer className="mt-6 text-center text-gray-600">
+          <p>&copy; {new Date().getFullYear()} Love Calculator Pro</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+export default LoveCalculator;
