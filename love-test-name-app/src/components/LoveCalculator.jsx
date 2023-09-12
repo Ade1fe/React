@@ -6,7 +6,7 @@ import loveImage from "../assets/OK1BI40-removebg-preview.png"
 import hateImage from "../assets/9079492.png"
 import sibling from "../assets/6730260-removebg-preview.png"
 import {FaWhatsapp} from "react-icons/fa"
-import img from "c:\Users\addyp\Downloads\photo_6048657595088094195_y-removebg-preview.png"
+// import img from "c:\Users\addyp\Downloads\photo_6048657595088094195_y-removebg-preview.png"
 
 
 function LoveCalculator() {
@@ -104,7 +104,7 @@ function LoveCalculator() {
   return (
     <div className=" flex items-center justify-center mt-[10px]">
       <div className="bg-white p-8 ">
-        <img src="" className='w-20 h-20 object-contain' alt="" />
+        {/* <img src="" className='w-20 h-20 object-contain' alt="" /> */}
         <div className="text-center mb-4">
           <h1 className="text-4xl font-extrabold text-purple-600">
             Love Calculator Pro

@@ -17,7 +17,11 @@ import '../css/style.css';
 import { Grid, Pagination } from 'swiper/modules';
 
 const itemsPerPage = 6; 
-const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; 
+// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; 
+const items = [
+  {id: "name"
+          },
+]; 
 
 export default function App() {
 

@@ -1,0 +1,97 @@
+import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../css/CarouselOne.css';
+import { Pagination } from 'swiper/modules';
+
+import '../css/Trending.css';
+import CardImg from './CardImg';
+
+
+
+export default function Trending() {
+  const [images, setImages] = useState([]);
+
+  const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
+
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+  }, []); // Empty dependency array to fetch data only once
+
+  // Function to fetch movie genres
+async function fetchGenres() {
+    const genreApiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
+    try {
+      const response = await fetch(genreApiUrl);
+      if (!response.ok) {
+        throw new Error('Genre data not available');
+      }
+      const data = await response.json();
+      return data.genres;
+    } catch (error) {
+      console.error('Error fetching genre data:', error);
+      return [];
+    }
+  }
+  
+
+  // Function to fetch data for a specific page
+  async function fetchData() { // Added async keyword
+    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`;
+    
+
+    try {
+      const response = await fetch(apiUrl); // Used async/await for fetch
+      const genres = await fetchGenres();
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const fifteenImages = data.results.slice(0, 15).map(movie => ({
+        backdrop_path: movie.backdrop_path,
+        title: movie.title,
+        release_date: movie.release_date, // Map release_date from API
+        // genre_ids: movie.genre_ids, // Map genre_ids from API
+        genre_names: movie.genre_ids.map(genreId =>
+            genres.find(genre => genre.id === genreId)?.name || 'Unknown'
+          ),
+        vote_average: movie.vote_average, // Map vote_average from API
+      }));
+
+      setImages(fifteenImages);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  return (
+    <>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        className="mySwiper"
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <CardImg
+  dates={image.release_date} // Pass release_date as dates prop
+  genre={image. genre_names.join(', ')} // Join genre_ids as a string and pass as genre prop
+  img={image.backdrop_path}
+  rating={image.vote_average} // Pass vote_average as rating prop
+  title={image.title}
+  key={index}
+/>
+
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
+  );
+}
+
+

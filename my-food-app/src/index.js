@@ -10,6 +10,7 @@ import MenuPage from './pages/MenuPage';
 import ContactUsPage from './pages/ContactUsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import CartPage from './pages/CartPage';
+import AboutUs from './pages/AboutUs';
 // import ProductDetailsOne from './pages/ProductDetailsOne'; // Import ProductDetailsOne
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: '/cart',
     element: <CartPage />,
+  },
+  {
+    path: '/aboutus',
+    element: <AboutUs />,
   },
 ]);
 

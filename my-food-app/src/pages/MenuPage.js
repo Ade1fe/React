@@ -10,7 +10,8 @@ import contain from '../assets/main.jpg';
 const MenuPage = () => {
   return (
     <MainLayout>
-      <MainContainer img={contain} title="Tasty Food" />
+      <MainContainer img={contain} title="Tasty Food"  notes=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, voluptate minus! Quod, alias! Numquam ducimus
+          placeat dicta incidunt, sint vel?" />
       <div>
         <MenuOne />
       </div>
