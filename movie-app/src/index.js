@@ -4,6 +4,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import OverViewPage from './pages/OverViewPage';
+import AnimePage from './pages/AnimePage';
 
 const router = createBrowserRouter([
   {
@@ -16,8 +17,14 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/overview',
+    path: '/overview/:id',
     element: <OverViewPage />,
+  },
+
+  
+  {
+    path: '/anime',
+    element: <AnimePage />,
   },
 
 ])

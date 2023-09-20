@@ -65,15 +65,16 @@ export default function CarouselOne({ h1, text }) {
          {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="relative">
-              <div className="w-full h-[400px] sm:h-[450px]  md:h-auto ">
+              <div className="w-full h-[400px] sm:h-[450px]  md:h-auto relative">
                 <img
                   src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
                   className="w-full h-full object-cover"
                   alt=""
                 />
+                  <div className="absolute top-0 left-0 bg-black opacity-50 w-full h-full"></div>
               </div>
-              <div className="absolute  w-[90%] top-1/2  text-left bg-black opacity-80 p-3 sm:left-4 text-white">
-                <h2 className='truncate text-xl   sm:text-2xl mb-2 md:text-3xl bg-black '>{image.title}</h2>
+              <div className="absolute  w-[90%] top-1/2  text-left  p-3 sm:left-4 text-white">
+                <h2 className='truncate text-xl   sm:text-2xl mb-2 md:text-3xl '>{image.title}</h2>
                 <p className='line-clamp-3 sm:line-clamp-none md:line-clamp-4'>{image.overview}</p>
                 <div className="flex gap-2 text-orange-500">
                 <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />

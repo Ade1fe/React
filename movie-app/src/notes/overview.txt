@@ -1,0 +1,19 @@
+import React from 'react';
+import { useLocation} from 'react-router-dom';
+import Mainlayout from '../layout/Mainlayout';
+
+const OverViewPage = () => {
+  const location = useLocation();
+ 
+  const { title, img, id } = location.state || {};
+
+  return (
+    <Mainlayout>
+      <h1>Selected Image Title: {title}</h1>
+      <img src={img} alt={title} />
+      <h1> {id} </h1>
+    </Mainlayout>
+  );
+};
+
+export default OverViewPage;

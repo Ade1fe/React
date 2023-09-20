@@ -1,0 +1,99 @@
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+const Overview = () => {
+  const location = useLocation();
+  const { title, id } = location.state || {};
+
+  const [contentData, setContentData] = useState(null);
+  const [contentType, setContentType] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
+
+  // Function to fetch content data by ID
+  const fetchDataById = async (contentId) => {
+    const tvApiUrl = `https://api.themoviedb.org/3/tv/${contentId}?api_key=${apiKey}`;
+    const movieApiUrl = `https://api.themoviedb.org/3/movie/${contentId}?api_key=${apiKey}`;
+
+    try {
+      // First, try fetching TV series data
+      const tvResponse = await fetch(tvApiUrl);
+      if (tvResponse.ok) {
+        const tvData = await tvResponse.json();
+        setContentData(tvData);
+        setContentType('TV Series');
+        setLoading(false);
+        return;
+      }
+
+      // If TV series data is not found, try fetching movie data
+      const movieResponse = await fetch(movieApiUrl);
+      if (movieResponse.ok) {
+        const movieData = await movieResponse.json();
+        setContentData(movieData);
+        setContentType('Movie');
+        setLoading(false);
+        return;
+      }
+
+      // If both TV series and movie data are not found, set an error
+      throw new Error('Content not found');
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchDataById(id);
+    }
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!contentData) {
+    return <div>No data available for this content.</div>;
+  }
+
+  return (
+    <div>
+      <h1>Selected Content Type: {contentType}</h1>
+      <h1>Selected Content Title: {title}</h1>
+      <div className="w-full h-[450px] md:h-[550px]">
+        <img
+          src={`https://image.tmdb.org/t/p/original${contentData.backdrop_path}`}
+          alt={title}
+          className="w-full h-full object-contain"
+        />
+        <img
+          src={`https://image.tmdb.org/t/p/original${contentData.poster_path}`}
+          alt=""
+        />
+        <p>{contentData.overview}</p>
+        <p>{contentData.vote_average}</p>
+        <p>{contentData.vote_count}</p>
+        <p>{contentData.origin_country}</p>
+        <p>{contentData.original_language}</p>
+        <p>
+          <span>{contentData.release_date || contentData.first_air_date}</span>
+        </p>
+        {/* Map genre IDs to their corresponding names */}
+        <p>
+          {contentData.genres.map((genre) => genre.name).join(', ')}
+        </p>
+      </div>
+      <h1>{contentType} ID: {id}</h1>
+    </div>
+  );
+};
+
+export default Overview;

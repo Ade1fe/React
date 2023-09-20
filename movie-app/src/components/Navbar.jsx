@@ -3,6 +3,7 @@
 import React,{useState} from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import '../css/Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ backgroundImage }) => {
 
@@ -38,9 +39,9 @@ const Navbar = ({ backgroundImage }) => {
         <a href='/' className='nav-link mx-1'>
           Movies
         </a>
-        <a href='/' className='nav-link mx-1'>
+        <Link to='/anime' className='nav-link mx-1'>
           Anime
-        </a>
+        </Link>
         <a href='/' className='nav-link mx-1'>
           Search
         </a>

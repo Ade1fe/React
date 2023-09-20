@@ -164,7 +164,9 @@ export default function Trending() {
       const { id, title, img } = movieItem;
       // Use the navigate function to navigate to the overview page
       console.log("movie click")
-      navigate(`/overview/${id}`, { state: { title, img } });
+
+      console.log(movieItem);
+      navigate(`/overview/${id}`, { state: { title, img,id } });
     } else {
       console.error('Required data is missing in movieItem:', movieItem);
     }
@@ -184,7 +186,7 @@ export default function Trending() {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-           <CardImg
+       <CardImg
   dates={image.release_date}
   genre={image.genre_names.join(', ')}
   img={image.poster_path}
@@ -192,8 +194,9 @@ export default function Trending() {
   title={image.title}
   movieId={image.id}
   key={index}
-  onClick={handleMovieCardClick}
+  onClick={handleMovieCardClick} // This is correct
 />
+
 
           </SwiperSlide>
         ))}
