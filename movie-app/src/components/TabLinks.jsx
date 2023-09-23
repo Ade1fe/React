@@ -15,7 +15,7 @@ const TabLinks = () => {
       <div className="flex">
         <button
           className={`${
-            activeTab === 'socials' ? 'bg-red-500 text-white' : 'bg-gray-00 text-gray-00'
+            activeTab === 'socials' ? 'bg-blue-500 text-white' : 'bg-gray-00 text-gray-00'
           } px-4 py-2 rounded-l`}
           onClick={() => handleTabClick('socials')}
         >
@@ -23,7 +23,7 @@ const TabLinks = () => {
         </button>
         <button
           className={`${
-            activeTab === 'reviews' ? 'bg-red-500 text-white' : 'bg-gray-00 text-gray-00'
+            activeTab === 'reviews' ? 'bg-blue-500 text-white' : 'bg-gray-00 text-gray-00'
           } px-4 py-2`}
           onClick={() => handleTabClick('reviews')}
         >
@@ -31,7 +31,7 @@ const TabLinks = () => {
         </button>
         <button
           className={`${
-            activeTab === 'discuss' ? 'bg-red-500 text-white' : 'bg-gray-00 text-gray-00'
+            activeTab === 'discuss' ? 'bg-blue-500 text-white' : 'bg-gray-00 text-gray-00'
           } px-4 py-2 rounded-r`}
           onClick={() => handleTabClick('discuss')}
         >

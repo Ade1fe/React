@@ -155,7 +155,6 @@ export default function AnimeTrendCarousel() {
             <SwiperSlide key={anime.mal_id}>
               <AnimeTrendCard
                 img={anime.images.webp.large_image_url}
-                // title={anime.title}
                 title={anime.title.substring(0, 20) + '...'}
               />
             </SwiperSlide>

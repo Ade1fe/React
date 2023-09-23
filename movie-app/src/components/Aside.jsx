@@ -56,7 +56,7 @@ const Aside = () => {
             <h1 className='font-bold'>Content Score</h1>
 
             <div className="w-fit rounded-xl overflow-hidden bg-slate-50">
-            <p className='bg-red-950 p-2'>100</p>
+            <p className='bg-blue-950 p-2'>100</p>
             <p className='px-2 py-3 text-black'>Yes! Looking good!</p>
             </div>
         </div>

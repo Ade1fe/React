@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import OverViewPage from './pages/OverViewPage';
 import AnimePage from './pages/AnimePage';
+import AnimeDetails from './pages/AnimeDetails';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,12 @@ const router = createBrowserRouter([
     path: '/anime',
     element: <AnimePage />,
   },
+
+  {
+    path: '/animeDetails/:title/:episode/:description/:img/:contentType/:year/:id/:rating/:status',
+    element: <AnimeDetails />,
+  }
+  
 
 ])
 

@@ -10,7 +10,7 @@ const DefaultNavbar = () => {
   };
 
   return (
-    <div className='flex justify-between px-5 md:px-5 lg:px-7 py-3 items-center border-b-2 border-b-red-500'>
+    <div className='flex justify-between px-5 md:px-5 lg:px-7 py-3 items-center '>
       <div className='text-2xl '>
         <h1>Dee-Movies</h1>
       </div>

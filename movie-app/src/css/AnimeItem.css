@@ -1,0 +1,5 @@
+.myUl > li:nth-child(even) {
+    background: #222 !important;
+  }
+
+  

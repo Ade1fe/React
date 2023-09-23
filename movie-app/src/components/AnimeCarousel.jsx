@@ -56,6 +56,9 @@ export default function AnimeCarousel() {
                 episode={anime.episodes ? anime.episodes : ''}
                 title={anime.title}
                 year={anime.aired.from}
+                id={anime.mal_id}
+                rating={anime.rating}
+                status={anime.status}
               />
             </SwiperSlide>
           ))}

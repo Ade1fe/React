@@ -1,7 +1,28 @@
 import React from 'react'
 import { FaCalendar, FaClock } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom';
+import Overview from './Overview';
 
-const AnimeCarouselCard = ({img,title,contentType,episode,year,duration,description}) => {
+const AnimeCarouselCard = ({img,title,contentType,episode,year,duration,description,id,rating,status}) => {
+  const navigate = useNavigate();
+
+  const handleWatchNowClick = () => {
+    const encodedTitle = encodeURIComponent(title);
+    const encodedDescription = encodeURIComponent(description);
+    const encodedImg = encodeURIComponent(img);
+    const encodedContentType = encodeURIComponent(contentType);
+    const encodedYear = encodeURIComponent(year);
+    const encodedId = encodeURIComponent(id);
+    const encodedRating = encodeURIComponent(rating);
+    const encodedStatus = encodeURIComponent(status);
+    // const encodedRating = encodeURIComponent(rating);
+    // const encodedRating = encodeURIComponent(rating);
+    
+    navigate(`/animeDetails/${encodedTitle}/${episode}/${encodedDescription}/${encodedImg}/${encodedContentType}/${encodedYear}/${encodedId}/${encodedRating}/${encodedStatus}`);
+  };
+  
+  
+
   return (
     <div className='relative w-full'>
         <div className="w-full h-auto md:h-[550px] lg:h-[600px] relative">
@@ -19,8 +40,9 @@ const AnimeCarouselCard = ({img,title,contentType,episode,year,duration,descript
       <h3 className='flex items-center gap-1'> <FaCalendar /> <span>{year}</span></h3>
      </div>
       <p className='line-clamp-3 md:line-clamp-none text-sm'>{description}</p>
-      <p className='capitalize bg-transparent border-red-600 border-2 hover:bg-red-600 p-2
-     w-fit rounded-md font-semibold mt-1 cursor-pointer text-sm' >watch now</p>
+      <p className='capitalize bg-transparent border-lue-600 border-2 hover:bg-blue-600 p-2
+     w-fit rounded-md font-semibold mt-1 cursor-pointer text-sm'
+     onClick={handleWatchNowClick} >watch now</p>
      </div>
    
     </div>
