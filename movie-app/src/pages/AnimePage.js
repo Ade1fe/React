@@ -29,12 +29,12 @@ const AnimePage = () => {
   <FourContainer />
    </div>
 
-   <div className='mt-[20px] md:mt-[60px]grid sm:flex justify-between gap-6'> 
-   <div className='w-full sm:w-[67%]'>
+   <div className='mt-[20px] md:mt-[60px] grid lg:flex justify-between gap-3 md:gap-3'> 
+   <div className='w-full lg:w-[73%]'>
   <AnimeRecent />
    </div>
 
-   <div className='w-full sm:w-[30%]'>
+   <div className='w-full lg:w-[25%]'>
   <AnimeGenre />
    </div>
 

@@ -31,7 +31,7 @@ const AnimeSpecial = () => {
       {/* Display the list of anime items */}
       <div className='flex justify-evenly flex-wrap lg:grid lg:grid-cols-4 gap-2 sm:gap-2 md:gap-3'>
         {animeList.map((anime) => (
-          <AnimeCard key={anime.mal_id} anime={anime} />
+          <AnimeCard key={anime.mal_id} anime={anime} id={anime.mal_id} />
         ))}
       </div>
     </div>

@@ -59,7 +59,7 @@ const getRandomColor = () => {
 };
 
 return (
-  <div className='mx-auto grid items-center'>
+  <div className='mx-auto grid items-center '>
     <h2 className='px-6 text-2xl font-bold'>Genre</h2>
   <div className='flex justify-evenly flex-wrap lg:grid lg:grid-cols-3 gap-3'>
   {allGenres.map((genre, index) => (

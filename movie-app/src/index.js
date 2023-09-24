@@ -28,8 +28,14 @@ const router = createBrowserRouter([
     element: <AnimePage />,
   },
 
+  // {
+  //   path: '/animeDetails/:title/:episode/:description/:img/:contentType/:year/:id/:rating/:status',
+  //   element: <AnimeDetails />,
+  // }
+
+
   {
-    path: '/animeDetails/:title/:episode/:description/:img/:contentType/:year/:id/:rating/:status',
+    path: '/animeDetails/:id',
     element: <AnimeDetails />,
   }
   

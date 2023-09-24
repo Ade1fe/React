@@ -1,11 +1,22 @@
 import React from 'react';
-import pic from '../assets/mano.jpg';
+import { useNavigate } from 'react-router-dom';
 import { FaEye, FaHeart } from 'react-icons/fa';
 
-const AniMostCard = ({ anime }) => {
+const AniMostCard = ({ anime,id }) => {
+  const navigate = useNavigate();
+
   const airedDate = anime.aired.from.split('T')[0];
   const truncatedTitle =
     anime.title.length > 20 ? `${anime.title.substring(0, 10)}..` : anime.title;
+
+    
+ 
+
+  const handleWatchNowClick = () => {
+    const encodedId = encodeURIComponent(id);
+    // navigate(`/animeDetails/${encodedTitle}/${episode}/${encodedDescription}/${encodedImg}/${encodedContentType}/${encodedYear}/${encodedId}/${encodedRating}/${encodedStatus}`);
+    navigate(`/animeDetails/${encodedId}`);
+  };
 
   function generateNumbers() {
     // Generate some random numbers or perform any other logic here
@@ -14,7 +25,7 @@ const AniMostCard = ({ anime }) => {
   }
 
   return (
-    <div className='w-full bg-[#222] flex p-2 gap-2 items-center'>
+    <div className='w-full bg-[#222] flex p-2 gap-2 items-center cursor-pointer' onClick={handleWatchNowClick}>
       <div className='w-[60px] h-[80px] relative rounded-md overflow-hidden'>
         <img
           src={anime.images.webp.large_image_url}

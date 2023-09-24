@@ -1,21 +1,3 @@
-// import React from 'react'
-// import AnimeCard from './AnimeCard'
-
-// const AnimeAll = () => {
-//   return (
-//     <div className='flex justify-evenly flex-wrap lg:grid lg:grid-cols-4 gap-6 sm:gap-2 md:gap-3'>
-//       <AnimeCard />
-//       <AnimeCard />
-//       <AnimeCard />
-//       <AnimeCard />
-//     </div>
-//   )
-// }
-
-// export default AnimeAll
-
-
-
 
 
 import React, { useState } from 'react';
@@ -24,7 +6,7 @@ import AnimeItem from './AnimeItem';
 import "../css/AnimeItem.css"
 import AnimeCard from './AnimeCard';
 
-const AnimeMusic = () => {
+const AnimeRecommend = () => {
   const [animeList, setAnimeList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +22,7 @@ const AnimeMusic = () => {
 
       {/* Fetch data for new added anime */}
       <AnimeFetcher
-        endpoint='https://api.jikan.moe/v4/top/anime?type=music&limit=12&filter=bypopularity&rating=pg13'
+        endpoint='https://api.jikan.moe/v4/top/anime?type=ona&limit=12&filter=favorite&rating=g'
         onAnimeDataChange={handleAnimeDataChange}
       />
 
@@ -49,11 +31,11 @@ const AnimeMusic = () => {
       {/* Display the list of anime items */}
       <div className='flex justify-evenly flex-wrap lg:grid lg:grid-cols-4 gap-2 sm:gap-2 md:gap-3'>
         {animeList.map((anime) => (
-          <AnimeCard key={anime.mal_id} anime={anime} id={anime.mal_id} />
+          <AnimeCard key={anime.mal_id} anime={anime} />
         ))}
       </div>
     </div>
   );
 };
 
-export default AnimeMusic
+export default AnimeRecommend

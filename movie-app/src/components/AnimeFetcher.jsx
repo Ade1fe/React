@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 const AnimeFetcher = ({ endpoint, onAnimeDataChange }) => {
+  
   useEffect(() => {
     // Fetch anime data from the Jikan API
     fetch(endpoint)

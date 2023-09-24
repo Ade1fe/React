@@ -35,20 +35,17 @@ const AnimeDetail = () => {
 
   // Render conditionally based on whether animeData is available
   return (
-    <div className="">
-       {/* <span>{id}</span> */}
-      {animeData ? (
-        <div>
-         
-           <div className="flex gap-2 items-center flex-wrap px-2 pb-5 pt-2">
+    <div className="px-3">
+     <div className="flex gap-2 items-center flex-wrap pb-5 pt-2">
      <Link to="/anime" className='text-lg text-gray-300'>Home</Link> 
       <span>||</span>
       <h2 className='text-sm text-gray-500'>{animeData.data.type}</h2>
       <span>||</span>
       <h1 className="font-bold text-xs text-gray-700">{animeData.data.title_japanese}</h1>
      </div>
-
-          <div className='hidden md:block w-full h-[550px] relative'>
+      {animeData ? (
+        <div>
+          <div className='hidden md:block w-full md:h-[600px] lg:h-[550px] relative'>
             <img src={animeData.data.images.webp.large_image_url} className='w-full h-full object-cover' alt="" />
             <div className="absolute top-0 left-0 bg-black opacity-90 backdrop-blur-md h-full w-full"></div>
           </div>

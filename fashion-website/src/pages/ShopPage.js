@@ -1,7 +1,7 @@
 import React from 'react'
 import MainLayout from './../Layouts/MainLayout';
 import MainContent from './../components/MainContent';
-import ShopSectOne from '../components/ShopSectOne';
+// import ShopSectOne from '../components/ShopSectOne';
 
 const ShopPage = () => {
   return (
@@ -9,7 +9,7 @@ const ShopPage = () => {
     <MainContent />
 
     <div>
-    <ShopSectOne />
+    {/* <ShopSectOne /> */}
 
     </div>
 

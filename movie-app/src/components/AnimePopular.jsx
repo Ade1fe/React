@@ -7,10 +7,13 @@ import "../css/AnimeItem.css"
 
 const AnimePopular = () => {
   const [animeList, setAnimeList] = useState([]);
+  const [isLoading,setIsLoading] = useState([true]);
 
   // Callback function to update animeList
   const handleAnimeDataChange = (data) => {
     setAnimeList(data);
+    setIsLoading(false);
+    
   };
 
   return (
@@ -22,11 +25,12 @@ const AnimePopular = () => {
         endpoint='https://api.jikan.moe/v4/top/anime?type=tv&limit=5&filter=bypopularity'
         onAnimeDataChange={handleAnimeDataChange}
       />
+      {isLoading && <p>Loading...</p>}
 
       {/* Display the list of anime items */}
       <ul className='myUl bg-[#2d2a2a]'>
         {animeList.map((anime) => (
-          <AnimeItem key={anime.mal_id} anime={anime} />
+          <AnimeItem key={anime.mal_id} anime={anime}  id={anime.mal_id} />
         ))}
       </ul>
     </div>

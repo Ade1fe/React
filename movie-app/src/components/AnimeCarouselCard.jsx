@@ -4,21 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Overview from './Overview';
 
 const AnimeCarouselCard = ({img,title,contentType,episode,year,duration,description,id,rating,status}) => {
+ 
   const navigate = useNavigate();
 
   const handleWatchNowClick = () => {
-    const encodedTitle = encodeURIComponent(title);
-    const encodedDescription = encodeURIComponent(description);
-    const encodedImg = encodeURIComponent(img);
-    const encodedContentType = encodeURIComponent(contentType);
-    const encodedYear = encodeURIComponent(year);
     const encodedId = encodeURIComponent(id);
-    const encodedRating = encodeURIComponent(rating);
-    const encodedStatus = encodeURIComponent(status);
-    // const encodedRating = encodeURIComponent(rating);
-    // const encodedRating = encodeURIComponent(rating);
-    
-    navigate(`/animeDetails/${encodedTitle}/${episode}/${encodedDescription}/${encodedImg}/${encodedContentType}/${encodedYear}/${encodedId}/${encodedRating}/${encodedStatus}`);
+    // navigate(`/animeDetails/${encodedTitle}/${episode}/${encodedDescription}/${encodedImg}/${encodedContentType}/${encodedYear}/${encodedId}/${encodedRating}/${encodedStatus}`);
+    navigate(`/animeDetails/${encodedId}`);
   };
   
   
@@ -41,8 +33,8 @@ const AnimeCarouselCard = ({img,title,contentType,episode,year,duration,descript
      </div>
       <p className='line-clamp-3 md:line-clamp-none text-sm'>{description}</p>
       <p className='capitalize bg-transparent border-lue-600 border-2 hover:bg-blue-600 p-2
-     w-fit rounded-md font-semibold mt-1 cursor-pointer text-sm'
-     onClick={handleWatchNowClick} >watch now</p>
+     w-fit rounded-md font-semibold mt-1 cursor-pointer text-sm '
+     onClick={handleWatchNowClick} >More Details</p>
      </div>
    
     </div>

@@ -11,7 +11,7 @@ const AnimeMostView = () => {
   };
 
   return (
-    <div className=" mt-[20px] md:mt-[50px]">
+    <div className=" mt-[20px] md:mt-[50px] px-5">
   <div className=" grid gap-5 items-center">
   <h1 className="text-2xl font-bold ">Most Viewed</h1>
 

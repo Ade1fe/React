@@ -2,7 +2,7 @@
 
 import React,{useState} from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import '../css/Navbar.css';
+// import '../css/Navbar.css';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ backgroundImage }) => {
@@ -21,7 +21,7 @@ const Navbar = ({ backgroundImage }) => {
   return (
     <div style={navbarStyle} className='bg-black text-white flex justify-between px-5 md:px-5 lg:px-7 py-3 items-center border-b-2 border-b-red-600'>
       <div className='text-2xl logo text-white font-bold'>
-        <h1>Dee-Movies</h1>
+      <h1><span className='text-red-500'>Dee</span>-Movies</h1>
       </div>
 
       <AiOutlineMenu onClick={toggleMenu} className='cursor-pointer md:hidden' />

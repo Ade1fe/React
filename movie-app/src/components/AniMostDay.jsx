@@ -30,7 +30,7 @@ const AniMostDay = () => {
       {!isLoading && (
         <div className='grid gap-3'>
           {animeList.map((anime) => (
-            <AniMostCard key={anime.mal_id} anime={anime} />
+            <AniMostCard key={anime.mal_id} anime={anime} id={anime.mal_id} />
           ))}
         </div>
       )}

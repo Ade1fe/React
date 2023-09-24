@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 const Mainlayout = ({children}) => {
   return (
     <div>
+      
         <DefaultNavbar />
         <div className="">{children}</div>
       <Footer />
