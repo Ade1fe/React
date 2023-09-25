@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { AiOutlineMenu } from 'react-icons/ai';
 import "../css/Shake.css"
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,17 +33,17 @@ const SideBar = () => {
           <h2 className="text-2xl font-bold">Menu</h2>
           <ul className="mt-4 space-y-2">
             <li>
-              <a href="/" className="block hover:text-blue-500">
+              <a href="/anime" className="block hover:text-blue-500">
                 Home
               </a>
             </li>
             <li>
-              <a href="/" className="block hover:text-blue-500">
+              <Link to="/trend" className="block hover:text-blue-500">
                 Trending
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="block hover:text-blue-500">
+              <a href="/animetvseries" className="block hover:text-blue-500">
                 TV Series
               </a>
             </li>

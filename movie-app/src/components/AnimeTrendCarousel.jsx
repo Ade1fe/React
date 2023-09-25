@@ -30,11 +30,11 @@ export default function AnimeTrendCarousel() {
           spaceBetween: 10,
         },
         345: {
-            slidesPerView: 1.75, 
+            slidesPerView: 1.85, 
             spaceBetween: 10, 
           },
           375: {
-            slidesPerView: 1.85, 
+            slidesPerView: 1.95, 
             spaceBetween: 10, 
           },
           400: {
@@ -57,56 +57,60 @@ export default function AnimeTrendCarousel() {
             slidesPerView: 3.59, 
             spaceBetween: 10, 
           },
+          578: {
+            slidesPerView: 3.60, 
+            spaceBetween: 10, 
+          },
           590: {
-            slidesPerView: 2.25, 
+            slidesPerView: 3.62, 
             spaceBetween: 10, 
           },
         600: {
-          slidesPerView: 2.35, 
+          slidesPerView: 3.80, 
           spaceBetween: 20, 
         },
         650: {
-            slidesPerView: 2.55, 
+            slidesPerView: 3.99, 
             spaceBetween: 20, 
           },
           700: {
-            slidesPerView: 2.80, 
+            slidesPerView: 4.20, 
             spaceBetween: 20, 
           },
         768: {
-          slidesPerView: 3, 
+          slidesPerView: 4.50, 
           spaceBetween: 10, 
         },
         800: {
-            slidesPerView: 3.15, 
+            slidesPerView: 4.95, 
             spaceBetween: 10, 
           },
           850: {
-            slidesPerView: 3.35, 
+            slidesPerView: 4.25, 
             spaceBetween: 10, 
           },
           900: {
-            slidesPerView: 3.65, 
+            slidesPerView: 4.65, 
             spaceBetween: 10, 
           },
           980: {
-            slidesPerView: 3.75, 
+            slidesPerView: 4.95, 
             spaceBetween: 10, 
           },
           1000: {
-            slidesPerView: 4, 
+            slidesPerView: 5.20, 
             spaceBetween: 10, 
           },
           1160: {
-            slidesPerView: 4.34, 
+            slidesPerView: 5.34, 
             spaceBetween: 10,
           },
           1230: {
-            slidesPerView: 4.64, 
+            slidesPerView: 5.64, 
             spaceBetween: 10,
           },
           1290: {
-            slidesPerView: 5, 
+            slidesPerView: 6, 
             spaceBetween: 10,
           },
         // Add more breakpoints as needed

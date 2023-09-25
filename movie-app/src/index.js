@@ -6,6 +6,8 @@ import App from './App';
 import OverViewPage from './pages/OverViewPage';
 import AnimePage from './pages/AnimePage';
 import AnimeDetails from './pages/AnimeDetails';
+import TrendingPage from './pages/TrendingPage';
+import TvAnimeSeriesPage from './pages/TvAnimeSeriesPage';
 
 const router = createBrowserRouter([
   {
@@ -22,23 +24,26 @@ const router = createBrowserRouter([
     element: <OverViewPage />,
   },
 
-  
+
   {
     path: '/anime',
     element: <AnimePage />,
   },
 
-  // {
-  //   path: '/animeDetails/:title/:episode/:description/:img/:contentType/:year/:id/:rating/:status',
-  //   element: <AnimeDetails />,
-  // }
-
-
   {
     path: '/animeDetails/:id',
     element: <AnimeDetails />,
-  }
-  
+  },
+
+  {
+    path: '/trend',
+    element: <TrendingPage />,
+  },
+
+  {
+    path: '/animetvseries',
+    element: <TvAnimeSeriesPage />,
+  },
 
 ])
 
