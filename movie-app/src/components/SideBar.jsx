@@ -43,24 +43,39 @@ const SideBar = () => {
               </Link>
             </li>
             <li>
-              <a href="/animetvseries" className="block hover:text-blue-500">
+              <Link to="/animetvseries" className="block hover:text-blue-500">
                 TV Series
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="block hover:text-blue-500">
+              <Link to="/animemovie" className="block hover:text-blue-500">
                 Movies
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="block hover:text-blue-500">
-                OVA
-              </a>
+              <Link to="/ova" className="block hover:text-blue-500">
+                OVAs
+              </Link>
             </li>
             <li>
-              <a href="/" className="block hover:text-blue-500">
+              <Link to="/ona" className="block hover:text-blue-500">
+                ONAs
+              </Link>
+            </li>
+            <li>
+              <Link to="/special" className="block hover:text-blue-500">
+                Specials
+              </Link>
+            </li>
+            <li>
+              <Link to="/music" className="block hover:text-blue-500">
+                Music
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="block hover:text-blue-500">
                 Genre
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

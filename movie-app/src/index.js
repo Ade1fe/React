@@ -8,6 +8,12 @@ import AnimePage from './pages/AnimePage';
 import AnimeDetails from './pages/AnimeDetails';
 import TrendingPage from './pages/TrendingPage';
 import TvAnimeSeriesPage from './pages/TvAnimeSeriesPage';
+import AnimeMoviePage from './pages/AnimeMoviePage';
+import AnimeOvaPage from './pages/AnimeOvaPage';
+import AnimeOnaPage from './pages/AnimeOnaPage';
+import AnimeSpecialPage from './pages/AnimeSpecialPage';
+import AnimeMusicPage from './pages/AnimeMusicPage';
+import GenrePage from './pages/GenrePage';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +51,38 @@ const router = createBrowserRouter([
     element: <TvAnimeSeriesPage />,
   },
 
+    {
+    path: '/animetvseries',
+    element: <TvAnimeSeriesPage />,
+  },
+
+  {
+    path: '/animemovie',
+    element: <AnimeMoviePage />,
+  },
+
+  {
+    path: '/ova',
+    element: <AnimeOvaPage />,
+  },
+  {
+    path: '/ona',
+    element: <AnimeOnaPage />,
+  },
+
+  {
+    path: '/special',
+    element: <AnimeSpecialPage />,
+  },
+  {
+    path: '/music',
+    element: <AnimeMusicPage />,
+  },
+  {
+    path: '/genre/:genre',
+    element: <GenrePage />,
+  },
+  
 ])
 
 

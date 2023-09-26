@@ -7,9 +7,11 @@ import AnimeUpcoming from './AnimeUpcoming';
 import AnimeCom from './AnimeCom';
 import AnimeAiring from './AnimeAiring';
 import AnimePopular from './AnimePopular';
+import TvAnimeComTab from './TvAnimeComTab';
+import TvAnimeSearchBar from './TvAnimeSearchBar';
 // import AnimeSearchBarTv from './AnimeSearchBarTv';
 
-const TrendAnimeTab = ({compOne,compTwo}) => {
+const TvAnimeTrendTab = ({compOne,compTwo}) => {
   const [activeTab, setActiveTab] = useState('comp'); // Initially set to 'All'
   const [inputValue, setInputValue] = useState('');
 
@@ -42,12 +44,12 @@ const TrendAnimeTab = ({compOne,compTwo}) => {
                   : 'bg-[222] hover:bg-gray-00 '
               }`}
             >
-              Filter
+              Filter Tv SEries
             </button>
 
             <input
               type="text"
-              placeholder='search by Naruto'
+              placeholder='search by series Naruto'
               // defaultValue={inputValue}
               // onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => {
@@ -62,16 +64,38 @@ const TrendAnimeTab = ({compOne,compTwo}) => {
                   : ''
               }`}
             />
+
+{/* <input
+  type="text"
+  placeholder='search by series Naruto'
+  onKeyDown={(e) => {
+    const inputValue = e.target.value;
+    const regex = /^[A-Za-z]+$/; // Regular expression to allow only letters
+
+    if (e.key === 'Enter') {
+      handleEnterPress(inputValue);
+      handleTabClick('search');
+    }
+
+    if (!regex.test(e.key)) {
+      e.preventDefault(); // Prevent input if it's not a letter
+    }
+  }}
+  className={`px-2 py-1 rounded-lg focus-visible:outline-blue-600 text-sm md:text-lg bg-black border-2 border-blue-400 ${
+    activeTab === 'search' ? '' : ''
+  }`}
+/> */}
+
           </div>
 
-          {activeTab === 'comp' && <AnimeCompTab />}
-          {activeTab === 'search' && <AnimeSearchBar getValue={inputValue} />}
+          {activeTab === 'comp' && <TvAnimeComTab />}
+          {activeTab === 'search' && <TvAnimeSearchBar getValue={inputValue} />}
         </div>
 
-        <AnimeCom  compOne={<AnimeAiring />} compTwo={<AnimePopular />} />
+        <AnimeCom  compOne={<NewAdded />} compTwo={<AnimeUpcoming />} />
       </div>
     </div>
   );
 };
 
-export default TrendAnimeTab;
+export default TvAnimeTrendTab

@@ -7,9 +7,17 @@ import AnimeUpcoming from './AnimeUpcoming';
 import AnimeCom from './AnimeCom';
 import AnimeAiring from './AnimeAiring';
 import AnimePopular from './AnimePopular';
+import AnimeMovieComp from './AnimeMovieComp';
+import AnimeMovieSearchBar from './AnimeMovieSearchBar';
+import AnimeOvaComp from './AnimeOvaComp';
+import AnimeOvaSearchBar from './AnimeOvaSearchBar';
+import AnimeOnaComp from './AnimeOnaComp';
+import AnimeOnaSearchBar from './AnimeOnaSearchBar';
+import AnimeSpecialComp from './AnimeSpecialComp';
+import AnimeSpecialSearchBar from './AnimeSpecialSearchBar';
 // import AnimeSearchBarTv from './AnimeSearchBarTv';
 
-const TrendAnimeTab = ({compOne,compTwo}) => {
+const AnimeSpecialTab = ({compOne,compTwo}) => {
   const [activeTab, setActiveTab] = useState('comp'); // Initially set to 'All'
   const [inputValue, setInputValue] = useState('');
 
@@ -42,7 +50,7 @@ const TrendAnimeTab = ({compOne,compTwo}) => {
                   : 'bg-[222] hover:bg-gray-00 '
               }`}
             >
-              Filter
+              Filter by special
             </button>
 
             <input
@@ -64,14 +72,15 @@ const TrendAnimeTab = ({compOne,compTwo}) => {
             />
           </div>
 
-          {activeTab === 'comp' && <AnimeCompTab />}
-          {activeTab === 'search' && <AnimeSearchBar getValue={inputValue} />}
+          {activeTab === 'comp' && <AnimeSpecialComp />}
+          {activeTab === 'search' && <AnimeSpecialSearchBar getValue={inputValue} />}
         </div>
 
-        <AnimeCom  compOne={<AnimeAiring />} compTwo={<AnimePopular />} />
+        <AnimeCom  compOne={<AnimeUpcoming />} compTwo={<NewAdded />} />
       </div>
     </div>
   );
 };
 
-export default TrendAnimeTab;
+
+export default AnimeSpecialTab

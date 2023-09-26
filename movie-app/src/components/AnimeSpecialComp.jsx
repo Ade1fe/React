@@ -1,13 +1,10 @@
-
-
-
 import React, { useState } from 'react';
 import AnimeFetcher from './AnimeFetcher';
 import AnimeItem from './AnimeItem';
 import '../css/AnimeItem.css';
 import AnimeCard from './AnimeCard';
 
-const AnimeSearchBar = ({getValue}) => {
+const AnimeSpecialComp = () => {
   const [animeList, setAnimeList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +18,8 @@ const AnimeSearchBar = ({getValue}) => {
     <div>
       {/* Fetch data for new added anime */}
       <AnimeFetcher
-        endpoint={`https://api.jikan.moe/v4/anime?q=${getValue}&limit=25`}
+      endpoint={'https://api.jikan.moe/v4/top/anime?type=special&filter=bypopularity&limit=12'}
+          // endpoint='https://api.jikan.moe/v4/top/anime?type=tv&limit=12&filter=favorite&rating=pg13'
         onAnimeDataChange={handleAnimeDataChange}
       />
 
@@ -40,5 +38,4 @@ const AnimeSearchBar = ({getValue}) => {
   );
 };
 
-export default AnimeSearchBar;
-
+export default AnimeSpecialComp
