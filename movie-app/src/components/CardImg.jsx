@@ -17,9 +17,9 @@ const CardImg = ({ img, rating, title, dates, genre,movieId ,onClick }) => {
       </div>
       <div className="absolute h-[20%] bg-black opacity-50 backdrop-blur-sm grid grid-cols-2 bottom-0 left-0 w-full text-white group/edit invisible  group-hover/item:visible ..."></div>
       <div className="px-2 z-[999999] absolute grid grid-cols-2 bottom-2 left-0 w-full text-white group/edit invisible  group-hover/item:visible ...">
-        <h1 className='truncate col-span-2 whitespace-nowrap text-2xl uppercase mb-1'>{title}</h1>
-        <p>{dates} </p>
-        <p className='truncate'>{genre}</p>
+        <h1 className='truncate col-span-2 whitespace-nowrap text-lg uppercase mb-1'>{title}</h1>
+        <p className='text-sm'>{dates} </p>
+        <p className='truncate text-sm'>{genre}</p>
       </div>
       <p className='px-2 py-1 bg-black absolute top-2
        text-white right-2 rounded-xl shadow-2xl'>{rating}<span className='text-xs mb-1'>%</span></p>

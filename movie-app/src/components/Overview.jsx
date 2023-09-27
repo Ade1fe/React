@@ -86,22 +86,22 @@ const Overview = () => {
           />
         </div>
         <div className="w-full md:w-[70%]">
-          <h1 className='text-2xl font-bold mb-2'> Title: {title}</h1>
-          <div className="grid sm:flex text-xl gap-2 my-1 font-semibold items-center">
+          <h1 className=' text-lg md:text-2xl font-bold mb-2'> Title: {title}</h1>
+          <div className="grid sm:flex text-sm md:text-xl gap-2 my-1 font-semibold items-center">
             <h1 className='border-2 p-2 w-fit'>  {contentType}</h1>
-            <p>
+            <p className='text-sm md:text-xl'>
               {contentData.genres.map((genre) => genre.name).join(', ')}
             </p>
           </div>
           <div className='block mt-3'>
-            <p className='text-2xl font-bold'>Overview</p>
-            <p className='text-xl'>{contentData.overview}</p>
+            <p className='text-xl md:text-2xl font-bold'>Overview</p>
+            <p className='text-sm md:text-lg'>{contentData.overview}</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-1 ">
+          <div className="grid text-sm grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-1 ">
             <p> Average Vote: <span>{contentData.vote_average}%</span></p>
             <p>Vote count: <span>{contentData.vote_count}</span></p>
             <p>Language: <span>{contentData.original_language}</span></p>
-            <p>
+            <p className='text-sm md:text-xl'>
               Date: <span>{contentData.release_date || contentData.first_air_date}</span>
             </p>
           </div>

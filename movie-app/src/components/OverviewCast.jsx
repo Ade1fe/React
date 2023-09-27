@@ -47,91 +47,91 @@ const OverviewCast = ({ contentType }) => {
 const BreakPoints = {
     // Define breakpoints and their respective settings here
     0: {
-        slidesPerView: 1, 
+        slidesPerView: 1.30, 
         spaceBetween: 10, 
       },
     320: {
-      slidesPerView: 1.30, 
-      spaceBetween: 10,
+      slidesPerView: 2.30, 
+      spaceBetween: 0,
     },
     345: {
-        slidesPerView: 1.45, 
-        spaceBetween: 10, 
-      },
-      375: {
-        slidesPerView: 1.55, 
-        spaceBetween: 10, 
-      },
-      400: {
-        slidesPerView: 1.75, 
-        spaceBetween: 10, 
-      },
-      440: {
-        slidesPerView: 1.95, 
-        spaceBetween: 10, 
-      },
-      480: {
-        slidesPerView: 2.05, 
-        spaceBetween: 10, 
-      },
-      520: {
-        slidesPerView: 2.25, 
-        spaceBetween: 10, 
-      },
-      550: {
-        slidesPerView: 2.39, 
-        spaceBetween: 10, 
-      },
-      590: {
         slidesPerView: 2.45, 
         spaceBetween: 10, 
       },
-    600: {
-      slidesPerView: 2.55, 
-      spaceBetween: 20, 
-    },
-    650: {
+      375: {
         slidesPerView: 2.75, 
-        spaceBetween: 20, 
-      },
-      700: {
-        slidesPerView: 2.90, 
-        spaceBetween: 20, 
-      },
-    768: {
-      slidesPerView: 3.05, 
-      spaceBetween: 10, 
-    },
-    800: {
-        slidesPerView: 3.25, 
         spaceBetween: 10, 
       },
-      850: {
-        slidesPerView: 3.45, 
+      400: {
+        slidesPerView: 3.0, 
         spaceBetween: 10, 
       },
-      900: {
-        slidesPerView: 3.75, 
+      440: {
+        slidesPerView: 3.35, 
         spaceBetween: 10, 
       },
-      980: {
+      480: {
+        slidesPerView: 3.65, 
+        spaceBetween: 10, 
+      },
+      520: {
         slidesPerView: 3.95, 
         spaceBetween: 10, 
       },
-      1000: {
+      550: {
         slidesPerView: 4.05, 
         spaceBetween: 10, 
       },
+      590: {
+        slidesPerView: 4.25, 
+        spaceBetween: 10, 
+      },
+    600: {
+      slidesPerView: 4.55, 
+      spaceBetween: 20, 
+    },
+    650: {
+        slidesPerView: 4.75, 
+        spaceBetween: 20, 
+      },
+      700: {
+        slidesPerView: 5.0, 
+        spaceBetween: 20, 
+      },
+    768: {
+      slidesPerView: 5.45, 
+      spaceBetween: 10, 
+    },
+    800: {
+        slidesPerView: 4.95, 
+        spaceBetween: 10, 
+      },
+      850: {
+        slidesPerView: 5.45, 
+        spaceBetween: 10, 
+      },
+      900: {
+        slidesPerView: 5.95, 
+        spaceBetween: 10, 
+      },
+      980: {
+        slidesPerView: 6.35, 
+        spaceBetween: 10, 
+      },
+      1000: {
+        slidesPerView: 6.75, 
+        spaceBetween: 10, 
+      },
       1160: {
-        slidesPerView: 4.64, 
+        slidesPerView: 6.99, 
         spaceBetween: 10,
       },
       1230: {
-        slidesPerView: 4.94, 
+        slidesPerView: 7.74, 
         spaceBetween: 10,
       },
       1290: {
-        slidesPerView: 6, 
+        slidesPerView: 8.40, 
         spaceBetween: 10,
       },
     // Add more breakpoints as needed
@@ -144,7 +144,7 @@ const BreakPoints = {
     <>
    <h2 className='px-5 text-2xl font-bold my-3'>Full Cast & Crew</h2>
     <Swiper
-      slidesPerView={3}
+      slidesPerView={8.60}
       spaceBetween={10}
       breakpoints={BreakPoints}
       pagination={{

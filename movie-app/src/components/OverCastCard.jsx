@@ -8,10 +8,10 @@ const OverCastCard = ({name,img}) => {
 
   return (
     <div className='w-fit'>
-        <div className="w-[200px] h-[300px]">
-            <img src={imageUrl} className='w-full h-full object-cover' alt="" />
+        <div className="w-[110px] h-auto">
+            <img src={imageUrl} className='w-full h-full object-contain' alt="" />
         </div>
-        <p>{name}</p>
+        <p className='text-sm'>{name}</p>
       
     </div>
   )

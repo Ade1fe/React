@@ -7,7 +7,7 @@ const RecommendCard = ({name,img}) => {
 
   return (
     <div className='w-fit'>
-        <div className="w-[350px] h-[200px]">
+        <div className="w-[300px] h-[200px]">
             <img src={imageUrl} className='w-full h-full object-cover' alt="" />
         </div>
         <p>{name}</p>
