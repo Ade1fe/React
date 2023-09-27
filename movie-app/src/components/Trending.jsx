@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import '../css/CarouselOne.css';
-import { Pagination } from 'swiper/modules';
 import '../css/Trending.css';
 import CardImg from './CardImg';
 import { useNavigate } from 'react-router-dom';
@@ -15,8 +14,8 @@ export default function Trending() {
   const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
 
   useEffect(() => {
-    fetchData(); // Fetch data when the component mounts
-  }, []); // Empty dependency array to fetch data only once
+    fetchData(); 
+  }, []); 
 
   // Function to fetch movie genres
   async function fetchGenres() {
@@ -194,7 +193,7 @@ export default function Trending() {
   title={image.title}
   movieId={image.id}
   key={index}
-  onClick={handleMovieCardClick} // This is correct
+  onClick={handleMovieCardClick} 
 />
 
 

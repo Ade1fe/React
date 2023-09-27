@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaCalendar, FaClock } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
-import Overview from './Overview';
+
 
 const AnimeCarouselCard = ({img,title,contentType,episode,year,duration,description,id,rating,status}) => {
  

@@ -1,17 +1,13 @@
 
 
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 
 import '../css/PopularWorksWith.css';
 
-// import required modules
 import { FreeMode, Pagination } from 'swiper/modules';
 import PopularCard from './PopularCard';
 import pic1 from "../assets/net-removebg-preview.png"

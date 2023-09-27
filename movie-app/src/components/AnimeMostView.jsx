@@ -4,7 +4,7 @@ import AniMostWeek from './AniMostWeek';
 import AniMostMonth from './AniMostMonth';
 
 const AnimeMostView = () => {
-  const [activeTab, setActiveTab] = useState('day'); // Initially set to 'All'
+  const [activeTab, setActiveTab] = useState('day'); 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -25,7 +25,7 @@ const AnimeMostView = () => {
         : 'bg-[#222] hover:bg-gray-300 '
     }`}
   >
-    day
+    Day
   </button>
   <button
     onClick={() => handleTabClick('week')}
@@ -35,7 +35,7 @@ const AnimeMostView = () => {
         : 'bg-[#222] hover:bg-gray-300 '
     }`}
   >
-    week
+    Week
   </button>
   <button
     onClick={() => handleTabClick('month')}

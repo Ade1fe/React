@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import AnimeSearchBar from './AnimeSearchBar';
-import AnimeCompTab from './AnimeCompTab';
-import AnimeHentai from './AnimeHentai';
 import NewAdded from './NewAdded';
 import AnimeUpcoming from './AnimeUpcoming';
 import AnimeCom from './AnimeCom';
-import AnimeAiring from './AnimeAiring';
-import AnimePopular from './AnimePopular';
 import TvAnimeComTab from './TvAnimeComTab';
 import TvAnimeSearchBar from './TvAnimeSearchBar';
 // import AnimeSearchBarTv from './AnimeSearchBarTv';
@@ -44,7 +39,7 @@ const TvAnimeTrendTab = ({compOne,compTwo}) => {
                   : 'bg-[222] hover:bg-gray-00 '
               }`}
             >
-              Filter Tv SEries
+              TV Series
             </button>
 
             <input

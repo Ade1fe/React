@@ -4,7 +4,7 @@ import FetchMoviesById from './FetchMoviesById'
 const DocumentaryMovies = () => {
   return (
     <div>
-      <FetchMoviesById   getPage={5} genreId={80} />
+      <FetchMoviesById   getPage={7} genreId={99} />
     </div>
   )
 }

@@ -1,0 +1,15 @@
+import React from 'react'
+import FetchMoviesById from './FetchMoviesById'
+
+ <div>
+      <FetchMoviesById   getPage={7} genreId={} />
+    </div>
+
+const FantasyMovies = () => {
+  return (
+   
+  )
+}
+
+export default FantasyMovies
+

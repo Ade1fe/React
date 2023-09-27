@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AnimeFetcher from './AnimeFetcher';
-import AnimeItem from './AnimeItem';
 import '../css/AnimeItem.css';
 import AnimeCard from './AnimeCard';
 

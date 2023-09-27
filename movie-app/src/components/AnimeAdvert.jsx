@@ -19,32 +19,32 @@ const AnimeAdvert = () => {
         </div>
     <div className="bg-blue-500 w-fit px-5 justify-evenly py-1 flex gap-5 rounded-md items-center">
         <FaFacebook />
-       <h2> 7.8k</h2>
+       <h2> 2.8k</h2>
     </div>
 
     <div className="bg-[#222]  w-fit px-5 justify-evenly py-1 flex gap-5 rounded-md items-center">
         <FaTwitter />
-       <h2> 7.8k</h2>
+       <h2> 9.2k</h2>
     </div>
 
     <div className="bg-blue-700 w-fit px-5 justify-evenly py-1 flex gap-5 rounded-md items-center">
         <FaFacebookMessenger />
-       <h2> 7.8k</h2>
+       <h2> 1.6k</h2>
     </div>
 
     <div className="bg-red-600 w-fit px-5 justify-evenly py-1 flex gap-5 rounded-md items-center">
         <FaReddit />
-       <h2> 7.8k</h2>
+       <h2> 3.5k</h2>
     </div>
 
     <div className="bg-green-400 w-fit px-5 justify-evenly py-1 flex gap-5 rounded-md items-center">
         <FaWhatsapp />
-       <h2> 7.8k</h2>
+       <h2> 2.6k</h2>
     </div>
 
     <div className="bg-blue-400 w-fit px-5 justify-evenly py-1 flex gap-5 rounded-md items-center">
         <FaTelegram />
-       <h2> 7.8k</h2>
+       <h2> 1.8k</h2>
     </div>
 
     </div>

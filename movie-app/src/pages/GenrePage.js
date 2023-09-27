@@ -1,87 +1,14 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// const GenrePage = () => {
-//   const { genre } = useParams();
-//   const [anime, setAnime] = useState(null);
-
-//   useEffect(() => {
-//     // Define a function to fetch anime by genre
-//     const fetchAnimeByGenre = async () => {
-//       try {
-//         // Construct the URL for fetching anime by genre
-//         const genreUrl = `https://api.jikan.moe/v4/anime?genre=${genre}`;
-
-//         // Make the fetch request
-//         const response = await fetch(genreUrl);
-
-//         if (!response.ok) {
-//           throw new Error('Network response was not ok');
-//         }
-
-//         // Parse the response as JSON
-//         const data = await response.json();
-
-//         // Extract the list of anime from the response
-//         const animeData = data.data || [];
-
-//         // Get the first anime in the list (if available)
-//         const firstAnime = animeData.length > 0 ? animeData[0] : null;
-
-//         // Update the state with the first anime
-//         setAnime(firstAnime);
-//       } catch (error) {
-//         console.error('Error fetching anime by genre:', error);
-//       }
-//     };
-
-//     // Call the fetchAnimeByGenre function
-//     fetchAnimeByGenre();
-//   }, [genre]);
-
-//   return (
-//     <div>
-//       <h1>Anime by Genre: {genre}</h1>
-//       {anime ? (
-//         <div>
-//           <h2>{anime.title}</h2>
-//           <p>{anime.synopsis}</p>
-//         </div>
-//       ) : (
-//         <p>No anime found for this genre.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default GenrePage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link,useNavigate } from 'react-router-dom';
+import pic from "../assets/9dea64c6d9c64604a45ba55616c1d547-removebg-preview.png"
+import AnimeAd from '../components/AnimeAd';
+import Footer from './../components/Footer';
+
 
 const GenrePage = () => {
   const { genre } = useParams();
+  const navigate = useNavigate();
   const [animeList, setAnimeList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -93,7 +20,7 @@ const GenrePage = () => {
         let allAnimeData = [];
 
         // Fetch up to 100 anime entries (maximum)
-        for (let page = 1; page <= 6; page++) {
+        for (let page = 1; page <= 10; page++) {
           // Construct the URL for fetching anime by genre and page
           const genreUrl = `https://api.jikan.moe/v4/anime?genre=${genre}&page=${page}`;
 
@@ -114,7 +41,7 @@ const GenrePage = () => {
           allAnimeData = [...allAnimeData, ...animeData];
 
           // If we have fetched 100 anime or reached the last page, exit the loop
-          if (allAnimeData.length >= 150 || animeData.length === 0) {
+          if (allAnimeData.length >= 250 || animeData.length === 0) {
             break;
           }
 
@@ -140,17 +67,23 @@ const GenrePage = () => {
     fetchAnimeByGenreAndPage();
   }, [genre]);
 
+   const handleWatchNowClick = (animeId) => {
+    const encodedId = encodeURIComponent(animeId);
+    navigate(`/animeDetails/${encodedId}`);
+  };
+
   return (
-    <div className='flex justify-center gap-1 items-center'>
+    <div className='container mx-auto '>
+       <AnimeAd  img={pic}/>
       <div>
-        {/* <h1>Anime by Genre: {genre}</h1> */}
+        <h1 className='text-2xl px-3 font-bold mt-6 mb-3 text-blue-500'>{genre} Anime</h1>
         {loading ? (
           <p>Loading...</p>
         ) : animeList.length > 0 ? (
           <div className='flex flex-wrap justify-center items-center gap-2 md:gap-4'>
             {animeList.map((anime) => (
-              <div key={anime.mal_id} className='w-[150px] sm:w-[200px] h-auto bg-[#111]'>
-                <div className='w-full h-[200px]'>
+              <div key={anime.mal_id}  className='w-[150px] sm:w-[200px] h-auto bg-[#111]'>
+                <div className='w-full h-[200px] cursor-pointer' onClick={() => handleWatchNowClick(anime.mal_id)} >
                   <img src={anime.images.webp.large_image_url} alt={anime.title} className='w-full h-full object-cover' />
                 </div>
                 <div className='bg-gray-0 p-2 text-sm'>
@@ -176,6 +109,7 @@ const GenrePage = () => {
           <p>No anime found for this genre or filter criteria.</p>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

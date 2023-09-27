@@ -4,11 +4,14 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import '../css/CarouselOne.css';
 import '../css/Trending.css';
-import CardImg from './CardImg'; // Import your CardImg component
+import CardImg from './CardImg'; 
+import { useNavigate } from 'react-router-dom';
 
 const FetchMovies = () => {
   const [images, setImages] = useState([]);
   const [movieGenres, setMovieGenres] = useState({});
+  const navigate  = useNavigate();
+
 
   const totalPages = 6;
   const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
@@ -168,6 +171,21 @@ const FetchMovies = () => {
     // Add more breakpoints as needed
   };
 
+  const handleMovieCardClick = (movieItem) => {
+    // Check if the required data is available
+    if (movieItem.id && movieItem.title && movieItem.img) {
+      const { id, title, img } = movieItem;
+      // Use the navigate function to navigate to the overview page
+      console.log("movie click")
+
+      console.log(movieItem);
+      navigate(`/overview/${id}`, { state: { title, img,id } });
+    } else {
+      console.error('Required data is missing in movieItem:', movieItem);
+    }
+  };
+  
+
   return (
     <>
       <Swiper
@@ -187,6 +205,8 @@ const FetchMovies = () => {
               rating={image.vote_average}
               title={image.title}
               genre={image.genre_names.join(', ')}
+              movieId={image.id}
+              onClick={handleMovieCardClick} 
             />
           </SwiperSlide>
         ))}

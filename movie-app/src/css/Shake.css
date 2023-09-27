@@ -1,18 +1,17 @@
-/* div {
-    text-align: center;
-  }
-   */
-  
-  /* span {
-    background: #48abe0;
-    color: white;
-    padding: 1.5rem;
-    font-size: 1rem;
-    display: inline-block;
-    cursor: pointer;
-  } */
+/* Hide the scrollbar, but still allow scrolling */
+::-webkit-scrollbar {
+  width: 0.5em;
+}
 
-  /* Menu Bar Container */
+::-webkit-scrollbar-track {
+  background-color: #333; /* Change this to your desired track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #666; /* Change this to your desired thumb color */
+  border-radius: 10px;
+}
+
 
   
   /* Menu Icon */

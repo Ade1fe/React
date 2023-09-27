@@ -1,23 +1,9 @@
 import React, { useState } from 'react';
-import AnimeSearchBar from './AnimeSearchBar';
-import AnimeCompTab from './AnimeCompTab';
-import AnimeHentai from './AnimeHentai';
 import NewAdded from './NewAdded';
 import AnimeUpcoming from './AnimeUpcoming';
 import AnimeCom from './AnimeCom';
-import AnimeAiring from './AnimeAiring';
-import AnimePopular from './AnimePopular';
-import AnimeMovieComp from './AnimeMovieComp';
-import AnimeMovieSearchBar from './AnimeMovieSearchBar';
-import AnimeOvaComp from './AnimeOvaComp';
-import AnimeOvaSearchBar from './AnimeOvaSearchBar';
-import AnimeOnaComp from './AnimeOnaComp';
-import AnimeOnaSearchBar from './AnimeOnaSearchBar';
-import AnimeSpecialComp from './AnimeSpecialComp';
-import AnimeSpecialSearchBar from './AnimeSpecialSearchBar';
 import AnimeMusicSearchBar from './AnimeMusicSearchBar';
 import AnimeMusicComp from './AnimeMusicComp';
-// import AnimeSearchBarTv from './AnimeSearchBarTv';
 
 const AnimeMusicTab = ({compOne,compTwo}) => {
   const [activeTab, setActiveTab] = useState('comp'); // Initially set to 'All'
@@ -52,7 +38,7 @@ const AnimeMusicTab = ({compOne,compTwo}) => {
                   : 'bg-[222] hover:bg-gray-00 '
               }`}
             >
-              Filter by music
+              Musics
             </button>
 
             <input

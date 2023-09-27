@@ -5,9 +5,9 @@ import { FaEye, FaHeart } from 'react-icons/fa';
 const AniMostCard = ({ anime,id }) => {
   const navigate = useNavigate();
 
-  const airedDate = anime.aired.from.split('T')[0];
-  const truncatedTitle =
-    anime.title.length > 20 ? `${anime.title.substring(0, 10)}..` : anime.title;
+  // const airedDate = anime.aired.from.split('T')[0];
+  // const truncatedTitle =
+  //   anime.title.length > 20 ? `${anime.title.substring(0, 10)}..` : anime.title;
 
     
  

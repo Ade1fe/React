@@ -1,6 +1,6 @@
 import React from 'react'
 import AnimeAd from '../components/AnimeAd'
-import pic from "../assets/b2c72bbc309e4f3d8545729092b76195-removebg-preview.png"
+import pic from "../assets/6727a3af158845429303fab9669fd87b-removebg-preview.png"
 import Footer from './../components/Footer';
 import AnimeOvaTab from '../components/AnimeOvaTab';
 const AnimeOvaPage = () => {

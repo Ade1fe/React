@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,  } from 'react';
 
 const AnimeFetcher = ({ endpoint, onAnimeDataChange }) => {
   
@@ -12,6 +12,7 @@ const AnimeFetcher = ({ endpoint, onAnimeDataChange }) => {
           throw new Error(`Network response was not ok (Status: ${response.status})`);
         }
         return response.json();
+        
       })
       .then((data) => {
         // Extract the list of anime from the response
@@ -22,6 +23,7 @@ const AnimeFetcher = ({ endpoint, onAnimeDataChange }) => {
       .catch((error) => {
         console.error('Error fetching anime data:', error);
       });
+      
   }, [endpoint, onAnimeDataChange]);
 
   return null; 

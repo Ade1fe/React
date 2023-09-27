@@ -1,15 +1,10 @@
-import React, { useRef, useState,useEffect } from 'react';
-// Import Swiper React components
+import React, { useState,useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import "../css/Trending.css"
-
-// import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import AnimeTrendCard from './AnimeTrendCard';
 

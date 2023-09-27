@@ -17,14 +17,7 @@ const AnimeGenreee = () => {
     return color;
   };
 
-  // Define a function to log the genre name when a button is clicked
-  // const logGenreName = (genre) => {
-  //   console.log('Button clicked:', genre);
-  // };
-
-  // const navigateToGenrePage = (genre) => {
-  //   navigate(`/genre/${genre}`);
-  // };
+  
   const logGenreName = (genre) => {
     console.log('Button clicked:', genre.name);
     console.log('Button clicked:', genre.mal_id);

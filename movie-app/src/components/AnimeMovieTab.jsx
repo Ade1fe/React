@@ -44,7 +44,7 @@ const AnimeMovieTab = ({compOne,compTwo}) => {
                   : 'bg-[222] hover:bg-gray-00 '
               }`}
             >
-              Filter by movie
+              Movie
             </button>
 
             <input

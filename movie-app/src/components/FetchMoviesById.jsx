@@ -3,12 +3,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import '../css/CarouselOne.css';
-import { Pagination } from 'swiper/modules';
 import '../css/Trending.css';
 import CardImg from './CardImg';
+import { useNavigate } from 'react-router-dom';
 
 const FetchMoviesById = ({ genreId, getPage }) => {
   const [images, setImages] = useState([]);
+  const navigate  = useNavigate();
   const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
 
   useEffect(() => {
@@ -53,6 +54,7 @@ const FetchMoviesById = ({ genreId, getPage }) => {
       }
 
       const fifteenImages = data.results.slice(4, 18).map(movie => ({
+        id: movie.id, // Add this line to include the id
         poster_path: movie.poster_path,
         title: movie.title,
         release_date: movie.release_date,
@@ -61,6 +63,7 @@ const FetchMoviesById = ({ genreId, getPage }) => {
         ),
         vote_average: movie.vote_average,
       }));
+      
 
       setImages(fifteenImages);
     } catch (error) {
@@ -161,6 +164,20 @@ const FetchMoviesById = ({ genreId, getPage }) => {
     // Add more breakpoints as needed
   };
 
+  const handleMovieCardClick = (movieItem) => {
+    // Check if the required data is available
+    if (movieItem.id && movieItem.title && movieItem.img) {
+      const { id, title, img } = movieItem;
+      // Use the navigate function to navigate to the overview page
+      console.log("movie click")
+      console.log(movieItem);
+      navigate(`/overview/${id}`, { state: { title, img,id } });
+    } else {
+      console.error('Required data is missing in movieItem:', movieItem);
+    }
+  };
+  
+
   return (
     <>
       <Swiper
@@ -173,16 +190,23 @@ const FetchMoviesById = ({ genreId, getPage }) => {
         className="mySwiper trend"
       >
         {images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <CardImg
-              dates={image.release_date} // Pass release_date as dates prop
-              genre={image.genre_names.join(', ')} // Join genre_ids as a string and pass as genre prop
-              img={image.poster_path}
-              rating={image.vote_average} // Pass vote_average as rating prop
-              title={image.title}
-              key={index}
-            />
-          </SwiperSlide>
+         <SwiperSlide key={index}>
+         <CardImg
+           dates={image.release_date}
+           genre={image.genre_names.join(', ')} 
+           img={image.poster_path}
+           rating={image.vote_average} 
+           title={image.title}
+           key={index}
+           movieId={image.id}
+           onClick={() => handleMovieCardClick({
+             id: image.id,     
+             title: image.title,
+             img: image.poster_path
+           })} 
+         />
+       </SwiperSlide>
+       
         ))}
       </Swiper>
     </>

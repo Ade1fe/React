@@ -86,12 +86,7 @@ const AnimeDetail = () => {
                 ))}
               </ul>
             </div>
-
-            {/* <p> {airedDate} </p> */}
-
-            
-            
-              
+  
           </div>
         </div>
       ) : (
