@@ -78,91 +78,100 @@ const FetchMoviesById = ({ genreId, getPage }) => {
         spaceBetween: 10, 
       },
     320: {
-      slidesPerView: 1.20, 
+      slidesPerView: 1.45, 
       spaceBetween: 10,
     },
-    345: {
-        slidesPerView: 1.25, 
+    338: {
+        slidesPerView: 1.61, 
         spaceBetween: 10, 
       },
       375: {
-        slidesPerView: 1.35, 
+        slidesPerView: 1.70, 
         spaceBetween: 10, 
       },
       400: {
-        slidesPerView: 1.55, 
-        spaceBetween: 10, 
-      },
-      440: {
-        slidesPerView: 1.75, 
-        spaceBetween: 10, 
-      },
-      480: {
         slidesPerView: 1.95, 
         spaceBetween: 10, 
       },
-      520: {
-        slidesPerView: 2, 
+      440: {
+        slidesPerView: 2.0, 
         spaceBetween: 10, 
       },
-      550: {
-        slidesPerView: 2.09, 
-        spaceBetween: 10, 
-      },
-      590: {
+      480: {
         slidesPerView: 2.25, 
         spaceBetween: 10, 
       },
+      520: {
+        slidesPerView: 2.40, 
+        spaceBetween: 10, 
+      },
+      550: {
+        slidesPerView: 2.52, 
+        spaceBetween: 10, 
+      },
+      590: {
+        slidesPerView: 2.72, 
+        spaceBetween: 10, 
+      },
     600: {
-      slidesPerView: 2.35, 
+      slidesPerView: 2.80, 
       spaceBetween: 20, 
     },
     650: {
-        slidesPerView: 2.55, 
+        slidesPerView: 2.95, 
         spaceBetween: 20, 
       },
       700: {
-        slidesPerView: 2.80, 
+        slidesPerView: 3.05, 
         spaceBetween: 20, 
       },
-    768: {
-      slidesPerView: 3, 
-      spaceBetween: 10, 
-    },
-    800: {
+      738: {
         slidesPerView: 3.15, 
         spaceBetween: 10, 
       },
+    768: {
+      slidesPerView: 3.35, 
+      spaceBetween: 10, 
+    },
+    800: {
+        slidesPerView: 3.55, 
+        spaceBetween: 10, 
+      },
       850: {
-        slidesPerView: 3.35, 
+        slidesPerView: 3.85, 
         spaceBetween: 10, 
       },
       900: {
-        slidesPerView: 3.65, 
+        slidesPerView: 4.05, 
+        spaceBetween: 10, 
+      },
+      950: {
+        slidesPerView: 4.35, 
         spaceBetween: 10, 
       },
       980: {
-        slidesPerView: 3.75, 
+        slidesPerView: 4.75, 
         spaceBetween: 10, 
       },
       1000: {
-        slidesPerView: 4, 
+        slidesPerView: 4.80, 
         spaceBetween: 10, 
       },
       1160: {
-        slidesPerView: 4.34, 
+        slidesPerView: 4.85, 
         spaceBetween: 10,
       },
       1230: {
-        slidesPerView: 4.64, 
+        slidesPerView: 4.95, 
         spaceBetween: 10,
       },
       1290: {
-        slidesPerView: 5, 
+        slidesPerView: 5.20, 
         spaceBetween: 10,
       },
     // Add more breakpoints as needed
   };
+ 
 
   const handleMovieCardClick = (movieItem) => {
     // Check if the required data is available
@@ -181,7 +190,7 @@ const FetchMoviesById = ({ genreId, getPage }) => {
   return (
     <>
       <Swiper
-        slidesPerView={5.4}
+        slidesPerView={5.34}
         spaceBetween={10}
         breakpoints={BreakPoints}
         pagination={{

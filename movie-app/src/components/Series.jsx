@@ -57,147 +57,139 @@ export default function Series() {
     fetchAllSeries();
   }, []);
 
-  const BreakPoints = {
-    // Define breakpoints and their respective settings here
-    0: {
-        slidesPerView: 1, 
-        spaceBetween: 10, 
-        rows: 3,
-      },
-    320: {
-      slidesPerView: 1.20, 
-      spaceBetween: 10,
-      rows: 3,
-      fill: 'row',
-    },
-    345: {
-        slidesPerView: 1.25, 
-        spaceBetween: 10, 
-        rows: 3,
-      },
-      375: {
-        slidesPerView: 1.35, 
-        spaceBetween: 10, 
-        rows: 3,
+  
+    const BreakPoints = {
+      // Define breakpoints and their respective settings here
+      0: {
+          slidesPerView: 1, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+      320: {
+        slidesPerView: 1.45, 
+        spaceBetween: 10,
         fill: 'row',
       },
-      400: {
-        slidesPerView: 1.55, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      440: {
-        slidesPerView: 1.75, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      480: {
-        slidesPerView: 1.95, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      520: {
-        slidesPerView: 2, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      550: {
-        slidesPerView: 2.09, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      590: {
-        slidesPerView: 2.25, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-    600: {
-      slidesPerView: 2.35, 
-      spaceBetween: 20, 
-      rows: 3,
-      fill: 'row',
-    },
-    650: {
-        slidesPerView: 2.55, 
-        spaceBetween: 20, 
-        rows: 3,
-        fill: 'row',
-      },
-      700: {
+      338: {
+          slidesPerView: 1.61, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        375: {
+          slidesPerView: 1.70, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        400: {
+          slidesPerView: 1.95, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        440: {
+          slidesPerView: 2.0, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        480: {
+          slidesPerView: 2.25, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        520: {
+          slidesPerView: 2.40, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        550: {
+          slidesPerView: 2.52, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        590: {
+          slidesPerView: 2.72, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+      600: {
         slidesPerView: 2.80, 
         spaceBetween: 20, 
-        rows: 3,
         fill: 'row',
       },
-    768: {
-      slidesPerView: 3, 
-      spaceBetween: 10, 
-      rows: 3,
-      fill: 'row',
-    },
-    800: {
-        slidesPerView: 3.15, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      850: {
+      650: {
+          slidesPerView: 2.95, 
+          spaceBetween: 20, 
+          fill: 'row',
+        },
+        700: {
+          slidesPerView: 3.05, 
+          spaceBetween: 20, 
+          fill: 'row',
+        },
+        738: {
+          slidesPerView: 3.15, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+      768: {
         slidesPerView: 3.35, 
         spaceBetween: 10, 
-        rows: 3,
         fill: 'row',
       },
-      900: {
-        slidesPerView: 3.65, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      980: {
-        slidesPerView: 3.75, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      1000: {
-        slidesPerView: 4, 
-        spaceBetween: 10, 
-        rows: 3,
-        fill: 'row',
-      },
-      1160: {
-        slidesPerView: 4.34, 
-        spaceBetween: 10,
-        rows: 3,
-        fill: 'row',
-      },
-      1230: {
-        slidesPerView: 4.64, 
-        spaceBetween: 10,
-        rows: 3,
-        fill: 'row',
-      },
-      1290: {
-        slidesPerView: 5, 
-        spaceBetween: 10,
-        rows: 3,
-        fill: "row",
-      },
-    // Add more breakpoints as needed
-  };
+      800: {
+          slidesPerView: 3.55, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        850: {
+          slidesPerView: 3.85, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        900: {
+          slidesPerView: 4.05, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        950: {
+          slidesPerView: 4.35, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        980: {
+          slidesPerView: 4.75, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        1000: {
+          slidesPerView: 4.80, 
+          spaceBetween: 10, 
+          fill: 'row',
+        },
+        1160: {
+          slidesPerView: 4.85, 
+          spaceBetween: 10,
+          fill: 'row',
+        },
+        1230: {
+          slidesPerView: 4.95, 
+          spaceBetween: 10,
+          fill: 'row',
+        },
+        1290: {
+          slidesPerView: 5.20, 
+          spaceBetween: 10,
+          fill: 'row',
+        },
+      // Add more breakpoints as needed
+    };
+   
 
   // Render the Swiper component only when seriesData is available
   return (
     <>
       {seriesData.length > 0 && (
         <Swiper
-          slidesPerView={5}
+        slidesPerView={5.34}
           grid={{
             rows: 3,
             fill: 'row',
