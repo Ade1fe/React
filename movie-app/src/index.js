@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import OverViewPage from './pages/OverViewPage';
 import AnimePage from './pages/AnimePage';
 import AnimeDetails from './pages/AnimeDetails';
 import TrendingPage from './pages/TrendingPage';
@@ -14,6 +13,10 @@ import AnimeOnaPage from './pages/AnimeOnaPage';
 import AnimeSpecialPage from './pages/AnimeSpecialPage';
 import AnimeMusicPage from './pages/AnimeMusicPage';
 import GenrePage from './pages/GenrePage';
+import TvSeriesPage from './pages/TvSeriesPage';
+import MovieSeriesPage from './pages/MovieSeriesPage';
+import OverViewPage from './pages/OverViewPage';
+import MovieSearch from './pages/MovieSearch';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +27,27 @@ const router = createBrowserRouter([
     path: '/app',
     element: <App />,
   },
-
   {
     path: '/overview/:id',
     element: <OverViewPage />,
+  },
+
+  {
+    path: '/movieseries',
+    element: <MovieSeriesPage />,
+  },
+  
+  {
+    path: '/moviesearch',
+    element: <MovieSearch />,
+  },
+  {
+    path: '/tvseries',
+    element: <TvSeriesPage />,
+  },
+  {
+    path: '/genre/:genre',
+    element: <GenrePage />,
   },
 
 

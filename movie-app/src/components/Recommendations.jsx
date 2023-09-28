@@ -48,31 +48,31 @@ const BreakPoints = {
     spaceBetween: 10, 
   },
   375: {
-    slidesPerView: 1.15, 
+    slidesPerView: 1.25, 
     spaceBetween: 10, 
   },
-  400: {
-    slidesPerView: 1.20, 
+  395: {
+    slidesPerView: 1.30, 
     spaceBetween: 10, 
   },
   440: {
-    slidesPerView: 1.35, 
-    spaceBetween: 10, 
-  },
-  480: {
     slidesPerView: 1.45, 
     spaceBetween: 10, 
   },
-  520: {
+  480: {
     slidesPerView: 1.55, 
     spaceBetween: 10, 
   },
-  550: {
+  520: {
     slidesPerView: 1.65, 
     spaceBetween: 10, 
   },
-  590: {
+  550: {
     slidesPerView: 1.75, 
+    spaceBetween: 10, 
+  },
+  590: {
+    slidesPerView: 1.85, 
     spaceBetween: 10, 
   },
 600: {
@@ -80,35 +80,59 @@ const BreakPoints = {
   spaceBetween: 20, 
 },
 650: {
-    slidesPerView: 2.05, 
+    slidesPerView: 2.15, 
     spaceBetween: 20, 
   },
   700: {
-    slidesPerView: 2.10, 
+    slidesPerView: 2.30, 
     spaceBetween: 20, 
   },
 768: {
-  slidesPerView: 2.25, 
+  slidesPerView: 2.55, 
   spaceBetween: 10, 
 },
 800: {
-    slidesPerView: 2.30, 
+    slidesPerView: 2.60, 
     spaceBetween: 10, 
   },
   850: {
-    slidesPerView: 2.40, 
+    slidesPerView: 2.70, 
     spaceBetween: 10, 
   },
   900: {
-    slidesPerView: 2.50, 
+    slidesPerView: 2.75, 
     spaceBetween: 10, 
   },
   980: {
-    slidesPerView: 2.65, 
+    slidesPerView: 2.95, 
     spaceBetween: 10, 
   },
   1000: {
-    slidesPerView: 2.90, 
+    slidesPerView: 3.0, 
+    spaceBetween: 10, 
+  },
+  1010: {
+    slidesPerView: 3.20, 
+    spaceBetween: 10, 
+  },
+  1100: {
+    slidesPerView: 3.40, 
+    spaceBetween: 10, 
+  },
+  1200: {
+    slidesPerView: 3.60, 
+    spaceBetween: 10, 
+  },
+  1300: {
+    slidesPerView: 3.80, 
+    spaceBetween: 10, 
+  },
+  1400: {
+    slidesPerView: 3.90, 
+    spaceBetween: 10, 
+  },
+  1500: {
+    slidesPerView: 4.0, 
     spaceBetween: 10, 
   },
 
@@ -120,7 +144,7 @@ const BreakPoints = {
     <>
       <h2 className="px-5 text-2xl font-bold my-3">Recommendations:</h2>
       <Swiper
-        slidesPerView={3.90}
+        slidesPerView={4.0}
         spaceBetween={10}
         breakpoints={BreakPoints}
         pagination={{

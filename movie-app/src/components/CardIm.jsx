@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const CardImg = ({ img, rating, title, dates, genre,movieId ,onClick }) => {
+const CardIm = ({ img, rating, title, dates, genre,movieId ,onClick }) => {
 
 
   const imageUrl = img
@@ -12,7 +12,7 @@ const CardImg = ({ img, rating, title, dates, genre,movieId ,onClick }) => {
     <div className='relative w-fit group/item' onClick={() => onClick({ id: movieId, title, img })}>
   
 
-      <div className="w-[200px] h-auto cursor-pointer">
+      <div className="w-[140px] sm:w-[180px] md:w-[200px] h-auto cursor-pointer">
         <img src={imageUrl} alt={title} className='w-full h-full object-contain' />
       </div>
       <div className="absolute h-[20%] bg-black opacity-50 backdrop-blur-sm grid grid-cols-2 bottom-0 left-0 w-full text-white group/edit invisible  group-hover/item:visible ..."></div>
@@ -27,4 +27,4 @@ const CardImg = ({ img, rating, title, dates, genre,movieId ,onClick }) => {
   );
 }
 
-export default CardImg;
+export default CardIm;

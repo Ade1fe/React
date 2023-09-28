@@ -6,7 +6,7 @@ import '../css/CarouselOne.css';
 import { Pagination } from 'swiper/modules';
 import mainImage from '../assets/alley-g97f0dd69a_1280.jpg';
 import Navbar from './Navbar';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaStarHalf } from 'react-icons/fa';
 
 
 
@@ -76,8 +76,8 @@ export default function CarouselOne({ h1, text }) {
               <div className="absolute  w-[90%] top-1/2  text-left  p-3 sm:left-4 text-white">
                 <h2 className='truncate text-xl   sm:text-2xl mb-2 md:text-3xl '>{image.title}</h2>
                 <p className='line-clamp-3 sm:line-clamp-none md:line-clamp-4'>{image.overview}</p>
-                <div className="flex gap-2 text-orange-500">
-                <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
+                <div className="flex gap-1 text-orange-600">
+                <FaStar size={15} /> <FaStar size={15} /> <FaStar size={15} /> <FaStar size={15} /> <FaStarHalf size={15} /> 
                 </div>
               </div>
             </div>
