@@ -11,6 +11,7 @@ const ProductDetailsPage = () => {
   const location = useLocation();
   const { id, title, img, price } = location.state || {};
   const [productDetails, setProductDetails] = useState(null);
+  const [loading, setLoading] = useState(true); 
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -30,8 +31,10 @@ const ProductDetailsPage = () => {
         if (data.meals && data.meals.length > 0) {
           // Update the state with the fetched product details
           setProductDetails(data.meals[0]); // Access the first meal in the array
+          setLoading(false);
         } else {
           console.error('Meal not found.');
+          setLoading(false);
         }
       })
       .catch((error) => {
@@ -41,7 +44,10 @@ const ProductDetailsPage = () => {
 
   return (
     <div className='my-[30px] md:my-[50px] container mx-auto'>
-      {productDetails && (
+       {loading ? ( // Check the loading state
+        <p>Loading...</p> // Display a loading message or component
+      ) : (
+     
         <div className="block md:flex items-center">
           <ProductTwo
             first={productDetails.strMealThumb}
@@ -62,24 +68,24 @@ const ProductDetailsPage = () => {
   <div className="tab-links flex justify-evenly gap-3 mb-8 md:mb-14 px-4">
     <button
       className={`${
-        activeTab === 1 ? ' text-black border-b-2 border-b-orange-500 ' : 'font-semibold bg-gray-20'
-      } px-2 py-2 text-lg md:text-2xl rounded-md`}
+        activeTab === 1 ? ' text-black border-b-2 border-b-orange-500 font-semibold' : ' bg-gray-20'
+      } px-2 py-2 text-lg md:text-xl rounded-md`}
       onClick={() => handleTabClick(1)}
     >
       Details
     </button>
     <button
       className={`${
-        activeTab === 2 ? ' text-black border-b-2 border-b-orange-500 ' : 'font-semibold bg-gray-20'
-      } px-2 py-2 text-lg md:text-2xl rounded-md`}
+        activeTab === 2 ? ' text-black border-b-2 border-b-orange-500 font-semibold' : ' bg-gray-20'
+      } px-2 py-2 text-lg md:text-xl rounded-md`}
       onClick={() => handleTabClick(2)}
     >
       Ingredients
     </button>
     <button
       className={`${
-        activeTab === 3 ? ' text-black border-b-2 border-b-orange-500 ' : 'bg-gray-20 font-semibold'
-      } px-2 py-2 text-lg md:text-2xl rounded-md`}
+        activeTab === 3 ? ' text-black border-b-2 border-b-orange-500 font-semibold ' : 'bg-gray-20 '
+      } px-2 py-2 text-lg md:text-xl rounded-md`}
       onClick={() => handleTabClick(3)}
     >
       Comments

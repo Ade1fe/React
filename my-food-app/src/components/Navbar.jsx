@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaCartPlus } from 'react-icons/fa';
 import { IoMdSearch } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,27 +18,65 @@ const Navbar = () => {
       </div>
 
       {/* <div className="flex items-center"> */}
-        <AiOutlineMenu className="md:hidden cursor-pointer order-2" onClick={toggleMenu} />
+        <AiOutlineMenu size={28} className="md:hidden cursor-pointer order-2" onClick={toggleMenu} />
 
-        <ul className={`md:flex text-lg  justify-center md:justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14
-        absolute top-[63.5px] z-[999999999999999] right-0 bg-white border-l-2 border-l-orange-500 border-b-2 border-b-orange-500 md:border-none  w-[50%] px-8 py-4 text-center          
+        <ul className={`md:flex text-sm md:text-lg  justify-center md:justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14
+        absolute top-[56px] z-[999999999999999] right-0 bg-white border-l-2 border-l-orange-500 border-b-2 border-b-orange-500 md:border-none  w-[50%] px-8 py-4 text-center          
           md:static md:w-fit  md:p-0 md:bg-white
         ${isMenuOpen ? 'grid text-center justify-center' : 'hidden'}`}>
-          <Link to="/menu" className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5  md:m-0'>Menu </Link>
-          {/* <li  className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5 md:m-0'><Link to="/menu">Menu </Link> </li> */}
-          {/* <li className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5 md:m-0'>Offers</li> */}
-          {/* <li className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5 md:m-0'>Services</li> */}
-          <Link to="/aboutus" className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5 md:m-0'>About </Link>
+          <NavLink
+          to='/menu'
+          className={`hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5  md:m-0 ${
+            window.location.pathname === '/menu' ? 'text-orange-500 font-bold' : ''
+          }`}
+        >
+          Menu
+        </NavLink>
+        <NavLink
+          to='/aboutus'
+          className={`hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5  md:m-0 ${
+            window.location.pathname === '/aboutus' ? 'text-orange-500 font-bold' : ''
+          }`}
+        >
+          About
+        </NavLink>
+        <NavLink
+          to='/contactus'
+          className={`hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5  md:m-0 ${
+            window.location.pathname === '/contactus' ? 'text-orange-500 font-bold' : ''
+          }`}
+        >
+          Contact
+        </NavLink>
+        <NavLink
+          to='/cart'
+          className={`hover:bg-gray-100 block md:hidden cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5  md:m-0 ${
+            window.location.pathname === '/cart' ? 'text-orange-500 font-bold' : ''
+          }`}
+        >
+          <FaCartPlus />
+        </NavLink>
           
-          <Link to="/contactus"> <li className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md w-fit mx-auto mb-5 md:m-0'>Contact</li></Link>
-          <Link to="/cart" className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md md:m-0 flex justify-center text-center mx-auto w-fit md:hidden'><FaCartPlus /></Link>
-          {/* <li className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md md:m-0 flex justify-center text-center mx-auto w-fit md:hidden'><FaCartPlus /></li> */}
         </ul>
 
-        <ul className='flex text-lg justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14 order-1 md:order-2'>
-        <Link to="/cart" className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md hidden md:flex'><FaCartPlus /></Link>
-          {/* <li className='hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md hover:shadow-md hidden md:flex'><FaCartPlus /></li> */}
-         <Link to="/signin"> <li className='whitespace-nowrap bg-orange-500 text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black'>Sign in</li></Link>
+        <ul className='flex  text-sm md:text-lg justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14 order-1 md:order-2'>
+        <NavLink
+          to='/cart'
+          className={`hover:bg-gray-100 cursor-pointer  hover:px-2 hover:py-1 rounded-md hidden md:flex hover:shadow-md w-fit mx-auto mb-5  md:m-0 ${
+            window.location.pathname === '/cart' ? 'text-orange-500 font-bold' : ''
+          }`}
+        >
+          <FaCartPlus />
+        </NavLink>
+         
+         <NavLink
+          to='/signin'
+          className={`whitespace-nowrap bg-orange-500 text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black ${
+            window.location.pathname === '/signin' ? 'text-orange-500 font-bold' : ''
+          }`}
+        >
+          Sign in
+        </NavLink>
         </ul>
       {/* </div> */}
     </header>

@@ -22,7 +22,7 @@ const MenuTwo = () => {
   const [ingredientMeals, setIngredientMeals] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [meals, setMeals] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showInfo, setShowInfo] = useState(false); 
   
 
