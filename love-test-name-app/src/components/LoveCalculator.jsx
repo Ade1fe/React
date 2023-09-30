@@ -103,10 +103,10 @@ function LoveCalculator() {
 
   return (
     <div className=" flex items-center justify-center mt-[10px]">
-      <div className="bg-white p-8 ">
+      <div className="bg-white p-8 w-[95%] md:w-[90%] mx-auto">
         {/* <img src="" className='w-20 h-20 object-contain' alt="" /> */}
         <div className="text-center mb-4">
-          <h1 className="text-4xl font-extrabold text-purple-600">
+          <h1 className=" text-2xl mb-1 lg:text-3xl font-extrabold text-purple-600">
             Love Calculator Pro
           </h1>
           <p className="text-gray-600">Find out your love percentage</p>
