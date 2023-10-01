@@ -10,11 +10,12 @@ import {
 } from "react-router-dom";
 import LoginnPage from './pages/LoginnPage';
 import ComingSoonPage from './components/ComingSoonPage';
+import SignupPage from './components/SignupPage';
 
 
 const router = createBrowserRouter([
   {
-    path: "/app",
+    path: "/",
     element: <App />,
   },
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginnPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />,
   },
   {
     path: "/comingSoon",

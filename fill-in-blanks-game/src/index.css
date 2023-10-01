@@ -6,12 +6,19 @@
 .button {
   background-color: transparent;
   border: 2px solid #f3f3f3; 
-  padding: 14px;
+  padding: 7px 14px;
   margin: 5px;
-  
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
+
+.answer {
+  color: blue;
+  font-weight: bold;
+  background: #000;
+  /* Add other styles as needed */
+}
+
 
 .button.clicked {
   

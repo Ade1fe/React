@@ -12,12 +12,6 @@ const Questions = [
     fakeAnswerOne: "baby",
   },
   {
-    question: "In React, components can be classified into {answer} and {answer} components.",
-    correctAnswer: "class",
-    fakeAnswerTwo: "fun",
-    fakeAnswerOne: "happy",
-  },
-  {
     question: "The virtual DOM (Document Object Model) in React improves {answer} efficiency.",
     correctAnswer: "performance",
     fakeAnswerTwo: "design",
@@ -265,5 +259,7 @@ const Questions = [
   },
   // Add more questions here
 ];
+
+
 
 export default Questions;

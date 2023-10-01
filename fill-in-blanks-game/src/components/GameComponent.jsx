@@ -19,6 +19,9 @@ const GameComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [clickedAnswerIndex, setClickedAnswerIndex] = useState(null);
+  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(1);
+
+
 
     
   useEffect(() => {
@@ -32,6 +35,7 @@ const GameComponent = () => {
     question: Questions[currentQuestionIndex].question.replace('{answer}', selectedAnswer),
   };
 
+ 
 
 
   const handleAnswerSelect = (answer, index) => {
@@ -65,8 +69,8 @@ const GameComponent = () => {
   const handleNextQuestion = () => {
     setSelectedAnswer("");
     setShowWinMessage(false);
+  setCurrentQuestionNumber(currentQuestionNumber + 1);
     setCurrentQuestionIndex(Math.floor(Math.random() * Questions.length));
-
     setClickedAnswerIndex(null);
   };
 
@@ -74,10 +78,19 @@ const GameComponent = () => {
 
   return (
    
-      <div className=" text-center ">
-        <div id='score' className='p-4 flex justify-end items-center gap-2 text-xl sm:text-2xl mb-3 text-right bg-[#fff]'
-        style={{boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"}} ><div className="text-green-300"><FaMoneyBill size={30} /></div> {score}</div>
-        <p className='text-2xl sm:text-2xl px-4'>{currentQuestion.question}</p>
+      <div className=" text-center mt-5 ">
+<div id='score' className='px-4 py-2 flex justify-between items-center gap-2 text-sm  mb-3 text-right bg-[#fff]'
+  style={{boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"}}>
+  <div className="text-green-500 items-center gap-1 flex"><FaMoneyBill size={25} />  <p className='text-black text-lg'>{score}</p></div>
+
+  <p className=''>
+  level {currentQuestionNumber}
+</p>
+</div>
+
+
+
+        <p className='text-lg sm:text-xl px-4  mt-6'>{currentQuestion.question}</p>
         <ul className='flex p-4 flex-wrap justify-center'>
         {Object.values(currentQuestion).slice(1).map((answer, index) => (
           <li key={index} >
@@ -105,7 +118,7 @@ const GameComponent = () => {
           </div>
         )}
         {!showWinMessage && (
-          <button className='px-4 py-2 mb-[30px]'  style={{boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px"}}          onClick={() => {
+          <button className='px-4 py-1 mt-[10px] mb-[30px] w-[80%] mx-auto uppercase font-bold bg-blue-300 rounded-md hover:bg-blue-600'   onClick={() => {
               if (selectedAnswer === currentQuestion.correctAnswer) {
                 handleCorrectAnswer();
               } else {

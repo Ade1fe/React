@@ -1,66 +1,75 @@
 import React, { useState } from 'react';
-import MainLayout from '../layout/MainLayout';
-import Questions from './../components/Ouestions';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { FaSearch, FaPuzzlePiece } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const GamePage = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [showWinMessage, setShowWinMessage] = useState(false);
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const currentQuestion = {
-    ...Questions[currentQuestionIndex],
-    question: Questions[currentQuestionIndex].question.replace('{answer}', selectedAnswer),
-  };
-
-  const handleAnswerSelect = (answer) => {
-    setSelectedAnswer(answer);
-  };
-
-  const handleSubmit = () => {
-    if (selectedAnswer === currentQuestion.correctAnswer) {
-      setShowWinMessage(true);
-      alert("Congratulations! You won!");
-    } else {
-      alert("Oops! Try again.");
-    }
-  };
-
-  const handleNextQuestion = () => {
-    setSelectedAnswer("");
-    setShowWinMessage(false);
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <MainLayout>
-      <div className="">
-        <h1>Quiz App</h1>
-        <p>{currentQuestion.question}</p>
-        <ul>
-          {Object.values(currentQuestion).slice(1).map((answer, index) => (
-            <li key={index}>
-              <button
-                onClick={() => handleAnswerSelect(answer)}
-                disabled={showWinMessage}
-              >
-                {answer}
-              </button>
-            </li>
-          ))}
-        </ul>
-        {showWinMessage && (
-          <div>
-            <button onClick={handleNextQuestion}>Next Question</button>
-          </div>
-        )}
-        {!showWinMessage && (
-          <button onClick={handleSubmit} disabled={!selectedAnswer}>
-            Submit
-          </button>
-        )}
+    <div className="relative  items-center bg-[#a2d2ff] py-3  flex flex-row lg:flex-row justify-between px-4">
+      <div>
+        <h1 className="text-3xl md:text-4xl font-bold"><Link to='/'>Deife-Quiz</Link></h1>
       </div>
-    </MainLayout>
+
+      <div className="absolute top-6 right-4">
+        <AiOutlineMenu size={20} className="lg:hidden cursor-pointer" onClick={toggleMenu} />
+      </div>
+
+      {isMenuOpen && (
+        <div className="lg:hidden absolute top-[60px] left-0 px-3 bg-[#a2d2ff] py-2 w-full flex items-center flex-col md:flex-row justify-between">
+          <div className="flex items-center gap-3 border-white border-[1px] pr-4 rounded-[20px]">
+            <div className="flex justify-center rounded-l-[20px]">
+              <input
+                type="text"
+                className="focus:outline-sky-200 w-full lg:w-[400px] px-5 py-1 border-[1px] rounded-l-[20px] border-white flex"
+                placeholder="Search"
+              />
+              <div className="px-2 ml-[-30px] flex items-center">
+                <FaSearch size={15} />
+              </div>
+            </div>
+            <h3 className='whitespace-nowrap'><Link to='/comingSoon'>All the activities</Link></h3>
+          </div>
+
+          <div className="flex gap-4 items-center mt-4 md:mt-0 lg:mt-0">
+            <div className="flex gap-1 items-center bg-white p-2 rounded-[20px] px-3">
+              <FaPuzzlePiece />
+              <h2><Link to='/comingSoon'>New Activities</Link></h2>
+            </div>
+            <h2><Link to='/login'>Log in</Link></h2>
+          </div>
+        </div>
+      )}
+
+      <div className="hidden lg:flex items-center gap-3 border-white border-[1px] pr-4 rounded-[20px]">
+        <div className="flex justify-center rounded-l-[20px]">
+          <input
+            type="text"
+            className="focus:outline-sky-200 w-full lg:w-[400px] px-5 py-1 border-[1px] rounded-l-[20px] border-white flex"
+            placeholder="Search"
+          />
+          <div className="px-2 ml-[-30px] flex items-center">
+            <FaSearch size={15} />
+          </div>
+        </div>
+        <h2 className='whitespace-nowrap'><Link to='/comingSoon'>All the activities</Link></h2>
+
+      </div>
+
+      <div className="hidden lg:flex gap-4 items-center mt-4 lg:mt-0">
+        <div className="flex gap-1 items-center bg-white p-2 rounded-[20px] px-3">
+          <FaPuzzlePiece />
+          <h2><Link to='/comingSoon'>New Activities</Link></h2>
+        </div>
+        <h2><Link to='/login'>Log in</Link></h2>
+      </div>
+    </div>
   );
 };
 
-export default GamePage;
+export default Navbar;
