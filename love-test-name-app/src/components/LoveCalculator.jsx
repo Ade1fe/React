@@ -6,8 +6,6 @@ import loveImage from "../assets/OK1BI40-removebg-preview.png"
 import hateImage from "../assets/9079492.png"
 import sibling from "../assets/6730260-removebg-preview.png"
 import {FaWhatsapp} from "react-icons/fa"
-// import img from "c:\Users\addyp\Downloads\photo_6048657595088094195_y-removebg-preview.png"
-
 
 function LoveCalculator() {
   const [name1, setName1] = useState('');
@@ -82,29 +80,31 @@ function LoveCalculator() {
   };
 
   const shareOnWhatsApp = () => {
-    const message = `Check out our love percentage on Love Calculator Pro: ${lovePercentage}% - ${resultInfo[lovePercentage].text}`;
-    const whatsappLink = `whatsapp://send?text=${encodeURIComponent(message)}`;
-    
-    // Try to open the WhatsApp link, but provide a fallback link for other cases
-    if (navigator.share) {
-      // If the browser supports the Web Share API, use it as a fallback
-      navigator.share({
-        title: 'Share on WhatsApp',
-        text: message,
-      })
-        .then(() => console.log('Shared successfully'))
-        .catch((error) => console.error('Sharing failed', error));
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      window.open('https://web.whatsapp.com/', '_blank');
+    if (lovePercentage !== null) {
+      const message = `Hey there! 💕 Just tried out Love Calculator Pro and guess what? ${name1} and ${name2} are a perfect match with a love score of ${lovePercentage}%! 🥰 ${resultInfo[lovePercentage].text}. Want to see your love score? Click here: https://deife-cal.netlify.app/ 😘`;
+
+      const whatsappLink = `whatsapp://send?text=${encodeURIComponent(message)}`;
+  
+      // Try to open the WhatsApp link, but provide a fallback link for other cases
+      if (navigator.share) {
+        navigator.share({
+          title: 'Share on WhatsApp',
+          text: message,
+        })
+          .then(() => console.log('Shared successfully'))
+          .catch((error) => console.error('Sharing failed', error));
+      } else {
+        window.open(whatsappLink, '_blank');
+      }
     }
   };
+  
+    
   
 
   return (
     <div className=" flex items-center justify-center mt-[10px]">
       <div className="bg-white p-8 w-[95%] md:w-[90%] mx-auto">
-        {/* <img src="" className='w-20 h-20 object-contain' alt="" /> */}
         <div className="text-center mb-4">
           <h1 className=" text-2xl mb-1 lg:text-3xl font-extrabold text-purple-600">
             Love Calculator Pro
