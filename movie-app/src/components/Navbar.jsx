@@ -83,22 +83,22 @@ const Navbar = ({ backgroundImage }) => {
         >
           Search <span className='text-xs text-red-600 hover:text-white'>18+</span>
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to='/login'
           className={`nav-link mx-1 hover:text-red-500 ${
             window.location.pathname === '/login' ? 'text-red-500 font-bold' : ''
           }`}
         >
           Log in
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to='/signup'
           className={`nav-link mx-1 hover:text-red-500 ${
             window.location.pathname === '/signup' ? 'text-red-500 font-bold' : ''
           }`}
         >
           Sign up
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );

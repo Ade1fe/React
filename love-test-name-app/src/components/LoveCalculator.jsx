@@ -81,7 +81,7 @@ function LoveCalculator() {
 
   const shareOnWhatsApp = () => {
     if (lovePercentage !== null) {
-      const message = `Hey there! 💕 Just tried out Love Calculator Pro and guess what? ${name1} and ${name2} are a perfect match with a love score of ${lovePercentage}%! 🥰 ${resultInfo[lovePercentage].text}. Want to see your love score? Click here: https://deife-cal.netlify.app/ 😘`;
+      const message = `Hey there! 💕 Just tried out Love Calculator Pro and guess what? ${name1} and ${name2} are a match with a love score of ${lovePercentage}%! 🥰 ${resultInfo[lovePercentage].text}. Want to see your love score? Click here: https://deife-cal.netlify.app/ 😘`;
 
       const whatsappLink = `whatsapp://send?text=${encodeURIComponent(message)}`;
   
@@ -136,7 +136,7 @@ function LoveCalculator() {
         </button>
         {lovePercentage !== null && (
           <div className="mt-6 text-center">
-            <div className="relative h-10 rounded-full bg-gray-300">
+            <div className="relative h-3 md:h-5 rounded-full bg-gray-300">
               <div
                 className="absolute h-10 rounded-full bg-purple-600"
                 style={{ width: `${lovePercentage}%` }}
@@ -187,12 +187,12 @@ function LoveCalculator() {
             <a href="/terms-of-use" className="text-purple-600">
               Terms of Use
             </a>
-            .
+            
           </p>
         </section>
-        <footer className="mt-6 text-center text-gray-600">
+        {/* <footer className="mt-6 text-center text-gray-600">
           <p>&copy; {new Date().getFullYear()} Love Calculator Pro</p>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );

@@ -1,0 +1,56 @@
+import React, { useState, useEffect } from 'react';
+
+function MemeGenerator() {
+  const [jokes, setJokes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchJokes = async () => {
+    setIsLoading(true);
+    
+    try {
+      const jokePromises = [];
+      
+      // Fetch 10 dad jokes from the "icanhazdadjoke" API one by one
+      for (let i = 0; i < 10; i++) {
+        jokePromises.push(fetch('https://icanhazdadjoke.com/slack')
+          .then((response) => response.json())
+          .then((data) => data.attachments[0].text)
+        );
+      }
+      
+      // Wait for all promises to resolve and update the jokes state
+      const newJokes = await Promise.all(jokePromises);
+      setJokes([...jokes, ...newJokes]);
+    } catch (error) {
+      console.error('Error fetching dad jokes:', error);
+    }
+
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchJokes();
+  }, []); // Empty dependency array to run this effect only once when the component mounts
+
+  const loadMoreJokes = () => {
+    fetchJokes();
+  };
+
+  return (
+    <div>
+      <h1>Dad Jokes:</h1>
+      <ul className='grid grid-cols-5 gap-5 flex-wrap'>
+        {jokes.map((joke, index) => (
+          <li className='border-2 p-2 shadow-lg ' key={index}>{joke}</li>
+        ))}
+      </ul>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <button onClick={loadMoreJokes}>Load More</button>
+      )}
+    </div>
+  );
+}
+
+export default MemeGenerator;

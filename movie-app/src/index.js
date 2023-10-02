@@ -17,6 +17,8 @@ import TvSeriesPage from './pages/TvSeriesPage';
 import MovieSeriesPage from './pages/MovieSeriesPage';
 import OverViewPage from './pages/OverViewPage';
 import MovieSearch from './pages/MovieSearch';
+import SearchPage from './pages/SearchPage';
+// import AnimeSearch from './pages/AnimeSearch';
 
 const router = createBrowserRouter([
   {
@@ -65,16 +67,20 @@ const router = createBrowserRouter([
     path: '/trend',
     element: <TrendingPage />,
   },
+  {
+    path: '/animesearch',
+    element: <SearchPage />,
+  },
 
   {
     path: '/animetvseries',
     element: <TvAnimeSeriesPage />,
   },
 
-    {
-    path: '/animetvseries',
-    element: <TvAnimeSeriesPage />,
-  },
+  //   {
+  //   path: '/animetvseries',
+  //   element: <TvAnimeSeriesPage />,
+  // },
 
   {
     path: '/animemovie',

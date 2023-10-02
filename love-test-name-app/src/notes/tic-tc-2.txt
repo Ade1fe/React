@@ -1,0 +1,157 @@
+import React, { useState, useEffect } from 'react';
+import './TicTacToe.css'; // Import your CSS file for styling
+
+const initialBoard = Array(9).fill('');
+const winningCombinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+
+function TicTacToe() {
+  const [board, setBoard] = useState(initialBoard);
+  const [currentPlayer, setCurrentPlayer] = useState('X');
+  const [winner, setWinner] = useState(null);
+  const [gameMode, setGameMode] = useState('computer'); // Default to computer mode
+
+  useEffect(() => {
+    if (currentPlayer === 'O' && gameMode === 'computer' && !winner) {
+      setTimeout(() => makeComputerMove(), 500);
+    }
+  }, [currentPlayer, winner, gameMode]);
+
+  const handleCellClick = (index) => {
+    if (board[index] || winner) return;
+
+    const updatedBoard = [...board];
+    updatedBoard[index] = currentPlayer;
+    setBoard(updatedBoard);
+
+    if (checkWin(updatedBoard, currentPlayer)) {
+      setWinner(currentPlayer);
+    } else if (!updatedBoard.includes('')) {
+      setWinner('Draw');
+    } else {
+      setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+    }
+  };
+
+  const makeComputerMove = () => {
+    if (winner) return;
+
+    let availableCells = board.reduce((acc, cell, index) => {
+      if (cell === '') {
+        acc.push(index);
+      }
+      return acc;
+    }, []);
+
+    if (availableCells.length === 0) {
+      setWinner('Draw');
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * availableCells.length);
+    const selectedCell = availableCells[randomIndex];
+
+    const updatedBoard = [...board];
+    updatedBoard[selectedCell] = 'O';
+    setBoard(updatedBoard);
+
+    if (checkWin(updatedBoard, 'O')) {
+      setWinner('O');
+    } else if (!updatedBoard.includes('')) {
+      setWinner('Draw');
+    } else {
+      setCurrentPlayer('X');
+    }
+  };
+
+  const checkWin = (board, player) => {
+    for (const combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (board[a] === player && board[b] === player && board[c] === player) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const renderCell = (index) => {
+    return (
+      <div
+        key={index}
+        className={`cell bg-gray-300 border border-gray-400 flex items-center justify-center text-3xl font-bold cursor-pointer ${
+          board[index] === 'X' ? 'text-blue-500' : board[index] === 'O' ? 'text-red-500' : ''
+        }`}
+        onClick={() => handleCellClick(index)}
+      >
+        {board[index]}
+      </div>
+    );
+  };
+
+  const handleModeChange = (mode) => {
+    setGameMode(mode);
+    setBoard(initialBoard);
+    setCurrentPlayer('X');
+    setWinner(null);
+  };
+
+  return (
+    <div className="container mx-auto text-center mt-10">
+      <h1 className="text-2xl font-bold mb-4">Tic-Tac-Toe</h1>
+      <div className="mb-4">
+        <button
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+            gameMode === 'computer' ? 'bg-blue-700' : 'bg-blue-500 hover:bg-blue-700'
+          }`}
+          onClick={() => handleModeChange('computer')}
+        >
+          Play with Computer
+        </button>
+        <button
+          className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 ml-4 rounded ${
+            gameMode === 'two-players' ? 'bg-green-700' : 'bg-green-500 hover:bg-green-700'
+          }`}
+          onClick={() => handleModeChange('two-players')}
+        >
+          Play with Two Players
+        </button>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {Array(9)
+          .fill(null)
+          .map((_, index) => renderCell(index))}
+      </div>
+      <div className="mt-4">
+        {winner ? (
+          winner === 'Draw' ? (
+            <p className="text-xl font-semibold">It's a draw!</p>
+          ) : (
+            <p className="text-xl font-semibold">{`Player ${winner} wins!`}</p>
+          )
+        ) : (
+          <p className="text-xl">{`Current Player: ${currentPlayer}`}</p>
+        )}
+      </div>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
+        onClick={() => {
+          setBoard(initialBoard);
+          setCurrentPlayer('X');
+          setWinner(null);
+        }}
+      >
+        Restart
+      </button>
+    </div>
+  );
+}
+
+export default TicTacToe;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
 
 const DefaultNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,63 +38,64 @@ const DefaultNavbar = () => {
             : 'hidden'
         } md:flex md:static md:text-left md:w-fit text-lg justify-between gap-3 sm:gap-4 md:gap-5 lg:gap-7`}
       >
-        <a
-          href='/'
+        <NavLink
+          to='/'
           className={`nav-link mx-1 hover:text-blue-500 ${
             window.location.pathname === '/' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Home
-        </a>
+        </NavLink>
+       
         {/* Add similar conditional classes for other links */}
-        <a
-          href='/series'
+        <NavLink
+          to='/animetvseries'
           className={`nav-link mx-1 hover:text-blue-500 ${
-            window.location.pathname === '/series' ? 'text-blue-500 font-bold' : ''
+            window.location.pathname === '/animetvseries' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Series
-        </a>
-        <a
-          href='/movies'
+        </NavLink>
+        <NavLink
+          to='/animemovie'
           className={`nav-link mx-1 hover:text-blue-500 ${
-            window.location.pathname === '/movies' ? 'text-blue-500 font-bold' : ''
+            window.location.pathname === '/animemovie' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Movies
-        </a>
-        <a
-          href='/'
+        </NavLink>
+        <NavLink
+          to='/'
           className={`nav-link mx-1 hover:text-blue-500 ${
             window.location.pathname === '/anime' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Anime
-        </a>
-        <a
-          href='/search'
+        </NavLink>
+        <NavLink
+          to='/animesearch'
           className={`nav-link mx-1 hover:text-blue-500 ${
-            window.location.pathname === '/search' ? 'text-blue-500 font-bold' : ''
+            window.location.pathname === '/animesearch' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Search
-        </a>
-        <a
-          href='/login'
+        </NavLink>
+        {/* <NavLink
+          to='/login'
           className={`nav-link mx-1 hover:text-blue-500 ${
             window.location.pathname === '/login' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Log in
-        </a>
-        <a
-          href='/signup'
+        </NavLink> */}
+        {/* <NavLink
+          to='/signup'
           className={`nav-link mx-1 hover:text-blue-500 ${
             window.location.pathname === '/signup' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Sign up
-        </a>
+        </NavLink> */}
       </div>
     </div>
   );
