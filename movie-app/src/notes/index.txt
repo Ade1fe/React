@@ -27,15 +27,99 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: '/app',
+    element: <App />,
+  },
+  {
     path: '/login',
     element: <LoginPage />,
   },
+  
   {
     path: '/signup',
     element: <SignUpPage />,
-  },  
-  
+  },
+  {
+    path: '/overview/:id',
+    element: <OverViewPage />,
+  },
 
+  {
+    path: '/movieseries',
+    element: <MovieSeriesPage />,
+  },
+  
+  {
+    path: '/moviesearch',
+    element: <MovieSearch />,
+  },
+  {
+    path: '/tvseries',
+    element: <TvSeriesPage />,
+  },
+  {
+    path: '/genre/:genre',
+    element: <GenrePage />,
+  },
+
+
+  {
+    path: '/anime',
+    element: <AnimePage />,
+  },
+
+  {
+    path: '/animeDetails/:id',
+    element: <AnimeDetails />,
+  },
+
+  {
+    path: '/trend',
+    element: <TrendingPage />,
+  },
+  {
+    path: '/animesearch',
+    element: <SearchPage />,
+  },
+
+  {
+    path: '/animetvseries',
+    element: <TvAnimeSeriesPage />,
+  },
+
+  //   {
+  //   path: '/animetvseries',
+  //   element: <TvAnimeSeriesPage />,
+  // },
+
+  {
+    path: '/animemovie',
+    element: <AnimeMoviePage />,
+  },
+
+  {
+    path: '/ova',
+    element: <AnimeOvaPage />,
+  },
+  {
+    path: '/ona',
+    element: <AnimeOnaPage />,
+  },
+
+  {
+    path: '/special',
+    element: <AnimeSpecialPage />,
+  },
+  {
+    path: '/music',
+    element: <AnimeMusicPage />,
+  },
+  {
+    path: '/genre/:genre',
+    element: <GenrePage />,
+  },
+ 
+  
 ])
 
 

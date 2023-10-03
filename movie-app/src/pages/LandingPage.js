@@ -2,19 +2,14 @@
 import CarouselOne from "./components/CarouselOne";
 import Footerr from "./components/Footerr";
 import ShowDataMovies from "./components/ShowDataMovies";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
 
-function App() {
+function LandingPage() {
   return (
     <div className="App">
     <CarouselOne />
     <ShowDataMovies />
     <Footerr />
-    {/* <LoginPage /> */}
-    {/* <SignUpPage /> */}
     </div>
   );
 }
-
-export default App;
+export default LandingPage
