@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FaYoutube } from 'react-icons/fa';
+import { FaArrowLeft, FaYoutube } from 'react-icons/fa';
 
 const AnimeDetail = () => {
   const { id } = useParams();
@@ -41,7 +41,7 @@ const AnimeDetail = () => {
         <div>
          
            <div className="flex gap-2 items-center flex-wrap px-2 pb-5 pt-2">
-     <Link to="/anime" className='text-lg text-gray-300'>Home</Link> 
+     <Link to="/anime" className='text-lg text-gray-300'><FaArrowLeft /> </Link> 
       <span>||</span>
       <h2 className='text-sm text-gray-500'>{animeData.data.type}</h2>
       <span>||</span>
@@ -53,7 +53,7 @@ const AnimeDetail = () => {
             <div className="absolute top-0 left-0 bg-black opacity-90 backdrop-blur-md h-full w-full"></div>
           </div>
 
-          <div className="grid static md:absolute top-[100px] left-3 md:flex gap-5 items-center">
+          <div className="grid static md:absolute top-[120px] left-3 md:flex gap-5 items-center">
             <div className=" w-[270px] sm:w-[200px] h-auto mx-auto md:mx-0 ">
               <img src={animeData.data.images.webp.large_image_url} className='w-full h-full object-cover' alt="" />
             </div>

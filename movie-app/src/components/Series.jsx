@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import '../css/Series.css';
 import { Grid, Pagination } from 'swiper/modules';
 import CardImg from './CardImg';
+import { useNavigate } from 'react-router-dom';
 
 export default function Series() {
   const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
@@ -14,6 +15,7 @@ export default function Series() {
   const [seriesData, setSeriesData] = useState([]);
   const [genres, setGenres] = useState([]);
   const [images, setImages] = useState([]);
+  const navigate  = useNavigate();
 
   useEffect(() => {
     async function fetchGenres() {
@@ -57,6 +59,19 @@ export default function Series() {
     fetchAllSeries();
   }, []);
 
+  const handleMovieCardClick = (movieItem) => {
+    // Check if the required data is available
+    if (movieItem.id && movieItem.title && movieItem.img) {
+      const { id, title, img } = movieItem;
+      // Use the navigate function to navigate to the overview page
+      console.log("movie click")
+
+      console.log(movieItem);
+      navigate(`/overview/${id}`, { state: { title, img,id } });
+    } else {
+      console.error('Required data is missing in movieItem:', movieItem);
+    }
+  };
   
     const BreakPoints = {
       // Define breakpoints and their respective settings here
@@ -210,6 +225,9 @@ export default function Series() {
                 img={series.poster_path}
                 rating={series.vote_average}
                 title={series.name} 
+                movieId={series.id}
+                key={index}
+                onClick={handleMovieCardClick} 
               />
             </SwiperSlide>
           ))}

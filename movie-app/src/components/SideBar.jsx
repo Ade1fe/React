@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import "../css/Shake.css"
 import { Link } from 'react-router-dom';
@@ -92,39 +92,82 @@ const SideBar = () => {
               </a>
             </li>
             <li>
-              <Link to="/trend" className="block hover:text-blue-500">
-                Trending
-              </Link>
+             
+              <NavLink
+          exact
+          to='/trend'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/trend' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+          Trending
+          </NavLink>
             </li>
             <li>
-              <Link to="/animetvseries" className="block hover:text-blue-500">
-                TV Series
-              </Link>
+            <NavLink
+          exact
+          to='/animetvseries'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/animetvseries' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+          TV Series
+          </NavLink>
             </li>
             <li>
-              <Link to="/animemovie" className="block hover:text-blue-500">
-                Movies
-              </Link>
+            <NavLink
+          exact
+          to='/animemovie'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/animemovie' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+          Movies
+          </NavLink>
             </li>
             <li>
-              <Link to="/ova" className="block hover:text-blue-500">
-                OVAs
-              </Link>
+            <NavLink
+          exact
+          to='/ova'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/ova' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+          OVAs
+          </NavLink>
             </li>
             <li>
-              <Link to="/ona" className="block hover:text-blue-500">
-                ONAs
-              </Link>
+            <NavLink
+          exact
+          to='/ona'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/ona' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+          ONAs
+          </NavLink>
             </li>
             <li>
-              <Link to="/special" className="block hover:text-blue-500">
-                Specials
-              </Link>
+            <NavLink
+          exact
+          to='/special'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/special' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+         Specials
+          </NavLink>
             </li>
             <li>
-              <Link to="/music" className="block hover:text-blue-500">
-                Music
-              </Link>
+            <NavLink
+          exact
+          to='/music'
+          className={`block hover:text-blue-500 ${
+            window.location.pathname === '/music' ? 'text-blue-500 font-bold' : ''
+          }`}
+        >
+         Musics
+          </NavLink>
             </li>
             
           </ul>

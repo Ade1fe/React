@@ -142,7 +142,7 @@ const BreakPoints = {
   return (
 
     <>
-   <h2 className='px-5 text-2xl font-bold my-3'>Full Cast & Crew</h2>
+   <h2 className='px-5 text-lg md:text-2xl font-bold my-3'>Full Cast & Crew</h2>
     <Swiper
       slidesPerView={8.60}
       spaceBetween={10}

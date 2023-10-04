@@ -29,7 +29,8 @@ const AnimeRecommend = () => {
 {isLoading && <p>Loading...</p>}
 
       {/* Display the list of anime items */}
-      <div className='flex justify-evenly flex-wrap lg:grid lg:grid-cols-4 gap-2 sm:gap-2 md:gap-3'>
+      {/* flex justify-evenly flex-wrap lg:grid lg:grid-cols-4 gap-2 sm:gap-2 md:gap-3 */}
+      <div className='flex justify-center flex-wrap  gap-2 md:gap-3 '>
         {animeList.map((anime) => (
           <AnimeCard key={anime.mal_id} anime={anime} id={anime.mal_id} />
         ))}

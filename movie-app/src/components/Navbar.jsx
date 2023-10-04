@@ -199,7 +199,7 @@ const Navbar = ({ backgroundImage }) => {
   };
 
   const toggleProfile = () => {
-    setIsProfileVisible(!isProfileVisible); // Toggle profile visibility
+    setIsProfileVisible(!isProfileVisible); 
   };
 
   const comingSoon = () => {
@@ -279,12 +279,12 @@ const Navbar = ({ backgroundImage }) => {
 
         {user ? (
          <div className="">
-         <div className="cursor-pointer relative" onClick={toggleProfile}> {/* Add onClick to toggle profile */}
+         <div className="cursor-pointer relative" onClick={toggleProfile}> 
            <img src={pic} className='w-[30px] h-[30px] object-cover rounded-[50%] overflow-hidden' alt="" />
          </div>
 
          {isProfileVisible && (  
-           <div className="mx-1 rounded-lg text-sm absolute top-14 w-[250px] px-3 py-2 right-3 z-[99999999] bg-black opacity-80 backdrop-blur-sm">
+           <div className="mx-1 rounded-none md:rounded-lg text-sm absolute w-full right-0 top-[100%] md:top-14 md:w-[250px] px-3 py-2 md:right-3 z-[99999999] bg-black md:opacity-80 md:backdrop-blur-sm">
                <p className='text-sm font-bold text-red-500'>{username}</p>
              <p className='text-sm mb-8'>{user.email}</p>
              

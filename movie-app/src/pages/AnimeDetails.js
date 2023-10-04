@@ -4,6 +4,7 @@ import AnimeDetail from '../components/AnimeDetail';
 import AnimeAdvert from './../components/AnimeAdvert';
 import RecommendedAnime from '../components/RecommendedAnime';
 import Footer from './../components/Footer';
+import Mainlayout from '../layout/Mainlayout';
 
 const AnimeDetails = () => {
  
@@ -11,10 +12,14 @@ const AnimeDetails = () => {
 
   return (
     <div>
+      <Mainlayout>
       <AnimeDetail />
      <div className="mt-[80px]"> <AnimeAdvert /></div>
      <div className="mt-[40px]"> <RecommendedAnime /> </div>
-     <Footer />
+        
+          </Mainlayout>
+      
+     {/* <Footer /> */}
     </div>
   );
 };
