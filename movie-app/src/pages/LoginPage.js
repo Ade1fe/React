@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [loginStatus, setLoginStatus] = useState(null); // null for initial state
 
   const [formData, setFormData] = useState({
     email: '',
@@ -32,10 +33,10 @@ const LoginPage = () => {
 
       // User is logged in, you can redirect to another page or perform other actions here.
       navigate(`/`);
-      console.log('Login Successful', 'success');
+      setLoginStatus('success'); // Set login status to success
     } catch (err) {
-      console.log('Login failed!', 'error');
       console.error(err.message);
+      setLoginStatus('error'); // Set login status to error
     }
   };
 
@@ -43,7 +44,13 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
-
+        {/* Display success or error message */}
+        {loginStatus === 'success' && (
+          <div className="text-green-600 mb-4">Login Successful</div>
+        )}
+        {loginStatus === 'error' && (
+          <div className="text-red-600 mb-4">Login Failed. Please try again.</div>
+        )}
         <form onSubmit={handleLogin}>
           {/* Email input */}
           <div className="mb-4">
@@ -89,11 +96,11 @@ const LoginPage = () => {
             </button>
 
             <Link
-          to="/signup"
-          className="block text-sm text-gray-700 font-semibold mt-4 hover:underline"
-        >
-          Don't have an account? <span className='text-red-500'>Register</span>
-        </Link>
+              to="/signup"
+              className="block text-sm text-gray-700 font-semibold mt-4 hover:underline"
+            >
+              Don't have an account? <span className='text-red-500'>Register</span>
+            </Link>
           </div>
         </form>
       </div>
