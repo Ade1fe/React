@@ -132,31 +132,53 @@
 
 
 
-
-
-
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
-import { auth } from '../firebase'; // Import your Firebase auth module or authentication status here.
+import { auth, firestore } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import pic from "../assets/001.jpg";
+import { FaArrowRight, FaCog, FaUser } from 'react-icons/fa';
 
 const Navbar = ({ backgroundImage }) => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState(null); // State to store user information
+  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [usermail, setUsermail] = useState(null);
+  const [isProfileVisible, setIsProfileVisible] = useState(false); 
 
-  // Check the user's authentication status on component mount
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        // User is logged in, set the user state
         setUser(user);
+
+        const userRef = doc(firestore, 'users', user.uid);
+        getDoc(userRef)
+          .then((docSnapshot) => {
+            if (docSnapshot.exists()) {
+              const userData = docSnapshot.data();
+              setUsername(userData.username);
+              setUsermail(userData.usermail);
+            } else {
+              setUsername(null);
+              setUsermail(null);
+            }
+          })
+          .catch((error) => {
+            console.error('Error getting user document:', error);
+          });
       } else {
-        // User is not logged in, set the user state to null
         setUser(null);
+        setUsername(null);
+        setUsermail(null);
       }
     });
 
-    return () => unsubscribe(); // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
   }, []);
 
   const toggleMenu = () => {
@@ -165,6 +187,23 @@ const Navbar = ({ backgroundImage }) => {
 
   const navbarStyle = {
     backgroundImage: `url(${backgroundImage})`,
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/');
+    } catch (error) {
+      console.log('Error logging out:', error);
+    }
+  };
+
+  const toggleProfile = () => {
+    setIsProfileVisible(!isProfileVisible); // Toggle profile visibility
+  };
+
+  const comingSoon = () => {
+   alert("Coming soon");
   };
 
   return (
@@ -205,13 +244,58 @@ const Navbar = ({ backgroundImage }) => {
         >
           Home
         </NavLink>
-        {/* ... other navigation links */}
-        
-        {/* Display user's email if authenticated, or "Log in" if not */}
+        <NavLink
+          to='/movieseries'
+          className={`nav-link mx-1 hover:text-red-500 ${
+            window.location.pathname === '/movieseries' ? 'text-red-500 font-bold' : ''
+          }`}
+        >
+          Movies
+        </NavLink>
+        <NavLink
+          to='/tvseries'
+          className={`nav-link mx-1 hover:text-red-500 ${
+            window.location.pathname === '/tvseries' ? 'text-red-500 font-bold' : ''
+          }`}
+        >
+          Tv Series
+        </NavLink>
+        <NavLink
+          to='/anime'
+          className={`nav-link mx-1 hover:text-red-500 ${
+            window.location.pathname === '/anime' ? 'text-red-500 font-bold' : ''
+          }`}
+        >
+          Anime
+        </NavLink>
+        <NavLink
+          to='/moviesearch'
+          className={`nav-link mx-1 hover:text-red-500 ${
+            window.location.pathname === '/moviesearch' ? 'text-red-500 font-bold' : ''
+          }`}
+        >
+          Search <span className='text-xs text-red-600 hover:text-white'>18+</span>
+        </NavLink>
+
         {user ? (
-          <span className="text-white mx-1">
-            {user.email}
-          </span>
+         <div className="">
+         <div className="cursor-pointer relative" onClick={toggleProfile}> {/* Add onClick to toggle profile */}
+           <img src={pic} className='w-[30px] h-[30px] object-cover rounded-[50%] overflow-hidden' alt="" />
+         </div>
+
+         {isProfileVisible && (  
+           <div className="mx-1 rounded-lg text-sm absolute top-14 w-[250px] px-3 py-2 right-3 z-[99999999] bg-black opacity-80 backdrop-blur-sm">
+               <p className='text-sm font-bold text-red-500'>{username}</p>
+             <p className='text-sm mb-8'>{user.email}</p>
+             
+            <div className="text-white grid gap-3 ">
+             <p className='py-1 px-2 bg-[#222] rounded-2xl flex gap-3 items-center' onClick={comingSoon}> <FaUser />  Profile</p>
+             <p className='py-1 px-2 bg-[#222] rounded-2xl flex gap-3 items-center' onClick={comingSoon}> <FaCog /> Settings</p>
+             <button className='py-1 px-2 text-left justify-end flex items-center gap-3' onClick={handleLogout}>Log out <FaArrowRight  />  </button>
+           </div>
+           </div>
+         )}
+       </div>
         ) : (
           <NavLink
             to='/login'

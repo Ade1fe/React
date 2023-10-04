@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
+import { initializeApp } from 'firebase/app';
+import { firestore, auth } from './firebase'; 
 import AnimePage from './pages/AnimePage';
 import AnimeDetails from './pages/AnimeDetails';
 import TrendingPage from './pages/TrendingPage';
@@ -36,17 +38,91 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <SignUpPage />,
   },  
-  
+  {
+    path: '/overview/:id',
+    element: <OverViewPage />,
+  },
 
-])
+  {
+    path: '/movieseries',
+    element: <MovieSeriesPage />,
+  },
 
+  {
+    path: '/moviesearch',
+    element: <MovieSearch />,
+  },
 
+  {
+    path: '/tvseries',
+    element: <TvSeriesPage />,
+  },
 
+  {
+    path: '/genre/:genre',
+    element: <GenrePage />,
+  },
 
+  {
+    path: '/anime',
+    element: <AnimePage />,
+  },
+
+  {
+    path: '/animeDetails/:id',
+    element: <AnimeDetails />,
+  },
+
+  {
+    path: '/trend',
+    element: <TrendingPage />,
+  },
+
+  {
+    path: '/animesearch',
+    element: <SearchPage />,
+  },
+
+  {
+    path: '/animetvseries',
+    element: <TvAnimeSeriesPage />,
+  },
+
+  {
+    path: '/animemovie',
+    element: <AnimeMoviePage />,
+  },
+
+  {
+    path: '/ova',
+    element: <AnimeOvaPage />,
+  },
+  {
+    path: '/ona',
+    element: <AnimeOnaPage />,
+  },
+
+  {
+    path: '/special',
+    element: <AnimeSpecialPage />,
+  },
+  {
+    path: '/music',
+    element: <AnimeMusicPage />,
+  },
+  {
+    path: '/genre/:genre',
+    element: <GenrePage />,
+  },
+
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+
+auth.onAuthStateChanged((user) => {
+  root.render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  );
+});
