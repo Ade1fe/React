@@ -35,12 +35,12 @@ const ContactItem = ({ contact, email1, email2, icon }) => {
           // ...radiusStyle, 
         }}
       >
-        <IconComponent size={30} />
+        <IconComponent size={25} />
       </div>
       <div className="">
-        <h2>{contact}</h2>
-        <h4>{email1}</h4>
-        <h2>{email2}</h2>
+        <h2 className='font-bold'>{contact}</h2>
+        <h4 className='text-sm'>{email1}</h4>
+        <h2 className='text-sm'>{email2}</h2>
       </div>
     </div>
   );
@@ -50,9 +50,9 @@ const ContactIner = () => {
   return (
     <div>
       <h2 className='uppercase font-bold my-2 px-3 text-xl w-[90%] md:w-full mx-auto'>Contact Info</h2>
-      <ContactItem contact="Mail Us" email1="addypearlp00" email2="joasgcdsgyhuag" icon="mail" />
-      <ContactItem contact="Contact Us" email1="addyp080earlp00" email2="joasgcdsgyhuag" icon="phone" />
-      <ContactItem contact="Location" email1="04 Bode Edun" email2="Lagos" icon="home" />
+      <ContactItem contact="Mail Us" email1="addypearl09@gmail.com" email2="anyaadams09@gmail.com" icon="mail" />
+      <ContactItem contact="Contact Us" email1="09038257434" email2="09024386013" icon="phone" />
+      <ContactItem contact="Location" email1="04 Bode Edun" email2="Lagos Nigeria" icon="home" />
       <div className="mt-[40px]">
         <h3 className= 'uppercase font-bold my-2 px-3 text-xl w-[90%] md:w-full mx-auto'>Social Links</h3>
         <div className="mb-5 md:mb-1">

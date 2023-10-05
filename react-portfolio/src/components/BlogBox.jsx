@@ -13,7 +13,7 @@ const BlogBox = ({ imageSrc, blogType, blogTitle }) => {
       </div>
       <div className='py-1 px-4'>
         <p className="uppercase text-[#5F666D]">{blogType}</p>
-        <h1 className="font-bold text-xl sm:text-2xl">{blogTitle}</h1>
+        <h1 className="font-bold text-lg sm:text-xl">{blogTitle}</h1>
       </div>
       </Link>
     </div>

@@ -28,8 +28,8 @@ const AboutProfileFstCom = () => {
               <h2 className='text-xl sm:text-3xl text-center px-2 py-2 my-2 mx-auto'>SELF-SUMMARY</h2>
             </div>
             <div className="px-5 py-4  rounded-[20px] " style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
-              <Header first="David Henderson" headerClassName="font-bold text-xl sm:text-2xl mb-2 my-0 sm:my-6"
-              pClassame="text-xl sm:text-2xl mb-2 my-0 sm:my-6" second="I am a San Francisco-based product designer with a focus on web design, illustration, and visual development. I have a diverse range of experience having worked across various fields and industries." />
+              <Header first="Oluwadamisi Damilola Adeife" headerClassName="font-bold text-xl sm:text-2xl mb-0 my-0 sm:my-3"
+              pClassame="text-xl sm:text-2xl mb-2 my-0 sm:my-6" second="I'm a frontend developer based in Lagos, Nigeria, immersed in the dynamic tech scene. Proficient in a variety of frontend frameworks like React, Tailwind CSS, Bootstrap, and more, I specialize in crafting visually appealing and user-friendly websites and applications. Drawing inspiration from Lagos' diverse tech community, I'm committed to pushing the boundaries of frontend development and contributing to the growth of technology in both Lagos and beyond." />
             </div>
           </div>
         </div>
@@ -48,15 +48,18 @@ const AboutProfileFstCom = () => {
       />
             </div>
 
-            <div className="px-4 flex justify-center items-start font-bold rounded-[20px] flex-col w-[90%] mx-auto h-[200px] md:h-auto md:w-2/3  my-3 md:my-0"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+            <Link className="px-4 flex justify-center items-start font-bold rounded-[20px] flex-col w-[90%] mx-auto h-[200px] md:h-auto md:w-2/3  my-3 md:my-0"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }} to="/contact">
+            <div className="">
 
-<Link to="/contact">
+{/* <Link to="/contact"> */}
 <h1 className='text-2xl sm:text-3xl'>Let's</h1>
 <h1 className='pb-5 md:pb-0 text-2xl sm:text-3xl'>Work <span className='text-[#DEAAFF]'>Together</span></h1>
-</Link>
+{/* </Link> */}
 </div>
+</Link>
 
-            <div className="w-[90%] rounded-[20px] my-3 md:my-0 pt-3 md:pt-0 mx-auto md:w-1/3 px-4"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+<Link to="/letUsTalk" className="w-[90%] rounded-[20px] my-3 md:my-0 pt-3 md:pt-0 mx-auto md:w-1/3 px-4"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+            <div >
             <SocialMediaSection
         tiktokText="Tiktok"
         globeText="Globe"
@@ -66,7 +69,7 @@ const AboutProfileFstCom = () => {
         profilesText="Profiles"
       />
             </div>
-
+            </Link>
    
 
 </div>

@@ -8,7 +8,7 @@ const CredentialsBox = ({ imageSrc, aboutTitle, credentialsTitle }) => {
      <img src={imageSrc} className="w-full h-auto object-cover mb-5" alt="" />
       <div>
         <p className="uppercase text-[#5F666D]">{aboutTitle}</p>
-        <h1 className="font-bold text-xl sm:text-2xl">{credentialsTitle}</h1>
+        <h1 className="font-bold text-lg sm:text-xl ">{credentialsTitle}</h1>
       </div>
      </Link>
     </div>
