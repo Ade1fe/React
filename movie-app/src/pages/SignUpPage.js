@@ -4,6 +4,7 @@ import { addDoc, doc, setDoc, collection } from 'firebase/firestore'
 import { auth } from '../firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Link } from 'react-router-dom';
+import pic from "../assets/wallpaperflare.com_wallpaper__1_-removebg-preview.png";
 
 const SignUpPage = () => {
 
@@ -49,13 +50,21 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
+    <div
+    className="min-h-screen flex items-center justify-center LoginPage-background relative bg-red-700"
+    style={{
+      backgroundImage: `url(${pic})`,
+      backgroundSize: 'contain',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}
+  >
+      <div className="bg-red-800 bg-opacity-50 p-8 rounded shadow-md w-96 relative z-10 text-white">
         <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
 
         <form onSubmit={handleSave}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 font-semibold">
+            <label htmlFor="username" className="block text-white font-semibold">
               USERNAME
             </label>
             <input
@@ -71,7 +80,7 @@ const SignUpPage = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-semibold">
+            <label htmlFor="email" className="block text-white font-semibold">
               EMAIL ADDRESS
             </label>
             <input
@@ -79,7 +88,7 @@ const SignUpPage = () => {
               id="email"
               name="email"
               placeholder="name@email.com"
-              className="w-full px-4 text-black py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+              className="w-full px-4 text-black py-2 border rounded-lg focus:outline-none focus:border-red-500"
               value={formData.email}
               onChange={handleInputChange}
               required
@@ -87,7 +96,7 @@ const SignUpPage = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700 font-semibold">
+            <label htmlFor="password" className="block text-white font-semibold">
               PASSWORD
             </label>
             <input
@@ -95,7 +104,7 @@ const SignUpPage = () => {
               id="password"
               name="password"
               placeholder="Password"
-              className="w-full text-black px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+              className="w-full text-black px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
               value={formData.password}
               onChange={handleInputChange}
               required
@@ -105,15 +114,15 @@ const SignUpPage = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-blue-500  w-full text-white rounded-lg px-4 py-2 font-semibold hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              className="bg-red-950  w-full text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-600 focus:outline-none focus:bg-red-600"
             >
               Sign Up
             </button>
             <Link
           to="/login"
-          className="block text-sm text-gray-700 font-semibold mt-4 hover:underline"
+          className="block text-sm  font-semibold mt-4 hover:underline text-white"
         >
-          Have an account? <span className='text-red-500'>Login</span>
+          Have an account? <span className='text-black'>Login</span>
         </Link>
           </div>
         </form>
