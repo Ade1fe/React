@@ -3,7 +3,7 @@ import Carousel from '../components/Carousel';
 import Header from '../components/Header';
 import Education from './Education';
 import CredentialsBox from './CredentialsBox';
-import sign from '../assets/sign.jpg';
+import sign from '../assets/metaverse-avatar-collage-concept.jpg';
 import ProfilesSection from './ProfilesSection';
 import SocialMediaSection from './SocialMediaSection';
 import { Link } from 'react-router-dom';
@@ -29,7 +29,7 @@ const AboutProfileFstCom = () => {
             </div>
             <div className="px-5 py-4  rounded-[20px] " style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
               <Header first="Oluwadamisi Damilola Adeife" headerClassName="font-bold text-xl sm:text-2xl mb-0 my-0 sm:my-3"
-              pClassame="text-xl sm:text-2xl mb-2 my-0 sm:my-6" second="I'm a frontend developer based in Lagos, Nigeria, immersed in the dynamic tech scene. Proficient in a variety of frontend frameworks like React, Tailwind CSS, Bootstrap, and more, I specialize in crafting visually appealing and user-friendly websites and applications. Drawing inspiration from Lagos' diverse tech community, I'm committed to pushing the boundaries of frontend development and contributing to the growth of technology in both Lagos and beyond." />
+              pClassame="text-xl sm:text-2xl mb-2 my-0 sm:my-6" second="I'm a Lagos-based frontend developer deeply engaged in the tech scene. Proficient in React, Tailwind CSS, Bootstrap, and more, I specialize in creating visually appealing websites and applications. Inspired by Lagos' tech community, I aim to push frontend development boundaries and contribute to tech growth locally and globally." />
             </div>
           </div>
         </div>
@@ -58,8 +58,9 @@ const AboutProfileFstCom = () => {
 </div>
 </Link>
 
-<Link to="/letUsTalk" className="w-[90%] rounded-[20px] my-3 md:my-0 pt-3 md:pt-0 mx-auto md:w-1/3 px-4"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
-            <div >
+            <div className="w-[90%] rounded-[20px] my-3 md:my-0 pt-3 md:pt-0 mx-auto md:w-1/3 px-4"style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }} >
+          
+<Link to="/letUsTalk" >
             <SocialMediaSection
         tiktokText="Tiktok"
         globeText="Globe"
@@ -68,9 +69,10 @@ const AboutProfileFstCom = () => {
         stayWithMeText="Stay with me"
         profilesText="Profiles"
       />
-            </div>
-            </Link>
+          </Link>
    
+            </div>
+        
 
 </div>
       </div>

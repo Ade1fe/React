@@ -20,9 +20,12 @@ const Navbar = () => {
 
   return (
     <div className="bg-white flex justify-between relative items-center px-5 md:px-10 py-2 font-bold">
-      <div className="w-[50px] overflow-hidden rounded-[50%]" style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
-        <img src={logo} alt="" />
-      </div>
+      <Link to="/" className="font-bold text-lg sm:text-xl md:text-2xl" style={{ textShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}> 
+      <div >
+        {/* <img src={logo} alt="" /> */}
+        <h1>Deife_ <span className='text-purple-500'>Syntax</span></h1>
+      </div>  
+      </Link>
       <div className="flex items-center md:hidden font-semibold text-sm  ">
       <Link to="/letUsTalk" style={isLinkActive('/letUsTalk') ? { color: '#adb5bd' } : {}}>
       Lets Talk
@@ -37,7 +40,7 @@ const Navbar = () => {
       <ul
         className={`${
           isMenuOpen ? 'flex transition-all duration-500 text-sm  ' : 'hidden'
-        } absolute top-16 right-0 w-full  justify-evenly z-[99999999999999999999999999999] mt-1 gap-2 md:gap-16 flex-col align-middle md:flex md:flex-row md:static md:w-auto x-transition:enter="animate-showItem" x-transition:leave="animate-hideItem" font-semibold h-[full] md:h-auto bg-white `}
+        } absolute top-9 right-0 w-full  justify-evenly z-[99999999999999999999999999999] mt-1 gap-2 md:gap-16 flex-col align-middle md:flex md:flex-row md:static md:w-auto x-transition:enter="animate-showItem" x-transition:leave="animate-hideItem" font-semibold h-[full] md:h-auto bg-white `}
       >
         <li className={`text-center animate-showItem transition-opacity duration-500 py-2 md:py-0 hover:text-[#A06CD5] ${isLinkActive('/') ? 'text-[#adb5bd]' : ''}`}>
           <Link to="/">Home</Link>

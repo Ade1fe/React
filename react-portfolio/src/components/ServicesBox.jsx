@@ -14,7 +14,7 @@ const ServicesBox = ({ specialization, servicesTitle }) => {
     <BiBook size={40} />
   </div>
       <div className='py-5 mt-[80px] px-4'>
-        <p className="uppercase text-[#5F666D]">{specialization}</p>
+        <p className="uppercase text-[#5F666D]  text-sm">{specialization}</p>
         <h1 className="font-bold text-lg sm:text-xl ">{servicesTitle}</h1>
       </div>
     </div>

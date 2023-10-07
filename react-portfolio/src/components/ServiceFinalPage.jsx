@@ -3,7 +3,7 @@ import SocialMediaSection from './SocialMediaSection'
 import ProfilesSection from './ProfilesSection'
 import { Link } from 'react-router-dom'
 import CredentialsBox from './CredentialsBox'
-import sign from '../assets/sign.jpg';
+import sign from '../assets/metaverse-avatar-collage-concept.jpg';
 
 const ServiceFinalPage = () => {
   return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import Carousel from './Carousel';
-import sign from '../assets/sign.jpg';
-import workOne from '../assets/blog.jpg';
+import sign from '../assets/metaverse-avatar-collage-concept.jpg';
+import sign2 from '../assets/professional-programmer-working-late-dark-office.jpg';
+import workOne from '../assets/frame-office-tools-brakfast.jpg';
 import ProfileCard from './ProfileCard';
 import MarqueeComponent from './MarqueeComponent';
 import CredentialsBox from './CredentialsBox';
@@ -13,6 +14,8 @@ import ProfilesSection from './ProfilesSection';
 import DataBlock from './DataBlock';
 import DataBlockItem from './DataBlockItem';
 import { Link } from 'react-router-dom';
+
+
 
 
 const Intro = () => {
@@ -43,7 +46,7 @@ const Intro = () => {
         credentialsTitle="Credentials"
       />
       <ProjectsBox
-        imageSrc={sign}
+        imageSrc={sign2}
         showcaseTitle="Showcase"
         projectsTitle="Projects"
       />
@@ -51,9 +54,9 @@ const Intro = () => {
         </div>
       </div>
 
-      <div className="block md:flex  mt-2 gap-2">
+      <div className="block md:flex  mt-2 gap-2 items-center">
 
-   <div className="block sm:flex w-[100%] gap-2">
+   <div className="block sm:flex w-[100%] gap-2 items-center">
    
      <BlogBox
         imageSrc={workOne}
@@ -66,7 +69,7 @@ const Intro = () => {
       />
     </div>
 
-<div className="w-full md:w-[35%] my-2 md:my-0 rounded-[20px] px-4 pt-1 sm:pt-1 order-2" style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
+<div className="w-full md:w-[30%] my-2 md:my-0 rounded-[20px] px-4 pt-1 sm:pt-1 order-2" style={{ boxShadow: 'rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px' }}>
 <Link to="/letUsTalk">
    <div>
       <SocialMediaSection
