@@ -1,0 +1,119 @@
+// import React from 'react';
+// import MainLayout from "../layouts/MainLayout";
+// import Cart from '../components/Cart';
+
+// const CartPage = () => {
+//   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+//   console.log(cartItems);
+//   // localStorage.clear();
+
+  
+//   return (
+//     <MainLayout>
+//       <div className="container mx-auto mt-8">
+//         <h1 className="text-2xl font-semibold mb-4">Cart</h1>
+//         {cartItems.length === 0 ? (
+//           <p>Your cart is empty.</p>
+//         ) : (
+//           <div>
+//             {cartItems.map((item, index) => (
+//               <Cart
+//                 img={item.img}
+//                 key={index}
+//                 alt={item.title}
+//                 name={item.title}
+//                 price={item.price}
+//                 nums={item.quantity?.toString()} // Use optional chaining
+//               />
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </MainLayout>
+//   );
+// };
+
+// export default CartPage;
+
+
+
+
+
+
+
+
+
+
+
+import React from 'react';
+import MainLayout from '../layouts/MainLayout';
+import Cart from '../components/Cart';
+import { Link } from 'react-router-dom';
+import { doc, setDoc, deleteDoc, collection } from 'firebase/firestore';
+import { firestore } from '../firebase';
+
+const CartPage = () => {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  // localStorage.clear();
+  
+
+  // Calculate the total price for each item and add it to the item object
+  const cartItemsWithTotal = cartItems.map((item) => ({
+    ...item,
+    quantity: parseInt(item.quantity, 10), // Convert quantity to number
+    price: parseFloat(item.price), // Convert price to number (assuming it's a decimal)
+  }));
+
+  const totalCartPrice = cartItemsWithTotal.reduce(
+    (total, item) => total + item.quantity * item.price,
+    0
+  );
+  const handleDeleteItem = (index) => {
+    const updatedCartItems = [...cartItemsWithTotal];
+    updatedCartItems.splice(index, 1);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    // You may want to refresh the page or re-render the component to reflect the updated cart
+    window.location.reload();
+  };
+
+
+  return (
+    <MainLayout>
+      <div className="container mx-auto px-5  mt-8 mb-32">
+        
+        <div className='mb-5 grid justify-center sm:flex sm:justify-between gap-5'>
+        <h1 className="text-lg text-center sm:text-left md:text-2xl font-semibold ">Cart</h1>
+        <Link to="/menu"> <h2 className="text-lg md:text-2xl font-semibold "> Want some more? <span className='font-bold'>Continue Shopping</span></h2></Link>
+        </div>
+        {cartItemsWithTotal.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <div>
+            {cartItemsWithTotal.map((item, index) => (
+
+              
+              <Cart
+  img={item.img}
+  key={index}
+  alt={item.title}
+  name={item.title}
+  price={parseFloat(item.price)} // Convert to a number
+  nums={parseInt(item.quantity, 10)} // Convert to a number
+  total={parseFloat(item.total)} // Convert to a number
+  onDelete={() => handleDeleteItem(index)} // Pass the delete function
+/>
+
+
+            ))}
+            <div className="text-lg font-semibold mt-10 md:mt-20">
+              Total: ${totalCartPrice.toFixed(2)}
+            </div>
+          </div>
+        )}
+      </div>
+    </MainLayout>
+  );
+};
+
+export default CartPage;
+

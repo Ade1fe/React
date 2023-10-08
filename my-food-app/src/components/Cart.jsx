@@ -2,9 +2,9 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 
-const Cart = ({ img, name, price, nums, total,onDelete }) => {
-    console.log('Price:', price);
-console.log('Total:', total);
+const Cart = ({ img, name, price, nums,mealid, total,onDelete }) => {
+//     console.log('Price:', price);
+// console.log('Total:', total);
 
   // Check if the total is a valid number
   const isTotalValid = !isNaN(total) && typeof total === 'number';
@@ -19,7 +19,7 @@ console.log('Total:', total);
       <div className="w-full md:w-[80%] py-3  px-1">
         <div className="grid sm:flex justify-between gap-2">
           <h1 className=' font-bold text-sm md:text-lg '> {name} </h1>
-          <h1 className='font-semibold text-sm md:text-lg '> <span>$</span> <span>{price} </span></h1>
+          <h1 className='font-semibold text-sm md:text-lg '> <span>$</span> <span>{price} <span>mealid {mealid} </span> </span></h1>
         </div>
         <p className='my-1 text-sm'></p>
         <p className='my-1 text-sm'> <span>Qty</span> ({nums}) </p>

@@ -1,49 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuantityModal from './QuantityModal';
-import { storage } from '../firebase'; // Import your Firebase Storage instance
-import { doc, setDoc, deleteDoc, collection } from 'firebase/firestore'; // Import Firestore functions from Firebase
-import { firestore } from '../firebase'; // Import your Firestore instance
 
-const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
+const FoodItemCard = ({ id, img, title, price, quantity, onCardClick }) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity || 1); // Use the provided quantity or default to 1
 
-  // Function to add an item to the cart in Firestore
-  const addToCart = async (quantity) => { // Updated to accept quantity as an argument
-    try {
-      const cartItemsRef = collection(firestore, 'cartItems');
-      const newItemDocRef = doc(cartItemsRef);
+  useEffect(() => {
+    setSelectedQuantity(quantity || 1); // Update the selectedQuantity when the quantity prop changes
+  }, [quantity]);
 
-      await setDoc(newItemDocRef, {
-        id: newItemDocRef.id,
-        name: title,
-        price: price,
-        quantity: quantity, 
-        mealid: mealid,
-       
-      });
-
-      alert(`${quantity} ${title} added to cart`);
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error('Error adding item to cart:', error);
+  const handleAddToCart = (quantity) => {
+    // Retrieve the current cart items from local storage
+    const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  
+    // Check if the item with the same ID already exists in the cart
+    const existingItemIndex = existingCartItems.findIndex((item) => item.id === id);
+  
+    if (existingItemIndex !== -1) {
+      // If the item exists, update its quantity as a number
+      existingCartItems[existingItemIndex].quantity += parseInt(quantity, 10);
+    } else {
+      // Clean the 'price' value before passing it
+      const cleanedPrice = price.replace('$', '').replace(',', '');
+      const newItem = {
+        id,
+        img,
+        title,
+        price: parseFloat(cleanedPrice) || 0, // Convert to a number, default to 0 if not a valid number
+        quantity: parseInt(quantity, 10) || 1, // Convert to a number, default to 1 if not a valid number
+      };
+  
+      existingCartItems.push(newItem);
     }
-  };
-
-  // Function to remove an item from the cart in Firestore
-  const removeFromCart = async (itemId) => {
-    try {
-      const itemDocRef = doc(firestore, 'cartItems', itemId);
-      await deleteDoc(itemDocRef);
-    } catch (error) {
-      console.error('Error removing item from cart:', error);
-    }
+  
+    // Update the cart items in local storage
+    localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+  
+    // Optionally, you can notify the user that the item was added to the cart
+    alert(`${parseInt(quantity, 10)} ${title} added to cart`);
+  
+    // navigate('/cart');
   };
 
   const handleCardClick = () => {
-    onCardClick({ id, img, price, title,mealid });
+    onCardClick({ id, img, price, title });
   };
 
   const openModal = () => {
@@ -90,15 +92,16 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
         </div>
       </div>
 
+      {/* Quantity Modal */}
       <QuantityModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        onAddToCart={addToCart}
+        onAddToCart={handleAddToCart}
         setSelectedQuantity={setSelectedQuantity}
-        selectedQuantity={selectedQuantity}
+        selectedQuantity={selectedQuantity} // Pass the selectedQuantity to the modal
       />
     </div>
   );
 };
 
-export default FoodItemCard
+export default FoodItemCard;

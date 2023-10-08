@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { initializeApp } from 'firebase/app';
+import { firestore, auth } from './firebase'; 
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import MenuPage from './pages/MenuPage';
@@ -53,8 +54,10 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+auth.onAuthStateChanged((user) => {
+  root.render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  );
+});

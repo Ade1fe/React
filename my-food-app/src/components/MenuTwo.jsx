@@ -347,6 +347,7 @@ const MenuTwo = () => {
   img={item.strMealThumb}
   price={generateRandomPrice()}
   title={item.strMeal}
+  mealid={item.idMeal} 
   onCardClick={(foodItem) => handleFoodItemCardClick(foodItem)}
 />
 
@@ -378,6 +379,7 @@ const MenuTwo = () => {
   img={item.strMealThumb}
   price={generateRandomPrice()}
   title={item.strMeal}
+  mealid={item.idMeal} 
   onCardClick={(foodItem) => handleFoodItemCardClick(foodItem)}
 />
 
@@ -410,6 +412,7 @@ const MenuTwo = () => {
   img={item.strMealThumb}
   price={generateRandomPrice()}
   title={item.strMeal}
+  mealid={item.idMeal} 
   onCardClick={(foodItem) => handleFoodItemCardClick(foodItem)}
 />
 

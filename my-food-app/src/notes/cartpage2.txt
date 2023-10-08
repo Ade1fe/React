@@ -1,0 +1,239 @@
+// import React, { useState, useEffect } from 'react';
+// import MainLayout from '../layouts/MainLayout';
+// import Cart from '../components/Cart';
+// import { Link } from 'react-router-dom';
+// import { doc, deleteDoc, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions from Firebase
+// import { firestore } from '../firebase'; // Import your Firestore instance
+
+// const CartPage = () => {
+//   const [cartItems, setCartItems] = useState([]); // Initialize cart items as state
+
+//   // Use useEffect to fetch cart items from Firestore when the component mounts
+//   useEffect(() => {
+//     const fetchCartItems = async () => {
+//       try {
+//         const cartItemsRef = collection(firestore, 'cartItems');
+//         const querySnapshot = await getDocs(cartItemsRef);
+//         const fetchedCartItems = [];
+    
+//         querySnapshot.forEach((doc) => {
+//           const itemData = doc.data();
+//           if (itemData) {
+//             console.log('Fetched Item Data:', itemData); // Log the entire item data to inspect the 'img' property
+//             fetchedCartItems.push({ id: doc.id, ...itemData });
+//           }
+//         });
+    
+//         setCartItems(fetchedCartItems);
+//       } catch (error) {
+//         console.error('Error fetching cart items:', error);
+//       }
+//     };
+    
+
+//     fetchCartItems();
+//   }, []);
+
+//   // Add this code within your CartPage component to log image URLs
+// useEffect(() => {
+//   cartItems.forEach((item) => {
+//     console.log('Image URL:', item.img);
+//   });
+// }, [cartItems]);
+
+
+//   const handleDeleteItem = async (itemId) => {
+//     try {
+//       // Define the document reference for the item to be removed
+//       const itemDocRef = doc(firestore, 'cartItems', itemId);
+
+//       // Delete the document
+//       await deleteDoc(itemDocRef);
+
+//       // Update the cart items in the state
+//       const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+//       setCartItems(updatedCartItems);
+//     } catch (error) {
+//       console.error('Error removing item from cart:', error);
+//     }
+//   };
+
+//   // Calculate the total price for each item and the total cart price
+// const totalCartPrice = cartItems.reduce((total, item) => {
+//   const itemPrice = parseFloat(item.price.replace('$', '')) || 0;
+//   const itemQuantity = parseInt(item.quantity, 10) || 0;
+//   console.log('Item Price:', item.price);
+//   console.log('Parsed Price:', itemPrice);
+//   return total + itemPrice * itemQuantity;
+// }, 0);
+
+
+//   return (
+//     <MainLayout>
+//       <div className="container mx-auto px-5 mt-8 mb-32">
+//         <div className="mb-5 grid justify-center sm:flex sm:justify-between gap-5">
+//           <h1 className="text-lg text-center sm:text-left md:text-2xl font-semibold">Cart</h1>
+//           <Link to="/menu">
+//             <h2 className="text-lg md:text-2xl font-semibold">
+//               Want some more? <span className="font-bold">Continue Shopping</span>
+//             </h2>
+//           </Link>
+//         </div>
+//         {cartItems.length === 0 ? (
+//           <p>Your cart is empty.</p>
+//         ) : (
+//           <div>
+//             {cartItems.map((item) => (
+//               <Cart
+//                 img={item.id.idMeal || ''} // Use a default value if 'item.img' is undefined
+//                 key={item.id}
+//                 alt={item.title || ''}
+//                 name={item.name || ''}
+//                 price={item.price}  // Format as a string with 2 decimal places
+//                 nums={(parseInt(item.quantity, 10) || 1) || 1} // Convert to a number, default to 1 if NaN
+//                 total={((parseFloat(item.total) || 0) || 0).toFixed(2)} // Format as a string with 2 decimal places
+//                 onDelete={() => handleDeleteItem(item.id)}
+//               />
+//             ))}
+//             <div className="text-lg font-semibold mt-10 md:mt-20">
+//               Total: ${totalCartPrice.toFixed(2)}
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </MainLayout>
+//   );
+// };
+
+// export default CartPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import MainLayout from '../layouts/MainLayout';
+import Cart from '../components/Cart';
+import { Link } from 'react-router-dom';
+import { doc, deleteDoc, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions from Firebase
+import { firestore } from '../firebase'; // Import your Firestore instance
+
+const CartPage = () => {
+  const [cartItems, setCartItems] = useState([]); // Initialize cart items as state
+
+  // Function to fetch meal image using mealId
+// Function to fetch meal image using mealId
+const fetchMealImage = async (mealId) => {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
+    const data = await response.json();
+
+    if (data.meals && data.meals.length > 0) {
+      const mealData = data.meals[0];
+      return mealData.strMealThumb || ''; // Return the image URL or an empty string if not found
+    } else {
+      console.error('No meal data found for mealId:', mealId);
+      return ''; // Return an empty string if no meal data is found
+    }
+  } catch (error) {
+    console.error('Error fetching meal image:', error);
+    return ''; // Return an empty string in case of an error
+  }
+};
+
+
+  // Use useEffect to fetch cart items from Firestore when the component mounts
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const cartItemsRef = collection(firestore, 'cartItems');
+        const querySnapshot = await getDocs(cartItemsRef);
+        const fetchedCartItems = [];
+
+        querySnapshot.forEach((doc) => {
+          const itemData = doc.data();
+          if (itemData) {
+            fetchedCartItems.push({ id: doc.id, ...itemData });
+          }
+        });
+
+        setCartItems(fetchedCartItems);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  const handleDeleteItem = async (itemId) => {
+    try {
+      // Define the document reference for the item to be removed
+      const itemDocRef = doc(firestore, 'cartItems', itemId);
+
+      // Delete the document
+      await deleteDoc(itemDocRef);
+
+      // Update the cart items in the state
+      const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+      setCartItems(updatedCartItems);
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+    }
+  };
+
+  return (
+    <MainLayout>
+      <div className="container mx-auto px-5 mt-8 mb-32">
+        <div className="mb-5 grid justify-center sm:flex sm:justify-between gap-5">
+          <h1 className="text-lg text-center sm:text-left md:text-2xl font-semibold">Cart</h1>
+          <Link to="/menu">
+            <h2 className="text-lg md:text-2xl font-semibold">
+              Want some more? <span className="font-bold">Continue Shopping</span>
+            </h2>
+          </Link>
+        </div>
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <div>
+            {cartItems.map((item) => (
+              <Cart
+              img={fetchMealImage(item.id.idMeal) || ''} // Fetch and display meal image
+                key={item.id}
+                alt={item.title || ''}
+                name={item.name || ''}
+                // mealid={item.mealid}
+                price={item.price} // Format as a string with 2 decimal places
+                nums={(parseInt(item.quantity, 10) || 1) || 1} // Convert to a number, default to 1 if NaN
+                total={((parseFloat(item.total) || 0) || 0).toFixed(2)} // Format as a string with 2 decimal places
+                onDelete={() => handleDeleteItem(item.id)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </MainLayout>
+  );
+};
+
+export default CartPage;
