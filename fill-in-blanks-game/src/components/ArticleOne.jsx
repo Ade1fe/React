@@ -10,13 +10,8 @@ import Footer from './Footer'
 const ArticleOne = () => {
   return (
     <div >
-        <CreateThree title="Create Fill in the Blanks Games" 
-         text="Create your own online Fill in the 
-        Blanks Game or search among the thousands 
-        of Fill in the Blanks Games that other 
-        Educaplay users have created. 
-        You can also generate Fill in the
-         Blanks Games for print."
+        <CreateThree title=" Fill in the Blanks Games" 
+         text="Fill in the Blanks games are a fun and interactive way to reinforce learning and test knowledge in various subjects. Whether you're an educator looking to engage your students or someone interested in creating interactive content for learning, creating your own online Fill in the Blanks Game can be an exciting and effective endeavor. "
          
          />
 
