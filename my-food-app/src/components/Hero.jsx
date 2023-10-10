@@ -36,8 +36,7 @@ const Hero = () => {
           <img src={berry} className='w-[70px] h-auto' alt="" />
           <img src={juice} className='w-[70px]  h-auto' alt="" />
           <img src={pizza} className='w-[70px] h-auto' alt="" />
-          {/* <img src={grapes} className='w-[70px] shadow-lg h-auto' alt="" /> */}
-
+        
         </div>
         </div>
       

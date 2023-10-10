@@ -1,3 +1,4 @@
+
 import React, { useState,useEffect } from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaCartPlus } from 'react-icons/fa';
@@ -6,14 +7,16 @@ import { auth, firestore } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line
 import { FaArrowRight, FaCog, FaUser } from 'react-icons/fa';
-import pic from "../assets/18157366-removebg-preview.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+  // eslint-disable-next-line
   const [username, setUsername] = useState(null);
+  // eslint-disable-next-line
   const [usermail, setUsermail] = useState(null);
   const [isProfileVisible, setIsProfileVisible] = useState(false); 
 
@@ -81,9 +84,9 @@ const Navbar = () => {
     setIsProfileVisible(!isProfileVisible); 
   };
 
-  const comingSoon = () => {
-   alert("Coming soon");
-  };
+  // const comingSoon = () => {
+  //  alert("Coming soon");
+  // };
 
 
   return (

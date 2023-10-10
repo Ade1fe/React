@@ -2,7 +2,6 @@ import React from 'react';
 import chicken from "../assets/chicken.jpg";
 import pie from "../assets/pies.jpg";
 import drink from "../assets/drinkss.jpg";
-// import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import agents from "../assets/Agent.png"
-import { FaEnvelope, FaPhone, FaPhoneAlt, FaSearchLocation } from 'react-icons/fa'
+import { FaEnvelope, FaPhoneAlt, FaSearchLocation } from 'react-icons/fa'
 
 const ContactImg = () => {
   return (

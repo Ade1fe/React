@@ -11,7 +11,9 @@ const MenuThree = () => {
   const navigate  = useNavigate();
   const [meals, setMeals] = useState([]);
   const [meal, setMeal] = useState([]);
+   // eslint-disable-next-line
   const [isLoading, setIsLoading] = useState(true);
+   // eslint-disable-next-line
   const [isLoadings, setIsLoadings] = useState(true);
 
   useEffect(() => {
@@ -168,6 +170,7 @@ const MenuThree = () => {
                     price={generateRandomPrice()}
                     title={item.strMeal}
                     idMeal={item.idMeal}
+                    mealid={item.idMeal} 
                     onCardClick={(foodItem) => handleFoodItemCardClick(foodItem)}
                   />
                 </SwiperSlide>
@@ -193,6 +196,7 @@ const MenuThree = () => {
                     price={generateRandomPrice()}
                     title={item.strMeal}
                     idMeal={item.idMeal}
+                    mealid={item.idMeal} 
                     onCardClick={(foodItem) => handleFoodItemCardClick(foodItem)}
                   />
                 </SwiperSlide>

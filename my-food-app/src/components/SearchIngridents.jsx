@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
-import MainCarouselTwo from './MainCarouselTwo';
 import MenuCarouselThree from './MenuCarouselThree';
 
 const SearchIngredients = () => {

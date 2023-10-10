@@ -13,6 +13,7 @@ import { useNavigate  } from 'react-router-dom';
 const MenuTwo = () => {
   const navigate  = useNavigate();
   const [categories, setCategories] = useState([]);
+   // eslint-disable-next-line
   const [isLoading, setIsLoading] = useState(true);
   const [mealCounts, setMealCounts] = useState({});
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -22,6 +23,7 @@ const MenuTwo = () => {
   const [ingredientMeals, setIngredientMeals] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [meals, setMeals] = useState([]);
+   // eslint-disable-next-line
   const [loading, setLoading] = useState(true);
   const [showInfo, setShowInfo] = useState(false); 
   

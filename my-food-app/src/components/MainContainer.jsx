@@ -1,5 +1,4 @@
 import React from 'react';
-// import contain from '../assets/main.jpg';
 
 const MainContainer = ({img,title,notes}) => {
   return (

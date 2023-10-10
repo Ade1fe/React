@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import QuantityModal from './QuantityModal';
-import { storage } from '../firebase'; // Import your Firebase Storage instance
-import { doc, setDoc, deleteDoc, collection } from 'firebase/firestore'; // Import Firestore functions from Firebase
-import { firestore } from '../firebase'; // Import your Firestore instance
+import { doc, setDoc, collection } from 'firebase/firestore'; // Import Firestore functions from Firebase
+import { getFirestore } from 'firebase/firestore'; // Import getFirestore function
+import { getAuth } from 'firebase/auth';
+
 
 const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
-  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  // Get the Firestore instance using getFirestore
+  const firestoreInstance = getFirestore();
+
+  // Get the current user using 'firebase' object
+  const user = getAuth().currentUser; // Assuming auth is properly imported
+  const userId = user ? user.uid : null;
 
   // Function to add an item to the cart in Firestore
   const addToCart = async (quantity) => { // Updated to accept quantity as an argument
     try {
-      const cartItemsRef = collection(firestore, 'cartItems');
+      const cartItemsRef = collection(firestoreInstance, 'cartItems');
       const newItemDocRef = doc(cartItemsRef);
 
       await setDoc(newItemDocRef, {
+        userId: userId,
         id: newItemDocRef.id,
         name: title,
         price: price,
-        quantity: quantity, 
+        quantity: quantity,
         mealid: mealid,
-       
       });
 
       alert(`${quantity} ${title} added to cart`);
@@ -32,18 +38,10 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
     }
   };
 
-  // Function to remove an item from the cart in Firestore
-  const removeFromCart = async (itemId) => {
-    try {
-      const itemDocRef = doc(firestore, 'cartItems', itemId);
-      await deleteDoc(itemDocRef);
-    } catch (error) {
-      console.error('Error removing item from cart:', error);
-    }
-  };
+
 
   const handleCardClick = () => {
-    onCardClick({ id, img, price, title,mealid });
+    onCardClick({ id, img, price, title, mealid });
   };
 
   const openModal = () => {
@@ -101,4 +99,4 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
   );
 };
 
-export default FoodItemCard
+export default FoodItemCard;

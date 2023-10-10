@@ -1,15 +1,19 @@
+
+
 import React, { useState, useEffect } from 'react';
 import MainLayout from '../layouts/MainLayout';
 import Cart from '../components/Cart';
 import { Link } from 'react-router-dom';
-import { doc, deleteDoc, collection, getDocs } from 'firebase/firestore'; // Import Firestore functions from Firebase
+import { doc, deleteDoc, collection, onSnapshot, query, where } from 'firebase/firestore'; // Import Firestore functions from Firebase
 import { firestore } from '../firebase'; // Import your Firestore instance
+import { getAuth } from 'firebase/auth'; // Import getAuth for user authentication
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]); // Initialize cart items as state
+  const auth = getAuth(); // Get the Firebase Authentication instance
 
-  // Function to fetch meal image by mealid using the "fetch" API
-  const fetchMealImage = async (mealid) => {
+   // Function to fetch meal image by mealid using the "fetch" API
+   const fetchMealImage = async (mealid) => {
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealid}`);
       const data = await response.json();
@@ -26,11 +30,20 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const cartItemsRef = collection(firestore, 'cartItems');
-        const querySnapshot = await getDocs(cartItemsRef);
-        const fetchedCartItems = [];
+    // Ensure that there is a user logged in before fetching cart items
+    if (auth.currentUser) {
+      // Create a reference to the "cartItems" collection
+      const cartItemsRef = collection(firestore, 'cartItems');
+
+      // Create a query to fetch cart items for the current user
+      const userCartQuery = query(
+        cartItemsRef,
+        where('userId', '==', auth.currentUser.uid)
+      );
+
+      // Set up a real-time listener to listen for changes to the user's cart items
+      const unsubscribe = onSnapshot(userCartQuery, (querySnapshot) => {
+        // const fetchedCartItems = [];
 
         // Fetch meal images concurrently and store promises
         const mealImagePromises = [];
@@ -52,16 +65,18 @@ const CartPage = () => {
         });
 
         // Wait for all image requests to complete
-        const resolvedItems = await Promise.all(mealImagePromises);
+        Promise.all(mealImagePromises).then((resolvedItems) => {
+          setCartItems(resolvedItems);
+        });
+      });
 
-        setCartItems(resolvedItems);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
-      }
-    };
-
-    fetchCartItems();
-  }, []);
+      // Clean up the listener when the component unmounts
+      return () => unsubscribe();
+    } else {
+      // If no user is logged in, clear the cart
+      setCartItems([]);
+    }
+  }, [auth.currentUser]);
 
   // Function to handle deleting a cart item
   const handleDeleteItem = async (itemId) => {
@@ -86,8 +101,8 @@ const CartPage = () => {
 
   return (
     <MainLayout>
-      <div className="container mx-auto px-5 mt-8 mb-32">
-        <div className="mb-5 grid justify-center sm:flex sm:justify-between gap-5">
+      <div className="container mx-auto px-3 mt-8 mb-32">
+      <div className="mb-5 grid justify-center sm:flex sm:justify-between gap-5">
           <h1 className="text-lg text-center sm:text-left md:text-2xl font-semibold">Cart</h1>
           <Link to="/menu">
             <h2 className="text-lg md:text-2xl font-semibold">

@@ -9,7 +9,7 @@ import ProductComments from './ProductComments';
 
 const ProductDetailsPage = () => {
   const location = useLocation();
-  const { id, title, img, price } = location.state || {};
+  const { id,  price } = location.state || {};
   const [productDetails, setProductDetails] = useState(null);
   const [loading, setLoading] = useState(true); 
 
