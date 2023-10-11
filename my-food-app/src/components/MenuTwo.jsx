@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -339,7 +340,7 @@ const MenuTwo = () => {
           clickable: true,
         }}
         breakpoints={breakpoints}
-        modules={[Pagination]}
+        // modules={[Pagination]}
         className="mySwiper"
       >
         {meals.map((item) => (
@@ -371,7 +372,7 @@ const MenuTwo = () => {
           clickable: true,
         }}
         breakpoints={breakpoints}
-        modules={[Pagination]}
+        // modules={[Pagination]}
         className="mySwiper"
       >
         {ingredientMeals.map((item) => (
@@ -402,7 +403,7 @@ const MenuTwo = () => {
                     clickable: true,
                 }}
                 breakpoints={breakpoints}
-                modules={[Pagination]}
+                // modules={[Pagination]}
                 className="mySwiper"
             >
                 {foodItems

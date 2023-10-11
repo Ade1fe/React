@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-[#f1f1f1] text-black pt-8 px-5">
-      <div className="container mx-auto grid grid-cols-2 gap-5 md:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between">
+      <div className="container text-sm md:text-[15px] mx-auto grid grid-cols-2 gap-5 md:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between">
         <div className="mb-4 md:mb-0 col-span-2 md:col-span-3 lg:col-span-1">
           <h1 className="text-2xl font-bold text-orange-500 mb-1">
-            <span className="text-black">Deife</span> <span className="text-orange-500">Foods</span>
+            <span className="text-black">Deife</span> <span className="text-orange-500">Food.</span>
           </h1>
           <p className="text-sm">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius et quaerat facere quibusdam natus officia consequuntur amet reiciendis laborum nostrum atque, corporis hic alias explicabo.

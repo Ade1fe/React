@@ -101,12 +101,12 @@ const CartPage = () => {
 
   return (
     <MainLayout>
-      <div className="container mx-auto px-3 mt-8 mb-32">
+      <div className="container mx-auto px-3 mt-2 mb-32">
       <div className="mb-5 grid justify-center sm:flex sm:justify-between gap-5">
-          <h1 className="text-lg text-center sm:text-left md:text-2xl font-semibold">Cart</h1>
+          <h1 className="hidden sm:block text-center sm:text-lefttext-lg md:text-2xl font-semibold ">Cart</h1>
           <Link to="/menu">
             <h2 className="text-lg md:text-2xl font-semibold">
-              Want some more? <span className="font-bold">Continue Shopping</span>
+              Want some more? <span className="font-bold text-lg md:text-2xl ">Continue Shopping</span>
             </h2>
           </Link>
         </div>

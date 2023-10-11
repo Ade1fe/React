@@ -7,8 +7,7 @@ import callus from "../assets/callus.png";
 const ContactUsPage = () => {
   return (
     <MainLayout>
-        <MainContainer img={callus} title="Contact Us" notes=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, voluptate minus! Quod, alias! Numquam ducimus
-          placeat dicta incidunt, sint vel?"/>
+        <MainContainer img={callus} title="Contact Us" notes=" Have questions or want to get in touch? We're here to assist you.  Feel free to reach out to us anytime; we look forward to hearing from you!"/>
         <ContactUsOne />
       
     </MainLayout>

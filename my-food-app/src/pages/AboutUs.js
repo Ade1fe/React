@@ -52,27 +52,27 @@ const AboutUs = () => {
               <img
                 src={dami} // Replace with actual team member image
                 alt="Team Member 1"
-                className="w-32 h-30 rounded-full mx-auto mb-4"
+                className="w-full  h-[200px] lg:h-[250px] mx-auto  mb-4"
               />
-              <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
-              <p className="text-gray-600">Co-founder & CEO</p>
+              <h3 className="text-lg font-semibold text-gray-800">Henry Hall</h3>
+              <p className="text-gray-600">Founder & CEO</p>
             </div>
             <div className="bg-white shadow-lg rounded-lg p-4">
               <img
                 src={dami1} // Replace with actual team member image
                 alt="Team Member 1"
-                className="w-32 h-30 rounded-full mx-auto mb-4"
+                className="w-full  h-[200px] lg:h-[250px] mx-auto  mb-4"
               />
-              <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Emily White</h3>
               <p className="text-gray-600">Co-founder & CEO</p>
             </div>
             <div className="bg-white shadow-lg rounded-lg p-4">
               <img
                 src={dam2} // Replace with actual team member image
                 alt="Team Member 1"
-                className="w-32 h-30 rounded-full mx-auto mb-4"
+                className="w-full  h-[200px] lg:h-[250px] mx-auto  mb-4"
               />
-              <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Mia Wilson</h3>
               <p className="text-gray-600">Co-founder & CEO</p>
             </div>
             {/* Repeat the above card for each team member */}

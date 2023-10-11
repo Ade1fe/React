@@ -27,6 +27,7 @@ const SignInComp = () => {
     e.preventDefault();
 
     try {
+      // eslint-disable-next-line
       const userCredential = await signInWithEmailAndPassword(
         auth,
         formData.email,
@@ -42,6 +43,9 @@ const SignInComp = () => {
     }
   };
 
+  const comingSoon = () => {
+    alert("This feature is coming soon\nKindly enter your information");
+  };
 
 
     //  min-h-screen
@@ -55,9 +59,9 @@ const SignInComp = () => {
           <div className="text-green-600 mb-4">Login Successful</div>
         )}
         {loginStatus === 'error' && (
-          <div className="text-red-600 mb-4">Login Failed. Please try again.</div>
+          <div className="text-red-600 mb-4">Login Failed. Please try again. Invalid-login-credentials</div>
         )}
-      <h2 className="text-3xl font-semibold w-[90%] mx-auto mb-2 "> <span className='text-black'>Deife</span> <span className='text-orange-500'>Foods</span></h2>
+      <h2 className="text-3xl font-semibold w-[90%] mx-auto mb-2 "> <span className='text-black'>Deife</span> <span className='text-orange-500'>Food.</span></h2>
       
       <form className="bg-white rounded  w-[90%] mx-auto" onSubmit={handleLogin}>
         <div className="mb-3">
@@ -103,9 +107,9 @@ const SignInComp = () => {
 </p>
 
         <div className="flex gap-5 justify-evenly w-full md:w-[80%] mx-auto md:gap-5">
-        <div className="border-2 px-4 py-3">  <FaGoogle className="text-red-500 "  size={25}/> </div>
-          <div className="border-2 px-4 py-3">  <FaApple className="text-black "  size={25}/> </div>
-          <div className="border-2 px-4 py-3">  <FaFacebook className="text-blue-500 "  size={25}/> </div>
+        <div className="border-2 px-4 py-3" onClick={comingSoon}>  <FaGoogle className="text-red-500 "  size={25}/> </div>
+          <div className="border-2 px-4 py-3" onClick={comingSoon}>  <FaApple className="text-black "  size={25}/> </div>
+          <div className="border-2 px-4 py-3" onClick={comingSoon}>  <FaFacebook className="text-blue-500 "  size={25}/> </div>
         </div>
       </div>
       <Link to="/signup" className="mt-8 text-gray-600 text-sm text-center px-2 mb-4 md:mb-0">Don't have an account? <span className='text-orange-500 font-bold'>Sign up</span></Link>

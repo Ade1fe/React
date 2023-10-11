@@ -4,6 +4,7 @@ import grapes from "../assets/grapes-.jpg"
 import berry from '../assets/berry.jpg'
 import juice from "../assets/juice.jpg"
 import pizza from "../assets/pizza.jpg"
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
@@ -15,7 +16,7 @@ const Hero = () => {
         
         <p className='my-2'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde eaque maiores dicta suscipit fugiat, 
             quaerat blanditiis tenetur ea. Ipsa, omnis?</p>
-            <button className='whitespace-nowrap bg-orange-500 text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize'>order now</button>
+            <Link to="/menu" className='whitespace-nowrap bg-orange-500 text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize'>order now</Link>
         </div>
        
 

@@ -70,7 +70,7 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
         <div className="flex justify-between gap-2 mt-2">
           <button
             onClick={openModal}
-            className={`bg-orange-500 text-white px-2 text-sm hover:text-black border-2 border-orange-500
+            className={`bg-orange-500 font-semibold text-white px-2 text-sm hover:text-black border-2 border-orange-500
           py-1 rounded-sm hover:bg-white focus:outline-none whitespace-nowrap ${
               isCartButtonDisabled ? 'pointer-events-none opacity-50' : ''
             }`}
@@ -80,7 +80,7 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
 
           <button
             onClick={handleCardClick}
-            className="border-2 border-orange-500 text-black px-2 py-1 hover:text-white rounded-sm
+            className="border-2 text-sm font-semibold border-orange-500 text-black px-2 py-1 hover:text-white rounded-sm
            hover:bg-orange-500 focus:outline-none"
           >
             Details

@@ -1,5 +1,5 @@
 import React from 'react'
-import agents from "../assets/Agent.png"
+import agents from "../assets/contacyt.jfif"
 import { FaEnvelope, FaPhoneAlt, FaSearchLocation } from 'react-icons/fa'
 
 const ContactImg = () => {

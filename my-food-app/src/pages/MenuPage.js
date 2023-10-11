@@ -10,8 +10,7 @@ import contain from '../assets/main.jpg';
 const MenuPage = () => {
   return (
     <MainLayout>
-      <MainContainer img={contain} title="Tasty Food"  notes=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, voluptate minus! Quod, alias! Numquam ducimus
-          placeat dicta incidunt, sint vel?" />
+      <MainContainer img={contain} title="Tasty Food"  notes="Savor the art of flavor at Deife-Food. Our culinary experts craft each dish with passion, using the finest, freshest ingredients. From savory starters to mouthwatering main courses and irresistible desserts, we ensure every bite is a memorable experience. Join us for a culinary adventure that will awaken your taste buds and leave you craving for more." />
       <div>
         <MenuOne />
       </div>
