@@ -9,7 +9,7 @@ import Notification from '../components/Notification';
 const ShopPage = () => {
   return (
    <MainLayout>
-    <MainContent />
+    <MainContent text="Shop" />
 
     <div className='mt-[50px] md:mt-[70px] flex-col items-start md:flex-row flex gap-1'>
  <div className='w-full md:w-2/3 px-3 '>

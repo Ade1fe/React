@@ -1,7 +1,9 @@
 import React from 'react'
 import BlRecentPostCard from './BlRecentPostCard'
 import BlGallery from './BlGallery'
-import rec from "../assests/woman-g10dd82644_1280.jpg"
+import rec from "../assests/moda7.jpg"
+import rec1 from "../assests/sensual-woman-with-voluminous-curly-hairstyle-elegant-party-outfit-posing.jpg"
+import rec2 from "../assests/young-smiling-girl-pink-jacket-looking-camera-with-shopping-bags-hand-clothing-store-pretty-lady-standing-boutique-with-colorful-pockets-sale-clothes-rack-background.jpg"
 import BLInfo from './BLInfo'
 
 
@@ -13,14 +15,17 @@ const BlRecentPostContainer = ({myclass}) => {
      
         <BlRecentPostCard
         img={rec}
-         h2="Weekend sale start from this month" />
+         h2="
+         Weekend sale start from this month" />
         <BlRecentPostCard
-        img={rec}
-         h2="Weekend sale start from this month" />
+        img={rec1}
+         h2="
+         Heavy discount on our summer sale" />
 
         <BlRecentPostCard
-        img={rec}
-         h2="Weekend sale start from this month" />
+        img={rec2}
+         h2="
+         Best designer dress on affordable price" />
     </div>
    
    <div className="">

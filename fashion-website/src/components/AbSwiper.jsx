@@ -4,7 +4,7 @@ import SecondSwiper from './SecondSwiper'
 const AbSwiper = () => {
   return (
     <div >
-     <SecondSwiper classnamee="px-4 mt-[50px] md:mt-[200px]" />
+     <SecondSwiper classnamee="px-4 mt-[70px] md:mt-[250px]" />
     </div>
   )
 }

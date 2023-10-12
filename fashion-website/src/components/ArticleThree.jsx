@@ -1,6 +1,7 @@
 import React from 'react';
 import BigCard from './BigCard';
-import suit1 from "../assests/suit.jpg";
+import suit1 from "../assests/fone.jpg";
+import suit2 from "../assests/ftwo.jpg";
 
 const ArticleThree = () => {
   return (
@@ -22,7 +23,7 @@ const ArticleThree = () => {
  
 <div className='grid md:flex items-center justify-center mt-5 md:mt-7'>
 <div className="w-[90%] mt-5 md:mt-0 mx-auto md:mx-0 order-2 md:order-1 sm:w-[500px] relative">
-        <img src={suit1} alt="" className='h-full w-full'/>
+        <img src={suit2} alt="" className='h-full w-full'/>
       </div>
 
 

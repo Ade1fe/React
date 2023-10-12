@@ -12,7 +12,13 @@ import '../css/styles.css';
 
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules';
-import immp from "../assests/fashion-img20.png"
+import immp1 from "../assests/fashion-img16.png"
+import immp2 from "../assests/fashion-img17.png"
+import immp3 from "../assests/fashion-img18.png"
+import immp4 from "../assests/fashion-img19.png"
+import immp5 from "../assests/fashion-img20.png"
+import immp6 from "../assests/fashion-img21.png"
+// import immp7 from "../assests/fashion-img20.png"
 
 export default function SecondSwiper({classnamee}) {
   return (
@@ -46,44 +52,65 @@ export default function SecondSwiper({classnamee}) {
       >
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp1} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp2} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp3} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp4} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp5} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp6} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp1} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
         <SwiperSlide> 
             <div className="w-[150px]">
-            <img src={immp} className='w-full h-full object-cover' alt="" />
+            <img src={immp2} className='w-full h-full object-cover' alt="" />
             </div>
         </SwiperSlide>
+        <SwiperSlide> 
+            <div className="w-[150px]">
+            <img src={immp3} className='w-full h-full object-cover' alt="" />
+            </div>
+        </SwiperSlide>
+        <SwiperSlide> 
+            <div className="w-[150px]">
+            <img src={immp4} className='w-full h-full object-cover' alt="" />
+            </div>
+        </SwiperSlide>
+        <SwiperSlide> 
+            <div className="w-[150px]">
+            <img src={immp5} className='w-full h-full object-cover' alt="" />
+            </div>
+        </SwiperSlide>
+        <SwiperSlide> 
+            <div className="w-[150px]">
+            <img src={immp6} className='w-full h-full object-cover' alt="" />
+            </div>
+        </SwiperSlide>
+      
       </Swiper>
     </div>
   );

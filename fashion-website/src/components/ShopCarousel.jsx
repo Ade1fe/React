@@ -7,12 +7,29 @@ import bag from "../assests/bag.jpg";
 import dress from "../assests/blackdress.jpg";
 import bow from "../assests/bow.jpg";
 import bluedress from "../assests/dressblue.jpg"
+import pic1 from "../assests/fashion-product24.jpg"
+import pic2 from "../assests/fashion-product19.jpg"
+import pic3 from "../assests/fashion-product4.jpg"
+import pic4 from "../assests/fashion-product6.jpg"
+import pic5 from "../assests/fashion-product21.jpg"
+import pic6 from "../assests/fashion-product1.jpg"
+import pic7 from "../assests/fashion-product16.jpg"
+import pic8 from "../assests/fashion-product12.jpg"
+import pic9 from "../assests/fashion-product23.jpg"
+import pic10 from "../assests/fashion-product10.jpg"
+import pic11 from "../assests/fashion-product20.jpg"
+import pic12 from "../assests/fashion-product13.jpg"
+import pic13 from "../assests/dressblue.jpg"
+import pic14 from "../assests/dressblue.jpg"
+import pic15 from "../assests/dressblue.jpg"
+import pic16 from "../assests/dressblue.jpg"
+
 
 
 export default function ShopCarousel() {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
-  const totalItems = 12;
+  const totalItems = 16;
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -26,18 +43,23 @@ export default function ShopCarousel() {
   };
 
   const items = [
-    { img: bag, h1: "1", price: "$80.50" },
-    { img: dress, h1: "2", price: "$120.00" },
-    { img: bow, h1: "3", price: "$15.99" },
-    { img: bluedress, h1: "4", price: "$5.99" },
-    { img: bag, h1: "5", price: "$80.50" },
-    { img: dress, h1: "6", price: "$120.00" },
-    { img: bow, h1: "7", price: "$15.99" },
-    { img: bluedress, h1: "8", price: "$5.99" },
-    { img: bag, h1: "9", price: "$80.50" },
-    { img: dress, h1: "10", price: "$120.00" },
-    { img: bow, h1: "11", price: "$15.99" },
-    { img: bluedress, h1: "12", price: "$5.99" },
+    { img: bag, h1: "Hand Bag", price: "$80.50" },
+    { img: dress, h1: "Black Dress", price: "$120.00" },
+    { img: bow, h1: "Bow", price: "$15.09" },
+    { img: bluedress, h1: "Blue Dress", price: "$24.99" },
+    { img: pic1, h1: "Cap", price: "$8.50" },
+    { img: pic2, h1: "Sunglass", price: "$120.00" },
+    { img: pic3, h1: "Blue Shirt", price: "$15.99" },
+    { img: pic4, h1: "Down Jacket", price: "$85.00" },
+    { img: pic5, h1: "Pattern Heel", price: "$80.50" },
+    { img: pic6, h1: "Jacket", price: "$120.00" },
+    { img: pic7, h1: "Jumpsuit", price: "$15.99" },
+    { img: pic8, h1: "Flee Dress", price: "$27.99" },
+    { img: pic9, h1: "Purse", price: "$14.00" },
+    { img: pic10, h1: "Sleeveless Dress", price: "$30.00" },
+    { img: pic12, h1: "Wedding Dress", price: "$60.99" },
+    { img: pic11, h1: "Pink Heels", price: "$17.03" },
+   
     // Add more items as needed
   ];
 
@@ -72,7 +94,7 @@ export default function ShopCarousel() {
         onPageChange={handlePageChange}
         containerClassName={"pagination"}
         subContainerClassName={"pages pagination"}
-        activeClassName={"active"}
+        activeClassName={"myactive"}
       />
 
       {/* Additional content goes here */}

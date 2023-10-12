@@ -8,7 +8,7 @@ import Notification from '../components/Notification';
 const BlogPage = () => {
   return (
    <MainLayout>
-    <MainContent/>
+    <MainContent text="Blog"/>
     <BlMainContent />
    
 <Notification />

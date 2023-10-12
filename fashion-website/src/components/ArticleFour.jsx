@@ -1,6 +1,14 @@
 import React from 'react'
 import ImgCard from './ImgCard'
 import bag from '../assests/bag.jpg'
+import pic1 from '../assests/fashion-product14.jpg'
+import pic2 from '../assests/shit.jpg'
+import pic3 from '../assests/longdd.jpg'
+import pic4 from '../assests/dress.jpg'
+import pic5 from '../assests/fashion-product19.jpg'
+import pic6 from '../assests/short.jpg'
+import pic7 from '../assests/sweet.jpg'
+
 
 const ArticleFour = () => {
   return (
@@ -24,21 +32,21 @@ const ArticleFour = () => {
       </div>
 
 <div className='flex flex-wrap justify-center gap-2 sm:gap-5 px-2 mt-5'>
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={bag} h1="Hand Bag" price="$29.50" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic1} h1="Girl's Dress" price="$88.50" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic2} h1="Half Shirt" price="$15.00" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic3} h1="Sleevless Dress" price="$32.00" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic4} h1="Beige Dress" price="$45.50" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic5} h1="Sunglass" price="$12.60" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic6} h1="Trouser" price="$18.50" />
 
-        <ImgCard img={bag} h1="Beige Dress" price="$45.50" />
+        <ImgCard img={pic7} h1="Party Wear" price="$55.05" />
 
         
       

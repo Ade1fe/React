@@ -36,7 +36,7 @@ const Cards = () => {
        
       </div>
 
-      <div className='text-center mx-auto absolute top-[320px] shadow-sm right-[22px] sm:right-[42px] w-[260px]  p-4 py-7 bg-white text-black '>
+      <div className='text-center mx-auto absolute  top-[320px] shadow-sm right-[10px] sm:right-[42px] w-[260px]  p-4 py-7 bg-white text-black '>
          <h2 className='uppercase font-semibold text-xl'>New street wardrobe</h2>
          <p className='text-gray-500 text-sm'>Dictum incididunt consectetur blanditiis eum ut ipsam laborios.</p>
          <button className='py-2 my-2 px-5  hover:font-bold hover:text-white border-4 border-black bg-black text-white hover:bg-opacity-50'>Shop Now</button>

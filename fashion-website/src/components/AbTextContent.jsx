@@ -9,13 +9,13 @@ const AbTextContent = () => {
         <div className='flex-1'> 
         <p className='text-sm'>Introduction</p>
       <h1 className='text-2xl sm:text-3xl md:text-5xl lg:text-6xl'>A better platform to shop online !!</h1>
-      <p className='text-sm md:text-lg'>Hymenaeos quod luctus placeat, fugiat, voluptatem temporibus nesciunt? Est laoreet, incidunt debitis cum dolorem neque iure, voluptates ornare rerum quis, laboriosam, quia corporis repudiandae, iste debitis lacus mauris ab.</p>
+      <p className='text-sm md:text-lg mb-4 mt-2'>Hymenaeos quod luctus placeat, fugiat, voluptatem temporibus nesciunt? Est laoreet, incidunt debitis cum dolorem neque iure, voluptates ornare rerum quis, laboriosam, quia corporis repudiandae, iste debitis lacus mauris ab.</p>
        {/* flex flex-wrap gap-4 mt-[30px] justify-center items-center */}
         <div className="grid grid-cols-2 align-middle mx-auto gap-6 mt-[30px] justify-center items-center">
             <AbLilBoxes text1="500+" text2="Unique Products" />
-            <AbLilBoxes text1="500+" text2="Unique Products" />
-            <AbLilBoxes text1="500+" text2="Unique Products" />
-            <AbLilBoxes text1="500+" text2="Unique Products" />
+            <AbLilBoxes text1="15+" text2="Happy Customers" />
+            <AbLilBoxes text1="48+" text2="Product Dealers" />
+            <AbLilBoxes text1="13+" text2="Award Achieved" />
         </div>
     </div>
 

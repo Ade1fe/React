@@ -5,7 +5,7 @@ const ContactAddress = () => {
   return (
     <div className="bg-white p-4 text-sm md:text-[15px]">
       <div className="mb-5">
-        <h2 className="text-lg md:">Contact & Reach Us</h2>
+        <h2 className="text-sm md:">Contact & Reach Us</h2>
         <p className='text-2xl font-semibold'>Get In Touch!</p>
    
        
@@ -19,7 +19,7 @@ const ContactAddress = () => {
         <h3 className="text-lg md:text-xl font-semibold">Location Details</h3>
         <p>
           <FaMapMarker className="inline-block mr-2" />
-          1810 King Street, 5th Avenue, New York
+          04 Bode Street, 32 Adebowale, Nigeria
         </p>
       </div>
 
@@ -27,7 +27,7 @@ const ContactAddress = () => {
         <h3 className="text-lg md:text-xl font-semibold">Email Address</h3>
         <p>
           <FaEnvelope className="inline-block mr-2" />
-          youremail@mail.com, company@email.com
+          addypearl09@mail.com, deifesyntax@email.com
         </p>
       </div>
 
@@ -35,7 +35,7 @@ const ContactAddress = () => {
         <h3 className="text-lg md:text-xl font-semibold">Phone Number</h3>
         <p>
           <FaPhoneAlt className="inline-block mr-2" />
-          (+977) 1234-567 / (+977) 123-567-87
+          (+234) 90-3825-7434 / (+234) 90-438-6013
         </p>
       </div>
     </div>

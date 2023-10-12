@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { FaBars, FaPhoneAlt, FaCartPlus, FaSearch, FaTiktok, FaTwitter, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
@@ -85,7 +85,7 @@ const Navbar = () => {
               )}
             </details>
             <Link to="/blog" className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'> <li > Blog </li></Link>
-            <Link to="/shop" className='cursor-pointer  hover:text-[#006d77] hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><li > Shop </li></Link>
+            <NavLink  to="/shop" activeClassName="text-[#006d77]" className='cursor-pointer  hover:text-[#006d77] hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><li > Shop </li></NavLink>
             <Link  to="/contact" className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><li> Contact </li></Link>
           </ul>
         </div>
