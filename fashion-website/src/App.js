@@ -11,6 +11,7 @@ import ShopFor from './components/ShopFor';
 import Blog from './components/Blog';
 import SecondSwiper from './components/SecondSwiper';
 import Footer from './components/Footer';
+import Notification from './components/Notification';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <Blog />
     <SecondSwiper classnamee="px-4 mt-[100px]" />
   <Footer />
+  <Notification />
     </div>
   );
 }

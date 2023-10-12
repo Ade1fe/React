@@ -2,6 +2,7 @@ import React from 'react'
 import BlRecentPostCard from './BlRecentPostCard'
 import BlGallery from './BlGallery'
 import rec from "../assests/woman-g10dd82644_1280.jpg"
+import BLInfo from './BLInfo'
 
 
 const BlRecentPostContainer = ({myclass}) => {
@@ -24,6 +25,7 @@ const BlRecentPostContainer = ({myclass}) => {
    
    <div className="">
    <BlGallery />
+   <BLInfo />
    </div>
    </div>
   )

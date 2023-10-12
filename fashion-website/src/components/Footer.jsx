@@ -1,6 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  function comingSoon() {
+    alert("Still working on this website");
+}
+
   return (
     <footer className='bg-gray-900 mt-[100px] w-full py-10 px-3 gap-2 sm:px-4'>
       <div className='container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
@@ -14,26 +19,26 @@ const Footer = () => {
 
         <ul className='col-span-1'>
           <h2 className='text-cyan-300 text-lg font-semibold mb-2'>Useful Links</h2>
-          <li><a href="/about-us" className='text-gray-300 hover:text-white'>About Us</a></li>
-          <li><a href="/careers" className='text-gray-300 hover:text-white'>Careers</a></li>
-          <li><a href="/news-articles" className='text-gray-300 hover:text-white'>News & Articles</a></li>
-          <li><a href="/wishlist" className='text-gray-300 hover:text-white'>My Wishlist</a></li>
-          <li><a href="/legal-notice" className='text-gray-300 hover:text-white'>Legal Notice</a></li>
-          <li><a href="/faq" className='text-gray-300 hover:text-white'>FAQ</a></li>
+          <li><Link to="/aboutus" className='text-gray-300 hover:text-white' >About Us</Link></li>
+          <li><h2 href="/careers" className='text-gray-300 hover:text-white' onClick={comingSoon}>Careers</h2></li>
+          <li><h2 href="/news-articles" className='text-gray-300 hover:text-white' onClick={comingSoon}>News & Articles</h2></li>
+          <li><h2 href="/wishlist" className='text-gray-300 hover:text-white' onClick={comingSoon}>My Wishlist</h2></li>
+          <li><h2 href="/legal-notice" className='text-gray-300 hover:text-white' onClick={comingSoon}>Legal Notice</h2></li>
+          <li><h2 href="/faq" className='text-gray-300 hover:text-white' onClick={comingSoon}>FAQ</h2></li>
         </ul>
 
         <ul className='col-span-1 '>
-          <h2 className='text-cyan-300 text-lg font-semibold mb-2'>Customer Services</h2>
-          <li><a href="/my-account" className='text-gray-300 hover:text-white'>My Account</a></li>
-          <li><a href="/checkout-page" className='text-gray-300 hover:text-white'>Checkout Page</a></li>
-          <li><a href="/help-center" className='text-gray-300 hover:text-white'>Help Center</a></li>
-          <li><a href="/terms-conditions" className='text-gray-300 hover:text-white'>Terms & Conditions</a></li>
-          <li><a href="/deliveries-refunds" className='text-gray-300 hover:text-white'>Deliveries & Refunds</a></li>
-          <li><a href="/cart-page" className='text-gray-300 hover:text-white'>Cart Page</a></li>
+          <h2 className='text-cyan-300 text-lg font-semibold mb-2'onClick={comingSoon}>Customer Services</h2>
+          <li><h2 href="/my-account" className='text-gray-300 hover:text-white' onClick={comingSoon}>My Account</h2></li>
+          <li><h2 href="/checkout-page" className='text-gray-300 hover:text-white' onClick={comingSoon}>Checkout Page</h2></li>
+          <li><h2 href="/help-center" className='text-gray-300 hover:text-white' onClick={comingSoon}>Help Center</h2></li>
+          <li><h2 href="/terms-conditions" className='text-gray-300 hover:text-white' onClick={comingSoon}>Terms & Conditions</h2></li>
+          <li><h2 href="/deliveries-refunds" className='text-gray-300 hover:text-white' onClick={comingSoon}>Deliveries & Refunds</h2></li>
+          <li><h2 href="/cart-page" className='text-gray-300 hover:text-white' onClick={comingSoon}>Cart Page</h2></li>
         </ul>
       
         <div className='col-span-2 w-full md:col-span-4 sm:col-span-2 lg:col-span-1'>
-          <h2 className='text-cyan-300 text-lg font-semibold mb-2'>Subscribe newsletter</h2>
+          <h2 className='text-cyan-300 text-lg font-semibold mb-2' onClick={comingSoon}>Subscribe newsletter</h2>
           <p className='text-gray-300'>
             Enter your email to receive our latest updates and offers!
           </p>

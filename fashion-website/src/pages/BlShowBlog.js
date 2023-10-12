@@ -6,6 +6,7 @@ import BlShowComOne from '../components/BlShowComOne';
 import { useLocation } from 'react-router-dom';
 import { FaMale , FaComment ,FaCalendar } from "react-icons/fa";
 import MainLayout from './../Layouts/MainLayout';
+import Notification from '../components/Notification';
 
 const BlShowBlog = () => {
 
@@ -39,6 +40,7 @@ const BlShowBlog = () => {
 
      
       <BlShowComOne />
+      <Notification />
     </MainLayout>
   );
 };

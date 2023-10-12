@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom'
 
 const BlRecentPostCard = ({h2,img}) => {
   return (
-    <div className='flex items-center gap-5'>
+    <div className=''>
+      <Link to={`/showblogs?img=${encodeURIComponent(img)}&h2=${encodeURIComponent(h2)}`} className='flex items-center gap-5'>
         <div className="w-[100px] h-[100px]">
             <img src={img} alt="" className='w-full h-full object-cover' />
         </div>
         <div className="">
-        <Link to={`/showblogs?img=${encodeURIComponent(img)}&h2=${encodeURIComponent(h2)}`} className='text-[14px] font-semibold mb-1'>{h2}</Link>
+        <h2  className='text-[14px] font-semibold mb-1'>{h2}</h2>
         <p className='text-sm'><span className='border-r-2 pr-2'>December 10, 2021</span> <span className='px-2'>No Comments</span></p>
         </div>
-      
+        </Link>
     </div>
   )
 }

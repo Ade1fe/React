@@ -12,6 +12,7 @@ import BlogPage from './pages/BlogPage';
 import BlShowBlog from './pages/BlShowBlog';
 import BlShowBlogTwo from './pages/BlShowBlogTwo';
 import ShopPage from './pages/ShopPage';
+import ContactUsPage from './pages/ContactUsPage';
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/shop",
     element: <ShopPage />,
+  },
+  {
+    path: "/contact",
+    element: <ContactUsPage />,
   },
 ]);
 

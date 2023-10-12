@@ -12,7 +12,7 @@ const AbVideoContainer = () => {
             <div className="border-2  px-4 h-full sm:h-[300px] md:h-full py-10 flex-col flex justify-center">
             <p className='text-sm mb-3'>Our Mission</p>
             <h1 className='mb-3 text-3xl sm:text-4xl md:text-5xl'>Quality products Quality Services</h1>
-            <p>Hymenaeos quod luctus placeat, fugiat,
+            <p className='text-sm md:text-lg'>Hymenaeos quod luctus placeat, fugiat,
                  voluptatem temporibus nesciunt? Est laoreet,
                   incidunt debitis cum dolorem neque iure, 
                 voluptates ornare rerum quis, laboriosam, quia 

@@ -5,6 +5,7 @@ import AbTextContent from '../components/AbTextContent'
 import AdvertContainer from './../components/AdvertContainer';
 import AbVideoContainer from '../components/AbVideoContainer';
 import AbSwiper from '../components/AbSwiper';
+import Notification from '../components/Notification';
 
 const AboutUsPage = () => {
   return (
@@ -15,7 +16,7 @@ const AboutUsPage = () => {
         <AdvertContainer />
         <AbVideoContainer />
         <AbSwiper />
-        
+        <Notification />
        </div>
       
     </MainLayout>

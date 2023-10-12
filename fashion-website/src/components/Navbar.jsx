@@ -57,16 +57,16 @@ const Navbar = () => {
               isMenuOpen ? 'block' : 'hidden'
             }`}
           >
-            <li className='cursor-pointer  hover:text-cyan-400 hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'>Home</li>
-            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><Link to="/aboutus">About Us</Link></li>
-            <li className='hidden sm:block  hover:text-cyan-400  hover:font-semibold relative group  my-4  sm:my-0 mx-1 md:mx-2 cursor-pointer'>
+            <li className='cursor-pointer  hover:text-[#006d77] hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><Link to="/">Home</Link></li>
+            <li className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><Link to="/aboutus">About Us</Link></li>
+            <li className='hidden sm:block  hover:text-[#006d77]  hover:font-semibold relative group  my-4  sm:my-0 mx-1 md:mx-2 cursor-pointer'>
               Pages  <span className={`transform  ${isExpanded ? ' rotate-0' : 'md:-rotate-90'}`}>▼</span>
-              <ul className='hidden z-[99999999999] absolute top-4 border-r-2 border-l-2 border-b-2 border-cyan-300 right-[-80PX] text-black bg-white w-[200px] p-2 mt-2 rounded shadow-md group-hover:block'>
+              <ul className='hidden z-[99999999999] absolute top-4 border-r-2 border-l-2 border-b-2 border-[#006d77] right-[-80PX] text-black bg-white w-[200px] p-2 mt-2 rounded shadow-md group-hover:block'>
                 <li className='cursor-pointer  text-black hover:text-cyan-800'><Link>Page1</Link></li>
-                <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page2</li>
-                <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page3</li>
-                <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page4</li>
-                <li className='cursor-pointer  text-black my-3 hover:text-cyan-800'>Page5</li>
+                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page2</li>
+                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page3</li>
+                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page4</li>
+                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page5</li>
               </ul>
             </li>
             <details className='block text-center sm:hidden relative'>
@@ -76,23 +76,23 @@ const Navbar = () => {
               </summary>
               {isExpanded && (
                 <ul className=''>
-                  <li className='cursor-pointer my-3 hover:text-cyan-400'>Page1</li>
-                  <li className='cursor-pointer my-3 hover:text-cyan-400'>Page2</li>
-                  <li className='cursor-pointer my-3 hover:text-cyan-400'>Page3</li>
-                  <li className='cursor-pointer my-3 hover:text-cyan-400'>Page4</li>
-                  <li className='cursor-pointer my-3 hover:text-cyan-400'>Page5</li>
+                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page1</li>
+                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page2</li>
+                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page3</li>
+                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page4</li>
+                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page5</li>
                 </ul>
               )}
             </details>
-            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'> <Link to="/blog"> Blog </Link></li>
-            <li className='cursor-pointer  hover:text-cyan-400 hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><Link to="/shop"> Shop </Link></li>
-            <li className='cursor-pointer  hover:text-cyan-400  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'>Contact</li>
+            <Link to="/blog" className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'> <li > Blog </li></Link>
+            <Link to="/shop" className='cursor-pointer  hover:text-[#006d77] hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><li > Shop </li></Link>
+            <Link  to="/contact" className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><li> Contact </li></Link>
           </ul>
         </div>
 
         <div className='flex gap-8 w-full my-2 md:my-0  justify-between sm:justify-end md:justify-end items-center py-2 lg:w-1/3'>
           <div className='flex items-center gap-2'>
-            <div className='bg-gray-300 flex-1 p-2 md:p-3 rounded-[50%] hover:text-white hover:bg-cyan-300 cursor-pointer  hover:font-semibold '>
+            <div className='bg-gray-300 flex-1 p-2 md:p-3 rounded-[50%] hover:text-white hover:bg-[#006d77] cursor-pointer  hover:font-semibold '>
               <FaPhoneAlt size={17} />
             </div>
             <div className='block'>
@@ -102,11 +102,11 @@ const Navbar = () => {
           </div>
 
           <div className='flex items-center gap-5'>
-            <div className='bg-gray-300 flex items-center hover:text-white hover:bg-cyan-300 cursor-pointer  hover:font-semibold  p-2 md:p-3 md:px-4 rounded-[50%]'>
+            <div className='bg-gray-300 flex items-center hover:text-white hover:bg-[#006d77] cursor-pointer  hover:font-semibold  p-2 md:p-3 md:px-4 rounded-[50%]'>
               <FaCartPlus size={18} />
             </div>
 
-            <div className='bg-gray-300  hover:text-white hover:bg-cyan-300 cursor-pointer  hover:font-semibold  flex items-center p-2 md:p-3 md:px-4 rounded-[50%]'>
+            <div className='bg-gray-300  hover:text-white hover:bg-[#006d77] cursor-pointer  hover:font-semibold  flex items-center p-2 md:p-3 md:px-4 rounded-[50%]'>
               <FaSearch size={18} />
             </div>
           </div>

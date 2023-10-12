@@ -9,7 +9,7 @@ const HeroSale = () => {
         </div>
 
         <div className=" w-full md:w-[50%] px-3 pt-1 pb-20 sm:pb-14">
-            <h1 className='text-cyan-300 text-2xl sm:text-3xl mb-2'>Happy Summer Sale !!</h1>
+            <h1 className='text-[#006d77] text-2xl sm:text-3xl mb-2'>Happy Summer Sale !!</h1>
             <h3 className='text-3xl sm:text-5xl lg:text-7xl mb-2 font-semibold'>20% Discount On Purchase!</h3>
             <p>Wisi dolore quidem inceptos eu! Ab, ultrices dolore? Incididunt vitae sint proin faucibus optio reiciendis ipsum vel.</p>
         </div>
