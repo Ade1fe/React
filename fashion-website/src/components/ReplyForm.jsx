@@ -21,7 +21,7 @@ const ReplyForm = () => {
   return (
     <div className="  h-fit mx-auto px-4 pt-4 pb-[10px]  ">
       <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-6xl uppercase  font-semibold mb-4 md:mb-10">Leave a Reply</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='text-[15px]' >
         <div className="mb-4 md:mb-5">
           <label htmlFor="comment" className="block font-medium mb-1">
             Comment *
@@ -75,7 +75,7 @@ const ReplyForm = () => {
             onChange={(e) => setWebsite(e.target.value)}
           />
         </div>
-        <div className="mb-4 md:mb-5">
+        <div className="mb-4 md:mb-5 text-sm">
           <label className="flex items-center">
             <input
               type="checkbox"

@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line
 import { Link, NavLink } from "react-router-dom";
 
-import { FaBars, FaPhoneAlt, FaCartPlus, FaSearch, FaTiktok, FaTwitter, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { FaBars, FaTimes, FaPhoneAlt, FaCartPlus, FaSearch,  FaTwitter, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // eslint-disable-next-line
   const toggleContent = () => {
     setIsExpanded(!isExpanded);
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Function to toggle the menu visibility
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
@@ -23,10 +24,37 @@ const Navbar = () => {
       
 <div className='flex justify-between items-center border-b-2 border-gray-200 py-3 gap-3'>
         <div className='flex gap-2 py-1'>
-            <FaFacebook size={18} className='hover:text-gray-500 cursor-pointer text-gray-400' />
-            <FaLinkedin size={18} className='hover:text-gray-500 cursor-pointer text-gray-400' />
-            <FaTwitter size={18} className='hover:text-gray-500 cursor-pointer text-gray-400' />
-            <FaTiktok size={18} className='hover:text-gray-500 cursor-pointer text-gray-400' />
+       
+          <a
+  href="https://twitter.com/deife_syntax"
+  target="_blank"
+  rel="noopener noreferrer"
+ 
+>
+  <FaTwitter ize={18} className='hover:text-gray-500 cursor-pointer text-gray-400' />
+</a> 
+
+<a
+href='https://github.com/Ade1fe'
+  target="_blank"
+  rel="noopener noreferrer"
+ 
+>
+  <FaGithub ize={18} className='hover:text-gray-500 cursor-pointer text-gray-400' />
+</a> 
+<a href='https://www.linkedin.com/in/damilola-adeife-oluwadamisi-699325235/?trk=contact-info'
+         target="_blank"
+         rel="noopener noreferrer"
+      >
+         <FaLinkedin size={18} className='hover:text-gray-500 cursor-pointer text-gray-400' /> 
+       </a>
+          
+       <a href='https://www.instagram.com/deife_syntax/'
+       target="_blank"
+       rel="noopener noreferrer"
+   >
+       <FaInstagram size={18} className='hover:text-gray-500 cursor-pointer text-gray-400' /> 
+       </a>
 
         </div>
 
@@ -46,47 +74,69 @@ const Navbar = () => {
             <h2 className='text-xl sm:text-2xl font-bold'>Deife-Luxe</h2>
           </div>
 
-          {/* Add a responsive navigation icon */}
-          <div className='sm:hidden' onClick={toggleMenu}>
-            <FaBars size={24} />
-          </div>
+          <div className="sm:hidden">
+          {isMenuOpen ? (
+            <FaTimes size={24} onClick={toggleMenu} />
+          ) : (
+            <FaBars size={24} onClick={toggleMenu} />
+          )}
+        </div>
 
-          {/* Add a responsive menu */}
+        
           <ul
-            className={`block text-center z-[99999999999]  absolute px-4 sm:px-0 left-0 top-[90px] bg-white w-full sm:w-fit sm:static sm:flex justify-between gap-8 ${
-              isMenuOpen ? 'block' : 'hidden'
+            className={`flex flex-col text-center z-[99999999999]  absolute px-4 sm:px-0 left-0 top-[90px] bg-white w-full sm:w-fit sm:static sm:flex sm:flex-row justify-between gap-8 ${
+              isMenuOpen ? 'flex' : 'hidden'
             }`}
           >
-            <li className='cursor-pointer  hover:text-[#006d77] hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><Link to="/">Home</Link></li>
-            <li className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><Link to="/aboutus">About Us</Link></li>
-            <li className='hidden sm:block  hover:text-[#006d77]  hover:font-semibold relative group  my-4  sm:my-0 mx-1 md:mx-2 cursor-pointer'>
-              Pages  <span className={`transform  ${isExpanded ? ' rotate-0' : 'md:-rotate-90'}`}>▼</span>
-              <ul className='hidden z-[99999999999] absolute top-4 border-r-2 border-l-2 border-b-2 border-[#006d77] right-[-80PX] text-black bg-white w-[200px] p-2 mt-2 rounded shadow-md group-hover:block'>
-                <li className='cursor-pointer  text-black hover:text-cyan-800'><Link>Page1</Link></li>
-                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page2</li>
-                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page3</li>
-                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page4</li>
-                <li className='cursor-pointer  text-black my-3 hover:text-[#006d77]'>Page5</li>
-              </ul>
-            </li>
-            <details className='block text-center sm:hidden relative'>
-              <summary className='cursor-pointer flex justify-center' onClick={toggleContent}>
-                 Pages
-                <span className={`transform ${isExpanded ? 'rotate-0' : 'md:-rotate-90'}`}>▼</span>
-              </summary>
-              {isExpanded && (
-                <ul className=''>
-                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page1</li>
-                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page2</li>
-                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page3</li>
-                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page4</li>
-                  <li className='cursor-pointer my-3 hover:text-[#006d77]'>Page5</li>
-                </ul>
-              )}
-            </details>
-            <Link to="/blog" className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'> <li > Blog </li></Link>
-            <NavLink  to="/shop" activeClassName="text-[#006d77]" className='cursor-pointer  hover:text-[#006d77] hover:font-semibold  my-4  sm:my-0 mx-1 md:mx-2'><li > Shop </li></NavLink>
-            <Link  to="/contact" className='cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2'><li> Contact </li></Link>
+             <NavLink
+          to='/'
+          className={`cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2${
+            window.location.pathname === '/' ? ' text-[#006d77] text font-bold' : ''
+          }`}
+        >
+          Home
+        </NavLink>
+        
+
+        <NavLink
+          to='/aboutus'
+          className={`cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2${
+            window.location.pathname === '/aboutus' ? ' text-[#006d77] text font-bold' : ''
+          }`}
+        >
+          About
+        </NavLink>
+
+
+        <NavLink
+          to='/blog'
+          className={`cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2${
+            window.location.pathname === '/blog' ? ' text-[#006d77] text font-bold' : ''
+          }`}
+        >
+          Blog
+        </NavLink>
+
+
+        <NavLink
+          to='/shop'
+          className={`cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2${
+            window.location.pathname === '/shop' ? ' text-[#006d77] text font-bold' : ''
+          }`}
+        >
+          Shop
+        </NavLink>
+
+
+        <NavLink
+          to='/contact'
+          className={`cursor-pointer  hover:text-[#006d77]  hover:font-semibold my-4  sm:my-0 mx-1 md:mx-2${
+            window.location.pathname === '/contact' ? ' text-[#006d77] text font-bold' : ''
+          }`}
+        >
+          Contact
+        </NavLink>
+
           </ul>
         </div>
 

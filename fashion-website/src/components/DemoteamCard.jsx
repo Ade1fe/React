@@ -13,11 +13,11 @@ const DemoteamCard = () => {
       </div>
       <div className="">
       <h2 className="text-xl font-semibold my-2">Demoteam</h2>
-      <p className="text-gray-600">
+      <p className="text-gray-600 text-sm">
         Anim eligendi error magnis. Pretium fugiat cubilia ullamcorper adipisci,
         lobortis repellendus sit culpa maiores!
       </p>
-      <button className="mt-4 bg-transparent text-cyan-500 py-2 px-4 rounded-md hover:bg-white">
+      <button className="mt-4 bg-transparent text-sm text-cyan-500 py-2 px-4 rounded-md hover:bg-white">
         VIEW ALL POSTS
       </button>
       </div>

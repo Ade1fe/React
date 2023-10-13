@@ -14,7 +14,7 @@ const BlShowComOne = () => {
 <div className="w-full lg:w-[66%]">
     
         <div className="px-4 md:px-6 py-3 my-3">
-        <p>Quaerat per do est semper scelerisque. 
+        <p className='text-sm md:text-[15px]'>Quaerat per do est semper scelerisque. 
             Exercitationem recusandae ultricies 
             adipiscing lacus ea? Fermentum, 
             illo mus temporibus rem litora perspiciatis 

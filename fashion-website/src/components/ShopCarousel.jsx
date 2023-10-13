@@ -1,3 +1,4 @@
+// eslint-disable-next-line 
 import React, { useState, useRef } from 'react';
 import ReactPaginate from 'react-paginate';
 import "../css/shopcss.css"
@@ -19,10 +20,6 @@ import pic9 from "../assests/fashion-product23.jpg"
 import pic10 from "../assests/fashion-product10.jpg"
 import pic11 from "../assests/fashion-product20.jpg"
 import pic12 from "../assests/fashion-product13.jpg"
-import pic13 from "../assests/dressblue.jpg"
-import pic14 from "../assests/dressblue.jpg"
-import pic15 from "../assests/dressblue.jpg"
-import pic16 from "../assests/dressblue.jpg"
 
 
 
@@ -66,11 +63,11 @@ export default function ShopCarousel() {
   return (
     <>
       <div className="flex text-sm md:text-[15px] gap-3 justify-between items-start px-2">
-      <div className=' px-3 mx-3 py-2 border-2 mb-4 w-fit'>{getCurrentItemRange()}</div>
+      <div className='hidden sm:block px-3 mx-3 py-2 border-2 mb-4 w-fit'>{getCurrentItemRange()}</div>
     
      
     <select id="selectOption" className='p-2 border-2  border-gray-800' name="selectOption">
-        <option value="option1" disabled>Default  sorting</option>
+        <option value="option1" >Default  sorting</option>
         <option value="option2">Sort by popularity 2</option>
         <option value="option3">Sort by average rating</option>
         <option value="option4">Sort by latest</option>
