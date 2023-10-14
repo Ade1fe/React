@@ -1,5 +1,4 @@
 import React from 'react'
-import MainLayout from '../layout/MainLayout'
 import TabComponent from '../components/TabComponent'
 import Navbar from '../components/Navbar'
 

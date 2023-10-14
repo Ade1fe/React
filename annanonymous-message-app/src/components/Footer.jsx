@@ -7,9 +7,12 @@ const Footer = () => {
       <p className=''>© 2023 Deife-Quiz</p>
       <p className='whitespace-nowrap'>Follow on all social paltfroms @deife_syntax</p>
       <div className="flex mt-1 sm:mt-0 justify-center sm:justify-between items-center gap-2">
-    <FaInstagram className=' text-[#879bae] hover:text-[#617385]'  size={15}/>
-    <FaTiktok className=' text-[#879bae] hover:text-[#617385]' size={15}/>
-    <FaTwitter className=' text-[#879bae] hover:text-[#617385]' size={15} />
+     <a target='_blank' href="https://www.instagram.com/deife_syntax/" rel="noreferrer"> <FaInstagram className=' text-[#879bae] hover:text-[#617385]'  size={15}/></a>
+     <a target='_blank' href="https://www.tiktok.com/@deife_syntax" rel="noreferrer"> <FaTiktok className=' text-[#879bae] hover:text-[#617385]' size={15}/> </a>
+     <a target='_blank' href="https://twitter.com/deife_syntax" rel="noreferrer"> <FaTwitter className=' text-[#879bae] hover:text-[#617385]' size={15} /> </a>
+   
+     
+
     
       </div>
     </div>

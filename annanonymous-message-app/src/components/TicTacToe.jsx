@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line
 import { FaMoneyBill } from 'react-icons/fa';
 import Modal from './Modal';
 
@@ -28,6 +29,7 @@ function TicTacToe() {
     if (currentPlayer === 'O' && gameMode === 'computer' && !winner && gameStarted) {
       setTimeout(() => makeComputerMove(), 500);
     }
+    // eslint-disable-next-line
   }, [currentPlayer, winner, gameMode, gameStarted]);
 
   const handleCellClick = (index) => {

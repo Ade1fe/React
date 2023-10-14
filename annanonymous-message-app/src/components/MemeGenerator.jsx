@@ -55,6 +55,7 @@ function MemeGenerator() {
 
   useEffect(() => {
     fetchJokes();
+    // eslint-disable-next-line
   }, []);
 
   const loadMoreJokes = () => {
