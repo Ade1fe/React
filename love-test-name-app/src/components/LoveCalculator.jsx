@@ -81,7 +81,7 @@ function LoveCalculator() {
 
   const shareOnWhatsApp = () => {
     if (lovePercentage !== null) {
-      const message = `Hey there! 💕 Just tried out Love Calculator Pro and guess what? ${name1} and ${name2} are a match with a love score of ${lovePercentage}%! 🥰 ${resultInfo[lovePercentage].text}. Want to see your love score? Click here: https://deife-cal.netlify.app/ 😘`;
+      const message = `Hey there! 💕 Just tried out Love Calculator Pro and guess what? ${name1} and ${name2} are a match with a love score of ${lovePercentage}%! 🥰 ${resultInfo[lovePercentage].text}. Want to see your love score? Click here: https://deife-love-calculator.netlify.app/ 😘`;
 
       const whatsappLink = `whatsapp://send?text=${encodeURIComponent(message)}`;
   
