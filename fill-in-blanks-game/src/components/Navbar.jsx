@@ -35,16 +35,16 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <ul className='absolute  z-[9999999999] font-medium bg-[#a2d2ff] w-full text-center py-4 md:py-0 top-[50px] right-0 flex-col md:w-fit md:flex-row md:static flex md:hidden justify-between gap-2 md:gap-10'> 
-          <li className='text-lg hover:text-blue-700'><a href="/">Tic Tac Toe</a></li>
-          <li className='text-lg hover:text-blue-700'><a href="/">Dad-Jokes</a></li>
-          <li className='text-lg hover:text-blue-700'><a href="/">Love Calculator</a></li>
+<li className='text-lg hover:text-blue-700'><a target='_blank' href="https://deife-tic-tac-toe.netlify.app" rel="noreferrer">Tic Tac Toe</a></li>
+          <li className='text-lg hover:text-blue-700'><a target='_blank' href="https://deife-jokes.netlify.app/" rel="noreferrer">Dad-Jokes</a></li>
+          <li className='text-lg hover:text-blue-700'><a target='_blank' href="https://deife-love-calculator.netlify.app" rel="noreferrer">Love Calculator</a></li>
         </ul>
       )}
 
 <ul className='hidden  z-[9999999999] md:flex absolute font-medium bg-[#a2d2ff] w-full text-center py-4 md:py-0 top-[50px] right-0 flex-col md:w-fit md:flex-row md:static  justify-between gap-2 md:gap-10'> 
-          <li className='text-lg hover:text-blue-700'><a href="/">Tic Tac Toe</a></li>
-          <li className='text-lg hover:text-blue-700'><a href="/">Dad-Jokes</a></li>
-          <li className='text-lg hover:text-blue-700'><a href="/">Love Calculator</a></li>
+          <li className='text-lg hover:text-blue-700'><a target='_blank' href="https://deife-tic-tac-toe.netlify.app" rel="noreferrer">Tic Tac Toe</a></li>
+          <li className='text-lg hover:text-blue-700'><a target='_blank' href="https://deife-jokes.netlify.app/" rel="noreferrer">Dad-Jokes</a></li>
+          <li className='text-lg hover:text-blue-700'><a target='_blank' href="https://deife-love-calculator.netlify.app" rel="noreferrer">Love Calculator</a></li>
           {/* <Link to="/login" className='text-lg hover:text-blue-700'>Login</Link> */}
         </ul>
     </div>
