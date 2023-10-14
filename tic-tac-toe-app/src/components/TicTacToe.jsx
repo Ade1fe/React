@@ -167,8 +167,8 @@ function TicTacToe() {
           <div id="score" className="px-4 py-2 w-[97%] mb-5 mx-auto flex justify-between items-center gap-2 text-sm  text-right bg-[#fff]" style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}>
           <div className="text-green-500 flex items-center gap-1">
   <div className="text-black text-lg grid">
-   <p> <span className="font-bold text-2xl">X</span> {score.X} </p>
-  <p>  <span className="font-bold text-2xl">O</span> {score.O}</p>
+   <p> <span className="font-bold text-2xl">X:</span> {score.X} </p>
+  <p>  <span className="font-bold text-2xl">O:</span> {score.O}</p>
   </div>
 </div>
 
@@ -197,7 +197,7 @@ function TicTacToe() {
           </div>
 
 
-          <div className="mt-4">
+          <div className="mt-4 mb-9">
             {winner ? (
               <div className=''>
                 {winner === 'Draw' ? (

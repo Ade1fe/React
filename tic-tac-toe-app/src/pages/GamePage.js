@@ -1,13 +1,14 @@
 import React from 'react'
-import MainLayout from '../layout/MainLayout'
 import TicTacToe from '../components/TicTacToe'
+import Navbar from '../components/Navbar'
 
 
 const GamePage = () => {
   return (
-    <MainLayout>
-      <TicTacToe />
-    </MainLayout>
+    <div>
+    <Navbar />
+    <TicTacToe />
+    </div>
   )
 }
 
