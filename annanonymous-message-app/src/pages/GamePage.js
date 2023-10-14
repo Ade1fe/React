@@ -1,14 +1,15 @@
 import React from 'react'
 import MainLayout from '../layout/MainLayout'
-import MemeGenerator from '../components/MemeGenerator'
 import TabComponent from '../components/TabComponent'
+import Navbar from '../components/Navbar'
 
 
 const GamePage = () => {
   return (
-    <MainLayout>
+    <div>
+      <Navbar />
       <TabComponent />
-    </MainLayout>
+    </div>
   )
 }
 

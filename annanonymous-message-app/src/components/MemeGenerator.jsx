@@ -36,7 +36,7 @@ function MemeGenerator() {
     try {
       const jokePromises = [];
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 25; i++) {
         jokePromises.push(
           fetch('https://icanhazdadjoke.com/slack')
             .then((response) => response.json())
