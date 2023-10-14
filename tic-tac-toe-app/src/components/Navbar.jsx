@@ -35,16 +35,16 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <ul className='absolute z-[9999999999] font-medium bg-[#a3b18a] w-full text-center py-4 md:py-0 top-[50px] right-0 flex-col md:w-fit md:flex-row md:static flex md:hidden justify-between gap-2 md:gap-10'> 
-          <li className='text-lg hover:text-[#3a5a40]'><a href="/">Fill In The Blanks</a></li>
-          <li className='text-lg hover:text-[#3a5a40]'><a href="/">Dad-Jokes</a></li>
-          <li className='text-lg hover:text-[#3a5a40]'><a href="/">Love Calculator</a></li>
+ <li className='text-lg hover:text-[#3a5a40]'><a target='_blank' href="https://deife-quiz.netlify.app" rel="noreferrer">Fill In The Blanks</a></li>
+          <li className='text-lg hover:text-[#3a5a40]'><a target='_blank' href="https://deife-jokes.netlify.app/" rel="noreferrer">Dad-Jokes</a></li>
+          <li className='text-lg hover:text-[#3a5a40]'><a target='_blank' href="https://deife-love-calculator.netlify.app" rel="noreferrer">Love Calculator</a></li>
         </ul>
       )}
 
 <ul className='hidden z-[9999999999] md:flex absolute font-medium bg-[#a3b18a] w-full text-center py-4 md:py-0 top-[50px] right-0 flex-col md:w-fit md:flex-row md:static  justify-between gap-2 md:gap-10'> 
-          <li className='text-lg hover:text-[#3a5a40]'><a href="/">Fill In The Blanks</a></li>
-          <li className='text-lg hover:text-[#3a5a40]'><a href="/">Dad-Jokes</a></li>
-          <li className='text-lg hover:text-[#3a5a40]'><a href="/">Love Calculator</a></li>
+          <li className='text-lg hover:text-[#3a5a40]'><a target='_blank' href="https://deife-quiz.netlify.app" rel="noreferrer">Fill In The Blanks</a></li>
+          <li className='text-lg hover:text-[#3a5a40]'><a target='_blank' href="https://deife-jokes.netlify.app/" rel="noreferrer">Dad-Jokes</a></li>
+          <li className='text-lg hover:text-[#3a5a40]'><a target='_blank' href="https://deife-love-calculator.netlify.app" rel="noreferrer">Love Calculator</a></li>
           {/* <Link to="/login" className='text-lg hover:text-blue-700'>Login</Link> */}
         </ul>
     </div>
