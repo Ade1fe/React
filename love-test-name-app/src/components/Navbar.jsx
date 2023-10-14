@@ -42,9 +42,9 @@ const Navbar = () => {
       )}
 
 <ul className='hidden z-[9999999999] md:flex absolute font-medium bg-purple-600 w-full text-center py-4 md:py-0 top-[50px] right-0 flex-col md:w-fit md:flex-row md:static  justify-between gap-2 md:gap-10'> 
-          <li className='text-white text-lg hover:text-[#502869]'><a href="/">Fill In The Blanks</a></li>
-          <li className='text-white text-lg hover:text-[#502869]'><a href="/">Tic Tac Toe</a></li>
-          <li className='text-white text-lg hover:text-[#502869]'><a href="/">Dad-Jokes</a></li>
+          <li className='text-white text-lg hover:text-[#502869]'><a target='_blank'  rel="noreferrer" href="https://deife-quiz.netlify.app">Fill In The Blanks</a></li>
+          <li className='text-white text-lg hover:text-[#502869]'><a target='_blank'  rel="noreferrer" href="https://deife-tic-tac-toe.netlify.app">Tic Tac Toe</a></li>
+          <li className='text-white text-lg hover:text-[#502869]'><a target='_blank'  rel="noreferrer" href="https://deife-jokes.netlify.app/">Dad-Jokes</a></li>
           {/* <Link to="/login" className='text-lg hover:text-blue-700'>Login</Link> */}
         </ul>
     </div>
