@@ -14,13 +14,13 @@ const Blog = () => {
         />
 
 <BlogTemplate 
-        img={fashion14} h2="Best designer dress on affordable price        " 
+        img={fashion15} h2="Stylish & modern wear for stylish people" 
         p="Quaerat per do est semper scelerisque. Exercitationem
          recusandae ultricies adipiscing lacus ea? Fermentum, illo mus"
         />
 
 <BlogTemplate 
-        img={fashion15} h2="Stylish & modern wear for stylish people" 
+        img={fashion14} h2="Budget-Friendly Designer Attire And prices       " 
         p="Quaerat per do est semper scelerisque. Exercitationem
          recusandae ultricies adipiscing lacus ea? Fermentum, illo mus"
         />

@@ -84,7 +84,7 @@ href='https://github.com/Ade1fe'
 
         
           <ul
-            className={`flex flex-col text-center z-[99999999999]  absolute px-4 sm:px-0 left-0 top-[90px] bg-white w-full sm:w-fit sm:static sm:flex sm:flex-row justify-between gap-8 ${
+            className={`flex flex-col text-center z-[99999999999]  absolute px-4 sm:px-0 left-0 top-[90px] bg-white w-full sm:w-fit sm:static sm:flex sm:flex-row justify-between gap-1 sm:gap-8 ${
               isMenuOpen ? 'flex' : 'hidden'
             }`}
           >

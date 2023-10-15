@@ -28,7 +28,7 @@ const ArticleThree = () => {
 
 
       <div className="z-[99999999999] order-1 md:order-2">
-        <BigCard h1="Best Minimal collection"
+        <BigCard h1="Premium Fashion Choices"
         myClass='text-center shadow-sm bg-white bg-opacity-50 p-4 w-full mx-auto w-[90%] mx-auto sm:mx-0 sm:w-[600px] md:ml-[-70px]'
           p="Dictum incididunt consectetur blanditiis eum ut ipsam laborios Quasi ullam quidem ea quisque.."/>
       </div>
