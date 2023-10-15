@@ -1,38 +1,11 @@
 
-
-// import React from 'react';
-// import Mainlayout from '../layout/Mainlayout';
-// import Overview from '../components/Overview';
-// import OverviewCast from '../components/OverviewCast';
-// import Recommendations from '../components/Recommendations';
-
-// const OverViewPage = () => {
-//   // Define contentType here, or get it from your data source
-//   const contentType = 'movie'; // Example: Set the content type to 'movie'
-
-//   return (
-//     <Mainlayout>
-//       <Overview />
-//       <OverviewCast contentType={contentType} />
-
-//       <Recommendations />
-//     </Mainlayout>
-//   );
-// };
-
-// export default OverViewPage;
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
-import Mainlayout from '../layout/Mainlayout';
 import Overview from '../components/Overview';
 import Recommendations from '../components/Recommendations';
 import OverviewCast from '../components/OverviewCast';
 import TabLinks from '../components/TabLinks';
 import Aside from '../components/Aside';
+import OverViewLayout from '../layout/OverViewLayout';
 
 const OverViewPage = () => {
   const contentType = 'movie';
@@ -44,7 +17,7 @@ const OverViewPage = () => {
   }, []); 
 
   return (
-    <Mainlayout>
+    <OverViewLayout>
       <Overview />
     
    <div className='mt-[40px] md:mt-[80px]'> 
@@ -62,7 +35,7 @@ const OverViewPage = () => {
   
      <Recommendations cast={cast} />
       
-    </Mainlayout>
+    </OverViewLayout>
   );
 };
 

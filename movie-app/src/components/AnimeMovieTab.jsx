@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import AnimeSearchBar from './AnimeSearchBar';
-import AnimeCompTab from './AnimeCompTab';
-import AnimeHentai from './AnimeHentai';
-import NewAdded from './NewAdded';
 import AnimeUpcoming from './AnimeUpcoming';
 import AnimeCom from './AnimeCom';
-import AnimeAiring from './AnimeAiring';
 import AnimePopular from './AnimePopular';
 import AnimeMovieComp from './AnimeMovieComp';
 import AnimeMovieSearchBar from './AnimeMovieSearchBar';

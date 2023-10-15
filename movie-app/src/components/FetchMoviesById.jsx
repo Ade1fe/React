@@ -14,6 +14,7 @@ const FetchMoviesById = ({ genreId, getPage }) => {
 
   useEffect(() => {
     fetchData(); // Fetch data when the component mounts
+    // eslint-disable-next-line
   }, []);
 
   async function fetchGenres() {

@@ -1,5 +1,5 @@
 
-
+// eslint-disable-next-line
 import React, { useEffect,  } from 'react';
 
 const AnimeFetcher = ({ endpoint, onAnimeDataChange }) => {

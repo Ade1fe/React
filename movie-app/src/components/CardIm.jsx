@@ -12,7 +12,7 @@ const CardIm = ({ img, rating, title, dates, genre,movieId ,onClick }) => {
     <div className='relative w-fit group/item' onClick={() => onClick({ id: movieId, title, img })}>
   
 
-      <div className="w-[140px] sm:w-[180px] md:w-[200px] h-auto cursor-pointer">
+      <div className="w-[145px] sm:w-[160px] md:w-[180px] lg:w-[200px] h-auto cursor-pointer">
         <img src={imageUrl} alt={title} className='w-full h-full object-contain' />
       </div>
       <div className="absolute h-[20%] bg-black opacity-50 backdrop-blur-sm grid grid-cols-2 bottom-0 left-0 w-full text-white group/edit invisible  group-hover/item:visible ..."></div>

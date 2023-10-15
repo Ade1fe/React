@@ -9,7 +9,7 @@ import pic from "../assets/001.jpg";
 import { FaArrowRight, FaCog, FaUser } from 'react-icons/fa';
 
 
-const DefaultNavbar = () => {
+const MovieNavbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -113,18 +113,18 @@ const DefaultNavbar = () => {
         {/* Add similar conditional classes for other links */}
         <NavLink
           exact
-          to='/animetvseries'
+          to='/tvseries'
           className={`nav-link mx-1 hover:text-blue-500 ${
-            window.location.pathname === '/animetvseries' ? 'text-blue-500 font-bold' : ''
+            window.location.pathname === '/tvseries' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Series
         </NavLink>
         <NavLink
           exact
-          to='/animemovie'
+          to='/movieseries'
           className={`nav-link mx-1 hover:text-blue-500 ${
-            window.location.pathname === '/animemovie' ? 'text-blue-500 font-bold' : ''
+            window.location.pathname === '/movieseries' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Movies
@@ -140,9 +140,9 @@ const DefaultNavbar = () => {
         </NavLink>
         <NavLink
           exact
-          to='/animesearch'
+          to='/moviesearch'
           className={`nav-link mx-1 hover:text-blue-500 ${
-            window.location.pathname === '/animesearch' ? 'text-blue-500 font-bold' : ''
+            window.location.pathname === '/moviesearch' ? 'text-blue-500 font-bold' : ''
           }`}
         >
           Search
@@ -180,10 +180,10 @@ const DefaultNavbar = () => {
         )}
 
 
- 
+   
       </div>
     </div>
   );
 };
 
-export default DefaultNavbar;
+export default MovieNavbar

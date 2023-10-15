@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import '../css/Series.css';
+// eslint-disable-next-line
 import { Grid, Pagination } from 'swiper/modules';
 import CardImg from './CardImg';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,7 @@ export default function Series() {
 
   const [seriesData, setSeriesData] = useState([]);
   const [genres, setGenres] = useState([]);
+  // eslint-disable-next-line
   const [images, setImages] = useState([]);
   const navigate  = useNavigate();
 

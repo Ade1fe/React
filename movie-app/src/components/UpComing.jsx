@@ -13,6 +13,7 @@ export default function UpComing() {
 
   useEffect(() => {
     fetchData(); 
+    // eslint-disable-next-line
   }, []);
 
   // Function to fetch movie genres

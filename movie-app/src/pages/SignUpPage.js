@@ -1,12 +1,18 @@
+
+
 import React, { useState } from 'react';
-import { firestore } from '../firebase'
-import { addDoc, doc, setDoc, collection } from 'firebase/firestore'
-import { auth } from '../firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { Link } from 'react-router-dom';
+  import { Link, useNavigate } from 'react-router-dom';
+  import { doc, setDoc } from 'firebase/firestore';
+  import { createUserWithEmailAndPassword } from 'firebase/auth';
+  import { auth, firestore } from '../firebase';
 import pic from "../assets/wallpaperflare.com_wallpaper__1_-removebg-preview.png";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
+   const [loginStatus, setLoginStatus] = useState(null); // null for initial state
+    const [error, setError] = useState('');
+    // eslint-disable-next-line
+    const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -24,6 +30,27 @@ const SignUpPage = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+ 
+ // Check if the username and password meet the requirements
+    if (
+      formData.username.length < 5 ||
+      !/^[a-zA-Z0-9\s@#$%^&*_+-]*$/.test(formData.username)
+    ) {
+      setError('Username must be at least 5 characters long and can only contain letters, numbers, and the following special characters: @ # $ % ^ & * _ + -');
+      setLoginStatus('error');
+      setLoading(false); // Clear loading state
+      return;
+    }
+
+      // Check password length
+      if (formData.password.length < 6) {
+        setError('Password should be at least 6 characters long.');
+        setLoginStatus('error');
+        setLoading(false); // Clear loading state
+        return;
+      }
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -43,11 +70,24 @@ const SignUpPage = () => {
         password: '',
       });
       console.log('Sign Up Successful', 'success');
+      setLoginStatus('success'); 
+      navigate(`/login`);
     } catch (err) {
-      console.log('Sign Up failed!', 'error');
-      console.error(err.message); 
+      setLoading(false);
+
+      if (err.code === 'auth/invalid-email') {
+        setError('Invalid email format. Please provide a valid email address.');
+      } else if (err.code === 'auth/email-already-in-use') {
+        setError('Email address is already in use. Please choose another one.');
+      } else {
+        setError('Sign Up failed! An error occurred. Please try again later.');
+      }
+
+      setLoginStatus('error');
     }
   };
+
+
 
   return (
     <div
@@ -63,6 +103,15 @@ const SignUpPage = () => {
         <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
 
         <form onSubmit={handleSave}>
+
+        {loginStatus === 'success' && (
+            <div className="text-green-600 mb-4">Login Successful</div>
+          )}
+          {loginStatus === 'error' && (
+            <div className="text-red-600 mb-4">{error}</div>
+          )}
+
+
           <div className="mb-4">
             <label htmlFor="username" className="block text-white font-semibold">
               USERNAME
@@ -134,13 +183,3 @@ const SignUpPage = () => {
 export default SignUpPage;
 
 
-// rules_version = '2';
-
-// service cloud.firestore {
-//   match /databases/{database}/documents {
-//     match /{document=**} {
-//       allow read, write: if true;
-//     }
-//   }
-  
-// }

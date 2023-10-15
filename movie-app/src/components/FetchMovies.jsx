@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FetchMovies = () => {
   const [images, setImages] = useState([]);
+  // eslint-disable-next-line
   const [movieGenres, setMovieGenres] = useState({});
   const navigate  = useNavigate();
 
@@ -18,6 +19,7 @@ const FetchMovies = () => {
 
   useEffect(() => {
     fetchMovieData();
+    // eslint-disable-next-line
   }, []);
 
   

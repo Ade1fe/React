@@ -29,6 +29,7 @@ function MovieSearch({movieId,onClick}) {
 
   useEffect(() => {
     handleSearch();
+    // eslint-disable-next-line
   }, [searchType]);
 
   const handleMovieCardClick = (movieItem) => {

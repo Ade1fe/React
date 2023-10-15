@@ -5,6 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 const FetchFilm = ({ type }) => {
   const [images, setImages] = useState([]);
+  // eslint-disable-next-line
   const [genres, setGenres] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -16,6 +17,7 @@ const FetchFilm = ({ type }) => {
   useEffect(() => {
     fetchFilmData();
     fetchGenres();
+    // eslint-disable-next-line
   }, [type]);
 
  async function fetchGenres() {
@@ -142,7 +144,7 @@ const FetchFilm = ({ type }) => {
           <AiOutlineSearch size={25} />
         </button>
     </div>
-    <div className='flex flex-wrap gap-2 px-2 md:px-1 lg:gap-3 justify-evenly'>
+    <div className='flex flex-wrap gap-2 px-2 md:px-1 lg:gap-3 justify-center'>
 
       {displayedImages.map((image, index) => {
         const filmItem = {

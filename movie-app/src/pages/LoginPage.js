@@ -7,8 +7,8 @@ import pic from "../assets/wallpaperflare.com_wallpaper-removebg-preview.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [loginStatus, setLoginStatus] = useState(null); // null for initial state
-
+  const [loginStatus, setLoginStatus] = useState(null);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -24,8 +24,10 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoginStatus(null);
 
     try {
+      // eslint-disable-next-line
       const userCredential = await signInWithEmailAndPassword(
         auth,
         formData.email,
@@ -37,6 +39,7 @@ const LoginPage = () => {
       setLoginStatus('success'); // Set login status to success
     } catch (err) {
       console.error(err.message);
+      setError('Login failed. Please check your email and password.');
       setLoginStatus('error'); // Set login status to error
     }
   };
@@ -53,12 +56,11 @@ const LoginPage = () => {
     >
       <div className="bg-red-800 bg-opacity-50 p-8 rounded shadow-md w-96 relative z-10">
         <h2 className="text-2xl font-semibold mb-4 text-white">Login</h2>
-        {/* Display success or error message */}
         {loginStatus === 'success' && (
           <div className="text-green-600 mb-4">Login Successful</div>
         )}
         {loginStatus === 'error' && (
-          <div className="text-red-600 mb-4">Login Failed. Please try again.</div>
+          <div className="text-red-600 mb-4">{error}</div>
         )}
         <form onSubmit={handleLogin}>
           {/* Email input */}

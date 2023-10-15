@@ -3,6 +3,7 @@ import React from 'react';
 import AnimeDetail from '../components/AnimeDetail';
 import AnimeAdvert from './../components/AnimeAdvert';
 import RecommendedAnime from '../components/RecommendedAnime';
+// eslint-disable-next-line
 import Footer from './../components/Footer';
 import Mainlayout from '../layout/Mainlayout';
 

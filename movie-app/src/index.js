@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
+ // eslint-disable-next-line
 import { initializeApp } from 'firebase/app';
+ // eslint-disable-next-line
 import { firestore, auth } from './firebase'; 
 import AnimePage from './pages/AnimePage';
 import AnimeDetails from './pages/AnimeDetails';

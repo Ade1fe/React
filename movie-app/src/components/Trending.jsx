@@ -15,6 +15,7 @@ export default function Trending() {
 
   useEffect(() => {
     fetchData(); 
+    // eslint-disable-next-line
   }, []); 
 
   // Function to fetch movie genres

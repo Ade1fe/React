@@ -11,6 +11,7 @@ const OverviewCast = ({ contentType }) => {
   const [cast, setCast] = useState([]);
   const location = useLocation();
   const { id } = location.state || {};
+  // eslint-disable-next-line
   const [error, setError] = useState(null);
 
   const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
@@ -40,6 +41,7 @@ const OverviewCast = ({ contentType }) => {
       console.log(`Fetching cast data for ${contentType} ID ${id}`);
       fetchCastData(id);
     }
+    // eslint-disable-next-line
   }, [id, contentType]);
 
 //   fetchCastData(id); // Log the response
