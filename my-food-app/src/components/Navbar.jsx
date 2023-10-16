@@ -1,6 +1,6 @@
 
 import React, { useState,useEffect } from 'react';
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { FaCartPlus } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import { auth, firestore } from '../firebase';
@@ -95,8 +95,19 @@ const Navbar = () => {
         <Link to="/"><span className='text-black'>Deife</span> <span className='text-orange-500'>Food.</span></Link>
       </div>
 
-      {/* <div className="flex items-center"> */}
-        <AiOutlineMenu size={28} className="md:hidden cursor-pointer order-2" onClick={toggleMenu} />
+      {isMenuOpen ? (
+        <AiOutlineClose
+          size={25}
+          onClick={toggleMenu}
+          className='cursor-pointer order-2 z-10 md:hidden text-orange-600'
+        />
+      ) : (
+        <AiOutlineMenu
+          size={25}
+          onClick={toggleMenu}
+          className='cursor-pointer order-2 z-10 md:hidden'
+        />
+      )}
 
         <ul className={`md:flex text-sm md:text-lg  justify-center md:justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14
         absolute top-[52px] sm:top-[56px]  z-[999999999999999] right-0 bg-white border-l-2 border-l-orange-500 border-b-2 border-b-orange-500 md:border-none  w-[50%] px-8 py-4 text-center          
