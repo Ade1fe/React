@@ -133,7 +133,7 @@ const MenuThree = () => {
   function generateRandomPrice() {
     const randomDecimal = Math.random() * 100 + 1;
     const roundedPrice = Math.round(randomDecimal * 100) / 100;
-    const formattedPrice = `${roundedPrice.toFixed(2)}`;
+    const formattedPrice = `$${roundedPrice.toFixed(2)}`;
     return formattedPrice;
   }
 
