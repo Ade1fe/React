@@ -1,37 +1,130 @@
-import React from 'react';
-import MainLayout from "../layouts/MainLayout";
-import Cart from '../components/Cart';
-// import ItemCounter from '../components/ItemCounter';
+import React, { useState } from 'react';
+import { FaYoutube } from 'react-icons/fa';
+import { doc, setDoc, collection,deleteDoc,onSnapshot,query,where,updateDoc,getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import QuantityModal from './QuantityModal';
 
-const CartPage = () => {
-  // Retrieve the cart items from local storage
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+
+
+const ProductFour = ({
+  tags,
+  country,
+  tube,
+  price,
+  id,
+  img,
+  title,
+  mealid,
+  onCardClick
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  const firestoreInstance = getFirestore();
+  const user = getAuth().currentUser;
+  const userId = user ? user.uid : null;
+
+  const addToCart = async (quantity) => {
+    try {
+      const cartItemsRef = collection(firestoreInstance, 'cartItems');
+  
+      // Create a reference to the user's cart item by mealid
+      const cartItemQuery = query(
+        cartItemsRef,
+        where('userId', '==', userId),
+        where('mealid', '==', mealid)
+      );
+  
+      // Get the snapshot of the item in the user's cart
+      const cartItemSnapshot = await getDocs(cartItemQuery);
+  
+      if (!cartItemSnapshot.empty) {
+        // Item already exists, update its quantity
+        const existingCartItem = cartItemSnapshot.docs[0];
+        const existingCartItemData = existingCartItem.data();
+  
+        const updatedQuantity = (existingCartItemData.quantity || 0) + quantity;
+  
+        // Update the existing item in the cart
+        await updateDoc(existingCartItem.ref, { quantity: updatedQuantity });
+      } else {
+        // Item doesn't exist, add a new item to the cart
+        const newItemDocRef = doc(cartItemsRef);
+  
+        await setDoc(newItemDocRef, {
+          userId: userId,
+          id: newItemDocRef.id,
+          name: title,
+          price: price,
+          quantity: quantity,
+          mealid: mealid,
+        });
+      }
+  
+      alert(`${quantity} ${title} added to cart`);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+  
+  
+  
+
+// Inside your ProductFour component:
+const openModal = () => {
+  setIsModalOpen(true);
+};
+
+const closeModal = () => {
+  setIsModalOpen(false);
+};
+
+
+  
+
+  const isCartButtonDisabled = isModalOpen || selectedQuantity < 1;
+
+  const cartButtonClasses = `
+    bg-orange-500 font-semibold text-white px-2 text-sm hover:text-black border-2 border-orange-500
+    py-1 rounded-sm hover:bg-white focus:outline-none whitespace-nowrap
+    ${isCartButtonDisabled ? 'pointer-events-none opacity-50' : ''}
+  `;
 
   return (
-    <MainLayout>
-      <div className="container mx-auto mt-8">
-        {/* <ItemCounter /> */}
-        <h1 className="text-2xl font-semibold mb-4">Cart</h1>
-        {/* {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <ul>
-            {cartItems.map((item, index) => (
-              <li key={index}>
-                <img src={item.img} alt={item.title} className="w-12 h-12" />
-                <div>
-                  <h2>{item.title}</h2>
-                  <p>{item.price}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )} */}
+    <div className='mt-[10px] mb-[30px]'>
+      <p className='cursor-pointer my-1 w-fit  flex items-center flex-wrap gap-3'>
+        <span className='px-2 py-1 border-[2px] rounded-[10px] border-black'>{tags}</span>
+        <span className='px-2 py-1 border-[2px] rounded-[10px] border-black'>{country}</span>
+        <a
+          href={tube}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-red-500  rounded-[10px]'
+        >
+          <FaYoutube size={40} />
+        </a>
+      </p>
+      <p className='px-3 w-fit text-center py-1 text-lg my-1'>
+        <span>Price: </span>
+        <span className='text-orange-500'>{price} </span>
+      </p>
+      <button className={cartButtonClasses} onClick={openModal}>
+  Add to cart
+</button>
 
-        <Cart />
-      </div>
-    </MainLayout>
+
+<QuantityModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onAddToCart={addToCart}
+        setSelectedQuantity={setSelectedQuantity}
+        selectedQuantity={selectedQuantity}
+      />
+    </div>
   );
 };
 
-export default CartPage;
+export default ProductFour;

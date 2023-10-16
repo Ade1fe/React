@@ -133,7 +133,7 @@ const MenuThree = () => {
   function generateRandomPrice() {
     const randomDecimal = Math.random() * 100 + 1;
     const roundedPrice = Math.round(randomDecimal * 100) / 100;
-    const formattedPrice = `$${roundedPrice.toFixed(2)}`;
+    const formattedPrice = `${roundedPrice.toFixed(2)}`;
     return formattedPrice;
   }
 
@@ -171,6 +171,7 @@ const MenuThree = () => {
                     title={item.strMeal}
                     idMeal={item.idMeal}
                     mealid={item.idMeal} 
+                    // title={item.strMeal}
                     onCardClick={(foodItem) => handleFoodItemCardClick(foodItem)}
                   />
                 </SwiperSlide>

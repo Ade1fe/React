@@ -1,35 +1,71 @@
 import React, { useState } from 'react';
 import QuantityModal from './QuantityModal';
-import { doc, setDoc, collection } from 'firebase/firestore'; // Import Firestore functions from Firebase
+import { doc, setDoc, collection,query,where,updateDoc,getDocs } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore'; // Import getFirestore function
 import { getAuth } from 'firebase/auth';
 
 
-const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
+const FoodItemCard = ({ id, img, title, price, mealid, onCardClick,titles }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   // Get the Firestore instance using getFirestore
   const firestoreInstance = getFirestore();
-
-  // Get the current user using 'firebase' object
-  const user = getAuth().currentUser; // Assuming auth is properly imported
+  const user = getAuth().currentUser;
   const userId = user ? user.uid : null;
 
-  // Function to add an item to the cart in Firestore
-  const addToCart = async (quantity) => { // Updated to accept quantity as an argument
+  const addToCart = async (quantity, title) => {
     try {
-      const cartItemsRef = collection(firestoreInstance, 'cartItems');
-      const newItemDocRef = doc(cartItemsRef);
+      if (!userId) {
+        console.error('User is not authenticated. Unable to add to cart.');
+        return;
+      }
 
-      await setDoc(newItemDocRef, {
-        userId: userId,
-        id: newItemDocRef.id,
-        name: title,
-        price: price,
-        quantity: quantity,
-        mealid: mealid,
-      });
+      if (!mealid) {
+        console.error('Meal ID is not defined. Unable to add to cart.');
+        return;
+      }
+
+      if (!title) {
+        console.error('Title is not defined. Unable to add to cart.');
+        return;
+      }
+
+      const cartItemsRef = collection(firestoreInstance, 'cartItems');
+
+      // Create a reference to the user's cart item by mealid
+      const cartItemQuery = query(
+        cartItemsRef,
+        where('userId', '==', userId),
+        where('mealid', '==', mealid)
+      );
+
+      // Get the snapshot of the item in the user's cart
+      const cartItemSnapshot = await getDocs(cartItemQuery);
+
+      if (!cartItemSnapshot.empty) {
+        // Item already exists, update its quantity
+        const existingCartItem = cartItemSnapshot.docs[0];
+        const existingCartItemData = existingCartItem.data();
+
+        const updatedQuantity = (existingCartItemData.quantity || 0) + (+quantity);
+
+
+        // Update the existing item in the cart
+        await updateDoc(existingCartItem.ref, { quantity: updatedQuantity });
+      } else {
+        // Item doesn't exist, add a new item to the cart
+        const newItemDocRef = doc(cartItemsRef);
+
+        await setDoc(newItemDocRef, {
+          userId: userId,
+          id: newItemDocRef.id,
+          name: title, // Make sure title is defined
+          price: price,
+          quantity: quantity,
+          mealid: mealid,
+        });
+      }
 
       alert(`${quantity} ${title} added to cart`);
       setIsModalOpen(false);
@@ -37,7 +73,6 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
       console.error('Error adding item to cart:', error);
     }
   };
-
 
 
   const handleCardClick = () => {
@@ -94,6 +129,7 @@ const FoodItemCard = ({ id, img, title, price, mealid, onCardClick }) => {
         onAddToCart={addToCart}
         setSelectedQuantity={setSelectedQuantity}
         selectedQuantity={selectedQuantity}
+        title={title} 
       />
     </div>
   );

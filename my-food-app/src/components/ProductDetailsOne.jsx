@@ -56,7 +56,7 @@ const ProductDetailsPage = () => {
           />
          <div className="w-full md:w-2/3 px-4">
          <ProductThree h1={productDetails.strMeal}  details={productDetails.strInstructions} />
-          <ProductFour price={price} country={productDetails.strArea} tube={productDetails.strYoutube} tags={productDetails.strCategory} />
+          <ProductFour price={price} country={productDetails.strArea} tube={productDetails.strYoutube} tags={productDetails.strCategory} title={productDetails.strMeal} mealid={productDetails.idMeal} />
          </div>
         
         </div>

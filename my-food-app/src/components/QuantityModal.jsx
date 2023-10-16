@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const QuantityModal = ({ isOpen, onClose, onAddToCart }) => {
+const QuantityModal = ({ isOpen, onClose, onAddToCart,title, }) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    onAddToCart(selectedQuantity);
+    onAddToCart(selectedQuantity,title);
     onClose();
   };
 

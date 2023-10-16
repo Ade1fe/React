@@ -1,7 +1,114 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa';
+import { doc, setDoc, collection,query,where,updateDoc,getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import QuantityModal from './QuantityModal';
 
-const ProductFour = ({ tags, country, tube ,price}) => {
+
+
+
+const ProductFour = ({
+  tags,
+  country,
+  tube,
+  price,
+  id,
+  img,
+  title,
+  mealid,
+  onCardClick
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  const firestoreInstance = getFirestore();
+  const user = getAuth().currentUser;
+  const userId = user ? user.uid : null;
+
+  const addToCart = async (quantity, title) => {
+    try {
+      if (!userId) {
+        console.error('User is not authenticated. Unable to add to cart.');
+        return;
+      }
+
+      if (!mealid) {
+        console.error('Meal ID is not defined. Unable to add to cart.');
+        return;
+      }
+
+      if (!title) {
+        console.error('Title is not defined. Unable to add to cart.');
+        return;
+      }
+
+      const cartItemsRef = collection(firestoreInstance, 'cartItems');
+
+      // Create a reference to the user's cart item by mealid
+      const cartItemQuery = query(
+        cartItemsRef,
+        where('userId', '==', userId),
+        where('mealid', '==', mealid)
+      );
+
+      // Get the snapshot of the item in the user's cart
+      const cartItemSnapshot = await getDocs(cartItemQuery);
+
+      if (!cartItemSnapshot.empty) {
+        // Item already exists, update its quantity
+        const existingCartItem = cartItemSnapshot.docs[0];
+        const existingCartItemData = existingCartItem.data();
+
+        const updatedQuantity = (existingCartItemData.quantity || 0) + (+quantity);
+
+
+        // Update the existing item in the cart
+        await updateDoc(existingCartItem.ref, { quantity: updatedQuantity });
+      } else {
+        // Item doesn't exist, add a new item to the cart
+        const newItemDocRef = doc(cartItemsRef);
+
+        await setDoc(newItemDocRef, {
+          userId: userId,
+          id: newItemDocRef.id,
+          name: title, // Make sure title is defined
+          price: price,
+          quantity: quantity,
+          mealid: mealid,
+        });
+      }
+
+      alert(`${quantity} ${title} added to cart`);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+  
+  
+  
+
+// Inside your ProductFour component:
+const openModal = () => {
+  setIsModalOpen(true);
+};
+
+const closeModal = () => {
+  setIsModalOpen(false);
+};
+
+
+  
+
+  const isCartButtonDisabled = isModalOpen || selectedQuantity < 1;
+
+  const cartButtonClasses = `
+    bg-orange-500 font-semibold text-white px-2 text-sm hover:text-black border-2 border-orange-500
+    py-1 rounded-sm hover:bg-white focus:outline-none whitespace-nowrap
+    ${isCartButtonDisabled ? 'pointer-events-none opacity-50' : ''}
+  `;
+
   return (
     <div className='mt-[10px] mb-[30px]'>
       <p className='cursor-pointer my-1 w-fit  flex items-center flex-wrap gap-3'>
@@ -10,15 +117,33 @@ const ProductFour = ({ tags, country, tube ,price}) => {
         <a
           href={tube}
           target='_blank'
-          rel='noopener noreferrer' 
+          rel='noopener noreferrer'
           className='text-red-500  rounded-[10px]'
         >
-         <FaYoutube size={40} />
+          <FaYoutube size={40} />
         </a>
       </p>
-      <p className='px-3 w-fit text-center py-1 text-lg my-1'><span>Price: </span>
-       <span className='text-orange-500'>{price} </span></p>
-       <p className='py-2 text-sm my-1 rounded-lg px-4 text-center text-white hover:bg-orange-700 cursor-pointer md:text-lg bg-orange-500 font-semibold w-fit'>Add to cart</p>
+      <p className='px-3 w-fit text-center py-1 text-lg my-1'>
+        <span>Price: </span>
+        <span className='text-orange-500'>{price} </span>
+      </p>
+      <button className={cartButtonClasses} onClick={openModal}>
+  Add to cart
+</button>
+{/* <button className={cartButtonClasses} onClick={() => addToCart(selectedQuantity, title)}>
+  Add to cart
+</button> */}
+
+
+
+<QuantityModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onAddToCart={addToCart}
+        setSelectedQuantity={setSelectedQuantity}
+        selectedQuantity={selectedQuantity}
+        title={title} 
+      />
     </div>
   );
 };

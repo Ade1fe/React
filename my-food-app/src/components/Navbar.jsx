@@ -173,7 +173,7 @@ const Navbar = () => {
         ) : (
           <NavLink
             to='/signin'
-            className={`nav-link mx-1 hover:text-red-500 ${
+            className={`nav-link mx-1 whitespace-nowrap bg-orange-500  text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize ${
               window.location.pathname === '/signin' ? 'text-red-500 font-bold' : ''
             }`}
           >

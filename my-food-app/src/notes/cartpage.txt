@@ -1,119 +1,106 @@
-// import React from 'react';
-// import MainLayout from "../layouts/MainLayout";
-// import Cart from '../components/Cart';
+import React, { useState } from 'react';
+import { FaYoutube } from 'react-icons/fa';
+import { doc, setDoc, collection } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import QuantityModal from './QuantityModal';
 
-// const CartPage = () => {
-//   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-//   console.log(cartItems);
-//   // localStorage.clear();
+const ProductFour = ({
+  tags,
+  country,
+  tube,
+  price,
+  id,
+  img,
+  title,
+  mealid,
+  onCardClick
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
+  const firestoreInstance = getFirestore();
+  const user = getAuth().currentUser;
+  const userId = user ? user.uid : null;
+
+  const addToCart = async (quantity) => {
+    try {
+      if (userId && title && price && quantity && mealid) {
+        const cartItemsRef = collection(firestoreInstance, 'cartItems');
+        const newItemDocRef = doc(cartItemsRef);
   
-//   return (
-//     <MainLayout>
-//       <div className="container mx-auto mt-8">
-//         <h1 className="text-2xl font-semibold mb-4">Cart</h1>
-//         {cartItems.length === 0 ? (
-//           <p>Your cart is empty.</p>
-//         ) : (
-//           <div>
-//             {cartItems.map((item, index) => (
-//               <Cart
-//                 img={item.img}
-//                 key={index}
-//                 alt={item.title}
-//                 name={item.title}
-//                 price={item.price}
-//                 nums={item.quantity?.toString()} // Use optional chaining
-//               />
-//             ))}
-//           </div>
-//         )}
-//       </div>
-//     </MainLayout>
-//   );
-// };
-
-// export default CartPage;
-
-
-
-
-
-
-
-
-
-
-
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
-import Cart from '../components/Cart';
-import { Link } from 'react-router-dom';
-import { doc, setDoc, deleteDoc, collection } from 'firebase/firestore';
-import { firestore } from '../firebase';
-
-const CartPage = () => {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  // localStorage.clear();
+        await setDoc(newItemDocRef, {
+          userId: userId,
+          id: newItemDocRef.id,
+          name: title,
+          price: price,
+          quantity: quantity,
+          mealid: mealid,
+        });
   
-
-  // Calculate the total price for each item and add it to the item object
-  const cartItemsWithTotal = cartItems.map((item) => ({
-    ...item,
-    quantity: parseInt(item.quantity, 10), // Convert quantity to number
-    price: parseFloat(item.price), // Convert price to number (assuming it's a decimal)
-  }));
-
-  const totalCartPrice = cartItemsWithTotal.reduce(
-    (total, item) => total + item.quantity * item.price,
-    0
-  );
-  const handleDeleteItem = (index) => {
-    const updatedCartItems = [...cartItemsWithTotal];
-    updatedCartItems.splice(index, 1);
-    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-    // You may want to refresh the page or re-render the component to reflect the updated cart
-    window.location.reload();
+        alert(`${quantity} ${title} added to cart`);
+        setIsModalOpen(false);
+      } else {
+        console.error('Invalid data to add to cart.');
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
   };
+  
 
+// Inside your ProductFour component:
+const openModal = () => {
+  setIsModalOpen(true);
+};
+
+const closeModal = () => {
+  setIsModalOpen(false);
+};
+
+
+  
+
+  const isCartButtonDisabled = isModalOpen || selectedQuantity < 1;
+
+  const cartButtonClasses = `
+    bg-orange-500 font-semibold text-white px-2 text-sm hover:text-black border-2 border-orange-500
+    py-1 rounded-sm hover:bg-white focus:outline-none whitespace-nowrap
+    ${isCartButtonDisabled ? 'pointer-events-none opacity-50' : ''}
+  `;
 
   return (
-    <MainLayout>
-      <div className="container mx-auto px-5  mt-8 mb-32">
-        
-        <div className='mb-5 grid justify-center sm:flex sm:justify-between gap-5'>
-        <h1 className="text-lg text-center sm:text-left md:text-2xl font-semibold ">Cart</h1>
-        <Link to="/menu"> <h2 className="text-lg md:text-2xl font-semibold "> Want some more? <span className='font-bold'>Continue Shopping</span></h2></Link>
-        </div>
-        {cartItemsWithTotal.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <div>
-            {cartItemsWithTotal.map((item, index) => (
-
-              
-              <Cart
-  img={item.img}
-  key={index}
-  alt={item.title}
-  name={item.title}
-  price={parseFloat(item.price)} // Convert to a number
-  nums={parseInt(item.quantity, 10)} // Convert to a number
-  total={parseFloat(item.total)} // Convert to a number
-  onDelete={() => handleDeleteItem(index)} // Pass the delete function
-/>
+    <div className='mt-[10px] mb-[30px]'>
+      <p className='cursor-pointer my-1 w-fit  flex items-center flex-wrap gap-3'>
+        <span className='px-2 py-1 border-[2px] rounded-[10px] border-black'>{tags}</span>
+        <span className='px-2 py-1 border-[2px] rounded-[10px] border-black'>{country}</span>
+        <a
+          href={tube}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-red-500  rounded-[10px]'
+        >
+          <FaYoutube size={40} />
+        </a>
+      </p>
+      <p className='px-3 w-fit text-center py-1 text-lg my-1'>
+        <span>Price: </span>
+        <span className='text-orange-500'>{price} </span>
+      </p>
+      <button className={cartButtonClasses} onClick={openModal}>
+  Add to cart
+</button>
 
 
-            ))}
-            <div className="text-lg font-semibold mt-10 md:mt-20">
-              Total: ${totalCartPrice.toFixed(2)}
-            </div>
-          </div>
-        )}
-      </div>
-    </MainLayout>
+<QuantityModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onAddToCart={addToCart}
+        setSelectedQuantity={setSelectedQuantity}
+        selectedQuantity={selectedQuantity}
+      />
+    </div>
   );
 };
 
-export default CartPage;
-
+export default ProductFour;

@@ -11,16 +11,15 @@ const Hero = () => {
     <div className='block md:flex items-center justify-center px-4 container mx-auto'>
 
         <div className="flex-1">
-            <h1 className='font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'>Fastest
+            <h1 className='font-bold mb-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'>Fastest
              <span className='text-orange-500'>Delivery</span> @ Easy <span  className='text-orange-500'>Pickup</span></h1>
         
-        <p className='my-2'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde eaque maiores dicta suscipit fugiat, 
-            quaerat blanditiis tenetur ea. Ipsa, omnis?</p>
-            <Link to="/menu" className='whitespace-nowrap bg-orange-500 text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize'>order now</Link>
+        <p className='my-2 mb-5'>Welcome to the ultimate dining experience in our town, where speed and deliciousness meet in perfect harmony. Our commitment to delivering the fastest food in town is unrivaled, ensuring that you can satisfy your cravings without the long waits.</p>
+            <Link to="/menu" className='whitespace-nowrap bg-orange-500  text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize'>order now</Link>
         </div>
        
 
-        <div className="flex-1 flex flex-col justify-center sm:flex-row md:justify-center gap-8  md:gap-14 ">
+        <div className="flex-1 flex mt-2 md:mt-0 flex-col justify-center sm:flex-row md:justify-center gap-8  md:gap-14 ">
         
       
         
