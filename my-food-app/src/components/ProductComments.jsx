@@ -23,7 +23,7 @@ const ProductComments = () => {
         
       </span>
       </h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
+        <p className='text-sm '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
      </div>
     </div>
 
@@ -42,7 +42,7 @@ const ProductComments = () => {
         
       </span>
       </h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
+        <p className='text-sm '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
      </div>
     </div>
     <div className='grid justify-center md:justify-between md:flex items-center w-fit px-2 gap-3'>
@@ -60,7 +60,7 @@ const ProductComments = () => {
         
       </span>
       </h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
+        <p className='text-sm '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
      </div>
     </div>
 
@@ -79,7 +79,7 @@ const ProductComments = () => {
         
       </span>
       </h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
+        <p className='text-sm '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum exercitationem nulla quo voluptatum id, expedita recusandae ea dicta ut voluptatibus.</p>
      </div>
     </div>
  </div>

@@ -7,6 +7,7 @@ import { auth, firestore } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import "../css/Navbar.css"
 // eslint-disable-next-line
 import { FaArrowRight, FaCog, FaUser } from 'react-icons/fa';
 
@@ -99,23 +100,23 @@ const Navbar = () => {
         <AiOutlineClose
           size={25}
           onClick={toggleMenu}
-          className='cursor-pointer order-2 z-10 md:hidden text-orange-600'
+          className='cursor-pointer order-2 slide-in-menu z-10 md:hidden text-orange-600'
         />
       ) : (
         <AiOutlineMenu
           size={25}
           onClick={toggleMenu}
-          className='cursor-pointer order-2 z-10 md:hidden'
+          className='cursor-pointer order-2 slide-in-menu z-10 md:hidden'
         />
       )}
 
         <ul className={`md:flex text-sm md:text-lg  justify-center md:justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14
         absolute top-[52px] sm:top-[56px]  z-[999999999999999] right-0 bg-white border-l-2 border-l-orange-500 border-b-2 border-b-orange-500 md:border-none  w-[50%] px-8 py-4 text-center          
           md:static md:w-fit  md:p-0 md:bg-white
-        ${isMenuOpen ? 'grid text-center justify-center' : 'hidden'}`}>
+        ${isMenuOpen ? 'grid text-center justify-center slide-in-menu' : 'hidden'}`}>
           <NavLink
           to='/menu'
-          className={`hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md  w-fit mx-auto mb-5  md:m-0 ${
+          className={`hover:bg-gray-100 menu-item cursor-pointer hover:px-2 hover:py-1 rounded-md  w-fit mx-auto mb-5  md:m-0 ${
             window.location.pathname === '/menu' ? 'text-orange-500 font-bold' : ''
           }`}
         >
@@ -123,7 +124,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           to='/aboutus'
-          className={`hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md w-fit mx-auto mb-5  md:m-0 ${
+          className={`hover:bg-gray-100 menu-item cursor-pointer hover:px-2 hover:py-1 rounded-md w-fit mx-auto mb-5  md:m-0 ${
             window.location.pathname === '/aboutus' ? 'text-orange-500 font-bold' : ''
           }`}
         >
@@ -131,7 +132,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           to='/contactus'
-          className={`hover:bg-gray-100 cursor-pointer hover:px-2 hover:py-1 rounded-md  w-fit mx-auto mb-5  md:m-0 ${
+          className={`hover:bg-gray-100 menu-item cursor-pointer hover:px-2 hover:py-1 rounded-md  w-fit mx-auto mb-5  md:m-0 ${
             window.location.pathname === '/contactus' ? 'text-orange-500 font-bold' : ''
           }`}
         >
@@ -139,7 +140,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           to='/cart'
-          className={`hover:bg-gray-100 block md:hidden cursor-pointer hover:px-2 hover:py-1 rounded-md w-fit mx-auto mb-5  md:m-0 ${
+          className={`hover:bg-gray-100 menu-item block md:hidden cursor-pointer hover:px-2 hover:py-1 rounded-md w-fit mx-auto mb-5  md:m-0 ${
             window.location.pathname === '/cart' ? 'text-orange-500 font-bold' : ''
           }`}
         >
@@ -151,7 +152,7 @@ const Navbar = () => {
         <ul className='flex  text-sm md:text-lg justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14 order-1 md:order-2'>
         <NavLink
           to='/cart'
-          className={`hover:bg-gray-100 cursor-pointer  hover:px-2 hover:py-1 rounded-md hidden md:flex w-fit mx-auto mb-5  md:m-0 ${
+          className={`hover:bg-gray-100 menu-item cursor-pointer  hover:px-2 hover:py-1 rounded-md hidden md:flex w-fit mx-auto mb-5  md:m-0 ${
             window.location.pathname === '/cart' ? 'text-orange-500 font-bold' : ''
           }`}
         >
@@ -159,7 +160,7 @@ const Navbar = () => {
         </NavLink>
          
          {user ? (
-         <div className="">
+         <div className="menu-item">
          <div className="cursor-pointer relative" onClick={toggleProfile}> 
          <p className='text-lg md:text-xl font-bold text-red-500'>  <span className='capitalize'>{firstLetterAfterSpace}</span> </p>
          </div>
@@ -173,7 +174,7 @@ const Navbar = () => {
         ) : (
           <NavLink
             to='/signin'
-            className={`nav-link mx-1 whitespace-nowrap bg-orange-500  text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize ${
+            className={`nav-link mx-1 menu-item whitespace-nowrap bg-orange-500  text-white border-2 border-orange-500 cursor-pointer px-3 py-1 rounded-md shadow-lg hover:bg-transparent hover:text-black capitalize ${
               window.location.pathname === '/signin' ? 'text-red-500 font-bold' : ''
             }`}
           >

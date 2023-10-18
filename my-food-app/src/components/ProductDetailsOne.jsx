@@ -100,7 +100,7 @@ const ProductDetailsPage = () => {
 {activeTab === 1 && productDetails && (
   <ProductInfo>
     {productDetails.strInstructions.split('\n').map((line, index) => (
-      <p key={index}>{line}</p>
+      <p className='text-sm' key={index}>{line}</p>
     ))}
   </ProductInfo>
 )}
