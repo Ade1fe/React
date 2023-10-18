@@ -9,6 +9,7 @@ import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import pic from "../assets/001.jpg";
 import { FaArrowRight, FaCog, FaUser } from 'react-icons/fa';
+import "../css/General.css"
 
 const Navbar = ({ backgroundImage }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Navbar = ({ backgroundImage }) => {
   // eslint-disable-next-line
   const [usermail, setUsermail] = useState(null);
   const [isProfileVisible, setIsProfileVisible] = useState(false); 
+  
 
 
   useEffect(() => {
@@ -100,14 +102,14 @@ const Navbar = ({ backgroundImage }) => {
       <div
         className={`${
           isMenuOpen
-            ? 'font-semibold z-10 bg-black opacity-80 backdrop-blur-sm flex  flex-col justify-center items-center text-center absolute top-[57px] w-full left-0 transition-opacity delay-1000'
+            ? 'font-semibold slide-in-menu show z-10 bg-black opacity-80 backdrop-blur-sm flex  flex-col justify-center items-center text-center absolute top-[57px] w-full left-0 transition-opacity delay-1000'
             : 'hidden'
         } md:flex md:static py-7 md:py-0 logo  md:text-left md:flex-row md:bg-none md:backdrop-filter-none md:w-fit text-lg justify-between gap-3 sm:gap-4 md:gap-4 lg:gap-7`}
       >
         <NavLink
           exact
           to='/'
-          className={`nav-link z-10 mx-1 hover:text-red-500 ${
+          className={`nav-link menu-item menu-item z-10 mx-1 hover:text-red-500 ${
             window.location.pathname === '/' ? 'text-red-500 font-bold' : ''
           }`}
         >
@@ -115,7 +117,7 @@ const Navbar = ({ backgroundImage }) => {
         </NavLink>
         <NavLink
           to='/movieseries'
-          className={`nav-link z-10 mx-1 hover:text-red-500 ${
+          className={`nav-link menu-item z-10 mx-1 hover:text-red-500 ${
             window.location.pathname === '/movieseries' ? 'text-red-500 font-bold' : ''
           }`}
         >
@@ -123,7 +125,7 @@ const Navbar = ({ backgroundImage }) => {
         </NavLink>
         <NavLink
           to='/tvseries'
-          className={`nav-link z-10 mx-1 hover:text-red-500 ${
+          className={`nav-link menu-item z-10 mx-1 hover:text-red-500 ${
             window.location.pathname === '/tvseries' ? 'text-red-500 font-bold' : ''
           }`}
         >
@@ -131,7 +133,7 @@ const Navbar = ({ backgroundImage }) => {
         </NavLink>
         <NavLink
           to='/anime'
-          className={`nav-link z-10 mx-1 hover:text-red-500 ${
+          className={`nav-link menu-item z-10 mx-1 hover:text-red-500 ${
             window.location.pathname === '/anime' ? 'text-red-500 font-bold' : ''
           }`}
         >
@@ -139,7 +141,7 @@ const Navbar = ({ backgroundImage }) => {
         </NavLink>
         <NavLink
           to='/moviesearch'
-          className={`nav-link z-10 mx-1 hover:text-red-500 ${
+          className={`nav-link menu-item z-10 mx-1 hover:text-red-500 ${
             window.location.pathname === '/moviesearch' ? 'text-red-500 font-bold' : ''
           }`}
         >
@@ -168,7 +170,7 @@ const Navbar = ({ backgroundImage }) => {
         ) : (
           <NavLink
             to='/login'
-            className={`nav-link z-10 mx-1 hover:text-red-500 ${
+            className={`nav-link menu-item z-10 mx-1 hover:text-red-500 ${
               window.location.pathname === '/login' ? 'text-red-500 font-bold' : ''
             }`}
           >

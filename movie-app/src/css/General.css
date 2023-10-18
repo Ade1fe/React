@@ -1,0 +1,29 @@
+.slide-in-from-top {
+    transform: translateY(-100%);
+    animation: slide-from-top 0.3s ease forwards;
+  }
+  
+  @keyframes slide-from-top {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+/* Add this CSS to your stylesheets */
+.menu-item {
+    transform: translateY(-100%);
+    animation: slide-in 0.9s ease forwards;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  

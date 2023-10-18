@@ -103,7 +103,7 @@ const DefaultNavbar = () => {
          <NavLink
           exact
           to='/'
-          className={`nav-link mx-1 hover:text-blue-500 ${
+          className={`nav-link menu-item mx-1 hover:text-blue-500 ${
             window.location.pathname === '/' ? 'text-blue-500 font-bold' : ''
           }`}
         >
@@ -114,7 +114,7 @@ const DefaultNavbar = () => {
         <NavLink
           exact
           to='/animetvseries'
-          className={`nav-link mx-1 hover:text-blue-500 ${
+          className={`nav-link menu-item mx-1 hover:text-blue-500 ${
             window.location.pathname === '/animetvseries' ? 'text-blue-500 font-bold' : ''
           }`}
         >
@@ -123,7 +123,7 @@ const DefaultNavbar = () => {
         <NavLink
           exact
           to='/animemovie'
-          className={`nav-link mx-1 hover:text-blue-500 ${
+          className={`nav-link menu-item mx-1 hover:text-blue-500 ${
             window.location.pathname === '/animemovie' ? 'text-blue-500 font-bold' : ''
           }`}
         >
@@ -132,7 +132,7 @@ const DefaultNavbar = () => {
         <NavLink
           exact
           to='/anime'
-          className={`nav-link mx-1 hover:text-blue-500 ${
+          className={`nav-link menu-item mx-1 hover:text-blue-500 ${
             window.location.pathname === '/anime' ? 'text-blue-500 font-bold' : ''
           }`}
         >
@@ -141,7 +141,7 @@ const DefaultNavbar = () => {
         <NavLink
           exact
           to='/animesearch'
-          className={`nav-link mx-1 hover:text-blue-500 ${
+          className={`nav-link menu-item mx-1 hover:text-blue-500 ${
             window.location.pathname === '/animesearch' ? 'text-blue-500 font-bold' : ''
           }`}
         >
@@ -155,7 +155,7 @@ const DefaultNavbar = () => {
          </div>
 
          {isProfileVisible && (  
-              <div className="mx-1 rounded-none md:rounded-lg text-sm absolute w-full right-0 top-[100%] md:top-14 md:w-[250px] px-3 py-2 md:right-3 z-[99999999] bg-black md:opacity-80 md:backdrop-blur-sm">
+              <div className="mx-1 menu-item rounded-none md:rounded-lg text-sm absolute w-full right-0 top-[100%] md:top-14 md:w-[250px] px-3 py-2 md:right-3 z-[99999999] bg-black md:opacity-80 md:backdrop-blur-sm">
                <p className='text-sm font-bold text-blue-500'>{username}</p>
              <p className='text-sm mb-8'>{user.email}</p>
              
@@ -171,7 +171,7 @@ const DefaultNavbar = () => {
           <NavLink
           exact
           to='/login'
-          className={`nav-link mx-1 hover:text-blue-500 ${
+          className={`nav-link menu-item mx-1 hover:text-blue-500 ${
             window.location.pathname === '/login' ? 'text-blue-500 font-bold' : ''
           }`}
         >
