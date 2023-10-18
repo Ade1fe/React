@@ -80,7 +80,7 @@ const GenrePage = () => {
         {loading ? (
           <p>Loading...</p>
         ) : animeList.length > 0 ? (
-          <div className='flex flex-wrap justify-evenly items-center gap-2 md:gap-4'>
+          <div className='flex flex-wrap justify-center items-center gap-2 md:gap-4'>
             {animeList.map((anime) => (
               <div key={anime.mal_id}  className='w-[150px] sm:w-[200px] h-auto bg-[#111]'>
                 <div className='w-full h-[200px] cursor-pointer' onClick={() => handleWatchNowClick(anime.mal_id)} >
