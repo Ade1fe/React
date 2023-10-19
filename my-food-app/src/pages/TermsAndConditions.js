@@ -16,7 +16,7 @@ const TermsAndConditions = () => {
             <strong>1. Introduction</strong>
           </p>
           <p className="mb-4">
-            1.1. “Jumia” is the trading name for the Jumia group companies listed at Appendix 1. Each Jumia group company (“Jumia” or “we”) operates an e-commerce platform consisting of a website and mobile application (“marketplace”) together with supporting IT logistics and payment infrastructure for the sale and purchase of consumer products and services (“products”) in its allocated territory as defined at Appendix 1 (“territory”).
+            1.1. “deife-food” is the trading name for the deife-food group companies listed at Appendix 1. Each deife-food group company (“deife-food” or “we”) operates an e-commerce platform consisting of a website and mobile application (“marketplace”) together with supporting IT logistics and payment infrastructure for the sale and purchase of consumer products and services (“products”) in its allocated territory as defined at Appendix 1 (“territory”).
           </p>
           <p className="mb-4">
             1.2. These general terms and conditions shall apply to buyers and sellers on the marketplace and shall govern your use of the marketplace and related services.
@@ -57,7 +57,7 @@ const TermsAndConditions = () => {
             3.1.1. the marketplace provides an online location for sellers to sell and buyers to purchase products;
           </p>
           <p className="mb-4">
-            3.1.2. we shall accept binding sales on behalf of sellers but (unless Jumia is indicated as the seller) Jumia is not a party to the transaction between the seller and the buyer; and
+            3.1.2. we shall accept binding sales on behalf of sellers but (unless deife-food is indicated as the seller) deife-food is not a party to the transaction between the seller and the buyer; and
           </p>
           <p className="mb-4">
             3.1.3. a contract for the sale and purchase of a product or products will come into force between the buyer and seller and accordingly you commit to buying or selling the relevant product or products upon the buyer’s confirmation of purchase via the marketplace.
@@ -120,10 +120,10 @@ const TermsAndConditions = () => {
             <strong>7. Intellectual Property</strong>
           </p>
           <p className="mb-4">
-            7.1. All intellectual property rights related to the marketplace, including but not limited to trademarks, copyrights, and patents, are the property of Jumia or its licensors.
+            7.1. All intellectual property rights related to the marketplace, including but not limited to trademarks, copyrights, and patents, are the property of deife-food or its licensors.
           </p>
           <p className="mb-4">
-            7.2. You may not use, reproduce, or distribute any content from the marketplace without prior written consent from Jumia.
+            7.2. You may not use, reproduce, or distribute any content from the marketplace without prior written consent from deife-food.
           </p>
           <p className="mb-4">
             <strong>8. Termination</strong>

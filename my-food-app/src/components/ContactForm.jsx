@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line
 import { FaFacebook, FaGithub, FaGlobe, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 function ContactForm() {
@@ -69,23 +70,24 @@ function ContactForm() {
       </form>
       <h2 className='text-2xl font-semibold mt-16 md:text-2xl mb-2'>Social Links</h2>
       <div className="flex flex-wrap gap-4 mt-1">
-        <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
+        {/* <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
             <FaFacebook size={20} />
+        </div> */}
+        <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
+           <a href="https://twitter.com/deife_syntax"><FaTwitter size={20} /></a>
+            
         </div>
         <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
-            <FaTwitter size={20} />
+           <a href="https://www.instagram.com/deife_syntax/"><FaInstagram size={20} /></a> 
         </div>
         <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
-            <FaInstagram size={20} />
+          <a href="https://github.com/Ade1fe"><FaGithub size={20} /></a>  
         </div>
         <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
-            <FaGithub size={20} />
+            <a href="https://www.linkedin.com/in/damilola-adeife-oluwadamisi-699325235/?trk=contact-info"><FaLinkedin size={20} /></a>
         </div>
         <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
-        <FaLinkedin size={20} />
-        </div>
-        <div className="bg-transparent border-2 border-orange-500 text-orange-500 p-1 rounded-[50%] hover:text-black cursor-pointer">
-            <FaGlobe size={20} />
+           <a href="https://linktr.ee/deife_syntax"><FaGlobe size={20} /></a> 
         </div>
 
       </div>

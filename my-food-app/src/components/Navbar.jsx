@@ -110,10 +110,10 @@ const Navbar = () => {
         />
       )}
 
-        <ul className={`md:flex text-sm md:text-lg  justify-center md:justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14
+        <ul className={`md:flex overflow-hidden slide-in-menu text-sm md:text-lg  justify-center md:justify-between items-center font-semibold gap-4 sm:gap-7 md:gap-10 lg:gap-14
         absolute top-[52px] sm:top-[56px]  z-[999999999999999] right-0 bg-white border-l-2 border-l-orange-500 border-b-2 border-b-orange-500 md:border-none  w-[50%] px-8 py-4 text-center          
           md:static md:w-fit  md:p-0 md:bg-white
-        ${isMenuOpen ? 'grid text-center justify-center slide-in-menu' : 'hidden'}`}>
+        ${isMenuOpen ? 'grid text-center justify-center ' : 'hidden'}`}>
           <NavLink
           to='/menu'
           className={`hover:bg-gray-100 menu-item cursor-pointer hover:px-2 hover:py-1 rounded-md  w-fit mx-auto mb-5  md:m-0 ${
@@ -166,8 +166,10 @@ const Navbar = () => {
          </div>
 
          {isProfileVisible && (  
-           <div onClick={handleLogout} className="cursor-pointer mx-1 text-white rounded-none md:rounded-lg text-sm absolute w-fit right-0 top-14 md:top-14  px-3 py-2 md:right-3 z-[99999999] bg-black md:opacity-80 md:backdrop-blur-sm">
-             <button className='py-1 px-2 text-left justify-end flex items-center gap-3' >Log out <FaArrowRight  />  </button>
+           <div onClick={handleLogout} className="cursor-pointer mx-1  text-white rounded-none md:rounded-lg text-sm absolute w-fit -right-0 top-11 md:top-12 px-3 py-2  z-[99999999] bg-black md:opacity-80 md:backdrop-blur-sm">
+             <button className='py-1 px-2 text-left justify-end flex items-center gap-3' ><span className='
+             whitespace-nowrap
+             '>Log out</span> <FaArrowRight  />  </button>
            </div>
          )}
        </div>

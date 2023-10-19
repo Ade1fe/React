@@ -13,7 +13,7 @@ const AboutUs = () => {
         <MainContainer title="" img={abu} />
       
 
-      <div className="bg-gray-50 py-12">
+      <div className="bg-gray-50 text-sm py-12">
         <div className="container mx-auto px-4">
           {/* <h1 className="text-3xl font-semibold text-gray-800 mb-4">About Us</h1> */}
           <p className="text-gray-600">
@@ -22,7 +22,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="bg-white py-12">
+      <div className="bg-white  text-sm  py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Story</h2>
           <p className="text-gray-600">
@@ -31,7 +31,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="bg-gray-50 py-12">
+      <div className="bg-gray-50  text-sm  py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Why Choose Us?</h2>
           <ul className="list-disc list-inside text-gray-600">
@@ -43,7 +43,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="bg-white py-12">
+      <div className="bg-white  text-sm  py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -80,7 +80,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="bg-gray-50 py-12 mb-20">
+      <div className="bg-gray-50  text-sm  py-12 mb-20">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Contact Us</h2>
           <p className="text-gray-600">

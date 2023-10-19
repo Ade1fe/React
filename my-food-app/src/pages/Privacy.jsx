@@ -5,26 +5,26 @@ const Privacy = () => {
   return (
     <MainLayout>
         <div className='min-h-screen p-4'> 
-      <h1 className='text-2xl font-semibold mb-6'>Jumia Privacy Notice</h1>
+      <h1 className='text-2xl font-semibold mb-6'>deife-food Privacy Notice</h1>
 
      <p className="mb-3 ">
         <strong>1. About this Notice</strong>
       </p>
       <p>
-        This Privacy Notice provides information on how Jumia collects and processes your personal data when you visit our website or mobile applications. It sets out what we do with your personal data and how we keep it secure and explains the rights that you have in relation to your personal data.
+        This Privacy Notice provides information on how deife-food collects and processes your personal data when you visit our website or mobile applications. It sets out what we do with your personal data and how we keep it secure and explains the rights that you have in relation to your personal data.
       </p>
 
       <p className="mb-1 mt-3">
         <strong>2. Who We Are</strong>
       </p>
       <p>
-        Jumia is the leading pan-African e-commerce platform. Our platform consists of our marketplace, which connects sellers with consumers, our logistics service, which enables the shipment and delivery of packages from sellers to consumers, and our payment service, which facilitates transactions among participants active on our platform in selected markets.
+        deife-food is the leading pan-African e-commerce platform. Our platform consists of our marketplace, which connects sellers with consumers, our logistics service, which enables the shipment and delivery of packages from sellers to consumers, and our payment service, which facilitates transactions among participants active on our platform in selected markets.
       </p>
       <p>
-        This website and/or mobile app is operated by a member of the Jumia group of companies, the ultimate holding company of which is Jumia Technologies AG. Information on our subsidiaries can be found on our website.
+        This website and/or mobile app is operated by a member of the deife-food group of companies, the ultimate holding company of which is deife-food Technologies AG. Information on our subsidiaries can be found on our website.
       </p>
       <p>
-        Any personal data provided or collected by Jumia is controlled by the subsidiary that the website and/or mobile app relates to.
+        Any personal data provided or collected by deife-food is controlled by the subsidiary that the website and/or mobile app relates to.
       </p>
 
       <p className="mb-1 mt-3">

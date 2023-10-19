@@ -7,10 +7,12 @@
   import { doc, setDoc } from 'firebase/firestore';
   import { createUserWithEmailAndPassword } from 'firebase/auth';
   import { auth, firestore } from '../firebase';
+  import { useNavigate } from 'react-router-dom';
   
   const SignUpComp = () => {
     const [loginStatus, setLoginStatus] = useState(null); // null for initial state
     const [error, setError] = useState('');
+    const navigate = useNavigate();
   
     const [formData, setFormData] = useState({
       username: '',
@@ -66,7 +68,7 @@
       }
 
       // Phone number validation
-    if (!/^\d{10}$/.test(formData.phonenumber)) {
+    if (!/^\d{11}$/.test(formData.phonenumber)) {
       setError('Please enter a valid 10-digit phone number.');
       setLoginStatus('error');
       return;
@@ -93,6 +95,7 @@
           phonenumber: ''
         });
         setLoginStatus('success');
+        navigate("/signin")
       } catch (err) {
         console.error('Sign Up failed!', err);
         setLoginStatus('error');
