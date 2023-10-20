@@ -102,7 +102,7 @@ const Navbar = ({ backgroundImage }) => {
       <div
         className={`${
           isMenuOpen
-            ? 'font-semibold overflow-hidden slide-in-menu show z-10 bg-black opacity-80 backdrop-blur-sm flex  flex-col justify-center items-center text-center absolute top-[57px] w-full left-0 transition-opacity delay-1000'
+            ? 'font-semibold h-fit overflow-hidden slide-in-menu show z-10 bg-black opacity-80 backdrop-blur-sm flex  flex-col justify-center items-center text-center absolute top-[57px] w-full left-0 transition-opacity delay-1000'
             : 'hidden'
         } md:flex md:static py-7 md:py-0 logo  md:text-left md:flex-row md:bg-none md:backdrop-filter-none md:w-fit text-lg justify-between gap-3 sm:gap-4 md:gap-4 lg:gap-7`}
       >
@@ -149,13 +149,13 @@ const Navbar = ({ backgroundImage }) => {
         </NavLink>
 
         {user ? (
-         <div className="z-20" onClick={toggleProfile}>
-         <div className="cursor-pointer relative" onClick={toggleProfile}> 
+         <div className="z-20" >
+         <div className="cursor-pointer relative"onClick={toggleProfile} > 
            <img src={pic} className='w-[30px] h-[30px] object-cover rounded-[50%] overflow-hidden' alt="" />
          </div>
 
          {isProfileVisible && (  
-           <div className="mx-1 rounded-none md:rounded-lg text-sm absolute w-full right-0 top-[100%] md:top-14 md:w-[250px] px-3 py-2 md:right-3 z-[99999999] bg-black md:opacity-80 md:backdrop-blur-sm">
+          <div className="mx-1  rounded-none md:rounded-lg text-sm static md:absolute w-full right-0 top-[0px] md:top-14 md:w-[250px] px-3 py-2 md:right-3 z-[9999999999999999999] bg-black md:opacity-80 md:backdrop-blur-sm">
                <p className='text-sm font-bold text-red-500'>{username}</p>
              <p className='text-sm mb-8'>{user.email}</p>
              
