@@ -101,7 +101,7 @@ const Overview = () => {
             <p> Average Vote: <span>{contentData.vote_average}%</span></p>
             <p>Vote count: <span>{contentData.vote_count}</span></p>
             <p>Language: <span>{contentData.original_language}</span></p>
-            <p className='text-sm md:text-xl'>
+            <p className='text-sm '>
               Date: <span>{contentData.release_date || contentData.first_air_date}</span>
             </p>
           </div>
