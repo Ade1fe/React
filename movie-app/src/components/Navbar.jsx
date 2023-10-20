@@ -102,7 +102,7 @@ const Navbar = ({ backgroundImage }) => {
       <div
         className={`${
           isMenuOpen
-            ? 'font-semibold slide-in-menu show z-10 bg-black opacity-80 backdrop-blur-sm flex  flex-col justify-center items-center text-center absolute top-[57px] w-full left-0 transition-opacity delay-1000'
+            ? 'font-semibold overflow-hidden slide-in-menu show z-10 bg-black opacity-80 backdrop-blur-sm flex  flex-col justify-center items-center text-center absolute top-[57px] w-full left-0 transition-opacity delay-1000'
             : 'hidden'
         } md:flex md:static py-7 md:py-0 logo  md:text-left md:flex-row md:bg-none md:backdrop-filter-none md:w-fit text-lg justify-between gap-3 sm:gap-4 md:gap-4 lg:gap-7`}
       >

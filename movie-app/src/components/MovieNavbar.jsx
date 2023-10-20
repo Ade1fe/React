@@ -96,7 +96,7 @@ const MovieNavbar = () => {
       <div
         className={`${
           isMenuOpen
-            ? 'font-semibold bg-black opacity-80 backdrop-blur-sm flex z-[99999] flex-col justify-center items-center text-center absolute top-14 w-full left-0 transition-opacity delay-1000'
+            ? 'font-semibold overflow-hidden slide-in-menu bg-black opacity-80 backdrop-blur-sm flex z-[99999] flex-col justify-center items-center text-center absolute top-14 w-full left-0 transition-opacity delay-1000'
             : 'hidden'
         } md:flex md:static py-7 md:py-0 logo  md:text-left md:flex-row md:bg-none md:backdrop-filter-none md:w-fit text-lg justify-between gap-3 sm:gap-4 md:gap-4 lg:gap-7`}
       >
