@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaFacebook, FaGithub, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
+import {  FaGithub, FaGlobe, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
 import pic from "../assets/web-removebg-preview.png"
 
 
@@ -7,11 +7,11 @@ const Aside = () => {
   return (
     <div className='grid grid-cols-1 justify-between gap-3 sm:grid-cols-2 lg:grid-cols-1 '>
         <div className="flex gap-3 flex-wrap my-5 col-span-1 sm:col-span-2 lg:col-span-1">
-        <FaFacebook size={25}  />
-        <FaGithub size={25}  />
-        <FaInstagram size={25}  />
-        <FaTwitter size={25}  />
-        <FaTiktok size={25}  />
+       <a href="https://linktr.ee/deife_syntax"> <FaGlobe size={25}  /></a>
+        <a href="https://www.instagram.com/deife_syntax/"><FaGithub size={25}  /></a> 
+          <a href="https://github.com/Ade1fe"><FaInstagram size={25}  /></a>
+        <a href="https://twitter.com/deife_syntax"> <FaTwitter size={25}  /></a>
+         <a href="https://www.linkedin.com/in/oluwadamilola-adeife-oluwadamisi-699325235/"><FaLinkedinIn size={25}  /></a>
         </div>
 
         <div className=" text-lg md:text-xl my-5">

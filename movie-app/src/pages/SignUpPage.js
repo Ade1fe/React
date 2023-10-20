@@ -91,7 +91,7 @@ const SignUpPage = () => {
 
   return (
     <div
-    className="min-h-screen flex items-center justify-center LoginPage-background relative bg-red-700"
+    className="min-h-screen flex items-center justify-center LoginPage-background relative bg-black"
     style={{
       backgroundImage: `url(${pic})`,
       backgroundSize: 'contain',
@@ -99,7 +99,7 @@ const SignUpPage = () => {
       backgroundRepeat: 'no-repeat',
     }}
   >
-      <div className="bg-red-800 bg-opacity-50 p-8 rounded shadow-md w-96 relative z-10 text-white">
+      <div className="bg-gray-950 bg-opacity-50 p-8 rounded shadow-md w-96 relative z-10 text-white">
         <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
 
         <form onSubmit={handleSave}>
@@ -171,7 +171,7 @@ const SignUpPage = () => {
           to="/login"
           className="block text-sm  font-semibold mt-4 hover:underline text-white"
         >
-          Have an account? <span className='text-black'>Login</span>
+          Have an account? <span className='text-white'>Login</span>
         </Link>
           </div>
         </form>

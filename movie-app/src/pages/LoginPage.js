@@ -46,7 +46,7 @@ const LoginPage = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center bg-contain md:bg-cover justify-center LoginPage-background relative bg-red-700"
+      className="min-h-screen flex items-center bg-contain md:bg-cover justify-center LoginPage-background relative bg-black"
       style={{
         backgroundImage: `url(${pic})`,
         // backgroundSize: 'contain',
@@ -54,7 +54,7 @@ const LoginPage = () => {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="bg-red-800 bg-opacity-50 p-8 rounded shadow-md w-96 relative z-10">
+      <div className="bg-gray-900 bg-opacity-50 p-8 rounded shadow-md w-96 relative z-10">
         <h2 className="text-2xl font-semibold mb-4 text-white">Login</h2>
         {loginStatus === 'success' && (
           <div className="text-green-600 mb-4">Login Successful</div>
@@ -110,7 +110,7 @@ const LoginPage = () => {
               to="/signup"
               className="block text-sm  font-semibold mt-4 hover:underline text-white"
             >
-              Don't have an account? <span className='text-black'>Register</span>
+              Don't have an account? <span className='text-white'>Register</span>
             </Link>
           </div>
         </form>
