@@ -1,0 +1,37 @@
+import React from 'react';
+import booksData from '../books.json'; // Assuming 'book.json' is in the same directory as your component
+
+interface Book {
+    id: string;
+    title: string;
+    author: string;
+    genre: string;
+    image?: string | null; // Make image property optional with a '?'
+    yearPublished: number;
+    checkedOut: boolean;
+    isPermanentCollection: boolean;
+    createdAt: string;
+  }
+  
+
+function BookApp() {
+  const data: Book[] = booksData; // Use the imported data directly
+
+  return (
+    <div>
+      <h1>My Book App</h1>
+      <ul>
+        {data.map((book: Book) => (
+          <li key={book.id}>
+            <h3>{book.title}</h3>
+            <p>Author: {book.author}</p>
+            <p>Genre: {book.genre}</p>
+            {book.image && <img src={book.image} alt={book.title} />}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default BookApp;
