@@ -149,7 +149,7 @@ const Navbar = ({ backgroundImage }) => {
         </NavLink>
 
         {user ? (
-         <div className="z-10 ">
+         <div className="z-20" onClick={toggleProfile}>
          <div className="cursor-pointer relative" onClick={toggleProfile}> 
            <img src={pic} className='w-[30px] h-[30px] object-cover rounded-[50%] overflow-hidden' alt="" />
          </div>

@@ -149,8 +149,8 @@ const MovieNavbar = () => {
         </NavLink>
 
         {user ? (
-         <div className="">
-         <div className="cursor-pointer relative" onClick={toggleProfile}> 
+         <div className="z-20" onClick={toggleProfile}>
+         <div className="cursor-pointer relative" > 
            <img src={pic} className='w-[30px] h-[30px] object-cover rounded-[50%] overflow-hidden' alt="" />
          </div>
 
