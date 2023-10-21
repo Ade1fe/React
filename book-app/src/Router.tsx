@@ -1,17 +1,34 @@
+
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Roots/Root";
-import Homepage from "./pages/WebPages/Homepage";
-import AboutUsPage from "./pages/AboutUs/AboutUsPage";
+import { ContactPage,Homepage,AboutUsPage, MangaPage, BookPage } from "./assets";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    children: [
-      { path: "home", element: <Homepage /> },
-      { path: "aboutus", element: <AboutUsPage /> },
-    ],
+  },
+  {
+    path: "/home",
+    element: <Homepage />,
+  },
+  {
+    path: "/aboutus",
+    element: <AboutUsPage />,
+  },
+  {
+    path: "/contactus",
+    element: <ContactPage />,
+  },
+  {
+    path: "/manga",
+    element: <MangaPage />,
+  },
+  {
+    path: "/books",
+    element: <BookPage />,
   },
 ]);
+
 
 export default Router;

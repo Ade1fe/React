@@ -18,7 +18,7 @@ function BookApp() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://reststop.randomhouse.com/resources/works/?start=0&max=3&expandLevel=1&search=Grisham"
+          'https://openlibrary.org/search.json?q=Grisham%20Christmas'
         );
 
         if (!response.ok) {

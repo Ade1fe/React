@@ -1,12 +1,12 @@
 import React from 'react'
 import { Mainlayout } from '../../assets'
 
-const AboutUsPage = () => {
+const ContactPage = () => {
   return (
     <Mainlayout>
-      about us
+      contact
     </Mainlayout>
   )
 }
 
-export default AboutUsPage
+export default ContactPage

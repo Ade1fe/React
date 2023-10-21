@@ -1,4 +1,4 @@
-import { Button, Spacer, useColorMode, Text, Box } from '@chakra-ui/react';
+import { Button, useColorMode, Text, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { useColorModeValue } from '@chakra-ui/react';
@@ -6,11 +6,11 @@ import { useColorModeValue } from '@chakra-ui/react';
 
 const Navbar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const bg = useColorModeValue('gray.400', 'gray.700')
+    const bg = useColorModeValue('green.100', 'gray.700')
   const color = useColorModeValue('white', 'white')
 
     return (
-        <Box as="header" p={4}
+        <Box as="header" px={4} py={2}
         display="flex"
         justifyContent="space-between"
         alignItems="center"
@@ -34,13 +34,21 @@ const Navbar = () => {
                         Home
                     </Link>
                 </Text>
-                <Spacer />
+                {/* <Spacer /> */}
                 <Link to="/aboutus" className='text-white hover:underline'>
                     About
                 </Link>
-                <Spacer />
-                <Link to="/" className='text-white hover:underline'>
+                {/* <Spacer /> */}
+                <Link to="/contactus" className='text-white hover:underline'>
                     Contact
+                </Link>
+
+                <Link to="/manga" className='text-white hover:underline'>
+                    Manga
+                </Link>
+
+                <Link to="/books" className='text-white hover:underline'>
+                    Books
                 </Link>
            
             </Box>

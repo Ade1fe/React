@@ -1,12 +1,12 @@
 import React from 'react'
 import { Mainlayout } from '../../assets'
 
-const AboutUsPage = () => {
+const MangaPage = () => {
   return (
     <Mainlayout>
-      about us
+      Manga
     </Mainlayout>
   )
 }
 
-export default AboutUsPage
+export default MangaPage
