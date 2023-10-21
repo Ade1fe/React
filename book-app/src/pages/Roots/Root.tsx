@@ -1,6 +1,6 @@
 
 import { Box } from "@chakra-ui/react";
-import { Navbar } from "../../assets";
+import { IconAndTexts, Navbar } from "../../assets";
 import Hero from "../../components/Holders/Hero";
 
 const Root = () => {
@@ -9,7 +9,7 @@ const Root = () => {
       <Navbar />
       
       <Hero />
-     
+     <IconAndTexts />
       
     </Box>
   );

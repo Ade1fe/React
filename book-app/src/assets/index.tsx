@@ -8,3 +8,4 @@ export {default as BookPage} from './../pages/Book/BookPage';
 export {default as Mainlayout} from './../layouts/Mainlayout';
 export {default as HeroImg} from  './../components/Resueables/HeroImg';
 export {default as HeroText} from  './../components/Resueables/HeroText';
+export {default as IconAndTexts} from  './../components/Resueables/IconAndTexts';

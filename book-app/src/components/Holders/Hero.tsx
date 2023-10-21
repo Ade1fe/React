@@ -5,7 +5,7 @@ import HeroText from "../Resueables/HeroText"
 
 const Hero = () => {
   return (
-    <Box display={["grid", "grid","flex"]} 
+    <Box display={["grid", "grid","flex"]} as="section"
     justifyContent="center" alignItems="center"
     mt={10}>
         <HeroImg />
