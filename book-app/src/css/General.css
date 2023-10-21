@@ -1,0 +1,56 @@
+
+  
+  /* Add this CSS to your stylesheets */
+  .slide-in-menu {
+    transform: translateX(100%);
+    animation: slide-in 0.3s ease forwards;
+    -webkit-animation: slide-in 0.3s ease forwards;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      -o-transform: translateX(100%);
+  }
+    100% {
+      transform: translateX(0);
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+  }
+  }
+  /* Add this CSS to your stylesheets */
+  .menu-item {
+    transform: translateX(100%);
+    animation: slide-in 0.9s ease forwards;
+    -webkit-animation: slide-in 0.9s ease forwards;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+      -webkit-transform: translateX(100%);
+      -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      -o-transform: translateX(100%);
+  }
+    100% {
+      transform: translateX(0);
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+  }
+  }

@@ -3,6 +3,7 @@ import {
     Text,
     Box,
     Button,
+    useBreakpointValue ,
   } from '@chakra-ui/react';
   import { Link } from 'react-router-dom';
   import { FaSun, FaMoon } from 'react-icons/fa';
@@ -10,15 +11,17 @@ import {
   import { BiMenuAltRight } from 'react-icons/bi';
   import {AiOutlineClose} from "react-icons/ai"
   import { useState } from 'react';
+  import "../../css/General.css"
 
 
   
   
   const Navbar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const bg = useColorModeValue('green.100', 'gray.700');
-    const color = useColorModeValue('white', 'white');
-  
+    const bg = useColorModeValue('white', 'black.200');
+    const color = useColorModeValue('black', 'white');
+    const mainColor = useColorModeValue('white', 'white');
+    const boxShadow = useBreakpointValue({ base: '0 2px 4px rgba(0, 0, 0, 0.1)', md: 'none' });
     const [isMenuOpen, setIsMenuOpen] = useState(false);
   
     const toggleMenu = () => {
@@ -28,14 +31,14 @@ import {
     return (
       <Box
         as="header"
+        boxShadow='base'
         pos="relative"
         px={4}
         py={2}
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg={bg}
-        color={color}
+        
       >
         <Text fontSize={["md", "lg", "xl"]} fontWeight="bold">
           <Link to="/">
@@ -51,12 +54,6 @@ import {
           <Button
             onClick={toggleColorMode}
             ml={4}
-            bg={bg}
-            color={color}
-            px={3}
-            py={1}
-            borderRadius={0}
-            _hover={{ color: 'green.200' }}
           >
             {colorMode === 'light' ? (
               <>
@@ -75,6 +72,8 @@ import {
             onClick={toggleMenu}
             display={{ sm: 'block', md: 'none' }}
             ml={4}
+            className='slide-in-menu'
+            overflow="hidden"
           >
             {isMenuOpen ? (
                 <AiOutlineClose size={30} />
@@ -93,39 +92,55 @@ import {
           left="0"
           width={{ base: "100%", md: "fit-content" }}
           p={["5", "5", "0"]}
-          bg={bg}
+        bg={bg}
+        color={color}
           gap={[5,5,10]}
-          color={color}
+          style={{
+            boxShadow: boxShadow,
+          }}
+        
+          className='slide-in-menu'
         >
-         <Text  _hover={{ color: 'green.200' }}>  
+         <Text  as="h3" fontSize={["sm","sm","md"]} className="menu-item" _hover={{ color: 'green.200' }} >  
             <Link to="/home" >
               Home
             </Link>
           </Text >
 
-          <Text  _hover={{ color: 'green.200' }}>  
-          <Link to="/aboutus" >
-            About
-          </Link >
-          </Text>
-
-          <Text  _hover={{ color: 'green.200' }}>  
-         <Link to="/contactus" >
-            Contact
-          </Link >
-         </Text>
-
-         <Text  _hover={{ color: 'green.200' }}>  
+         <Text  as="h3" fontSize={["sm","sm","md"]} className="menu-item" _hover={{ color: 'green.200' }} >  
          <Link to="/manga" >
             Manga
           </Link >
          </Text>
 
-        <Text  _hover={{ color: 'green.200' }}>  
+        <Text  as="h3" fontSize={["sm","sm","md"]} className="menu-item" _hover={{ color: 'green.200' }} >  
               <Link to="/books" >
             Books
           </Link>
         </Text>
+
+        <Text  as="h3" fontSize={["sm","sm","md"]} className="menu-item" _hover={{ color: 'green.200' }} >  
+          <Link to="/aboutus" >
+            About
+          </Link >
+          </Text>
+
+          <Text  as="h3" fontSize={["sm","sm","md"]} className="menu-item" _hover={{ color: 'green.200' }} >  
+         <Link to="/contactus" >
+            Contact
+          </Link >
+         </Text>
+
+        <Text  as="h3" fontSize={["sm","sm","md"]} color={mainColor}
+         px={2} py={1} w="fit-content" borderRadius={3} mx="auto" bg={"green.100"}
+        className="menu-item" _hover={{ color: 'green.100' , background: 'transparent' , borderWidth: '2px',
+        fontWeight:'bold',
+        borderColor: 'green.100',}} >  
+              <Link to="/books" >
+            Login
+          </Link>
+        </Text>
+
         </Box>
       </Box>
     );
