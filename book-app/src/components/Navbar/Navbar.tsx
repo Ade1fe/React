@@ -54,6 +54,7 @@ import {
           <Button
             onClick={toggleColorMode}
             ml={4}
+            size='sm'
           >
             {colorMode === 'light' ? (
               <>
@@ -87,6 +88,7 @@ import {
         <Box
           display={{ base: isMenuOpen ? "grid" : "none", md: "flex" }}
           textAlign="center"
+          alignItems="center"
           pos={{ base: "absolute", sm: "absolute", md: "static" }}
           top={{ base: "14", md: "0" }}
           left="0"
@@ -132,9 +134,10 @@ import {
          </Text>
 
         <Text  as="h3" fontSize={["sm","sm","md"]} color={mainColor}
-         px={2} py={1} w="fit-content" borderRadius={3} mx="auto" bg={"green.100"}
-        className="menu-item" _hover={{ color: 'green.100' , background: 'transparent' , borderWidth: '2px',
+         px="2" py="" w="fit-content" borderRadius={3} mx="auto" bg={"green.100"} borderWidth='2px'
+        className="menu-item" _hover={{ color: 'green.100' , background: 'transparent' , 
         fontWeight:'bold',
+      
         borderColor: 'green.100',}} >  
               <Link to="/books" >
             Login

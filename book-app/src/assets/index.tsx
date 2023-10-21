@@ -6,3 +6,5 @@ export {default as ContactPage} from './../pages/Contact/ContactPage';
 export {default as MangaPage} from './../pages/Manga/MangaPage';
 export {default as BookPage} from './../pages/Book/BookPage';
 export {default as Mainlayout} from './../layouts/Mainlayout';
+export {default as HeroImg} from  './../components/Resueables/HeroImg';
+export {default as HeroText} from  './../components/Resueables/HeroText';
