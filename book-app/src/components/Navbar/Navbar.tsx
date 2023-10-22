@@ -23,6 +23,8 @@ import {
     const mainColor = useColorModeValue('white', 'white');
     const boxShadow = useBreakpointValue({ base: '0 2px 4px rgba(0, 0, 0, 0.1)', md: 'none' });
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const bgs = useColorModeValue('#386641', 'gray.600');
+    const hovers = useColorModeValue('#b7e4c7', 'gray.200');
   
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
@@ -134,8 +136,8 @@ import {
          </Text>
 
         <Text  as="h3" fontSize={["sm","sm","md"]} color={mainColor}
-         px="2" py="" w="fit-content" borderRadius={3} mx="auto" bg={"green.100"} borderWidth='2px'
-        className="menu-item" _hover={{ color: 'green.100' , background: 'transparent' , 
+         px="2" py="" w="fit-content" borderRadius={3} mx="auto" bg={bgs} 
+        className="menu-item" _hover={{ bg: hovers , color: 'black',
         fontWeight:'bold',
       
         borderColor: 'green.100',}} >  

@@ -3,6 +3,8 @@ import { FaDownload, FaBus } from "react-icons/fa";
 import {RiSettings2Line} from "react-icons/ri";
 import {BsCreditCard} from "react-icons/bs";
 import React from "react";
+import { useColorModeValue } from '@chakra-ui/react';
+
 
 interface IconAndTextProps {
   icon: React.ReactNode;
@@ -11,20 +13,30 @@ interface IconAndTextProps {
 }
 
 const IconAndText: React.FC<IconAndTextProps> = ({ icon, title, description }) => {
+  const col = useColorModeValue('#40916c', 'gray.600');
+  const colo = useColorModeValue('#000', '#fff');
+
+
   return (
-    <Box>
+    <Box p='3' shadow='base'>
       <Box display="flex" gap="3" alignItems="center">
-       <Box bg='gray.600' p='2' borderRadius='3'> {icon}</Box>
-        <Text fontSize={["sm","md"]} >{title}</Text>
+       <Box bg={col} p='2' borderRadius='3'> {icon}</Box>
+        <Text fontSize={["sm","md"]} color={colo} fontWeight='semibold'>{title}</Text>
       </Box>
-      <Text fontSize='sm'>{description}</Text>
+      <Text fontSize='sm' color={colo}>{description}</Text>
     </Box>
   );
 };
 
 export const IconAndTexts: React.FC = () => {
+  
+  const bg = useColorModeValue('#52b788', 'green.200');
+ 
+  // const color = useColorModeValue('white', 'white');
+  
   return (
-    <Box display="grid"  color='white' px='3' mx='auto'  py='5' mt='8' bg='gray.500' alignItems='center' gap={3}  gridTemplateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}>
+    <Box display="grid"  color='white' px='3' mx='auto'  py='5' mt={['16', '14', '12']} 
+    bg={bg} alignItems='center' gap={3}  gridTemplateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}>
       
       <IconAndText
         icon={<FaBus />}
@@ -41,7 +53,7 @@ export const IconAndTexts: React.FC = () => {
         <IconAndText
         icon={<RiSettings2Line />}
         title="Best Quality"
-        description=" Experience top-notch quality and performance."
+        description=" Experience quality and performance."
       />
 
         <IconAndText

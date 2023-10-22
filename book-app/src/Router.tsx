@@ -1,7 +1,6 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Roots/Root";
-import { ContactPage,Homepage,AboutUsPage, MangaPage, BookPage } from "./assets";
+import { ContactPage, Homepage, AboutUsPage, MangaPage, BookPage, BookDetailPage } from "./assets";
 
 const Router = createBrowserRouter([
   {
@@ -28,7 +27,10 @@ const Router = createBrowserRouter([
     path: "/books",
     element: <BookPage />,
   },
+  {
+    path: "/bookdetail/:bookKey",
+    element: <BookDetailPage />,
+  }
 ]);
-
 
 export default Router;

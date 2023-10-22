@@ -1,0 +1,30 @@
+// BookApp.js
+import { useState } from 'react';
+import { useBookFetcher } from './BookFetcher';
+import BookList from './BookList';
+
+function BookApp() {
+  const [searchQuery, setSearchQuery] = useState('Grisham');
+  const { data, loading, error } = useBookFetcher(searchQuery);
+
+  return (
+    <div>
+    
+      <input
+        type="text"
+        placeholder="Search for books"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <BookList books={data} />
+      )}
+    </div>
+  );
+}
+
+export default BookApp;

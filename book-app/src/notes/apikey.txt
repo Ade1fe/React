@@ -1,4 +1,69 @@
-apikey for zoho  api
-1000.X30TC166MSB8HQVEST3HHK4P9V6UVI     client id
+import  { useState, useEffect } from 'react';
+import { Box } from "@chakra-ui/react"
 
-740dad1eed31272a6b6e0b480cac2343710b987ce0    client secret 
+interface Book {
+  key: string; // Consider changing the property name to 'key' to match Open Library's API response
+  title: string;
+  author_name: string[] | undefined;
+  subject: string[] | undefined;
+  cover_i: number | undefined;
+}
+
+function BookApp() {
+  const [data, setData] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'https://openlibrary.org/search.json?q=Grisham'
+        );
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const json = await response.json();
+        setData(json.docs || []);
+        setLoading(false);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError('An unknown error occurred');
+        }
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <Box as='section'>
+      <h1>My Book App</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <ul>
+          {data.map((book) => (
+            <Box key={book.key} as='li' borderWidth='2px' >
+              <h3>{book.title}</h3>
+              <p>Author: {book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
+              <p>Genre: {book.subject ? book.subject.join(', ') : 'Unknown'}</p>
+              {book.cover_i && (
+                <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} />
+              )}
+            </Box>
+          ))}
+        </ul>
+      )}
+    </Box>
+  );
+}
+
+export default BookApp;

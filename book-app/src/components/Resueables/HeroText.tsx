@@ -1,7 +1,14 @@
 import { Box, Button, Text } from "@chakra-ui/react"
 import { FaArrowAltCircleRight } from "react-icons/fa"
+import { useColorModeValue } from '@chakra-ui/react';
+
 
 const HeroText = () => {
+  const bg = useColorModeValue('#386641', 'gray.600');
+  const hovers = useColorModeValue('#b7e4c7', 'gray.200');
+  const colorss = useColorModeValue('#fff', '#fff');
+  
+
   return (
     <Box px="5">
       <Text as="h1" fontSize={["lg", "x-large", "xx-large"]} fontWeight="bold" textTransform="capitalize">
@@ -14,8 +21,9 @@ const HeroText = () => {
         Discuss
       </Text>
 
-      <Button rightIcon={<FaArrowAltCircleRight />}  fontWeight='bold' color='white' background='gray.600'   colorScheme='gray.600' variant='outline' size='sm' mt="3"
-      _hover={{ color: 'green.100' , background: 'gray.200' ,
+      <Button rightIcon={<FaArrowAltCircleRight />}  fontWeight='bold'  color={colorss} background={bg}  
+       colorScheme={hovers} variant='outline' size='sm' mt="3"
+      _hover={{background: hovers , color: 'black'
      }}
       >
     Get Started

@@ -1,6 +1,6 @@
 
 import { Box } from "@chakra-ui/react";
-import { IconAndTexts, Navbar } from "../../assets";
+import { BookApp,  IconAndTexts, Navbar } from "../../assets";
 import Hero from "../../components/Holders/Hero";
 
 const Root = () => {
@@ -10,6 +10,8 @@ const Root = () => {
       
       <Hero />
      <IconAndTexts />
+  
+     <BookApp />
       
     </Box>
   );

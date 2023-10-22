@@ -9,3 +9,6 @@ export {default as Mainlayout} from './../layouts/Mainlayout';
 export {default as HeroImg} from  './../components/Resueables/HeroImg';
 export {default as HeroText} from  './../components/Resueables/HeroText';
 export {default as IconAndTexts} from  './../components/Resueables/IconAndTexts';
+// export {default as CarouselOne} from  './../components/Resueables/CarouselOne';
+export {default as BookApp} from '../components/Resueables/BookApp'
+export {default as BookDetailPage} from './../pages/Details/BookDetailPage';

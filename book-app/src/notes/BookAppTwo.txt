@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
+import { Box } from "@chakra-ui/react"
 
 interface Book {
   key: string; // Consider changing the property name to 'key' to match Open Library's API response
@@ -41,7 +42,7 @@ function BookApp() {
   }, []);
 
   return (
-    <div>
+    <Box as='section'>
       <h1>My Book App</h1>
       {loading ? (
         <p>Loading...</p>
@@ -50,18 +51,18 @@ function BookApp() {
       ) : (
         <ul>
           {data.map((book) => (
-            <li key={book.key}>
+            <Box key={book.key} as='li' borderWidth='2px' >
               <h3>{book.title}</h3>
               <p>Author: {book.author_name ? book.author_name.join(', ') : 'Unknown'}</p>
               <p>Genre: {book.subject ? book.subject.join(', ') : 'Unknown'}</p>
               {book.cover_i && (
                 <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} alt={book.title} />
               )}
-            </li>
+            </Box>
           ))}
         </ul>
       )}
-    </div>
+    </Box>
   );
 }
 
