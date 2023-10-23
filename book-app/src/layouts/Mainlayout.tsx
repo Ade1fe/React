@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Navbar } from '../assets';
+import { Footer, Navbar } from '../assets';
 
 interface MainlayoutProps {
   children: ReactNode;
@@ -10,6 +10,7 @@ const Mainlayout: React.FC<MainlayoutProps> = ({ children }) => {
     <div>
       <Navbar />
       <div className="">{children}</div>
+      <Footer />
     </div>
   );
 }

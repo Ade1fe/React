@@ -8,7 +8,7 @@ function BookApp() {
   const { data, loading, error } = useBookFetcher(searchQuery);
 
   return (
-    <Box mt='10'>
+    <Box mt='16'>
       <Text as='h1' fontWeight='bold' px='4' mb='2' fontSize={['lg', 'xl', 'xx-large']}>Books By Grisham</Text>
       {loading ? (
         <p>Loading...</p>

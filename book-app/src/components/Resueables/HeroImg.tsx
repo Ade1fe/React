@@ -1,20 +1,21 @@
-import { Box,Image } from "@chakra-ui/react"
-import demoPic from "../../assets/images/27740-removebg-preview.png"
+import { Box, Image } from "@chakra-ui/react";
 
-
-const HeroImg = () => {
-  return (
-    <Box>
-       <Image
-    boxSize={['250px', '280px', '300px']}
-    objectFit='contain'
-    src={demoPic}
-    alt='Dan Abramov'
-    mx="auto"
-  />
-    </Box>
-  )
+interface HeroImgProps {
+  pic: string;
 }
 
-export default HeroImg
+const HeroImg = ({ pic }: HeroImgProps) => {
+  return (
+    <Box>
+      <Image
+        boxSize={['250px', '280px', '300px']}
+        objectFit='contain'
+        src={pic}
+        alt='Dan Abramov'
+        mx="auto"
+      />
+    </Box>
+  );
+}
 
+export default HeroImg;
