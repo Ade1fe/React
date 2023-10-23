@@ -1,0 +1,36 @@
+import React from 'react';
+import { useMangaFetcher } from './useMangaFetcher';
+
+// Define the MangaData type
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface MangaData {
+  title: string;
+  chapters: number;
+  // Add other properties as needed
+}
+
+const MangaFetcher = () => {
+  const mangaId = '22'; // Convert the number to a string
+  const { mangaData, loading, error } = useMangaFetcher(mangaId);
+
+  return (
+    <div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <div>
+          <h1>Manga Information</h1>
+          <ul>
+            <li>Title: {mangaData?.title}</li>
+            <li>Chapters: {mangaData?.chapters}</li>
+            {/* Add more manga information here */}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MangaFetcher;

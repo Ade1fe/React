@@ -1,4 +1,5 @@
 
+// import MangaFetcher from './../components/Resueables/MangaFetcher';
 export { default as Navbar } from "../components/Navbar/Navbar"
 export { default as Homepage} from "../pages/Home/Homepage"
 export {default as AboutUsPage} from "../pages/AboutUs/AboutUsPage"

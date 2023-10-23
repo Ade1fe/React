@@ -1,12 +1,32 @@
+// import { Mainlayout } from "../../assets"
+// import MangaComponent from "../../components/Resueables/MangaComponent"
 
-import { Mainlayout } from '../../assets'
+// const MangaPage = () => {
+//   return (
+//     <Mainlayout>
+//      <MangaComponent mangaId={33} /> 
+//     </Mainlayout>
+//   )
+// }
 
-const MangaPage = () => {
+// export default MangaPage
+
+
+import React from 'react';
+import { useMangaData } from './../../components/Resueables/useMangaData';
+import MangaDetails from './../../components/Resueables/MangaDetails';
+import { Mainlayout } from '../../assets';
+
+const MangaPage: React.FC = () => {
+  const mangaId = 1; // Replace with the desired manga ID
+  const { manga, loading } = useMangaData(mangaId);
+
   return (
     <Mainlayout>
-      Manga
+      <MangaDetails manga={manga} loading={loading} />
     </Mainlayout>
-  )
-}
+  );
+};
 
-export default MangaPage
+export default MangaPage;
+
