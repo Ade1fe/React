@@ -1,5 +1,4 @@
 
-// import MangaFetcher from './../components/Resueables/MangaFetcher';
 export { default as Navbar } from "../components/Navbar/Navbar"
 export { default as Homepage} from "../pages/Home/Homepage"
 export {default as AboutUsPage} from "../pages/AboutUs/AboutUsPage"
@@ -15,3 +14,11 @@ export {default as BookApp} from '../components/Resueables/BookApp'
 export {default as HeroCheck} from '../components/Resueables/HeroCheck';
 export {default as BookDetailPage} from './../pages/Details/BookDetailPage';
 export {default as Footer} from './../components/Resueables/Footer ';
+export {default as AnimeOne } from "./../components/Holders/AnimeOne"
+export {default as Carousels } from './../components/Resueables/Carousels';
+export {default as Advert} from './../components/Resueables/Advert';
+export {default as DemoText} from './../components/Resueables/DemoText';
+export {default as AnimeTwo } from "./../components/Holders/AnimeTwo"
+export {default as AnimeThree } from "./../components/Holders/AnimeThree"
+export {default as AnimeFour } from "./../components/Holders/AnimeFour"
+export {default as AnimeFive } from "./../components/Holders/AnimeFive"

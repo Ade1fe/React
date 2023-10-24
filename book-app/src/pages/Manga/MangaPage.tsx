@@ -1,32 +1,26 @@
-// import { Mainlayout } from "../../assets"
-// import MangaComponent from "../../components/Resueables/MangaComponent"
 
-// const MangaPage = () => {
-//   return (
-//     <Mainlayout>
-//      <MangaComponent mangaId={33} /> 
-//     </Mainlayout>
-//   )
-// }
+import { Box , useColorModeValue} from '@chakra-ui/react'
+import { Advert, AnimeFive, AnimeFour, AnimeOne, AnimeThree, AnimeTwo, Carousels, DemoText, Mainlayout } from '../../assets'
 
-// export default MangaPage
-
-
-import React from 'react';
-import { useMangaData } from './../../components/Resueables/useMangaData';
-import MangaDetails from './../../components/Resueables/MangaDetails';
-import { Mainlayout } from '../../assets';
-
-const MangaPage: React.FC = () => {
-  const mangaId = 2; // Replace with the desired manga ID
-  const { manga, loading } = useMangaData(mangaId);
+const MangaPage = () => {
+  const bgs = useColorModeValue('#f1f1f1', 'gray.700');
 
   return (
     <Mainlayout>
-      <MangaDetails manga={manga} loading={loading} />
+      <Carousels />
+      <AnimeOne />
+      <Box display={['grid', 'flex', 'flex']} justifyContent='center' gap={4} alignItems='center' px='4' mt={['12',14,20]}>
+      <Advert />
+      <DemoText />
+      </Box>
+      <Box bg={bgs} pb={3}>
+      <AnimeTwo />
+      <AnimeThree />
+      </Box>
+      <AnimeFour />
+      <AnimeFive />
     </Mainlayout>
-  );
-};
+  )
+}
 
-export default MangaPage;
-
+export default MangaPage

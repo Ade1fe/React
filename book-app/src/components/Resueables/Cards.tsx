@@ -17,11 +17,11 @@ const Cards = (props: CardsProps) => {
   
 
   return (
-    <Box w='200px' cursor='pointer'>
+    <Box w='200px' cursor='pointer' _hover={{shadow: 'xl'}} pb='3' mb='3'>
       <Image w='100%' bg={bg} h={'250px'}  src={pic} objectFit='cover' />
       <Box px='1'>
-        <Text as='h1' fontWeight='bold' fontSize={['md']}>{title}</Text>
-        <Text as='h3' color={bgs} fontWeight='semibold' fontSize={['md']}>{author}</Text>
+        <Text as='h1'noOfLines={1} fontWeight='bold' fontSize={['md']}>{title}</Text>
+        <Text as='h3' noOfLines={1} color={bgs} fontWeight='semibold' fontSize={['md']}>{author}</Text>
         <Text as='p' noOfLines={[2, 2, 2]} fontSize={['sm']}>{genres}</Text>
         {/* <Text as='p' fontSize={['lg']}>{id}</Text> */}
         {/* <Text as='p' fontSize={['lg']}>{bibKey}</Text> */}
