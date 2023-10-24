@@ -18,7 +18,7 @@ import MangaDetails from './../../components/Resueables/MangaDetails';
 import { Mainlayout } from '../../assets';
 
 const MangaPage: React.FC = () => {
-  const mangaId = 1; // Replace with the desired manga ID
+  const mangaId = 2; // Replace with the desired manga ID
   const { manga, loading } = useMangaData(mangaId);
 
   return (
