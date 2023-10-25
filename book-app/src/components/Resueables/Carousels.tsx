@@ -4,12 +4,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import pic1 from "../../assets/images/img1-PhotoRoom.png-PhotoRoom.png"
-import pic2 from "../../assets/images/img2-PhotoRoom.png-PhotoRoom.png"
+
 
 import { Pagination } from 'swiper/modules';
 
-export default function Carousels() {
+interface CarouselsProps {
+  img1: string;
+  img2: string
+}
+
+export default function Carousels({img1, img2} : CarouselsProps) {
+  
   return (
     <>
       <Swiper
@@ -20,10 +25,10 @@ export default function Carousels() {
         className="mySwiper"
       >
         <SwiperSlide>
-            <img src={pic1} alt="" />
+            <img src={img1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={pic2} alt="" />
+            <img src={img2} alt="" />
         </SwiperSlide>
        
       </Swiper>

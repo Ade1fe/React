@@ -25,6 +25,7 @@ const useBookDetails = (bookKey: string) => {
       .then((response) => response.json())
       .then((data: BookDetail) => {
         setBookData(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error('Error fetching book details:', error);

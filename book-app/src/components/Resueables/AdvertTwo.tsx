@@ -9,7 +9,7 @@ const AdvertTwo = () => {
 <Image src={pic} w={['100px', '150px']} h='auto' mt='-24'/>
 <Box fontSize={["sm", 'md']}>
   <Text as='h1' fontSize={['lg', 'x-large', 'xx-large']} fontWeight='bold'>Jujutsu Kaisen</Text>
-  <Text noOfLines={[4,5,null]}>The series follows Yuji Itadori, a high school
+  <Text noOfLines={[3,4,null]}>The series follows Yuji Itadori, a high school
    student who stumbles upon a cursed object containing a powerful Curse, 
    a malevolent spirit. In an attempt to save his friends, Yuji consumes the object,
     making him the host of this malevolent force. This act forces him to join the Tokyo
