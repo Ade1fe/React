@@ -22,3 +22,5 @@ export {default as AnimeTwo } from "./../components/Holders/AnimeTwo"
 export {default as AnimeThree } from "./../components/Holders/AnimeThree"
 export {default as AnimeFour } from "./../components/Holders/AnimeFour"
 export {default as AnimeFive } from "./../components/Holders/AnimeFive"
+export {default as SignInPage} from './../pages/SignIn/SignInPage';
+export {default as AdvertTwo} from './../components/Resueables/AdvertTwo';

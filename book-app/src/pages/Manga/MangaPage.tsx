@@ -1,6 +1,6 @@
 
 import { Box , useColorModeValue} from '@chakra-ui/react'
-import { Advert, AnimeFive, AnimeFour, AnimeOne, AnimeThree, AnimeTwo, Carousels, DemoText, Mainlayout } from '../../assets'
+import { Advert, AdvertTwo, AnimeFive, AnimeFour, AnimeOne, AnimeThree, AnimeTwo, Carousels, DemoText, Mainlayout } from '../../assets'
 
 const MangaPage = () => {
   const bgs = useColorModeValue('#f1f1f1', 'gray.700');
@@ -19,6 +19,7 @@ const MangaPage = () => {
       </Box>
       <AnimeFour />
       <AnimeFive />
+      <AdvertTwo />
     </Mainlayout>
   )
 }

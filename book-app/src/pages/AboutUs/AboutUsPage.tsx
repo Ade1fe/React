@@ -4,7 +4,7 @@ import { Mainlayout } from '../../assets'
 const AboutUsPage = () => {
   return (
     <Mainlayout>
-      about us
+      about us.
     </Mainlayout>
   )
 }
