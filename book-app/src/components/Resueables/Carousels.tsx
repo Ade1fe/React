@@ -22,7 +22,7 @@ export default function Carousels({img1, img2} : CarouselsProps) {
           dynamicBullets: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper mybox"
       >
         <SwiperSlide>
             <img src={img1} alt="" />
