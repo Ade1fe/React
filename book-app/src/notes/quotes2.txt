@@ -1,0 +1,41 @@
+import { Box, Text } from '@chakra-ui/react';
+import axios from 'axios';
+import { useEffect, useState } from "react";
+
+type Quote = {
+  text: string;
+  a: string; // Author
+  c: string; // Character count
+  q: string;
+  
+};
+
+const DiaQuotes = () => {
+  const [quotes, setQuotes] = useState<Quote[]>([]); 
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://zenquotes.io/api/quotes/');
+      const data = response.data;
+      setQuotes(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+//   const first5Quotes = quotes.slice(7, 12);
+
+  return (
+    <Box>
+      {quotes.map((quote, index) => (
+        <Text key={index}>{quote.q} {quote.a}  </Text>
+      ))}
+    </Box>
+  );
+}
+
+export default DiaQuotes;

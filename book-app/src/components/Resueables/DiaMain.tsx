@@ -50,7 +50,7 @@ const DiaMain = () => {
         {dateTimeInfo.greeting}, Damilola
       </Text>
 
-      <Text bg={bgs}  mt={[3,4,5]} fontStyle={'bold'} mx={'auto'} borderRadius={'10px'} shadow={'md'}
+      <Text bg={bgs}  mt={[3,4,5]} fontWeight={'bold'} mx={'auto'} borderRadius={'10px'} shadow={'md'}
        w={'fit-content'} fontSize={['13px','14px','15px']} px={3}  py={2}>Start Today's Journal</Text>
     </Box>
   );
