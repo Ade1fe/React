@@ -1,8 +1,8 @@
 
 export { default as Navbar } from "../components/Navbar/Navbar"
 export { default as Homepage} from "../pages/Home/Homepage"
-export {default as AboutUsPage} from "../pages/AboutUs/AboutUsPage"
-export {default as ContactPage} from './../pages/Contact/ContactPage';
+export {default as WritePage} from "../pages/Write/WritePage"
+export {default as SearchPage} from './../pages/Search/SearchPage';
 export {default as MangaPage} from './../pages/Manga/MangaPage';
 export {default as BookPage} from './../pages/Book/BookPage';
 export {default as Mainlayout} from './../layouts/Mainlayout';
@@ -28,3 +28,4 @@ export {default as pic1} from "./images/img2-PhotoRoom.png-PhotoRoom.png"
 export {default as pic2} from "./images/img1-PhotoRoom.png-PhotoRoom.png"
 export {default as pic3} from "./images/img3-PhotoRoom.png-PhotoRoom.png"
 export {default as pic4} from "./images/img4-PhotoRoom.png-PhotoRoom.png"
+export {default as DiaryEntry} from "../components/Resueables/DiaryEntry"

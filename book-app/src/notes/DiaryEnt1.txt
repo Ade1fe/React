@@ -1,0 +1,60 @@
+import { useState, ChangeEvent } from 'react';
+
+function DiaryEntry() {
+  const [entries, setEntries] = useState<{ category: string, content: string }[]>([]);
+  const [currentEntry, setCurrentEntry] = useState<{ category: string, content: string }>({
+    category: 'personal', // Default category
+    content: '',
+  });
+
+  const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCurrentEntry({ ...currentEntry, category: e.target.value });
+  };
+
+  const handleEntryChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCurrentEntry({ ...currentEntry, content: e.target.value });
+  };
+
+  const handleSaveEntry = () => {
+    setEntries([...entries, currentEntry]);
+    setCurrentEntry({ category: 'personal', content: '' }); // Reset the currentEntry
+  };
+
+  const handleDeleteEntry = (index: number) => {
+    const updatedEntries = [...entries];
+    updatedEntries.splice(index, 1);
+    setEntries(updatedEntries);
+  };
+
+  return (
+    <div>
+      <h2>Diary Entry</h2>
+      <select value={currentEntry.category} onChange={handleCategoryChange}>
+        <option value="personal">Personal</option>
+        <option value="work">Work</option>
+        <option value="business">Business</option>
+        <option value="important">Important</option>
+      </select>
+      <textarea
+        rows={10}
+        cols={50}
+        placeholder="Write your entry here..."
+        value={currentEntry.content}
+        onChange={handleEntryChange}
+      />
+
+      <button onClick={handleSaveEntry}>Save</button>
+
+      <ul>
+        {entries.map((entry, index) => (
+          <li key={index}>
+            <strong>{entry.category}:</strong> {entry.content}
+            <button onClick={() => handleDeleteEntry(index)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default DiaryEntry;

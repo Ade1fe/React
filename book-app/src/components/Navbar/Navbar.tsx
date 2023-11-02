@@ -145,24 +145,24 @@ const Navbar = () => {
         <Text as="h3" fontSize={["sm", "sm", "md"]} className="menu-item" _hover={{ color: 'green.200' }}>
         <NavLink
          
-         to='/aboutus'
+         to='/search'
          className={`menu-item ${
-           window.location.pathname === '/aboutus' ? "" : ''
+           window.location.pathname === '/search' ? "" : ''
          }`}
        >
-         aboutus
+         search
        </NavLink>
         </Text>
 
         <Text as="h3" fontSize={["sm", "sm", "md"]} className="menu-item" _hover={{ color: 'green.200' }}>
         <NavLink
          
-         to='/contactus'
+         to='/write'
          className={`menu-item ${
-           window.location.pathname === '/contactus' ? "" : ''
+           window.location.pathname === '/write' ? "" : ''
          }`}
        >
-         contactus
+         write
        </NavLink>
         </Text>
 
