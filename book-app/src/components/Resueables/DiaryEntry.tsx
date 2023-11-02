@@ -58,7 +58,7 @@ const DiaryEntry = () => {
     <Box mt={[10,12,14]}>
 
 <Swiper
-        slidesPerView={10.4}
+        slidesPerView={11}
         spaceBetween={10}
         pagination={{
           clickable: true,

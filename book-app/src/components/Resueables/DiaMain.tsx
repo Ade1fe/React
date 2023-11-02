@@ -41,7 +41,7 @@ const DiaMain = () => {
   const dateTimeInfo = getCurrentDateTime();
 
   return (
-    <Box>
+    <Box mt={[5,8,"16"]}>
         <Text as='h3' fontWeight={'semibold'} textAlign={'center'} p={2}
         fontSize={['10px','12px','14px']}>{dateTimeInfo.date}</Text>
 

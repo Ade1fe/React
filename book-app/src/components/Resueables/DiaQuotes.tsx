@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,8 @@ type Quote = {
 };
 
 const DiaQuotes = () => {
+    const bgs = useColorModeValue('#f1f1f1', 'gray.700');
+    const bg = useColorModeValue('#f2f2f2', 'gray.900');
   const [quotes, setQuotes] = useState<Quote[]>([]);
 
   const fetchData = async () => {
@@ -38,15 +40,15 @@ const DiaQuotes = () => {
   // Split quotes into groups of 3
   const groupedQuotes = chunkArray(quotes, 4);
 
-  const first5Quotes = groupedQuotes.slice(0, 3);
+  const first5Quotes = groupedQuotes.slice(0, 6);
 
   return (
-   <Box>
+   <Box bg={bg} px={2} py={9} mt={[5,9,12]}>
    <Text fontSize={['16px','17px','18px']} fontWeight={'bold'}> October 2023</Text>
 
-    <Box>
+    <Box display={'grid'}  gridTemplateColumns={['1fr', '1fr 1fr']} gap={4}>
       {first5Quotes.map((group, groupIndex) => (
-        <Box key={groupIndex} border="2px solid" w='fit-content' p={2} my={2} borderRadius={'10px'}>
+        <Box key={groupIndex} shadow={'sm'} bg={bgs} p={2}  borderRadius={'10px'}>
           {group.map((quote, index) => (
             <Text key={index} fontSize={['12px','13px','14px']}>{quote.q} {quote.a}</Text>
           ))}
