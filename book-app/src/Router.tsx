@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Roots/Root";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { WritePage, Homepage, SearchPage, MangaPage, BookPage, BookDetailPage, SignInPage } from "./assets";
+import { WritePage, Homepage, SearchPage, MangaPage, BookPage, BookDetailPage, SignInPage, JournalPage } from "./assets";
 
 
 const Router = createBrowserRouter([
@@ -36,6 +36,10 @@ const Router = createBrowserRouter([
   {
     path: "/login",
     element: <SignInPage />
+  },
+  {
+    path: "/journal",
+    element: <JournalPage />
   }
 ]);
 

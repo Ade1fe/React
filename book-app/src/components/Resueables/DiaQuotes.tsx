@@ -50,7 +50,7 @@ const DiaQuotes = () => {
       {first5Quotes.map((group, groupIndex) => (
         <Box key={groupIndex} shadow={'sm'} bg={bgs} p={2}  borderRadius={'10px'}>
           {group.map((quote, index) => (
-            <Text key={index} fontSize={['12px','13px','14px']}>{quote.q} {quote.a}</Text>
+            <Text key={index} fontSize={['12px','13px','14px']}>{quote.q} by {quote.a}</Text>
           ))}
         </Box>
       ))}

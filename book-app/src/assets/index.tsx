@@ -24,8 +24,9 @@ export {default as AnimeFour } from "./../components/Holders/AnimeFour"
 export {default as AnimeFive } from "./../components/Holders/AnimeFive"
 export {default as SignInPage} from './../pages/SignIn/SignInPage';
 export {default as AdvertTwo} from './../components/Resueables/AdvertTwo';
-export {default as pic1} from "./images/img2-PhotoRoom.png-PhotoRoom.png"
-export {default as pic2} from "./images/img1-PhotoRoom.png-PhotoRoom.png"
-export {default as pic3} from "./images/img3-PhotoRoom.png-PhotoRoom.png"
-export {default as pic4} from "./images/img4-PhotoRoom.png-PhotoRoom.png"
+// export {default as pic1} from "./images/img2-PhotoRoom.png-PhotoRoom.png"
+// export {default as pic2} from "./images/img1-PhotoRoom.png-PhotoRoom.png"
+// export {default as pic3} from "./images/img3-PhotoRoom.png-PhotoRoom.png"
+// export {default as pic4} from "./images/img4-PhotoRoom.png-PhotoRoom.png"
 export {default as DiaryEntry} from "../components/Resueables/DiaryEntry"
+export {default as JournalPage} from './../pages/Journal/JournalPage';
