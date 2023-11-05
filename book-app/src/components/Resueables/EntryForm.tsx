@@ -1,5 +1,12 @@
-import { Box, Button, Input, Select, Textarea, useColorModeValue } from '@chakra-ui/react';
+
+
+
+
+
+
+
 import React, { ChangeEvent } from 'react';
+import { Box, Button, Input, Select, Textarea, useColorModeValue } from '@chakra-ui/react';
 
 interface EntryFormProps {
   currentEntry: {
@@ -7,6 +14,7 @@ interface EntryFormProps {
     category: string;
     content: string;
   };
+  folders: string[]; // Add the folders prop
   editMode: boolean;
   editIndex: number | null;
   handleTitleChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -17,6 +25,7 @@ interface EntryFormProps {
 
 function EntryForm({
   currentEntry,
+  folders, // Include the folders prop
   editMode,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   editIndex,
@@ -38,12 +47,17 @@ function EntryForm({
 
   return (
     <Box display={'grid'} gridTemplateColumns={['1fr', '1fr 1fr']} gap={4}>
-      <Select value={currentEntry.category} onChange={handleCategoryChange}  focusBorderColor={bgs} shadow={'base'}>
+      <Select value={currentEntry.category} onChange={handleCategoryChange} focusBorderColor={bgs} shadow={'base'}>
         <option value="personal">Personal</option>
         <option value="work">Work</option>
         <option value="business">Business</option>
         <option value="important">Important</option>
-        
+        {/* Map through the folders and add them to the dropdown */}
+        {folders.map((folder) => (
+          <option key={folder} value={folder}>
+            {folder}
+          </option>
+        ))}
       </Select>
 
       <Input
@@ -59,14 +73,14 @@ function EntryForm({
         value={currentEntry.content}
         gridColumn={['span 1', 'span 2']}
         onChange={handleEntryChange}
-        placeholder="Write your entry here..."
+        placeholder="Express your thoughts, whether they be related to literature, manga, or any creative ideas.."
         focusBorderColor={bgs}
         rows={15}
         shadow={'base'}
       />
- <Button w={'50%'} onClick={handleSave} shadow={'md'}
- disabled={isFieldEmpty} colorScheme='gray'>{editMode ? 'Save' : 'Save'}</Button>
-      
+      <Button w={'50%'} onClick={handleSave} shadow={'md'} disabled={isFieldEmpty} colorScheme='gray'>
+        {editMode ? 'Save' : 'Save'}
+      </Button>
     </Box>
   );
 }

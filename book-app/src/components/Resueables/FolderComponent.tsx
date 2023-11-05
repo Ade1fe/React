@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, ListItem, OrderedList, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Box, Button, ListItem, OrderedList, Text } from '@chakra-ui/react';
 
 interface FolderComponentProps {
   title: string;
@@ -9,7 +9,7 @@ interface FolderComponentProps {
     content: string;
   }[];
   onEditEntry: (index: number) => void;
-  onDeleteEntry: (index: number) => void;
+  onDeleteEntry: (index: number) => void; 
 }
 
 function FolderComponent({
@@ -30,14 +30,16 @@ function FolderComponent({
         <strong>{title}</strong> {isExpanded ? '[-]' : '[+]'}
       </Box>
       {isExpanded && (
-        <OrderedList w={['200px', '180px', '200px']}>
+        <OrderedList>
           {entries.map((entry, index) => (
-            <ListItem key={index} shadow={'base'} p={2} my={3} w={'full'} >
+            <ListItem key={index} shadow={'base'} p={2} my={3} wordBreak={'break-all'} >
               <Text fontWeight={'bold'}  noOfLines={1}>Title: {entry.title}</Text>
            
-              <Text  noOfLines={1}>{entry.content}</Text>
-              <button onClick={() => onEditEntry(index)}>Edit</button>
-              <button onClick={() => onDeleteEntry(index)}>Delete</button>
+              <Text  noOfLines={1} >{entry.content}</Text>
+             <Box display={'flex'} justifyContent={'space-between'} mt={2}>
+             <Button size={'sm'} py={1} onClick={() => onEditEntry(index)}>Edit</Button>
+              <Button size={'sm'} py={1} onClick={() => onDeleteEntry(index)}>Delete</Button>
+             </Box>
             </ListItem>
           ))}
         </OrderedList>
