@@ -1,11 +1,5 @@
 
-
-
-
-
-
-
-import React, { ChangeEvent } from 'react';
+import  { ChangeEvent } from 'react';
 import { Box, Button, Input, Select, Textarea, useColorModeValue } from '@chakra-ui/react';
 
 interface EntryFormProps {
@@ -14,7 +8,7 @@ interface EntryFormProps {
     category: string;
     content: string;
   };
-  folders: string[]; // Add the folders prop
+  folders: string[];
   editMode: boolean;
   editIndex: number | null;
   handleTitleChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -25,7 +19,7 @@ interface EntryFormProps {
 
 function EntryForm({
   currentEntry,
-  folders, // Include the folders prop
+  folders, 
   editMode,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   editIndex,
@@ -47,12 +41,11 @@ function EntryForm({
 
   return (
     <Box display={'grid'} gridTemplateColumns={['1fr', '1fr 1fr']} gap={4}>
-      <Select value={currentEntry.category} onChange={handleCategoryChange} focusBorderColor={bgs} shadow={'base'}>
+      <Select textTransform={'capitalize'} value={currentEntry.category} onChange={handleCategoryChange} focusBorderColor={bgs} shadow={'base'}>
         <option value="personal">Personal</option>
         <option value="work">Work</option>
         <option value="business">Business</option>
         <option value="important">Important</option>
-        {/* Map through the folders and add them to the dropdown */}
         {folders.map((folder) => (
           <option key={folder} value={folder}>
             {folder}
@@ -73,7 +66,7 @@ function EntryForm({
         value={currentEntry.content}
         gridColumn={['span 1', 'span 2']}
         onChange={handleEntryChange}
-        placeholder="Express your thoughts, whether they be related to literature, manga, or any creative ideas.."
+        placeholder="Express your thoughts, whether they be related to literature, book, manga, or any creative ideas.."
         focusBorderColor={bgs}
         rows={15}
         shadow={'base'}

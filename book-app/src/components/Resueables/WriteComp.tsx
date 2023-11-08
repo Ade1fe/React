@@ -148,6 +148,13 @@ const handleDeleteEntry = (category: string, index: number) => {
 }
 
 
+const handleDeleteFolder = (folderName: string) => {
+  const updatedFolders = folders.filter((folder) => folder.name !== folderName);
+  setFolders(updatedFolders);
+};
+
+
+
   return (
     <Box px={5}>
       <h2>Welcome Damilola</h2>
@@ -176,6 +183,8 @@ const handleDeleteEntry = (category: string, index: number) => {
         entries={personalEntries}
         onEditEntry={(index) => handleEditEntry('personal', index)}
         onDeleteEntry={(index) => handleDeleteEntry('personal', index)}
+        // onDeleteFolder={() => handleDeleteFolder ('personal')}
+        
       />
 
       <FolderComponent
@@ -183,6 +192,7 @@ const handleDeleteEntry = (category: string, index: number) => {
         entries={workEntries}
         onEditEntry={(index) => handleEditEntry('work', index)}
         onDeleteEntry={(index) => handleDeleteEntry('work', index)}
+        // onDeleteFolder={() => handleDeleteFolder ('work')}
       />
 
       <FolderComponent
@@ -190,6 +200,7 @@ const handleDeleteEntry = (category: string, index: number) => {
         entries={businessEntries}
         onEditEntry={(index) => handleEditEntry('business', index)}
         onDeleteEntry={(index) => handleDeleteEntry('business', index)}
+        // onDeleteFolder={() => handleDeleteFolder ('business')}
       />
 
       <FolderComponent
@@ -197,6 +208,7 @@ const handleDeleteEntry = (category: string, index: number) => {
         entries={importantEntries}
         onEditEntry={(index) => handleEditEntry('important', index)}
         onDeleteEntry={(index) => handleDeleteEntry('important', index)}
+        // onDeleteFolder={() => handleDeleteFolder ('important')}
       />
 
       {folders.map((folder) => (
@@ -206,6 +218,7 @@ const handleDeleteEntry = (category: string, index: number) => {
           entries={folder.entries}
           onEditEntry={(index) => handleEditEntry(folder.name, index)}
           onDeleteEntry={(index) => handleDeleteEntry(folder.name, index)}
+          // onDeleteFolder={() => handleDeleteFolder (folder.name)}
         />
       ))}
      </Box>
