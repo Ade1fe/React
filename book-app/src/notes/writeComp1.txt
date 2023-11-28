@@ -1,0 +1,203 @@
+import React, { useState, ChangeEvent } from 'react';
+import { Text } from '@chakra-ui/react';
+
+interface Entry {
+  title: string;
+  category: string;
+  content: string;
+}
+
+function FolderComponent({
+  title,
+  entries,
+  onEditEntry,
+  onDeleteEntry,
+}: {
+  title: string;
+  entries: Entry[];
+  onEditEntry: (index: number) => void;
+  onDeleteEntry: (index: number) => void;
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleToggleFolder = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <div>
+      <div onClick={handleToggleFolder} style={{ cursor: 'pointer' }}>
+        <strong>{title}</strong> {isExpanded ? '[-]' : '[+]'}
+      </div>
+      {isExpanded && (
+        <ul>
+          {entries.map((entry, index) => (
+            <li key={index}>
+              <strong>Title: {entry.title}</strong>
+              <br />
+              <strong>Category: {entry.category}</strong>
+              <br />
+              <Text noOfLines={1}>{entry.content}</Text>
+              <button onClick={() => onEditEntry(index)}>Edit</button>
+              <button onClick={() => onDeleteEntry(index)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function WriteComp() {
+  const [personalEntries, setPersonalEntries] = useState<Entry[]>([]);
+  const [workEntries, setWorkEntries] = useState<Entry[]>([]);
+  const [businessEntries, setBusinessEntries] = useState<Entry[]>([]);
+  const [importantEntries, setImportantEntries] = useState<Entry[]>([]);
+  const [currentEntry, setCurrentEntry] = useState<Entry>({
+    title: '',
+    category: 'personal',
+    content: '',
+  });
+  const [editMode, setEditMode] = useState(false);
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentEntry({ ...currentEntry, title: e.target.value });
+  };
+
+  const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCurrentEntry({ ...currentEntry, category: e.target.value });
+  };
+
+  const handleEntryChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCurrentEntry({ ...currentEntry, content: e.target.value });
+  };
+
+  const handleSaveEntry = () => {
+    if (editMode && editIndex !== null) {
+      if (currentEntry.category === 'personal') {
+        const updatedEntries = [...personalEntries];
+        updatedEntries[editIndex] = currentEntry;
+        setPersonalEntries(updatedEntries);
+      } else if (currentEntry.category === 'work') {
+        const updatedEntries = [...workEntries];
+        updatedEntries[editIndex] = currentEntry;
+        setWorkEntries(updatedEntries);
+      } else if (currentEntry.category === 'business') {
+        const updatedEntries = [...businessEntries];
+        updatedEntries[editIndex] = currentEntry;
+        setBusinessEntries(updatedEntries);
+      } else if (currentEntry.category === 'important') {
+        const updatedEntries = [...importantEntries];
+        updatedEntries[editIndex] = currentEntry;
+        setImportantEntries(updatedEntries);
+      }
+      setEditIndex(null);
+      setEditMode(false);
+    } else {
+      if (currentEntry.category === 'personal') {
+        setPersonalEntries([...personalEntries, currentEntry]);
+      } else if (currentEntry.category === 'work') {
+        setWorkEntries([...workEntries, currentEntry]);
+      } else if (currentEntry.category === 'business') {
+        setBusinessEntries([...businessEntries, currentEntry]);
+      } else if (currentEntry.category === 'important') {
+        setImportantEntries([...importantEntries, currentEntry]);
+      }
+    }
+    setCurrentEntry({ title: '', category: 'personal', content: '' });
+  }
+
+  const handleEditEntry = (category: string, index: number) => {
+    if (category === 'personal') {
+      setCurrentEntry(personalEntries[index]);
+    } else if (category === 'work') {
+      setCurrentEntry(workEntries[index]);
+    } else if (category === 'business') {
+      setCurrentEntry(businessEntries[index]);
+    } else if (category === 'important') {
+      setCurrentEntry(importantEntries[index]);
+    }
+    setEditIndex(index);
+    setEditMode(true);
+  }
+
+  const handleDeleteEntry = (category: string, index: number) => {
+    if (category === 'personal') {
+      const updatedEntries = [...personalEntries];
+      updatedEntries.splice(index, 1);
+      setPersonalEntries(updatedEntries);
+    } else if (category === 'work') {
+      const updatedEntries = [...workEntries];
+      updatedEntries.splice(index, 1);
+      setWorkEntries(updatedEntries);
+    } else if (category === 'business') {
+      const updatedEntries = [...businessEntries];
+      updatedEntries.splice(index, 1);
+      setBusinessEntries(updatedEntries);
+    } else if (category === 'important') {
+      const updatedEntries = [...importantEntries];
+      updatedEntries.splice(index, 1);
+      setImportantEntries(updatedEntries);
+    }
+  }
+
+  return (
+    <div>
+      <h2>Diary Entry</h2>
+      <input
+        type="text"
+        placeholder="Title"
+        value={currentEntry.title}
+        onChange={handleTitleChange}
+      />
+      <select value={currentEntry.category} onChange={handleCategoryChange}>
+        <option value="personal">Personal</option>
+        <option value="work">Work</option>
+        <option value="business">Business</option>
+        <option value="important">Important</option>
+      </select>
+      <textarea
+        rows={10}
+        cols={50}
+        placeholder="Write your entry here..."
+        value={currentEntry.content}
+        onChange={handleEntryChange}
+      />
+
+      <button onClick={handleSaveEntry}>
+        {editMode ? 'Save Edit' : 'Save'}
+      </button>
+
+      <FolderComponent
+        title="Personal"
+        entries={personalEntries}
+        onEditEntry={(index) => handleEditEntry('personal', index)}
+        onDeleteEntry={(index) => handleDeleteEntry('personal', index)}
+      />
+
+      <FolderComponent
+        title="Work"
+        entries={workEntries}
+        onEditEntry={(index) => handleEditEntry('work', index)}
+        onDeleteEntry={(index) => handleDeleteEntry('work', index)}
+      />
+
+      <FolderComponent
+        title="Business"
+        entries={businessEntries}
+        onEditEntry={(index) => handleEditEntry('business', index)}
+        onDeleteEntry={(index) => handleDeleteEntry('business', index)}
+      />
+
+      <FolderComponent
+        title="Important"
+        entries={importantEntries}
+        onEditEntry={(index) => handleEditEntry('important', index)}
+        onDeleteEntry={(index) => handleDeleteEntry('important', index)}
+      />
+    </div>
+  );
+}
+
+export default WriteComp;

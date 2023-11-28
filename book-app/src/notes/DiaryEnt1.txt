@@ -1,11 +1,19 @@
-import { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 
-function DiaryEntry() {
-  const [entries, setEntries] = useState<{ category: string, content: string }[]>([]);
-  const [currentEntry, setCurrentEntry] = useState<{ category: string, content: string }>({
-    category: 'personal', // Default category
+function WriteComp() {
+  const [personalEntries, setPersonalEntries] = useState<{ title: string, category: string, content: string }[]>([]);
+  const [workEntries, setWorkEntries] = useState<{ title: string, category: string, content: string }[]>([]);
+  const [currentEntry, setCurrentEntry] = useState<{ title: string, category: string, content: string }>({
+    title: '',
+    category: 'personal',
     content: '',
   });
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentEntry({ ...currentEntry, title: e.target.value });
+  };
 
   const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCurrentEntry({ ...currentEntry, category: e.target.value });
@@ -16,19 +24,59 @@ function DiaryEntry() {
   };
 
   const handleSaveEntry = () => {
-    setEntries([...entries, currentEntry]);
-    setCurrentEntry({ category: 'personal', content: '' }); // Reset the currentEntry
+    if (editMode && editIndex !== null) {
+      if (currentEntry.category === 'personal') {
+        const updatedEntries = [...personalEntries];
+        updatedEntries[editIndex] = currentEntry;
+        setPersonalEntries(updatedEntries);
+      } else if (currentEntry.category === 'work') {
+        const updatedEntries = [...workEntries];
+        updatedEntries[editIndex] = currentEntry;
+        setWorkEntries(updatedEntries);
+      }
+      setEditIndex(null);
+      setEditMode(false);
+    } else {
+      if (currentEntry.category === 'personal') {
+        setPersonalEntries([...personalEntries, currentEntry]);
+      } else if (currentEntry.category === 'work') {
+        setWorkEntries([...workEntries, currentEntry]);
+      }
+    }
+    setCurrentEntry({ title: '', category: 'personal', content: '' });
   };
 
-  const handleDeleteEntry = (index: number) => {
-    const updatedEntries = [...entries];
-    updatedEntries.splice(index, 1);
-    setEntries(updatedEntries);
+  const handleEditEntry = (category: string, index: number) => {
+    if (category === 'personal') {
+      setCurrentEntry(personalEntries[index]);
+    } else if (category === 'work') {
+      setCurrentEntry(workEntries[index]);
+    }
+    setEditIndex(index);
+    setEditMode(true);
+  };
+
+  const handleDeleteEntry = (category: string, index: number) => {
+    if (category === 'personal') {
+      const updatedEntries = [...personalEntries];
+      updatedEntries.splice(index, 1);
+      setPersonalEntries(updatedEntries);
+    } else if (category === 'work') {
+      const updatedEntries = [...workEntries];
+      updatedEntries.splice(index, 1);
+      setWorkEntries(updatedEntries);
+    }
   };
 
   return (
     <div>
       <h2>Diary Entry</h2>
+      <input
+        type="text"
+        placeholder="Title"
+        value={currentEntry.title}
+        onChange={handleTitleChange}
+      />
       <select value={currentEntry.category} onChange={handleCategoryChange}>
         <option value="personal">Personal</option>
         <option value="work">Work</option>
@@ -43,18 +91,47 @@ function DiaryEntry() {
         onChange={handleEntryChange}
       />
 
-      <button onClick={handleSaveEntry}>Save</button>
+      <button onClick={handleSaveEntry}>
+        {editMode ? 'Save Edit' : 'Save'}
+      </button>
 
-      <ul>
-        {entries.map((entry, index) => (
-          <li key={index}>
-            <strong>{entry.category}:</strong> {entry.content}
-            <button onClick={() => handleDeleteEntry(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {editMode ? null : (
+        <>
+          {currentEntry.category === 'personal' ? (
+            <ul>
+              {personalEntries.map((entry, index) => (
+                <li key={index}>
+                  <strong>Title: {entry.title}</strong>
+                  <br />
+                  <strong>Category: {entry.category}</strong>
+                  <br />
+                  {entry.content}
+                  <button onClick={() => handleEditEntry('personal', index)}>Edit</button>
+                  <button onClick={() => handleDeleteEntry('personal', index)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {currentEntry.category === 'work' ? (
+            <ul>
+              {workEntries.map((entry, index) => (
+                <li key={index}>
+                  <strong>Title: {entry.title}</strong>
+                  <br />
+                  <strong>Category: {entry.category}</strong>
+                  <br />
+                  {entry.content}
+                  <button onClick={() => handleEditEntry('work', index)}>Edit</button>
+                  <button onClick={() => handleDeleteEntry('work', index)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </>
+      )}
     </div>
   );
 }
 
-export default DiaryEntry;
+export default WriteComp;

@@ -1,10 +1,11 @@
-import { Mainlayout } from "../../assets"
+import { Mainlayout, WriteComp } from "../../assets"
 
 
 const JournalPage = () => {
   return (
     <Mainlayout>
-        gg
+      
+       <WriteComp />
       
     </Mainlayout>
   )

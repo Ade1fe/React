@@ -14,11 +14,11 @@ interface IconAndTextProps {
 
 const IconAndText: React.FC<IconAndTextProps> = ({ icon, title, description }) => {
   const col = useColorModeValue('#40916c', 'gray.600');
-  const colo = useColorModeValue('#000', '#fff');
+  const colo = useColorModeValue('#fff', '#fff');
 
 
   return (
-    <Box p='3' shadow='base'>
+    <Box p='3' shadow='md'>
       <Box display="flex" gap="3" alignItems="center">
        <Box bg={col} p='2' borderRadius='3'> {icon}</Box>
         <Text fontSize={["sm","md"]} color={colo} fontWeight='semibold'>{title}</Text>
@@ -30,7 +30,7 @@ const IconAndText: React.FC<IconAndTextProps> = ({ icon, title, description }) =
 
 export const IconAndTexts: React.FC = () => {
   
-  const bg = useColorModeValue('#52b788', 'green.200');
+  const bg = useColorModeValue('#386641', 'gray.700');
  
   // const color = useColorModeValue('white', 'white');
   
