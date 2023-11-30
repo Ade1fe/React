@@ -4,3 +4,22 @@ body {
   color: #fff !important;
   font-family: 'Ubuntu', serif !important;
 }
+
+
+.box {
+  animation: slide-in 1s forwards;
+  opacity: 0;
+  -webkit-animation: slide-in 1s forwards;
+  z-index: 999999;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

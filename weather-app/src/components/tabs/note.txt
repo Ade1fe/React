@@ -1,0 +1,54 @@
+import { MouseEventHandler, useState } from 'react';
+import { Box, Image, Text } from "@chakra-ui/react";
+import { cloudwithRain } from '../../assets';
+
+
+interface TabContainerProps {
+  isOpen: boolean;
+  onClick: MouseEventHandler<HTMLDivElement>; // Explicitly defining the type
+}
+
+const TabContainer = ({ isOpen, onClick }: TabContainerProps) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpand = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    onClick(event); // Pass the event object to the onClick handler
+    handleExpand();
+  };
+
+  return (
+    <Box
+      w='fit-content'
+      cursor='pointer'
+      borderRadius='10px'
+      overflow='hidden'
+      onClick={handleClick}
+    >
+      <Text p={2} bg='#222' display='flex' justifyContent='space-between' fontSize={['sm', 'md', 'lg']}>
+        Monday <Text as="span" mx={'10px'}>12:20pm</Text>
+      </Text>
+      {expanded && (
+        <Box bg='#495057' display={'flex'} gap={5} justifyContent='space-between' px={2} py='5px'>
+          <Box fontSize='sm'>
+            <Text fontSize="3xl">15°</Text>
+            <Text>Farthent 15 deg</Text>
+            <Text>wind100 km</Text>
+            <Text>Pressure: 1000msh</Text>
+            <Text>Humidity: 52%</Text>
+          </Box>
+          <Box fontSize='sm'>
+            <Image src={cloudwithRain} boxSize="100px" />
+            <Text>Sunrise: 6:30 Am</Text>
+            <Text>Sunset: 8:18 Pm</Text>
+          </Box>
+        </Box>
+      )}
+    </Box>
+  );
+};
+
+export default TabContainer;

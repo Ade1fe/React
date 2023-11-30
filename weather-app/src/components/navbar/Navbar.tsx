@@ -26,6 +26,7 @@ const Navbar = () => {
       py={4}
       px={6}
       borderBottom="0.1px solid #222"
+      className="box"
     >
       <Box>
         <Text as="h1" fontSize="3xl" fontWeight="bold" color="blue.500">
@@ -37,18 +38,20 @@ const Navbar = () => {
       <Box display={{ base: "block", md: "none" }}>
         <IconButton
           aria-label="Toggle menu"
-          icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+          icon={isMenuOpen ? <CloseIcon  /> : <HamburgerIcon />}
           color="blue.500"
           onClick={toggleMenu}
+          fontSize={'25px'}
         />
       </Box>
 
-      <Box position={['absolute','absolute', 'static']} p={[4, 4, 0]}
+      <Box position={['absolute','absolute', 'static']} p={[4, 4, 0]} zIndex={50}
       bg={'black'} left={0} top={'80px'} w={['full', "full", "65%", "60%"]}
       display={{ base: isMenuOpen ? "block" : "none", md: "flex" }}
       alignItems={"center"}
       gap={8}
       justifyContent={'space-between'}
+      className="box"
       >
 
       <InputGroup w={['100%','100%', "300px"]} ml={[0,0,4]} mb={[4,4,0]}>
