@@ -23,3 +23,33 @@ body {
     transform: translateX(0);
   }
 }
+
+
+
+/* ChessPuzzle.css */
+
+.chess-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.chess-board {
+  display: inline-block;
+  border: 2px solid #333;
+  margin-top: 10px;
+}
+
+.chess-row {
+  display: flex;
+}
+
+.chess-square {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  font-size: 24px;
+  color: #333;
+}
