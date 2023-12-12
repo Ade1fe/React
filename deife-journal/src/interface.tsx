@@ -15,6 +15,7 @@ export interface InputProps {
     width?: string[];
     fontWeight?: string;
     errorColor?: string;
+    touched?: boolean;
   }
 
 

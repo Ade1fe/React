@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { Box, Image } from '@chakra-ui/react';
-import { blackPic, whitePic } from '../../../assets';
+import  { useState } from 'react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { avatarIcon, blackPic, whitePic } from '../../../assets';
 import { Formik, Form } from 'formik';
-import { CustomInput, CusttomButton } from '../../../commom/components';
-import signsValidation from '../../../validations';
+import { CustomInput, CustomButton } from '../../../commom/components';
 import { FormValues } from '../../../interface';
 import { useColorMode, useToast } from '@chakra-ui/react';
+import { signsValidation } from '../../../validations';
+
 
 const SignIn = () => {
-  const [isPending, setIsPending] = useState(false);
+  const [isPending] = useState(false);
   const { colorMode } = useColorMode();
+  const [loginError] = useState(false);
   const toast = useToast();
-  const [loginError, setLoginError] = useState(false); // State to track login error
 
   const imageSource = colorMode === 'light' ? blackPic : whitePic;
 
@@ -20,128 +21,90 @@ const SignIn = () => {
     password: '',
   };
 
-  const handleSignIn = async (values: { emailUsername: string; password: string }) => {
-    console.log("1: handleSignIn started");
-    try {
-      // Simulate a delay for the authentication process
-      console.log("1: Inside try block");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      const validCredentials = {
-        email: 'damilola',
-        password: 'Password1*',
-      };
-      console.log("1: After authentication logic");
-      if (
-        values.emailUsername === validCredentials.email &&
-        values.password === validCredentials.password
-      ) {
-        // Successful login
-        toast({
-          title: 'Login Successful',
-          description: 'Welcome back!',
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        });
-        setLoginError(false); // Reset any previous login error
-        // Additional actions after successful login
-      } else {
-        // Incorrect credentials
-        toast({
-          title: 'Login Failed',
-          description: 'Please check your credentials and try again.',
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        });
-        setLoginError(true); // Set login error state
-      }
-    } catch (error) {
-      console.error('Error during sign-in:', error);
-      // Handle error state or display an error toast
-      toast({
-        title: 'Error',
-        description: 'An error occurred during sign-in. Please try again later.',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
-      setLoginError(true); // Set login error state
-    }
-  };
-
-console.log("1");
-
   const onSubmit = async (values: FormValues) => {
-    console.log("2: onSubmit started");
-    setIsPending(true);
-    try {
-      console.log("2: Before handleSignIn");
-      await handleSignIn(values);
-      console.log('Form submitted:', values); // Check if form values are being captured correctly
-      console.log("2: After handleSignIn");
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsPending(false);
-      console.log("2: onSubmit finished");
-    }
+    console.log(values);
+    toast({
+      title: 'Form Submitted',
+      description: 'Login successful!',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+      position: 'top-right',
+      variant: 'top-accent',
+    });
   };
-  
-
- 
-  
 
   return (
-    <Box>
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={signsValidation}>
-        {({ values, handleBlur, handleChange, errors }) => (
-          <Form>
-            <Image src={imageSource} w="100px" />
-            <Box>
-              <CustomInput
-                error={errors.emailUsername}
-                color={'blue.100'}
-                label="Email/Username"
-                name="emailUsername"
-                errorColor={'red.100'}
-                value={values.emailUsername}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
+    <Box h="100vh">
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={signsValidation}
+      >
+        {({ values, handleBlur, handleChange, errors,touched }) => (
+          <Flex alignItems={[ 'center',"flex-start"]} >
+            <Box flex="2" p="20px" className='slide-in-left'>
+              <Form>
+                <Image mb={['30px','40px','50px']} src={imageSource} w="100px" />
+                <Text as="h1" pl={['10px']} fontSize={['md','lg','x-large']} fontWeight='bold'>Login to Deife's Journal</Text>
+                  <Text pl={['10px']} color='grey.300' fontSize='x-small'>Lorem ipsum dolor sit amet consectetur adipisicing.</Text>
+                <Box w={["100%", "80%", "50%"]} my={['10px']}>          
+                  <CustomInput
+                    error={errors.emailUsername}
+                    color="blue.100"
+                    label="Email/Username"
+                    name="emailUsername"
+                    fontWeight='700'
+                    // errorColor="red.100"
+                    value={values.emailUsername}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    touched={touched.emailUsername}
+                  />
+                </Box>
+                <Box w={["100%", "80%", "50%"]} my={['10px']}>
+                  <CustomInput
+                    error={errors.password}
+                    color="blue.100"
+                    label="Password"
+                    name="password"
+                    fontWeight='700'
+                    // errorColor="red.300"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    type="password"
+                    touched={touched.password}
+                  />
+                </Box>
+                {loginError && (
+                  <Box color="red">Invalid credentials. Please try again.</Box>
+                )}
+              <Box my={['20px']} pl={['10px']}>
+              <CustomButton
+                  type="submit"
+                  bg="purple.100"
+                  color="white.100"
+                  isLoading={isPending}
+                  loadingText="Loading..."
+                  width={["140px"]}
+                >
+                  Sign In
+                </CustomButton>
+              </Box>
+              </Form>
+              <Flex flexDirection={['column','row']} fontSize={['sm','md']} gap={['20px','40px','60px']} mt={['100px',]}>  <Text>Forgot Password</Text>  <Text>Don't have an account?</Text></Flex>
             </Box>
-
-            <Box>
-              <CustomInput
-                error={errors.password}
-                color={'blue.100'}
-                label="Password"
-                name="password"
-                errorColor={'red.100'}
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                type={'password'}
-              />
+            <Box flex="1" className='slide-in-right' display='flex' justifyContent='center' alignItems='center' bgGradient="linear(to-br, purple.400, purple.500)" h={['100vh']}>
+            <Image src={avatarIcon} boxSize={['100px', '200px', '300px']} />
             </Box>
-
-            {loginError && ( // Display error message if loginError is true
-              <Box color="red">Invalid credentials. Please try again.</Box>
-            )}
-
-            <CusttomButton
-              type="submit"
-              bg="purple.100"
-              color="white.100"
-              isLoading={isPending}
-              loadingText="Loading..."
-            >
-              Sign In
-            </CusttomButton>
-          </Form>
+            
+          </Flex>
         )}
+        
       </Formik>
+
+   
     </Box>
   );
 };

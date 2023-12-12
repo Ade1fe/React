@@ -9,29 +9,21 @@ import {
     borderColor?: string;
   }
   
-  const CusttomButton = (props: ButtonProps) => {
+  const CustomButton = (props: ButtonProps) => {
     const {
       bg,
       color,
       children,
-      width = ["150px", null, "357px"],
+      width,
       // type = "button",
-      // onClick,
+      onClick,
       isLoading,
       loadingText,
       borderWidth,
       borderColor,
     } = props;
 
-    const { onClick } = props;
-  
-
-    const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      console.log('Button clicked');
-      if (onClick) {
-        onClick(event);
-      }
-    };
+    
     return (
       <ChakraButton
         _hover={{
@@ -41,12 +33,12 @@ import {
         bg={bg}
         fontWeight="700"
         fontSize={["14px", "15px", "16px",]}
-        borderRadius="30px"
+        borderRadius="10px"
         py="15px"
         width={width}
-        h="50px"
+        h="40px"
         type="submit" 
-        onClick={handleButtonClick}
+        onClick={onClick}
         isLoading={isLoading}
         loadingText={loadingText}
         borderWidth={borderWidth}
@@ -57,4 +49,4 @@ import {
     );
   };
   
-  export default CusttomButton;
+  export default CustomButton;

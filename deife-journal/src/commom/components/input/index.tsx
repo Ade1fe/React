@@ -6,7 +6,7 @@ import { InputProps } from "../../../interface";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 const CustomInput = (props: InputProps) => {
-  const { label, color, name, value, error, onChange, onBlur, type, isDisabled, width, fontWeight, errorColor } = props;
+  const { label, color, name, value, error, onChange, onBlur, type, isDisabled, width, fontWeight, errorColor, } = props;
   
   const isPassword = type === 'password'; 
   
@@ -17,7 +17,7 @@ const CustomInput = (props: InputProps) => {
   };
 
   return (
-    <Flex direction="column" gap="4px" w={width} overflow='hidden' py='10px'>
+    <Flex direction="column" gap="4px" w={width} overflow='hidden' p='10px'>
       <Text
         as="label"
         htmlFor={name}
@@ -50,7 +50,7 @@ const CustomInput = (props: InputProps) => {
               onClick={togglePasswordVisibility}
               variant="ghost"
               color="gray.500"
-              border='0'
+              border='0px'
               _hover={
                { border: '0px',}
               }

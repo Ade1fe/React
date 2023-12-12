@@ -7,3 +7,36 @@ h1
 p {
   font-family: "ID Grotesk Trial", sans-serif !important;
 }
+
+
+/* Define slide-in animation from left */
+.slide-in-left {
+  animation: slideLeft 1s ease forwards;
+}
+
+/* Define slide-in animation from right */
+.slide-in-right {
+  animation: slideRight 1s ease forwards;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
