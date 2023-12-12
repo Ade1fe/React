@@ -7,13 +7,24 @@ import { CustomInput, CustomButton } from '../../../commom/components';
 import { FormValues } from '../../../interface';
 import { useColorMode, useToast } from '@chakra-ui/react';
 import { signsValidation } from '../../../validations';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import {
+  app,
+} from '../../../firebase';
+import { handleSignIn } from '../../../api';
+
+
 
 
 const SignIn = () => {
-  const [isPending] = useState(false);
+  const [isPending,setIsPending] = useState(false);
   const { colorMode } = useColorMode();
-  const [loginError] = useState(false);
+  const [loginError,setLoginError] = useState(false);
   const toast = useToast();
+  const auth = getAuth(app);
 
   const imageSource = colorMode === 'light' ? blackPic : whitePic;
 
@@ -22,18 +33,63 @@ const SignIn = () => {
     password: '',
   };
 
+
   const onSubmit = async (values: FormValues) => {
-    console.log(values);
-    toast({
-      title: 'Form Submitted',
-      description: 'Login successful!',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-      position: 'top-right',
-      variant: 'top-accent',
-    });
+    const { emailUsername, password } = values;
+  
+    try {
+      const isEmail = /\S+@\S+\.\S+/.test(emailUsername);
+  
+      let signInCredential;
+  
+      if (isEmail) {
+        signInCredential = await signInWithEmailAndPassword(auth, emailUsername, password);
+        console.log('Signing in with email:', signInCredential);
+      } else {
+        throw new Error('Please enter a valid email');
+      }
+  
+      if (signInCredential) {
+        toast({
+          title: 'Sign-in Successful',
+          description: 'Welcome back!',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-right',
+          variant: 'top-accent',
+        });
+        // Redirect the user or handle further actions after successful sign-in
+      } else {
+        throw new Error('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+      setLoginError(true);
+      toast({
+        title: 'Sign-in Error',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'top-accent',
+      });
+    }
   };
+
+  // const onSubmit = async (values: FormValues) => {
+  //   setIsPending(true);
+  //   try {
+  //     await handleSignIn(values, toast);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setIsPending(false);
+  //   }
+  // };
+  
+
 
   return (
     <Flex alignItems="stretch" minH={['100vh']}> 
@@ -96,7 +152,10 @@ const SignIn = () => {
               </Box>
               </Form>
               <Flex flexDirection={['column','row']} fontSize={['sm','md']} pl={['10px',]}
-              gap={['20px','40px','60px']} mt={['100px',]}>  <Text>Forgot Password</Text>                    
+              gap={['20px','40px','60px']} mt={['100px',]}> 
+               <ChakraLink as={ReactRouterLink} to="/auth/forgot-password">
+               <Text>Forgot Password</Text> 
+            </ChakraLink>                    
                 <ChakraLink as={ReactRouterLink} to="/auth/signup">
               <Text>
                 Dont have an account?
@@ -121,3 +180,4 @@ const SignIn = () => {
 };
 
 export default SignIn;
+

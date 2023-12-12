@@ -30,3 +30,8 @@ export interface InputProps {
     password: string;
     confirmPassword: string;
   }
+
+  export interface forgotPassword {
+    email: string;
+   
+  }
