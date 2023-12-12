@@ -23,3 +23,10 @@ export interface InputProps {
     emailUsername: string;
     password: string;
   }
+
+  export interface signupValues {
+    email: string;
+    username: string;
+    password: string;
+    confirmPassword: string;
+  }
