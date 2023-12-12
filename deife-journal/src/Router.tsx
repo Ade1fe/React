@@ -1,10 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Dashboard } from "./pages";
 import { SignIn, SignUp } from "./pages/auth";
+import Loader from "./pages/dashboard/Loader";
 
 const Router = createBrowserRouter([
   {
     path: "/",
+    element: <Loader />,
+  },
+  {
+    path: "/dashboard",
     element: <Dashboard />,
   },
   {

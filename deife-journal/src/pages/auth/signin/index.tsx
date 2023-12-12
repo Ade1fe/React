@@ -85,7 +85,7 @@ const SignIn = () => {
               <Box my={['20px']} pl={['10px']}>
               <CustomButton
                   type="submit"
-                  bg="purple.100"
+                  bg="purple.400"
                   color="white.100"
                   isLoading={isPending}
                   loadingText="Loading..."
