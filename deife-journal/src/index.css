@@ -42,6 +42,25 @@ p {
 }
 
 
+/* Customize scrollbar */
+body::-webkit-scrollbar {
+  width: 12px; /* Set width for vertical scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color for scrollbar track */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6a0e70; /* Color for scrollbar thumb */
+  border-radius: 6px; /* Rounded corners */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #b42eb4; /* Darker color when hovering over the scrollbar */
+}
+
+
 
 /* loader css */
 
