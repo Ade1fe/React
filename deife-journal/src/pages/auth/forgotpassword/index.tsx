@@ -6,8 +6,10 @@ import { Formik, Form } from 'formik';
 import { CustomInput, CustomButton } from '../../../commom/components';
 import { forgotPassword } from '../../../interface';
 import { useColorMode, useToast } from '@chakra-ui/react';
-import { signsValidation } from '../../../validations';
+import { forgetPasswordValidation,  } from '../../../validations';
 import { FaArrowLeft } from 'react-icons/fa';
+import{ getAuth} from  'firebase/auth';
+import {  sendPasswordResetEmail } from 'firebase/auth';
 
 const ForgotPassword = () => {
   const [isPending] = useState(false);
@@ -22,18 +24,37 @@ const ForgotPassword = () => {
     
   };
 
+  const auth = getAuth();
+  const authWithSendPasswordReset = sendPasswordResetEmail;
+
   const onSubmit = async (values: forgotPassword) => {
-    console.log(values);
-    toast({
-      title: 'Form Submitted',
-      description: 'Login successful!',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-      position: 'top-right',
-      variant: 'top-accent',
-    });
+   
+    try {
+      await authWithSendPasswordReset(auth, values.email);
+      toast({
+        title: 'Password Reset Email Sent',
+        description: 'Please check your email for instructions to reset your password.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'top-accent',
+      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error);
+      toast({
+        title: 'Password Reset Failed',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'top-accent',
+      });
+    }
   };
+  
 
   
 
@@ -43,7 +64,7 @@ const ForgotPassword = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
-        validationSchema={signsValidation}
+        validationSchema={forgetPasswordValidation}
       >
         {({ values, handleBlur, handleChange, errors,touched }) => (
          <Box className='slide-in-left' pl={['10px', '30px','40px','50px']}  pr={['30px', "20px", '15px']} flexGrow={1}>
@@ -79,12 +100,12 @@ const ForgotPassword = () => {
                   loadingText="Loading..."
                   width={["140px"]}
                 >
-                  Sign In
+                 Continue
                 </CustomButton>
               </Box>
               </Form>
-              <Flex flexDirection={['column','row']} fontSize={['sm','md']} pl={['10px',]}
-              gap={['20px','40px','60px']} mt={['100px',]}>                   
+              <Flex flexDirection={['column','row']} fontSize={['sm',]} pl={['10px',]}
+              gap={['20px','40px','60px']} mt={['100px',]} >                   
                 <ChakraLink as={ReactRouterLink} to="/auth/signin" 
                 display='flex' alignItems='center' gap='5px'>
                     <FaArrowLeft />

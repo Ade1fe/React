@@ -8,10 +8,7 @@ export const signsValidation = Yup.object().shape({
   password: Yup.string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
-    ),
+   ,
 });
 
 
@@ -39,3 +36,11 @@ export const signsUpValidation = Yup.object().shape({
       return this.parent.password === value;
     }),
 });
+
+
+
+export const forgetPasswordValidation = Yup.object().shape({
+  email: Yup.string().required('Email is required'),
+ 
+});
+

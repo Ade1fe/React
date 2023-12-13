@@ -35,3 +35,17 @@ export interface InputProps {
     email: string;
    
   }
+
+  export interface SignInResponse {
+    userId: string;
+    token: string;
+  }
+
+  export interface ResetPasswords{
+   
+    email: string;
+    otp: string;
+    password: string;
+    confirmPassword: string;
+
+  }

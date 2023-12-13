@@ -4,3 +4,4 @@ export {default as avatarIcon } from './imgs/messy_bun-amico-removebg-preview.pn
 export {default as girlIcon } from './imgs/Bibliophile-amico.png';
 export {default as boyIcon } from './imgs/Book lover-amico.png';
 export {default as forgotPicon } from './imgs/Forgot password-amico.png';
+export {default as resetIcon } from './imgs/Reset password-amico.png';

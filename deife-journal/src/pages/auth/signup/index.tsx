@@ -1,45 +1,20 @@
 import { useState } from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom';
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  Link as ChakraLink,
-} from '@chakra-ui/react';
-import {
-  blackPic,
-  girlIcon,
-  whitePic,
-} from '../../../assets';
-import {
-  Formik,
-  Form,
-} from 'formik';
-import {
-  CustomInput,
-  CustomButton,
-} from '../../../commom/components';
-import {
-  signupValues,
-} from '../../../interface';
-import {
-  useColorMode,
-  useToast,
-} from '@chakra-ui/react';
-import {
-  signsUpValidation,
-} from '../../../validations';
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
+import { Box, Flex, Image, Text, Link as ChakraLink } from '@chakra-ui/react';
+import { blackPic, girlIcon, whitePic } from '../../../assets';
+import { Formik, Form } from 'formik';
+import { CustomInput, CustomButton } from '../../../commom/components';
+import { signupValues } from '../../../interface';
+import { useColorMode, useToast } from '@chakra-ui/react';
+import { signsUpValidation } from '../../../validations';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
-import {
-  app,
-} from '../../../firebase';
+import { app } from '../../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
-import {  firestore } from '../../../firebase';
+import { firestore } from '../../../firebase';
 
 const SignUp = () => {
   const [isPending,setIsPending] = useState(false);
@@ -47,15 +22,10 @@ const SignUp = () => {
   const [loginError] = useState(false);
   const toast = useToast();
   const auth = getAuth(app);
+  const navigate = useNavigate(); 
 
-  const imageSource = colorMode === 'light' ? blackPic : whitePic;
-
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const getImageSource = (colorMode: string) => (colorMode === 'light' ? blackPic : whitePic);
+  const imageSource = getImageSource(colorMode);
 
   const initialValues = {
     email: '',
@@ -64,6 +34,7 @@ const SignUp = () => {
     confirmPassword: '',
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (values: signupValues, { setSubmitting }: any) => {
     setIsPending(true);
     try {
@@ -89,15 +60,16 @@ const SignUp = () => {
         title: 'Signup Successful',
         description: 'Welcome to Deife\'s Journal!',
         status: 'success',
-        duration: 5000,
+        duration: 2000,
         isClosable: true,
         position: 'top-right',
         variant: 'top-accent',
       });
-
-      // Clear form values after successful submission
+      setIsPending(false);
+      navigate("/dashboard"); 
       setSubmitting(false);
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
       console.error('Error signing up:', error.message);
       toast({
         title: 'Signup Error',
@@ -180,10 +152,11 @@ const SignUp = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     touched={touched.confirmPassword}
+                    type="password"
                   />
                 </Box>
                 {loginError && (
-                  <Box color="red">Invalid credentials. Please try again.</Box>
+                  <Box color="red" px='3px' fontSize={['11px', '12px']}>Invalid credentials. Please try again.</Box>
                 )}
                 <Box my={['20px']} pl={['10px']}>
                   <CustomButton
@@ -194,11 +167,11 @@ const SignUp = () => {
                     loadingText="Loading..."
                     width={["140px"]}
                   >
-                    Sign In
+                    Sign Up
                   </CustomButton>
                 </Box>
 
-                <Flex flexDirection={['column', 'row']} fontSize={['sm', 'md']} pl={['10px',]}
+                <Flex flexDirection={['column', 'row']} fontSize={['sm',]} pl={['10px',]}
                   gap={['20px', '40px', '60px']} mt={['100px',]}>
                   <ChakraLink as={ReactRouterLink} to="/auth/forgot-password">
                     <Text>Forgot Password</Text>

@@ -8,3 +8,7 @@ http://www.pathumpmg.com/portfolio-item-fireside.html
 
 yup
 https://mzaintariq.medium.com/form-validation-using-formik-yup-in-react-js-c32cd917bf5
+
+
+reset-password
+https://www.geeksforgeeks.org/how-to-update-user-password-in-firebase-and-web/
