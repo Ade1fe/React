@@ -49,3 +49,10 @@ export interface InputProps {
     confirmPassword: string;
 
   }
+
+  export interface ProfileKeys{
+    firstname: string,
+    secondname: string,
+    email: string,
+    username: string,
+  }

@@ -84,6 +84,7 @@ const SignUp = () => {
       setSubmitting(false);
     }
   };
+
   return (
     <Flex alignItems="stretch" minH={['100vh']}>
       <Box flex="2" display="flex" marginRight={['130px', '180px']} py={['20px']}>

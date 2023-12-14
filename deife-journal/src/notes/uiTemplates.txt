@@ -12,3 +12,256 @@ https://mzaintariq.medium.com/form-validation-using-formik-yup-in-react-js-c32cd
 
 reset-password
 https://www.geeksforgeeks.org/how-to-update-user-password-in-firebase-and-web/
+
+
+
+ import React, { useState } from "react";
+import { Box, Image, Radio, RadioGroup, Spacer, Stack, Text, useColorMode, useToast } from "@chakra-ui/react";
+import { avatarIcon, womanIcon, manIcon } from "../../../assets";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiCamera } from "react-icons/fi";
+import { Formik, Form } from 'formik';
+import { CustomInput, CustomButton } from '../../../commom/components';
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+  } from 'firebase/auth';
+  import { app } from '../../../firebase';
+  import { doc, setDoc } from 'firebase/firestore';
+  import { firestore } from '../../../firebase';
+import { useNavigate } from "react-router-dom";
+
+
+
+const ProfileSettings = () => {
+  const [value, setValue] = React.useState("other"); 
+
+  const [isPending,setIsPending] = useState(false);
+  const { colorMode } = useColorMode();
+  const [loginError] = useState(false);
+  const toast = useToast();
+  const auth = getAuth(app);
+  const navigate = useNavigate(); 
+
+  // Function to update the image based on the selected radio button value
+  const handleRadioChange = (newValue:string) => {
+    setValue(newValue);
+  };
+
+
+  const initialValues = {
+    firstname: '',
+    secondname: '',
+    email: '',
+    username: '',
+   
+  };
+
+
+  // Define the image sources for different options
+  const getImageSource = () => {
+    switch (value) {
+      case "male":
+        return manIcon;
+      case "female":
+        return womanIcon;
+      case "other":
+        return avatarIcon;
+      default:
+        return avatarIcon; 
+    }
+  };
+
+
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   const onSubmit = async (values: ProfileKeys, { setSubmitting }: any) => {
+    setIsPending(true);
+    try {
+      const { email, password, username,  } = values;
+
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      // Optionally, you can update the user's display name (username in this case)
+      await updateProfile(userCredential.user, {
+        displayName: username,
+      });
+
+      const userId = userCredential.user.uid;
+      const userDocRef = doc(firestore, `journal/${userId}`);
+      await setDoc(userDocRef, {
+        username,
+        email,
+      
+      });
+
+      toast({
+        title: 'Update Success',
+        description: 'Go to Display to see',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'top-accent',
+      });
+      setIsPending(false);
+      navigate("/display"); 
+      setSubmitting(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+      console.error('Error signing up:', error.message);
+      toast({
+        title: 'Uodate Error',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-right',
+        variant: 'top-accent',
+      });
+      setIsPending(false);
+      setSubmitting(false);
+    }
+  };
+
+
+  return (
+
+    <> 
+    <Box alignItems='center' flexDirection='column' gap={4}
+     display='flex' justifyContent='center'>
+      <Box display="flex" alignItems="center" gap="5">
+        <Text>
+          <FiCamera size={25}  />
+        </Text>
+        <Image  bg='#ddd' src={getImageSource()} w="150px" borderRadius={"50%"} />
+
+        <Text>
+          <RiDeleteBin6Line size={25} />
+        </Text>
+      </Box>
+
+      <RadioGroup onChange={handleRadioChange} value={value}>
+        <Stack direction="row">
+          <Radio value="male" colorScheme="purple">
+            Male
+          </Radio>
+          <Spacer />
+          <Spacer />
+          <Radio value="female" colorScheme="purple">
+            Female
+          </Radio>
+          <Spacer />
+          <Spacer />
+          <Radio value="other" colorScheme="purple">
+            Other
+          </Radio>
+          <Spacer />
+          <Spacer />
+        </Stack>
+      </RadioGroup>
+    </Box>
+
+    <Box>
+    <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          
+        >
+
+{({ values, handleBlur, handleChange, errors, touched }) => (
+            <Box className='slide-in-left' pl={['10px', '30px', '40px', '50px']} pr={['30px', '20px', '15px']} flexGrow={1}>
+              <Form>
+           
+                <Box w={["100%", "90%", "50%"]} my={['10px']}>
+                  <CustomInput
+                    error={errors.email}
+                    color="blue.100"
+                    label="Email"
+                    name="email"
+                    fontWeight='700'
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    touched={touched.email}
+                  />
+                </Box>
+
+                <Box w={["100%", "90%", "50%"]} my={['10px']}>
+                  <CustomInput
+                    error={errors.username}
+                    color="blue.100"
+                    label="Username"
+                    name="username"
+                    fontWeight='700'
+                    value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    touched={touched.username}
+                  />
+                </Box>
+
+                <Box w={["100%", "90%", "50%"]} my={['10px']}>
+                  <CustomInput
+                    error={errors.firstname}
+                    color="blue.100"
+                    label="First Name"
+                    name="firstname"
+                    fontWeight='700'
+                    value={values.firstname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  
+                    touched={touched.firstname}
+                  />
+                </Box>
+
+                <Box w={["100%", "90%", "50%"]} my={['10px']}>
+                  <CustomInput
+                    error={errors.secondname}
+                    color="blue.100"
+                    label="Second Name"
+                    name="secondname"
+                    fontWeight='700'
+                    value={values.secondname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    touched={touched.secondname}
+                  
+                  />
+                </Box>
+                {loginError && (
+                  <Box color="red" px='3px' fontSize={['11px', '12px']}>Invalid credentials. Please try again.</Box>
+                )}
+                <Box my={['20px']} pl={['10px']}>
+                  <CustomButton
+                    type="submit"
+                    bg="purple.400"
+                    color="white.100"
+                    isLoading={isPending}
+                    loadingText="Loading..."
+                    width={["140px"]}
+                  >
+                    Update
+                  </CustomButton>
+                </Box>
+
+                
+              </Form>
+            </Box>
+          )}
+
+            </Formik>
+        
+    </Box>
+
+
+    </>
+  );
+};
+
+export default ProfileSettings;
+
+
+

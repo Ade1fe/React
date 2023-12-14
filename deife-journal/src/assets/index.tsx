@@ -5,3 +5,8 @@ export {default as girlIcon } from './imgs/Bibliophile-amico.png';
 export {default as boyIcon } from './imgs/Book lover-amico.png';
 export {default as forgotPicon } from './imgs/Forgot password-amico.png';
 export {default as resetIcon } from './imgs/Reset password-amico.png';
+export {default as manIcon } from './imgs/vecteezy_man-with-hand-up_11379702.jpg';
+export {default as womanIcon } from './imgs/vecteezy_beautiful-woman-with-coat-isolated-icon_17450470.jpg';
+// export {default as resetIcon } from './imgs/Reset password-amico.png';
+// export {default as resetIcon } from './imgs/Reset password-amico.png';
+// export {default as resetIcon } from './imgs/Reset password-amico.png';
