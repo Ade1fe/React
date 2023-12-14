@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Dashboard } from "./pages";
 import { ForgotPassword, ResetPassword, SignIn, SignUp } from "./pages/auth";
 import Loader from "./pages/dashboard/Loader";
+import Screen from "./commom/components/navbar/Screen";
 
 const Router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const Router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/screen",
+    element: <Screen />,
   },
   {
     path: "auth",
