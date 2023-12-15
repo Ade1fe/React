@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { app, firestore } from "../../../../firebase";
-import { Box } from "@chakra-ui/react";
+import { Box, Text, Flex, Avatar, VStack } from "@chakra-ui/react";
 import { collection, query, where, getDocs } from 'firebase/firestore'; // Ensure these imports are present
 
 const DisplayComponent = () => {
@@ -30,8 +30,7 @@ const DisplayComponent = () => {
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             const bioData = doc.data();
-            // setBio(doc.data().bio || '');
-            setBio(bioData.bio || ''); 
+            setBio(bioData.bio || '');
           });
         })
         .catch((error) => {
@@ -40,9 +39,7 @@ const DisplayComponent = () => {
     }
   }, []);
 
-
-
-    const splitDisplayName = () => {
+  const splitDisplayName = () => {
     const { username } = userInfo;
     if (username) {
       const parts = username.split(' ');
@@ -55,23 +52,24 @@ const DisplayComponent = () => {
 
   const { fullname, newUsername } = splitDisplayName();
 
-
   return (
-    <Box>
-      {/* ... (your existing JSX) */}
-      <p>Bio: {bio}</p>
-      <h2>User Information:</h2>
-      <div>
-        <p>Email: {userInfo.email}</p>
-        <p>Username: {userInfo.username}</p>
-        <p>Display Name: {userInfo.username}</p>
-     <p>full Name: {fullname}</p>
-        <p>Username: {newUsername}</p>
-      
-      </div>
+    <Box p={4} textAlign="center">
+      <Flex direction="column" alignItems="center" mb={4} >
+        <Avatar size="xl" bg="purple.500" name={newUsername} />
+        <Text fontSize="xl" fontWeight="bold" mt={2}>
+          {fullname}
+        </Text>
+        <Text color="gray.500">@{newUsername}</Text>
+      </Flex>
+      <VStack spacing={4} align="start">
+        <Text fontSize="lg" fontWeight="bold">User Information:</Text>
+        <Text fontSize="md" >Email: {userInfo.email}</Text>
+        <Text fontSize="md" >Bio: {bio}</Text>
+      </VStack>
     </Box>
   );
 };
 
 export default DisplayComponent;
+
 

@@ -1,11 +1,11 @@
-import {  Tab, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react";
+import {  Tab, TabList, TabPanel, TabPanels, Tabs,  } from "@chakra-ui/react";
 import ProfileSettings from "./profile/ProfileSettings";
 import DisplayComponent from "./display";
 
 
 const SettingsComponent = () => {
   return (
-    <Tabs>
+    <Tabs  colorScheme='purple' isFitted>
       <TabList>
         <Tab>Profile</Tab>
         <Tab>Display</Tab>
@@ -17,7 +17,7 @@ const SettingsComponent = () => {
           <ProfileSettings />
         </TabPanel>
         <TabPanel>
-          <Text>Display Settings</Text>
+          {/* <Text>Display Settings</Text> */}
          <DisplayComponent />
         </TabPanel>
       </TabPanels>

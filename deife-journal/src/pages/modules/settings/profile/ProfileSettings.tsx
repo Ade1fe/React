@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Image, Input, Radio, RadioGroup, Spacer, Stack, Text, Textarea, useColorMode, useToast } from "@chakra-ui/react";
+import { Box, Image, Input, Radio, RadioGroup, Spacer, Stack, Text, Textarea, useToast } from "@chakra-ui/react";
 import { FiCamera } from "react-icons/fi";
 import { Formik, Form } from 'formik';
 import { CustomInput, CustomButton } from '../../../../commom/components';
@@ -286,3 +286,12 @@ const handleBioChange = (e) => {
 };
 
 export default ProfileSettings;
+
+
+
+
+
+
+
+
+
