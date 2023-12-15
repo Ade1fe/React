@@ -18,6 +18,10 @@ const Router = createBrowserRouter([
     element: <Screen />,
   },
   {
+    path: "/oba",
+    element: <Screen />,
+  },
+  {
     path: "auth",
     children: [
       {

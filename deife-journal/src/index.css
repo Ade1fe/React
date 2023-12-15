@@ -69,36 +69,3 @@ body::-webkit-scrollbar-thumb:hover {
  
 }
 
-/* loader css */
-
-
-
-
-
-.body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-.split-container {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr; 
-}
-
-/* Diagonal split effect */
-.left-content {
-  grid-column: 1;
-  grid-row: 1;
-  background-color: #f0f0f0; 
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.right-content {
-  grid-column: 2;
-  grid-row: 1;
-  background-color: #ccc; 
-  clip-path: polygon(0 0, 100% 0, 0 100%, 0 0%);
-}
