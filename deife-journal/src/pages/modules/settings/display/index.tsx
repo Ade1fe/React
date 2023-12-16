@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { app, firestore } from "../../../../firebase";
 import { Box, Text, Flex, Avatar, VStack } from "@chakra-ui/react";
-import { collection, query, where, getDocs } from 'firebase/firestore'; // Ensure these imports are present
+import { collection, query, where, getDocs } from 'firebase/firestore'; 
 
 const DisplayComponent = () => {
   const [userInfo, setUserInfo] = useState({

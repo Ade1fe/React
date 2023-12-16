@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
-import { CalenderComponent,  HomeComponent, MyProjects, SettingsComponent } from "../../../pages";
+import { CalenderComponent,  FoldersPage,  HomeComponent, MyProjects, SettingsComponent } from "../../../pages";
+import FolderManagement from "../../../pages/modules/files";
 
 interface ContentProps {
   selectedItem: string | null;
@@ -15,6 +16,8 @@ const Content: React.FC<ContentProps> = ({ selectedItem, isSidebarOpen }) => {
             return <CalenderComponent />;
             case "Settings":
               return <SettingsComponent />;
+                 case "Add Folder":
+              return <FolderManagement />;
           // Add cases for other items
           default:
             return null; 

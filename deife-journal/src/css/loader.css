@@ -26,8 +26,8 @@
 	padding: 0.25em;
 	perspective: 37.5em;
 	position: relative;
-    width: 18em;
-	height: 16em;
+    width: 16em;
+	height: 14em;
 	transform: translate3d(0,0,0);
 	transform-style: preserve-3d;
     /* border: 2px solid red; */

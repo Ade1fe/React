@@ -128,7 +128,7 @@ console.log("existingUsername", existingUsername);
         const bioCollection = collection(firestore, 'bios');
         await addDoc(bioCollection, {
           userId,
-          bio: bio, // Use the 'bio' state value here
+          bio: bio, 
         });
       }
      
