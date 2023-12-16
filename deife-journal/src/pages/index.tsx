@@ -5,7 +5,7 @@ export {default as MyProjects } from './modules/myprojects/index';
 export {default as SettingsComponent } from './modules/settings/index';
 export {default as ProfileSettings } from  './modules/settings'
 export {default as DisplayComponent } from './modules/settings';
-export {default as FoldersPage } from './modules/addfolders/FoldersPage';
+export {default as CreateFilesMangement } from './modules/files/index';
 // export {default as MyProjects } from './modules/myprojects/index';
 // export {default as MyProjects } from './modules/myprojects/index';
 // export {default as MyProjects } from './modules/myprojects/index';

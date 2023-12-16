@@ -3,11 +3,11 @@ import { MdMenu, MdClose, } from "react-icons/md";
 
    import { IoHomeOutline } from "react-icons/io5";
    import { SlCalender } from "react-icons/sl";
-   import { LuFileSpreadsheet } from "react-icons/lu";
-   import { VscFolderOpened } from "react-icons/vsc";
+  //  import { LuFileSpreadsheet } from "react-icons/lu";
+  //  import { VscFolderOpened } from "react-icons/vsc";
    import { FiFilePlus } from "react-icons/fi";
-   import { BsPeople } from "react-icons/bs";
-   import { BsInboxes } from "react-icons/bs";
+  //  import { BsPeople } from "react-icons/bs";
+  //  import { BsInboxes } from "react-icons/bs";
    import { TbSettingsCog } from "react-icons/tb";
    import { FaTasks } from "react-icons/fa";
 import { useState } from "react";
@@ -27,11 +27,11 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick, isSidebarOpen, onToggle 
   const sidebarItems = [
     { id: "home", label: "Home", icon: <IoHomeOutline size={25}  /> },
     { id: "calendar", label: "Calendar", icon: <SlCalender size={25}  /> },
-    { id: "file", label: "File", icon: <LuFileSpreadsheet size={25}  /> },
-    { id: "addFolder", label: "Add Folder", icon: <VscFolderOpened size={25}  /> },
+    // { id: "file", label: "File", icon: <LuFileSpreadsheet size={25}  /> },
+    // { id: "addFolder", label: "Add Folder", icon: <VscFolderOpened size={25}  /> },
     { id: "addFile", label: "Add File", icon: <FiFilePlus size={25}  /> },
-    { id: "people", label: "People", icon: <BsPeople size={25}  /> },
-    { id: "inbox", label: "Inbox", icon: <BsInboxes size={25}  /> },
+    // { id: "people", label: "People", icon: <BsPeople size={25}  /> },
+    // { id: "inbox", label: "Inbox", icon: <BsInboxes size={25}  /> },
     { id: "settings", label: "Settings", icon: <TbSettingsCog size={25}  /> },
     { id: "tasks", label: "My Tasks", icon: <FaTasks  size={25}  /> },
   ];

@@ -1,154 +1,20 @@
-
-
-
-
-
-// import { Box, Input, Textarea, Button, VStack, Select, Divider, Text } from '@chakra-ui/react';
-// import { useState } from 'react';
-
-// interface Note {
-//   title: string;
-//   folder: string;
-//   content: string;
-// }
-// // ... (imports and interfaces)
-
-// const FolderManagement = () => {
-//     const [note, setNote] = useState<Note>({
-//       title: '',
-//       folder: '',
-//       content: '',
-//     });
-  
-//     const [folders, setFolders] = useState<string[]>(['Folder 1', 'Folder 2', 'Folder 3']);
-//     const [selectedFolder, setSelectedFolder] = useState<string>('');
-//     const [addingFolder, setAddingFolder] = useState<boolean>(false);
-//     const [newFolderName, setNewFolderName] = useState<string>('');
-  
-//     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//       const { name, value } = e.target;
-//       setNote(prevNote => ({
-//         ...prevNote,
-//         [name]: value,
-//       }));
-//     };
-  
-//     const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-//       const { value } = e.target;
-//       setNote(prevNote => ({
-//         ...prevNote,
-//         content: value,
-//       }));
-//     };
-  
-//     const handleSaveNote = () => {
-//       console.log('Note to be saved:', note, 'to folder:', selectedFolder);
-//       setNote({
-//         title: '',
-//         folder: '',
-//         content: '',
-//       });
-//       setAddingFolder(false); // Re-enable input fields after saving note.
-//     };
-  
-//     const handleAddFolder = () => {
-//       setAddingFolder(true);
-//     };
-  
-//     const handleNewFolderSubmit = () => {
-//       if (newFolderName.trim() !== '' && !folders.includes(newFolderName)) {
-//         setFolders(prevFolders => [...prevFolders, newFolderName]);
-//         setNewFolderName('');
-//         setSelectedFolder(newFolderName);
-//         setNote(prevNote => ({
-//           ...prevNote,
-//           folder: newFolderName,
-//         }));
-//         setAddingFolder(false); // Disable folder creation after successful addition.
-//         // Provide visual feedback that the folder has been added.
-//       }
-//     };
-  
-//     return (
-//       <Box>
-//         {!addingFolder && (
-//           <Button colorScheme="blue" onClick={handleAddFolder}>
-//             Add New Folder
-//           </Button>
-//         )}
-  
-//         {addingFolder && (
-//           <VStack spacing={4}>
-//             <Input
-//               placeholder="Enter Folder Name"
-//               value={newFolderName}
-//               onChange={e => setNewFolderName(e.target.value)}
-//               autoFocus
-//             />
-//             <Button colorScheme="blue" onClick={handleNewFolderSubmit}>
-//               Save Folder
-//             </Button>
-//           </VStack>
-//         )}
-  
-//         <Divider />
-//         <VStack spacing={4} opacity={addingFolder ? 0.5 : 1} pointerEvents={addingFolder ? 'none' : 'auto'}>
-//           <Input
-//             placeholder="Title"
-//             name="title"
-//             value={note.title}
-//             onChange={handleInputChange}
-//             disabled={addingFolder}
-//           />
-//           <Textarea
-//             placeholder="Write your note here"
-//             value={note.content}
-//             onChange={handleTextareaChange}
-//             resize="vertical"
-//             h="200px"
-//             disabled={addingFolder}
-//           />
-//           <Select
-//             placeholder="Select a folder"
-//             value={selectedFolder}
-//             onChange={(e) => setSelectedFolder(e.target.value)}
-//             disabled={addingFolder}
-//           >
-//             {folders.map((folder) => (
-//               <option key={folder} value={folder}>
-//                 {folder}
-//               </option>
-//             ))}
-//           </Select>
-//           <Divider />
-//           <VStack spacing={2} alignItems="flex-start">
-//             <Text fontWeight="bold">Your Folders:</Text>
-//             {folders.map((folder) => (
-//               <Box key={folder}>{folder}</Box>
-//             ))}
-//           </VStack>
-//           <Divider />
-//           <Button colorScheme="blue" onClick={handleSaveNote} disabled={!note.title || !note.content}>
-//             Save
-//           </Button>
-//         </VStack>
-//       </Box>
-//     );
-//   };
-  
-//   export default FolderManagement;
-  
-
-
-
-
-
-
-
-
-
 import { useState } from 'react';
-import { Box, Button, Divider, Input, Select, Text, Textarea, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Divider,
+  FormControl,
+  FormLabel,
+//   Heading,
+  HStack,
+  Input,
+  Select,
+  Stack,
+  Text,
+  Textarea,
+  VStack,
+} from '@chakra-ui/react';
+// import ShowFiles from './showFiles';
 
 interface Note {
   title: string;
@@ -156,7 +22,7 @@ interface Note {
   content: string;
 }
 
-const FolderManagement = () => {
+const CreateFilesMangement = () => {
   const [note, setNote] = useState<Note>({
     title: '',
     folder: '',
@@ -176,7 +42,7 @@ const FolderManagement = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNote(prevNote => ({
+    setNote((prevNote) => ({
       ...prevNote,
       [name]: value,
     }));
@@ -184,7 +50,7 @@ const FolderManagement = () => {
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
-    setNote(prevNote => ({
+    setNote((prevNote) => ({
       ...prevNote,
       content: value,
     }));
@@ -219,110 +85,175 @@ const FolderManagement = () => {
   };
 
   const handleEditContent = () => {
-    // Handle editing content if needed
-    // For example, you can enable text area for editing content
+    setSelectedFile(null); // Deselect the file before editing
+  };
+
+  const handleCloseFile = () => {
+    setSelectedFile(null);
+    setNote({
+      title: '',
+      folder: selectedFolder || '',
+      content: '',
+    });
+  };
+
+  const handleDeleteFolder = (folderName: string) => {
+    const updatedFiles = { ...filesInFolders };
+    delete updatedFiles[folderName];
+    setFilesInFolders(updatedFiles);
+
+    // Deselect the folder if it's the one being deleted
+    if (selectedFolder === folderName) {
+      setSelectedFolder(null);
+      setSelectedFile(null);
+      setNote({
+        title: '',
+        folder: '',
+        content: '',
+      });
+    }
+  };
+
+  const handleDeleteFile = (fileName: string) => {
+    if (selectedFolder) {
+      const updatedFiles = { ...filesInFolders };
+      updatedFiles[selectedFolder] = updatedFiles[selectedFolder].filter((file) => file !== fileName);
+      setFilesInFolders(updatedFiles);
+    }
   };
 
   return (
-    <Box>
-      {!addingFolder && (
-        <Button colorScheme="blue" onClick={() => setAddingFolder(true)}>
-          Add New Folder
-        </Button>
-      )}
+    <Box p={4}>
+      <Stack spacing={4}>
+        {!addingFolder ? (
+          <Button colorScheme="blue" onClick={() => setAddingFolder(true)}>
+            Add New Folder
+          </Button>
+        ) : (
+          <VStack spacing={4}>
+            <Input
+              placeholder="Enter Folder Name"
+              value={newFolderName}
+              onChange={(e) => setNewFolderName(e.target.value)}
+              autoFocus
+            />
+            <Button
+              colorScheme="blue"
+              onClick={() => {
+                if (newFolderName.trim() !== '') {
+                  const updatedFiles = { ...filesInFolders, [newFolderName]: [] };
+                  setFilesInFolders(updatedFiles);
+                  setAddingFolder(false);
+                }
+              }}
+            >
+              Save Folder
+            </Button>
+          </VStack>
+        )}
 
-      {addingFolder && (
-        <VStack spacing={4}>
-          <Input
-            placeholder="Enter Folder Name"
-            value={newFolderName}
-            onChange={e => setNewFolderName(e.target.value)}
-            autoFocus
-          />
-          <Button colorScheme="blue" onClick={() => {
-            if (newFolderName.trim() !== '') {
-              const updatedFiles = { ...filesInFolders, [newFolderName]: [] };
-              setFilesInFolders(updatedFiles);
-              setAddingFolder(false);
-            }
-          }}>
-            Save Folder
+        <Divider />
+
+        <VStack spacing={4} opacity={addingFolder ? 0.5 : 1} pointerEvents={addingFolder ? 'none' : 'auto'}>
+          <FormControl>
+            <FormLabel>Title</FormLabel>
+            <Input
+              placeholder="Title"
+              name="title"
+              value={note.title}
+              onChange={handleInputChange}
+              disabled={addingFolder}
+            />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>Note</FormLabel>
+            <Textarea
+              placeholder="Write your note here"
+              value={note.content}
+              onChange={handleTextareaChange}
+              resize="vertical"
+              h="200px"
+              disabled={addingFolder}
+            />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>Select a folder</FormLabel>
+            <Select
+              placeholder="Select a folder"
+              value={selectedFolder || ''}
+              onChange={(e) => setSelectedFolder(e.target.value || null)}
+              disabled={addingFolder}
+              textTransform='capitalize'
+            >
+              {Object.keys(filesInFolders).map((folderName) => (
+                <option key={folderName} value={folderName}>
+                  {folderName}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
+
+          <Divider />
+
+          <VStack spacing={2} alignItems="flex-start">
+            <Text fontWeight="bold">Your Folders:</Text>
+            {Object.keys(filesInFolders).map((folderName) => (
+              <HStack key={folderName}>
+                <Box  textTransform='capitalize' onClick={() => setSelectedFolder(folderName)} cursor="pointer">
+                  {folderName}
+                </Box>
+                <Button colorScheme="red" onClick={() => handleDeleteFolder(folderName)}>
+                  Delete Folder
+                </Button>
+              </HStack>
+            ))}
+          </VStack>
+
+          <Divider />
+
+          <Button colorScheme="blue" onClick={handleSaveNote} disabled={!note.title || !note.content}>
+            Save
           </Button>
         </VStack>
-      )}
 
-      <Divider />
-      <VStack spacing={4} opacity={addingFolder ? 0.5 : 1} pointerEvents={addingFolder ? 'none' : 'auto'}>
-        <Input
-          placeholder="Title"
-          name="title"
-          value={note.title}
-          onChange={handleInputChange}
-          disabled={addingFolder}
-        />
-        <Textarea
-          placeholder="Write your note here"
-          value={note.content}
-          onChange={handleTextareaChange}
-          resize="vertical"
-          h="200px"
-          readOnly={!selectedFile}
-        />
-        <Select
-          placeholder="Select a folder"
-          value={selectedFolder || ''}
-          onChange={(e) => setSelectedFolder(e.target.value || null)}
-          disabled={addingFolder}
-        >
-          {Object.keys(filesInFolders).map((folderName) => (
-            <option key={folderName} value={folderName}>
-              {folderName}
-            </option>
-          ))}
-        </Select>
-        <Divider />
-        <VStack spacing={2} alignItems="flex-start">
-          <Text fontWeight="bold">Your Folders:</Text>
-          {Object.keys(filesInFolders).map((folderName) => (
-            <Box key={folderName} onClick={() => setSelectedFolder(folderName)}>
-              {folderName}
-            </Box>
-          ))}
-        </VStack>
-        <Divider />
-        <Button colorScheme="blue" onClick={handleSaveNote} disabled={!note.title || !note.content}>
-          Save
-        </Button>
-      </VStack>
+        {/* Files and Content Display */}
+        {selectedFolder && (
+          <VStack spacing={2} alignItems="flex-start">
+            <Text fontWeight="bold">Files in {selectedFolder}:</Text>
+            {filesInFolders[selectedFolder].map((file, index) => (
+              <HStack key={index}>
+                <Box onClick={() => handleFileClick(file)} cursor="pointer">
+                  {file}
+                </Box>
+                <Button colorScheme="red" onClick={() => handleDeleteFile(file)}>
+                  Delete
+                </Button>
+              </HStack>
+            ))}
+          </VStack>
+        )}
 
-      {selectedFolder && (
-        <VStack spacing={2} alignItems="flex-start">
-          <Text fontWeight="bold">Files in {selectedFolder}:</Text>
-          {filesInFolders[selectedFolder].map((file, index) => (
-            <Box key={index} onClick={() => handleFileClick(file)}>
-              {file}
-            </Box>
-          ))}
-        </VStack>
-      )}
+        {selectedFile && (
+          <VStack spacing={4} alignItems="flex-start">
+            <Text fontWeight="bold">Content of {selectedFile}:</Text>
+            <Textarea value={note.content} onChange={handleTextareaChange} resize="vertical" h="200px" />
+            <HStack spacing={4}>
+              <Button colorScheme="blue" onClick={handleEditContent}>
+                Edit Content
+              </Button>
+              <Button colorScheme="red" onClick={handleCloseFile}>
+                Close
+              </Button>
+            </HStack>
+          </VStack>
+        )}
+      </Stack>
 
-      {selectedFile && (
-        <VStack spacing={4} alignItems="flex-start">
-          <Text fontWeight="bold">Content of {selectedFile}:</Text>
-          <Textarea
-            value={note.content}
-            onChange={handleTextareaChange}
-            resize="vertical"
-            h="200px"
-            readOnly={!selectedFile}
-          />
-          <Button colorScheme="blue" onClick={handleEditContent} disabled={!selectedFile}>
-            Edit Content
-          </Button>
-        </VStack>
-      )}
+      {/* <ShowFiles files={filesInFolders} /> */}
     </Box>
   );
 };
 
-export default FolderManagement;
+export default CreateFilesMangement;
