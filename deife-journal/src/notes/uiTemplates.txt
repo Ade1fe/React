@@ -14,4 +14,144 @@ reset-password
 https://www.geeksforgeeks.org/how-to-update-user-password-in-firebase-and-web/
 
 
+import { useState } from 'react';
+import { Box, Button, Divider, Input, Select, Text, Textarea, VStack } from '@chakra-ui/react';
 
+interface Note {
+  title: string;
+  folder: string;
+  content: string;
+}
+
+const FolderManagement = () => {
+  const [note, setNote] = useState<Note>({
+    title: '',
+    folder: '',
+    content: '',
+  });
+
+  const [filesInFolders, setFilesInFolders] = useState<Record<string, string[]>>({
+    'Work': [],
+    'Personal': [],
+    'Important': [],
+  });
+
+  const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const [addingFolder, setAddingFolder] = useState<boolean>(false);
+  const [newFolderName, setNewFolderName] = useState<string>('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNote(prevNote => ({
+      ...prevNote,
+      [name]: value,
+    }));
+  };
+
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = e.target;
+    setNote(prevNote => ({
+      ...prevNote,
+      content: value,
+    }));
+  };
+
+  const handleSaveNote = () => {
+    if (selectedFolder && note.title && note.content) {
+      const updatedFiles = { ...filesInFolders };
+      updatedFiles[selectedFolder] = [...updatedFiles[selectedFolder], note.title];
+      setFilesInFolders(updatedFiles);
+      setNote({
+        title: '',
+        folder: selectedFolder || '',
+        content: '',
+      });
+      setAddingFolder(false);
+    }
+  };
+
+  return (
+    <Box>
+      {!addingFolder && (
+        <Button colorScheme="blue" onClick={() => setAddingFolder(true)}>
+          Add New Folder
+        </Button>
+      )}
+
+      {addingFolder && (
+        <VStack spacing={4}>
+          <Input
+            placeholder="Enter Folder Name"
+            value={newFolderName}
+            onChange={e => setNewFolderName(e.target.value)}
+            autoFocus
+          />
+          <Button colorScheme="blue" onClick={() => {
+            if (newFolderName.trim() !== '') {
+              const updatedFiles = { ...filesInFolders, [newFolderName]: [] };
+              setFilesInFolders(updatedFiles);
+              setAddingFolder(false);
+            }
+          }}>
+            Save Folder
+          </Button>
+        </VStack>
+      )}
+
+      <Divider />
+      <VStack spacing={4} opacity={addingFolder ? 0.5 : 1} pointerEvents={addingFolder ? 'none' : 'auto'}>
+        <Input
+          placeholder="Title"
+          name="title"
+          value={note.title}
+          onChange={handleInputChange}
+          disabled={addingFolder}
+        />
+        <Textarea
+          placeholder="Write your note here"
+          value={note.content}
+          onChange={handleTextareaChange}
+          resize="vertical"
+          h="200px"
+          disabled={addingFolder}
+        />
+        <Select
+          placeholder="Select a folder"
+          value={selectedFolder || ''}
+          onChange={(e) => setSelectedFolder(e.target.value || null)}
+          disabled={addingFolder}
+        >
+          {Object.keys(filesInFolders).map((folderName) => (
+            <option key={folderName} value={folderName}>
+              {folderName}
+            </option>
+          ))}
+        </Select>
+        <Divider />
+        <VStack spacing={2} alignItems="flex-start">
+          <Text fontWeight="bold">Your Folders:</Text>
+          {Object.keys(filesInFolders).map((folderName) => (
+            <Box key={folderName} onClick={() => setSelectedFolder(folderName)}>
+              {folderName}
+            </Box>
+          ))}
+        </VStack>
+        <Divider />
+        <Button colorScheme="blue" onClick={handleSaveNote} disabled={!note.title || !note.content}>
+          Save
+        </Button>
+      </VStack>
+
+      {selectedFolder && (
+        <VStack spacing={2} alignItems="flex-start">
+          <Text fontWeight="bold">Files in {selectedFolder}:</Text>
+          {filesInFolders[selectedFolder].map((file, index) => (
+            <Box key={index}>{file}</Box>
+          ))}
+        </VStack>
+      )}
+    </Box>
+  );
+};
+
+export default FolderManagement;
