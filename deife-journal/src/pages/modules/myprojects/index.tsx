@@ -25,7 +25,7 @@ interface ProjectCardProps {
       p="1rem"
       textAlign="center"
       mb="2rem"
-      bgGradient="linear(to-br, #CBBDFF, #fff)"
+      bgGradient="linear(to-br, #F7EBFD, #fff)"
     >
       <Text fontSize={['md', 'lg']} fontWeight="bold" mb="1rem">
         {title}
