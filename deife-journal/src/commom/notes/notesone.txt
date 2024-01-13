@@ -1,0 +1,126 @@
+
+
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Input,
+  ListItem,
+  OrderedList,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
+import { FaEdit, FaTrash } from "react-icons/fa";
+
+interface FileItem {
+  title: string;
+  content: string;
+}
+
+interface FileListProps {
+  files: FileItem[];
+  onDelete: (index: number) => void;
+  onEdit: (index: number) => void;
+}
+
+
+const FileList: React.FC<FileListProps> = ({ files, onDelete, onEdit }) => (
+  <>
+    <Text>List of Files</Text>
+    <OrderedList>
+      {files.map((file, index) => (
+        <ListItem key={index} display='flex' gap={['10px']} >
+        <Text noOfLines={1}>  {file.title} </Text>
+          <Box className=''>
+            <FaTrash
+              size={20}
+              onClick={() => onDelete(index)}
+              style={{ cursor: 'pointer' }}
+            />
+          </Box>
+          <Box className=''>
+            <FaEdit
+              size={20}
+              onClick={() => onEdit(index)}
+              style={{ cursor: 'pointer' }}
+            />
+          </Box>
+        </ListItem>
+      ))}
+    </OrderedList>
+  </>
+);
+
+const PersonalComponent = () => {
+  const [inputTitle, setInputTitle] = useState<string>("");
+  const [inputContent, setInputContent] = useState<string>("");
+  const [files, setFiles] = useState<FileItem[]>([]);
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+
+  const handleSave = () => {
+    if (inputTitle.trim() !== "" && inputContent.trim() !== "") {
+      const newFile: FileItem = { title: inputTitle, content: inputContent };
+      if (editingIndex !== null) {
+        // If editing, replace the existing file at the editing index
+        setFiles((prevFiles: FileItem[]) => {
+          const updatedFiles = [...prevFiles];
+          updatedFiles[editingIndex] = newFile;
+          return updatedFiles;
+        });
+        setEditingIndex(null);
+      } else {
+        // If not editing, add a new file
+        setFiles((prevFiles: FileItem[]) => [...prevFiles, newFile]);
+      }
+      setInputTitle("");
+      setInputContent("");
+    }
+  };
+
+  const handleDelete = (index: number) => {
+    setFiles((prevFiles: FileItem[]) => prevFiles.filter((_, i) => i !== index));
+  };
+
+  const handleEdit = (index: number) => {
+    // Set the input fields with the values of the selected file for editing
+    setInputTitle(files[index].title);
+    setInputContent(files[index].content);
+    setEditingIndex(index);
+  };
+
+  return (
+    <Box display={['grid', 'grid', 'flex']} gap={['60px']}>
+      <Box className="" flex='2'>
+        {/* <SearchInput /> */}
+        <Input
+          variant='flushed'
+          placeholder='File Title'
+          value={inputTitle}
+          onChange={(e) => setInputTitle(e.target.value)}
+        />
+        <Textarea
+          placeholder='File Content'
+          minHeight='200px'
+          mt={['15px', '20px', '25px']}
+          value={inputContent}
+          onChange={(e) => setInputContent(e.target.value)}
+        />
+        <Button
+          mt={['1rem', '1.5rem']}
+          colorScheme='purple'
+          variant='ghost'
+          onClick={handleSave}
+        >
+          Save file
+        </Button>
+      </Box>
+
+
+      <Box className="" flex='1'>
+        <FileList files={files} onDelete={handleDelete} onEdit={handleEdit} />
+      </Box>
+    </Box>
+  );
+};
+
+export default PersonalComponent;

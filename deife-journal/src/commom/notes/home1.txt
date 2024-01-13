@@ -6,8 +6,8 @@ import { ReactElement,  } from "react";
 import PersonalComponent from "../personal";
 import WorkComponent from "../work";
 import WriteComponent from "../write";
-import { BusinessComponent, IdeasComponent, ImportantComponent, PlanComponent, TasksComponent } from "../..";
-
+import { FileManagementComponent } from "../..";
+import { FileItem } from "../../../interface";
 
 
 
@@ -29,44 +29,47 @@ interface ContentBoxProps {
 
 const HomeComponent = () => {
   const [selectedTab, setSelectedTab] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [folders, setFolders] = useState<Folder[]>([]);
- 
+
   
 
   const handleTabChange = (index: number) => {
     setSelectedTab(index);
   };
- 
-
-
- 
   
- 
+  const addFolder = (folderName: string) => {
+    const newFolder: Folder = {
+      name: folderName,
+      component: <FileManagementComponent key={folderName} />,
+    };
+    setFolders([...folders, newFolder]);
+  };
+  
+
+  const handleAddFolder = () => {
+    const folderName = prompt('Enter the folder name:');
+    if (folderName) {
+      addFolder(folderName);
+      handleTabChange(folders.length);
+    }
+  };
   
 
   const renderContent = () => {
-    console.log(selectedTab)
-   
+    console.log("Selected Tab: ", selectedTab);
     switch (selectedTab) {
       case 0:
-        return (
-          <>
-            <Text>Popular Cate</Text>
-            <Box
-              className=""
-              mt={['1rem', '1rem', '1rem']}
-              gap={['10px', '15px', '20px']}
-              display='flex'
-              justifyContent={['center', 'center', 'space-around']}
-              flexWrap='wrap'
-            >
-              {contentData.map((content, index) => (
-                <ContentBox key={index} {...content} index={index} />
-              ))}
-            </Box>
-          </>
-        );
+        return   <>
+        <Text>Popular Cate</Text>
+        <Box className="" mt={['1rem', '1rem' ,'1rem']}
+         gap={['10px', '15px', '20px']} display='flex' 
+         justifyContent={['center','center', 'space-around']} flexWrap='wrap'>
+        {contentData.map((content, index) => (
+      <ContentBox key={index} {...content} index={index} />
+        ))}
+
+      </Box>
+        </>
       case 1:
         return (
           <>
@@ -74,76 +77,28 @@ const HomeComponent = () => {
             <PersonalComponent />
           </>
         );
-      case 2:
-        return (
-          <>
-            <Text>Work</Text>
-            <WorkComponent />
-          </>
-        );
-      case 3:
-        return (
-          <>
-            <Text>Writing</Text>
-            <WriteComponent />
-          </>
-        );
 
-        case 4:
+        case 2:
           return (
             <>
-              <Text>Business</Text>
-              <BusinessComponent />
+              <Text>Work</Text>
+              <WorkComponent />
             </>
           );
 
-          case 5:
+          case 3:
             return (
               <>
-                <Text>Important</Text>
-                <ImportantComponent />
+                <Text>Writing</Text>
+                <WriteComponent />
               </>
             );
 
-          case 6:
-            return (
-              <>
-                <Text>Plans</Text>
-                <PlanComponent />
-              </>
-            );
-
-            case 7:
-              return (
-                <>
-                  <Text>Tasks</Text>
-                  <TasksComponent />
-                </>
-              );
-
-              case 8:
-                return (
-                  <>
-                    <Text>Idea</Text>
-                    <IdeasComponent />
-                  </>
-                );
-
-                
+      // Add cases for other tabs with respective content
       default:
-        if (selectedTab >= folders.length + 9) {
-          const folderIndex = selectedTab - folders.length - 9;
-          if (folders[folderIndex]) {
-            return folders[folderIndex].component;
-          } else {
-            return null;
-          }
-        }
         return null;
     }
   };
-  
-  
   
 
   const contentData = [
@@ -152,7 +107,7 @@ const HomeComponent = () => {
       title: 'Plans',
       description: 'Write your dream article and blog',
       bgColor: '#a06cd5',
-      component: <PlanComponent />
+      path: '/plans',
     },
     {
       icon: <FaPersonBooth size={25} />,
@@ -178,29 +133,24 @@ const HomeComponent = () => {
       component: <WriteComponent />
     },
 
+    {
+      icon: <FaMendeley size={25} />,
+      title: 'Tasks',
+      description: 'Write your dream article and blog',
+      bgColor: '#dec9e9',
+    },
+    {
+      icon: <FaIdeal size={25} />,
+      title: 'Plans',
+      description: 'Write your dream article and blog',
+      bgColor: '#f3c4fb',
+    },
 
     {
       icon: <FaBusinessTime size={25} />,
       title: 'Business',
       description: 'Write your dream article and blog',
       bgColor: '#e0aaff',
-      component: <BusinessComponent />
-    },
-
-    {
-      icon: <FaFileImport size={25} />,
-      title: 'Important',
-      description: 'Write your dream article and blog',
-      bgColor: '#d0bef2',
-      component: <ImportantComponent />
-    },
-
-    {
-      icon: <FaIdeal size={25} />,
-      title: 'Plans',
-      description: 'Write your dream article and blog',
-      bgColor: '#f3c4fb',
-      component: <PlanComponent />
     },
 
     {
@@ -208,26 +158,18 @@ const HomeComponent = () => {
       title: 'Tasks',
       description: 'Write your dream article and blog',
       bgColor: '#b67be6',
-      component: <TasksComponent />
     },
+
+
+  
+
 
     {
-      icon: <FaMendeley size={25} />,
-      title: 'Ideas',
+      icon: <FaFileImport size={25} />,
+      title: 'Important',
       description: 'Write your dream article and blog',
-      bgColor: '#dec9e9',
-      component: <IdeasComponent />
+      bgColor: '#d0bef2',
     },
-  
-
-
-  
-
-
-  
-
-
-  
 
   ];
 
@@ -286,7 +228,17 @@ const HomeComponent = () => {
           <Tab  bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>Plans</Tab>
           <Tab  bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>Tasks</Tab>
           <Tab  bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>Ideas</Tab>
-  
+          {/* <Tab  bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>Add Folder</Tab> */}
+          {/* {folders.map((folder, index) => (
+    <Tab key={index} bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>{folder}</Tab>
+  ))}
+  <Tab onClick={() => handleAddFolder()} bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>Add Folder</Tab> */}
+        {folders.map((folder, index) => (
+    <Tab key={index} bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>{folder.name}</Tab>
+  ))}
+  <Tab onClick={() => handleAddFolder()} bg='#f9f9f9f9' shadow='sm' borderRadius='10px' border="1px" borderColor="#f9f9f9f9" mb="2" pb="2" _selected={{ borderColor: "purple.200" }}>Add Folder</Tab>
+
+
         </TabList>
         </Box>
 
@@ -301,10 +253,11 @@ const HomeComponent = () => {
           <TabPanel>{renderContent()}</TabPanel>
           <TabPanel>{renderContent()}</TabPanel>
           <TabPanel>{renderContent()}</TabPanel>
-      
+          {folders.map((folder, index) => (
+    <TabPanel key={index}>{selectedTab === index ? folder.component : null}</TabPanel>
+  ))}
         </TabPanels>
       </Tabs>
-
 
 
  

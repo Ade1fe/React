@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { CalenderComponent,    CreateFilesMangement,    HomeComponent, MyProjects, SettingsComponent } from "../../../pages";
+import { CalenderComponent,    FileComponent,    HomeComponent, SettingsComponent, TasksComponent } from "../../../pages";
 
 
 interface ContentProps {
@@ -16,8 +16,10 @@ const Content: React.FC<ContentProps> = ({ selectedItem, isSidebarOpen }) => {
             return <CalenderComponent />;
             case "Settings":
               return <SettingsComponent />;
-                 case "Add File":
-              return <CreateFilesMangement />;
+               case "Add Folder":
+                return <FileComponent />
+                case "My Tasks":
+                  return <TasksComponent />
           // Add cases for other items
           default:
             return null; 
@@ -33,11 +35,11 @@ const Content: React.FC<ContentProps> = ({ selectedItem, isSidebarOpen }) => {
           overflow="auto"
         >
           <Text fontSize="xl" fontWeight="bold">
-            {selectedItem ? selectedItem : "My Projects"}
+            {/* {selectedItem ? selectedItem : ""} */}
           </Text>
           <Box mt="4">
          
-            {selectedItem ? getContentComponent(selectedItem) : <MyProjects />}
+            {selectedItem ? getContentComponent(selectedItem) : <HomeComponent />}
           </Box>
         </Box>
       );

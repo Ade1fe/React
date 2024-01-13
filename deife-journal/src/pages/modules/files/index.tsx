@@ -1,460 +1,219 @@
-import { useState } from 'react';
+
+
+
+import React, { useState } from 'react';
 import {
   Box,
   Button,
-  // Divider,
-  FormControl,
-  FormLabel,
-//   Heading,
-  HStack,
   Input,
+  ListItem,
+  OrderedList,
   Select,
-
   Text,
   Textarea,
-  VStack,
+  UnorderedList,
 } from '@chakra-ui/react';
-// import ShowFiles from './showFiles';
+import { FaTrash, FaEdit, FaDownload } from 'react-icons/fa';
+import MarqueeComponent from '../../../MarqueeComponent';
 
-interface Note {
+interface FileItem {
   title: string;
-  folder: string;
   content: string;
+  folder?: string;
+  index?: number;
 }
 
-
-
-const CreateFilesMangement = () => {
-  const [note, setNote] = useState<Note>({
-    title: '',
-    folder: '',
-    content: '',
-  });
-
-  const [filesInFolders, setFilesInFolders] = useState<Record<string, string[]>>({
-    'Work': [],
-    'Personal': [],
-    'Important': [],
-  });
-
-  const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [addingFolder, setAddingFolder] = useState<boolean>(false);
+const FileComponent: React.FC = () => {
+  const [folders, setFolders] = useState<string[]>([]);
+  const [selectedFolder, setSelectedFolder] = useState<string>('');
   const [newFolderName, setNewFolderName] = useState<string>('');
-  const [selectedFileContent, setSelectedFileContent] = useState<string>(''); // Add this line
+  const [files, setFiles] = useState<{ [key: string]: FileItem[] }>({});
+  const [showFiles, setShowFiles] = useState<{ [key: string]: boolean }>({});
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNote((prevNote) => ({
-      ...prevNote,
-      [name]: value,
-    }));
-  };
+  const [inputTitle, setInputTitle] = useState<string>('');
+  const [inputContent, setInputContent] = useState<string>('');
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
 
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = e.target;
-    setNote((prevNote) => ({
-      ...prevNote,
-      content: value,
-    }));
-  };
-
-  const handleSaveNote = () => {
-    if (selectedFolder && note.title && note.content) {
-      const updatedFiles = { ...filesInFolders };
-      updatedFiles[selectedFolder] = [...updatedFiles[selectedFolder], note.title];
-      setFilesInFolders(updatedFiles);
-      setNote({
-        title: '',
-        folder: selectedFolder || '',
-        content: '',
+  const handleSaveFolder = () => {
+    if (newFolderName.trim() !== '') {
+      const newFolders = [...folders, newFolderName];
+      setFolders(newFolders);
+      setSelectedFolder(newFolderName);
+      setNewFolderName('');
+      setFiles({
+        ...files,
+        [newFolderName]: [],
       });
-      setAddingFolder(false);
+      setShowFiles({
+        ...showFiles,
+        [newFolderName]: false,
+      });
     }
   };
 
+  const handleToggleShowFiles = (folder: string) => {
+    setShowFiles((prevShowFiles) => ({
+      ...prevShowFiles,
+      [folder]: !prevShowFiles[folder],
+    }));
+  };
   
- 
-
-  const handleFileClick = (file: any) => {
-    setSelectedFile(file);
-    if (selectedFolder && filesInFolders[selectedFolder]) {
-      const content = filesInFolders[selectedFolder][file]; // Access content using selectedFolder and file
-      if (content !== undefined) {
-        setSelectedFileContent(content); // Update selectedFileContent state with the file content
-        setNote({
-          ...note,
-          title: file,
-          folder: selectedFolder,
-          content: content, // Also update note.content if needed
-        });
+    const handleSaveFile = () => {
+      if (selectedFolder.trim() !== '') {
+        const titleInput = document.getElementById('titleInput') as HTMLInputElement;
+        const fileName = titleInput?.value || 'Untitled';
+  
+        if (editingIndex !== null) {
+          // If in edit mode, update the existing file
+          setFiles((prevFiles) => {
+            const updatedFiles = [...prevFiles[selectedFolder]];
+            updatedFiles[editingIndex] = { title: inputTitle, content: inputContent };
+            return { ...prevFiles, [selectedFolder]: updatedFiles };
+          });
+          setEditingIndex(null); // Exit edit mode
+        } else {
+          // If not in edit mode, add a new file
+          setFiles((prevFiles) => ({
+            ...prevFiles,
+            [selectedFolder]: [...(prevFiles[selectedFolder] || []), { title: fileName, content: inputContent }],
+          }));
+        }
+  
+        console.log(`File "${fileName}" saved in folder: ${selectedFolder}`);
+        setInputTitle(''); // Clear input fields after saving
+        setInputContent('');
       }
-    }
-  };
+    };
   
+    const handleDownload = (index: number) => {
+        const file = files[selectedFolder][index];
+        const blob = new Blob([file.content], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `${file.title}.txt`;
+        link.click();
+      };
+    
+      const handleDelete = (index: number) => {
+        setFiles((prevFiles) => {
+          const updatedFiles = [...prevFiles[selectedFolder]];
+          updatedFiles.splice(index, 1);
+          return { ...prevFiles, [selectedFolder]: updatedFiles };
+        });
+      };
+    
+      const handleEdit = (index: number) => {
+        setInputTitle(files[selectedFolder][index].title);
+        setInputContent(files[selectedFolder][index].content);
+        setEditingIndex(index);
+      };
   
+    const renderFilesList = (folder: string) => (
+      <UnorderedList>
+        {files[folder]?.map((file, index) => (
+          <ListItem key={index} noOfLines={1} display="flex" gap={['10px']} alignItems="center">
+            {file.title}
+            <Box className="">
+              <FaTrash size={20} style={{ cursor: 'pointer', marginRight: '5px' }} onClick={() => handleDelete(index)} />
+            </Box>
+            <Box className="">
+              <FaEdit size={20} style={{ cursor: 'pointer', marginRight: '5px' }} onClick={() => handleEdit(index)} />
+            </Box>
+            <Box className="">
+              <FaDownload size={20} style={{ cursor: 'pointer', marginRight: '5px' }} onClick={() => handleDownload(index)} />
+            </Box>
+          </ListItem>
+        ))}
+      </UnorderedList>
+    );
   
-  
-  
-  
-  
-
-  const handleEditContent = () => {
-    setSelectedFile(null); 
-  };
-
-  const handleCloseFile = () => {
-    setSelectedFile(null);
-    setNote({
-      title: '',
-      folder: selectedFolder || '',
-      content: '',
-    });
-  };
-
-  const handleDeleteFolder = (folderName: string) => {
-    const updatedFiles = { ...filesInFolders };
-    delete updatedFiles[folderName];
-    setFilesInFolders(updatedFiles);
-
-    // Deselect the folder if it's the one being deleted
-    if (selectedFolder === folderName) {
-      setSelectedFolder(null);
-      setSelectedFile(null);
-      setNote({
-        title: '',
-        folder: '',
-        content: '',
-      });
-    }
-  };
-
-  const handleDeleteFile = (fileName: string) => {
-    if (selectedFolder) {
-      const updatedFiles = { ...filesInFolders };
-      updatedFiles[selectedFolder] = updatedFiles[selectedFolder].filter((file) => file !== fileName);
-      setFilesInFolders(updatedFiles);
-    }
-  };
-
-//   return (
-//     <Box p={4} >
-//       <Box >
-//         {!addingFolder ? (
-//           <Button colorScheme="blue" onClick={() => setAddingFolder(true)}>
-//             Add New Folder
-//           </Button>
-//         ) : (
-//           <Box >
-//             <Input
-//               placeholder="Enter Folder Name"
-//               value={newFolderName}
-//               onChange={(e) => setNewFolderName(e.target.value)}
-//               autoFocus
-//             />
-//             <Button
-//               colorScheme="blue"
-//               onClick={() => {
-//                 if (newFolderName.trim() !== '') {
-//                   const updatedFiles = { ...filesInFolders, [newFolderName]: [] };
-//                   setFilesInFolders(updatedFiles);
-//                   setAddingFolder(false);
-//                 }
-//               }}
-//             >
-//               Save Folder
-//             </Button>
-//           </Box>
-//         )}
-
-//        <Box display='flex'> 
-//        {/* <Box> </Box> */}
-
-//         <Box flex='1'  opacity={addingFolder ? 0.5 : 1} pointerEvents={addingFolder ? 'none' : 'auto'}>
-//           <FormControl>
-//             <FormLabel>Title</FormLabel>
-//             <Input
-//               placeholder="Title"
-//               name="title"
-//               value={note.title}
-//               onChange={handleInputChange}
-//               disabled={addingFolder}
-//             />
-//           </FormControl>
-
-//           <FormControl>
-//             <FormLabel>Note</FormLabel>
-//             <Textarea
-//               placeholder="Write your note here"
-//               value={note.content}
-//               onChange={handleTextareaChange}
-//               resize="vertical"
-//               h="200px"
-//               disabled={addingFolder}
-//             />
-//           </FormControl>
-
-        
-
-       
-
-       
-
-         
-
-//           <Button colorScheme="blue" onClick={handleSaveNote} disabled={!note.title || !note.content}>
-//             Save
-//           </Button>
-//         </Box>
-
-//         <FormControl flex='1'>
-//             <FormLabel>Select a folder</FormLabel>
-//             <Select
-//               placeholder="Select a folder"
-//               value={selectedFolder || ''}
-//               onChange={(e) => setSelectedFolder(e.target.value || null)}
-//               disabled={addingFolder}
-//               textTransform='capitalize'
-//             >
-//               {Object.keys(filesInFolders).map((folderName) => (
-//                 <option key={folderName} value={folderName}>
-//                   {folderName}
-//                 </option>
-//               ))}
-//             </Select>
-//           </FormControl>
-
-//           <Box  alignItems="flex-start" flex='1'>
-//             <Text fontWeight="bold">Your Folders:</Text>
-//             {Object.keys(filesInFolders).map((folderName) => (
-//               <Box key={folderName}>
-//                 <Box  textTransform='capitalize' onClick={() => setSelectedFolder(folderName)} cursor="pointer">
-//                   {folderName}
-//                 </Box>
-//                 <Button colorScheme="red" onClick={() => handleDeleteFolder(folderName)}>
-//                   Delete Folder
-//                 </Button>
-//               </Box>
-//             ))}
-//           </Box>
-
-//         {/* Files and Content Display */}
-//         {selectedFolder && (
-//           <VStack spacing={2} alignItems="flex-start">
-//             <Text fontWeight="bold">Files in {selectedFolder}:</Text>
-//             {filesInFolders[selectedFolder].map((file, index) => (
-//               <HStack key={index}>
-//                 <Box onClick={() => handleFileClick(file)} cursor="pointer">
-//                   {file}
-//                 </Box>
-//                 <Button colorScheme="red" onClick={() => handleDeleteFile(file)}>
-//                   Delete
-//                 </Button>
-//               </HStack>
-//             ))}
-//           </VStack>
-//         )}
-
-
-// {selectedFile && (
-//   <VStack spacing={4} alignItems="flex-start">
-//     <Text fontWeight="bold">Content of {selectedFile}:</Text>
-//     <Textarea
-//       value={selectedFileContent} // Use selectedFileContent instead of note.content here
-//       onChange={(e) => setSelectedFileContent(e.target.value)} // Implement setSelectedFileContent function
-//       resize="vertical"
-//       h="200px"
-//     />
-//     <HStack spacing={4}>
-//       <Button colorScheme="blue" onClick={handleEditContent}>
-//         Edit Content
-//       </Button>
-//       <Button colorScheme="red" onClick={handleCloseFile}>
-//         Close
-//       </Button>
-//     </HStack>
-//   </VStack>
-// )}
-
-//       </Box>
-//       </Box>
-//       {/* <ShowFiles files={filesInFolders} /> */}
-//     </Box>
-//   );
-// };
-
-
-// ... (previous code remains unchanged)
-
-return (
-  <Box p={4}>
-    <VStack spacing={4} alignItems="flex-start">
-          {!addingFolder ? (
-          <Button colorScheme="blue" onClick={() => setAddingFolder(true)}>
-            Add New Folder
-          </Button>
-        ) : (
-          <Box >
+    return (
+     <Box position='relative'>
+        <MarqueeComponent />
+      <Box display={['grid', 'grid', 'grid', 'flex']} gap={['20px']} mt={['20px']}>
+        {/* Left Section */}
+        <Box shadow="md" flex="1" order={['']} p={'10px'}>
+          <Box mb={['50px']} className="">
             <Input
-              placeholder="Enter Folder Name"
+              variant="flushed"
+              placeholder="Folder Name"
               value={newFolderName}
               onChange={(e) => setNewFolderName(e.target.value)}
-              autoFocus
-            />
-            <Button
-              colorScheme="blue"
-              onClick={() => {
-                if (newFolderName.trim() !== '') {
-                  const updatedFiles = { ...filesInFolders, [newFolderName]: [] };
-                  setFilesInFolders(updatedFiles);
-                  setAddingFolder(false);
-                }
+              _focus={{
+                outline: 'none',
+                borderColor: 'purple', // Set the focus border color to purple
               }}
-            >
+            />
+            <Button mt={['1rem', '1.5rem']} colorScheme="purple" variant="ghost"  onClick={handleSaveFolder}>
               Save Folder
             </Button>
           </Box>
-        )}
-
-      {/* Input fields for title and note */}
-      <FormControl>
-        <FormLabel>Title</FormLabel>
-        <Input
-          placeholder="Title"
-          name="title"
-          value={note.title}
-          onChange={handleInputChange}
-          disabled={addingFolder}
-        />
-      </FormControl>
-
-      <FormControl>
-        <FormLabel>Note</FormLabel>
-        <Textarea
-          placeholder="Write your note here"
-          value={note.content}
-          onChange={handleTextareaChange}
-          resize="vertical"
-          h="200px"
-          disabled={addingFolder}
-        />
-      </FormControl>
-
-      {/* Save button */}
-      <Button
-        colorScheme="blue"
-        onClick={handleSaveNote}
-        disabled={!note.title || !note.content || addingFolder}
-      >
-        Save
-      </Button>
-
-      {/* Display folders */}
-      <VStack align="flex-start" spacing={4}>
-        <Text fontWeight="bold">Your Folders:</Text>
-        {/* Map through folders and display them */}
-        {Object.keys(filesInFolders).map((folderName) => (
-          <HStack key={folderName}>
-            <Text>{folderName}</Text>
-            <Button
-              colorScheme="red"
-              onClick={() => handleDeleteFolder(folderName)}
-            >
-              Delete Folder
-            </Button>
-          </HStack>
-        ))}
-      </VStack>
-
-      {Object.keys(filesInFolders).map((folderName) => (
-  <Box key={folderName} width="100%" marginTop={4}>
-    <Text fontWeight="bold">Files in {folderName}:</Text>
-    {/* Display files in the folder */}
-    <VStack align="flex-start" spacing={2}>
-      {filesInFolders[folderName].map((file, index) => (
-        <HStack key={index} width="100%">
-          <Text>{file}</Text>
-          <Button
-            colorScheme="red"
-            onClick={() => handleDeleteFile(file)}
+  
+          <div className="">
+            <Box mb={['40px']}>
+              <Text fontWeight='bold'> List of folders:</Text>
+              <OrderedList>
+                {folders.map((folder) => (
+                  <ListItem key={folder}>
+                    <Button colorScheme="teal" variant="outline" onClick={() => handleToggleShowFiles(folder)}>
+                      {showFiles[folder] ? 'Hide' : 'Show'} Files in {folder}
+                    </Button>
+                    {showFiles[folder] && renderFilesList(folder)}
+                  </ListItem>
+                ))}
+              </OrderedList>
+            </Box>
+          </div>
+        </Box>
+  
+      
+        <Box flex="2" order={['2', '2', '1']} className="">
+           
+          <Select
+            variant="flushed"
+            placeholder="Folders"
+            value={selectedFolder}
+            onChange={(e) => setSelectedFolder(e.target.value)}
           >
-            Delete
-          </Button>
-          {/* Add more actions for files if needed */}
-        </HStack>
-      ))}
-    </VStack>
-
-    <FormControl flex='1'>
-           <FormLabel>Select a folder</FormLabel>
-           <Select
-              placeholder="Select a folder"
-              value={selectedFolder || ''}
-              onChange={(e) => setSelectedFolder(e.target.value || null)}
-              disabled={addingFolder}
-              textTransform='capitalize'
-            >
-              {Object.keys(filesInFolders).map((folderName) => (
-                <option key={folderName} value={folderName}>
-                  {folderName}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-          
-  </Box>
-))}
-
-
-     
-
-
-
-
-     {/* Files and Content Display */}
-       {selectedFolder && (
-          <VStack spacing={2} alignItems="flex-start">
-            <Text fontWeight="bold">Files in {selectedFolder}:</Text>
-            {filesInFolders[selectedFolder].map((file, index) => (
-              <HStack key={index}>
-                <Box onClick={() => handleFileClick(file)} cursor="pointer">
-                  {file}
-                </Box>
-                <Button colorScheme="red" onClick={() => handleDeleteFile(file)}>
-                  Delete
-                </Button>
-              </HStack>
+            {folders.map((folder) => (
+              <option key={folder} value={folder}>
+                {folder}
+              </option>
             ))}
-          </VStack>
-        )}
+          </Select>
+          <Input
+            id="titleInput"
+            variant="flushed"
+            placeholder="Title Name"
+            value={inputTitle}
+            onChange={(e) => setInputTitle(e.target.value)}
+            _focus={{
+              outline: 'none',
+              borderColor: 'purple', // Set the focus border color to purple
+            }}
+          />
+          <Textarea
+            placeholder="File Content"
+            minHeight={["350px",'50vh', '70vh', '80vh']}
+            mt={['15px', '20px', '25px']}
+            value={inputContent}
+            onChange={(e) => setInputContent(e.target.value)}
+            _focus={{
+              outline: 'none',
+              borderColor: 'purple', // Set the focus border color to purple
+            }}
+          />
+          <Button mt={['1rem', '1.5rem']} colorScheme="purple" variant="ghost" onClick={handleSaveFile}>
+            Save file
+          </Button>
+        </Box>
+        
+      </Box>
 
-
-
-{selectedFile && (
-  <VStack spacing={4} alignItems="flex-start">
-    <Text fontWeight="bold">Content of {selectedFile}:</Text>
-    <Textarea
-      value={selectedFileContent} // Use selectedFileContent instead of note.content here
-      onChange={(e) => setSelectedFileContent(e.target.value)} // Implement setSelectedFileContent function
-      resize="vertical"
-      h="200px"
-    />
-    <HStack spacing={4}>
-      <Button colorScheme="blue" onClick={handleEditContent}>
-        Edit Content
-      </Button>
-      <Button colorScheme="red" onClick={handleCloseFile}>
-        Close
-      </Button>
-    </HStack>
-  </VStack>
-)}
-
-
-    </VStack>
-  </Box>
-);
-
-        }
-
-export default CreateFilesMangement;
+      
+     </Box>
+    );
+  };
+  
+  export default FileComponent;
+  

@@ -44,7 +44,7 @@ p {
 
 /* Customize scrollbar */
 body::-webkit-scrollbar {
-  width: 12px; /* Set width for vertical scrollbar */
+  width: 10px; /* Set width for vertical scrollbar */
 }
 
 body::-webkit-scrollbar-track {
@@ -69,3 +69,50 @@ body::-webkit-scrollbar-thumb:hover {
  
 }
 
+.custom-scrollbar {
+  
+  scrollbar-width: thin; 
+  scrollbar-color: #fff transparent;
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+
+
+
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-content {
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+  -webkit-animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

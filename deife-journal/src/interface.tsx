@@ -56,3 +56,10 @@ export interface InputProps {
     email: string,
     username: string,
   }
+
+  export interface FileItem {
+    title: string;
+    content: string;
+    folder?: string;
+    index?: number;
+  }
