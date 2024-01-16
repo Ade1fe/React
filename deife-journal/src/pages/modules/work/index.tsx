@@ -2,12 +2,12 @@ import  { useState } from "react";
 import { FileManagementComponent } from "../..";
 import { FileItem } from "../../../interface";
 
-const WorkComponent = () => {
+const WorkComponent  : React.FC = () => {
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputContent, setInputContent] = useState<string>("");
   const [files, setFiles] = useState<FileItem[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [, setEditingIndex] = useState<number | null>(null);
 
   const handleSave = (title: string, content: string, editingIndex: number | null) => {
     if (title.trim() !== "" && content.trim() !== "") {

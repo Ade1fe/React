@@ -10,7 +10,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { manIcon, womanIcon, avatarIcon } from "../../../../assets";
 
-const ProfileSettings = () => {
+const ProfileSettings: React.FC = () => {
   const [value, setValue] = useState("other");
   const [isPending, setIsPending] = useState(false);
   const [loginError, ] = useState(false);
@@ -32,19 +32,110 @@ const ProfileSettings = () => {
     secondname: '',
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const updateDisplayName = async (firstname: any, secondname: any) => {
-    try {
-      const user = auth.currentUser;
-      if (user) {
-        const { displayName } = user;
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   const updateDisplayName = async (firstname: any, secondname: any) => {
+//     try {
+//       const user = auth.currentUser;
+//       if (user) {
+//         const { displayName } = user;
+//         const parts = displayName.split(' ');
+//         const existingUsername = parts[parts.length - 1]; // Extract existing username
+
+//         const updatedDisplayName = `${firstname} ${secondname} ${existingUsername}`;
+//         await updateProfile(user, { displayName: updatedDisplayName });
+
+
+
+//         toast({
+//           title: 'Update Success',
+//           description: 'Go to Display to see',
+//           status: 'success',
+//           duration: 2000,
+//           isClosable: true,
+//           position: 'top-right',
+//           variant: 'top-accent',
+//         });
+// console.log("display", displayName);
+// console.log("parts", parts);
+// console.log("existingUsername", existingUsername);
+// console.log("updatedDisplayName", updatedDisplayName);
+
+// console.log("existingUsername", existingUsername);
+      
+//       }
+//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//     } catch (error : any) {
+//       console.error('Error updating profile:', error.message);
+//       toast({
+//         title: 'Update Error',
+//         description: error.message,
+//         status: 'error',
+//         duration: 5000,
+//         isClosable: true,
+//         position: 'top-right',
+//         variant: 'top-accent',
+//       });
+//     }
+//   };
+
+
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const updateDisplayName = async (firstname: any, secondname: any) => {
+//   try {
+//     const user = auth.currentUser;
+//     if (user) {
+//       const { displayName } = user;
+//       const parts = displayName.split(' ');
+//       const existingUsername = parts[parts.length - 1]; // Extract existing username
+
+//       const updatedDisplayName = `${firstname} ${secondname} ${existingUsername}`;
+//       await updateProfile(user, { displayName: updatedDisplayName });
+
+//       toast({
+//         title: 'Update Success',
+//         description: 'Go to Display to see',
+//         status: 'success',
+//         duration: 2000,
+//         isClosable: true,
+//         position: 'top-right',
+//         variant: 'top-accent',
+//       });
+
+//       console.log("display", displayName);
+//       console.log("parts", parts);
+//       console.log("existingUsername", existingUsername);
+//       console.log("updatedDisplayName", updatedDisplayName);
+
+//       console.log("existingUsername", existingUsername);
+//     }
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   } catch (error: any) {
+//     console.error('Error updating profile:', error.message);
+//     toast({
+//       title: 'Update Error',
+//       description: error.message,
+//       status: 'error',
+//       duration: 5000,
+//       isClosable: true,
+//       position: 'top-right',
+//       variant: 'top-accent',
+//     });
+//   }
+// };
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const updateDisplayName = async (firstname: any, secondname: any) => {
+  try {
+    const user = auth.currentUser;
+    if (user) {
+      const displayName = user.displayName; // displayName can be null
+      if (displayName !== null) {
         const parts = displayName.split(' ');
         const existingUsername = parts[parts.length - 1]; // Extract existing username
 
         const updatedDisplayName = `${firstname} ${secondname} ${existingUsername}`;
         await updateProfile(user, { displayName: updatedDisplayName });
-
-
 
         toast({
           title: 'Update Success',
@@ -55,28 +146,31 @@ const ProfileSettings = () => {
           position: 'top-right',
           variant: 'top-accent',
         });
-console.log("display", displayName);
-console.log("parts", parts);
-console.log("existingUsername", existingUsername);
-console.log("updatedDisplayName", updatedDisplayName);
 
-console.log("existingUsername", existingUsername);
-      
+        console.log("display", displayName);
+        console.log("parts", parts);
+        console.log("existingUsername", existingUsername);
+        console.log("updatedDisplayName", updatedDisplayName);
+
+        console.log("existingUsername", existingUsername);
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error : any) {
-      console.error('Error updating profile:', error.message);
-      toast({
-        title: 'Update Error',
-        description: error.message,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-right',
-        variant: 'top-accent',
-      });
     }
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.error('Error updating profile:', error.message);
+    toast({
+      title: 'Update Error',
+      description: error.message,
+      status: 'error',
+      duration: 5000,
+      isClosable: true,
+      position: 'top-right',
+      variant: 'top-accent',
+    });
+  }
+};
+
+
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -154,10 +248,11 @@ const getImageSource = () => {
   }
 };
 
-const handleBioChange = (e) => {
-  const text = e.target.value.slice(0, 150); 
-  setBio(text); 
+const handleBioChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const text = e.target.value.slice(0, 150);
+  setBio(text);
 };
+
 
   return (
     <>

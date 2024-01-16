@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './index.css'; // Create this CSS file for styling
 import { Box } from '@chakra-ui/react';
 

@@ -17,15 +17,17 @@ const Dashboard = () => {
     setIsSidebarOpen(false); // Close sidebar when an item is clicked
   };
 
+
   return (
     <Flex flexDirection="column" height="100vh">
       <Navbar  isSidebarOpen={isSidebarOpen} />
       <Flex flexGrow={1}>
-        <Sidebar
-          onItemClick={handleSidebarItemClick}
-          isSidebarOpen={isSidebarOpen}
-          onToggle={handleSidebarToggle}
-        />
+      <Sidebar
+  onItemClick={handleSidebarItemClick}
+  isSidebarOpen={isSidebarOpen}
+  onToggle={handleSidebarToggle}
+  
+/>
         <Content
           selectedItem={selectedItem}
           isSidebarOpen={isSidebarOpen}

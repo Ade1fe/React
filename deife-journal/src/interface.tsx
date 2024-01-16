@@ -57,9 +57,22 @@ export interface InputProps {
     username: string,
   }
 
+  // export interface FileItem {
+  //   id?: string;
+  //   title: string;
+  //   content: string;
+  //   folder?: string;
+  //   index?: number;
+  // }
+
+
   export interface FileItem {
+    id?: string;  // Ensure 'id' is optional since it might not be present when creating a new file
     title: string;
     content: string;
     folder?: string;
     index?: number;
+    userId?: string |  null;
   }
+  
+  

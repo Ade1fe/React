@@ -1,12 +1,14 @@
 
 import { Box, Text, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBusinessTime, FaFile, FaFileImport, FaFileWord, FaIdeal, FaMendeley, FaPen, FaPersonBooth, FaTasks } from "react-icons/fa";
 import { ReactElement,  } from "react";
 import PersonalComponent from "../personal";
 import WorkComponent from "../work";
 import WriteComponent from "../write";
 import { BusinessComponent, IdeasComponent, ImportantComponent, PlanComponent, TasksComponent } from "../..";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../../firebase";
 
 
 
@@ -17,8 +19,9 @@ type Folder = {
 };
 
 
+
 interface ContentBoxProps {
-  index: number;  // Add index property
+  index: number;  
   icon: ReactElement;
   title: string;
   description: string;
@@ -27,10 +30,10 @@ interface ContentBoxProps {
 }
 
 
-const HomeComponent = () => {
+const HomeComponent: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [folders, setFolders] = useState<Folder[]>([]);
+  const [folders, ] = useState<Folder[]>([]);
+  const [username, setUsername] = useState<string | null>(null); 
  
   
 
@@ -38,7 +41,22 @@ const HomeComponent = () => {
     setSelectedTab(index);
   };
  
+ 
 
+  useEffect(() => {
+    const auth = getAuth(app);
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUsername(user.displayName || null);
+      } else {
+        setUsername(null);
+      }
+    });
+
+    // Cleanup function to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
  
   
@@ -242,7 +260,9 @@ const HomeComponent = () => {
       py={'2rem'}
       px='1rem'
       className=""
-      bg={bgColor}
+      borderWidth='2px'
+      shadow='md'
+      bgColor={bgColor}
       color='black'
     >
       <Box display='flex' alignContent='center' justifyContent='center' bg='white' p='10px' borderRadius='50%' className="">
@@ -264,8 +284,8 @@ const HomeComponent = () => {
   return (
     <Box>
       <Box className="" textAlign="center">
-        <Text as="h1" fontWeight="bold" fontSize={["md", "lg", "x-large"]}>
-          <Text as="span">Johanna</Text>, So what exactly do you have in mind?
+      <Text as="h1" fontWeight="bold" fontSize={["md", "lg", "x-large"]}>
+          {username !== null ? <Text as="span" textTransform='capitalize' id="username">{username}</Text> : 'Loading...'}, So what exactly do you have in mind?
         </Text>
         <Text>Begin with selecting the content type from the options below</Text>
       </Box>

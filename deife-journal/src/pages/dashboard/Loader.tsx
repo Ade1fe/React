@@ -10,7 +10,7 @@ const Loader = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-      navigate("/dashboard"); 
+      navigate("/auth/signin"); 
     }, 4000);
 
     return () => clearTimeout(timer);
