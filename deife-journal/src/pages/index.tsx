@@ -16,5 +16,5 @@ export {default as PlanComponent } from './modules/plans/index';
 export {default as TasksComponent } from './modules/tasks/index';
 export {default as ImportantComponent } from './modules/important/index';
 export {default as FileComponent } from './modules/files/index';
-// export {default as MyProjects } from './modules/myprojects/index';
+export {default as TodosComponent } from './modules/todos/index';
 // export {default as MyProjects } from './modules/myprojects/index';
