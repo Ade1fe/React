@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Dashboard } from "./pages";
+import { ChatComponent, Dashboard } from "./pages";
 import { ForgotPassword, ResetPassword, SignIn, SignUp } from "./pages/auth";
 import Loader from "./pages/dashboard/Loader";
 import Screen from "./commom/components/navbar/Screen";
+import ChatComponents from "./pages/modules/calender/ChatsComponent";
 
 const Router = createBrowserRouter([
   {
@@ -42,6 +43,16 @@ const Router = createBrowserRouter([
       },
       
     ],
+  },
+
+  {
+    path: "/chat/:roomId", 
+    element: <ChatComponent />,
+  },
+
+  {
+    path: "/chat", 
+    element: <ChatComponents />,
   },
   
 ]);

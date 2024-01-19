@@ -19,7 +19,8 @@ const BusinessComponent: React.FC = () => {
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputContent, setInputContent] = useState<string>("");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [, setEditingIndex] = useState<number | null>(null);
 
   const getCurrentUserId = () => {
     const auth = getAuth();
@@ -44,7 +45,8 @@ const fetchFiles = async () => {
 };
 
     const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const unsubscribe = onAuthStateChanged(auth, () => {
       // Refresh files when the authentication state changes (user logs in or out)
       fetchFiles();
     });
