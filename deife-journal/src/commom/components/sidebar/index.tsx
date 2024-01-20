@@ -10,12 +10,14 @@ import {
 } from "@chakra-ui/react";
 import { MdMenu, MdClose } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
-import { SlCalender } from "react-icons/sl";
+// import { SlCalender } from "react-icons/sl";
 import { FiFilePlus, FiLogOut } from "react-icons/fi";
 import { TbSettingsCog } from "react-icons/tb";
 import { FaTasks } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
+import { IoLogoSnapchat } from "react-icons/io5";
+import { FaRocketchat } from "react-icons/fa";
 import { app } from '../../../firebase';
 
 interface SidebarProps {
@@ -36,9 +38,11 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const sidebarItems = [
     { id: "home", label: "Home", icon: <IoHomeOutline size={25} /> },
-    { id: "calendar", label: "Calendar", icon: <SlCalender size={25} /> },
+    // { id: "calendar", label: "Calendar", icon: <SlCalender size={25} /> },
     { id: "addFile", label: "Add Folder", icon: <FiFilePlus size={25} /> },
     { id: "Todos", label: "Todos", icon: <FaTasks  size={25}  /> },
+    { id: "friends", label: "Friends", icon: <FaRocketchat size={25} /> },
+    { id: "chat", label: "Chat Room", icon: <IoLogoSnapchat size={25} /> },
     { id: "settings", label: "Settings", icon: <TbSettingsCog size={25} /> },
     { id: "logout", label: "", icon: "" },
   ];

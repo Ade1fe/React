@@ -1,4 +1,4 @@
-import ChatComponent from "./ChatComponent"
+import ChatComponent from "../chat/ChatComponent"
 
 
 const CalenderComponent = () => {

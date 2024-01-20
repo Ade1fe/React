@@ -17,5 +17,5 @@ export {default as TasksComponent } from './modules/tasks/index';
 export {default as ImportantComponent } from './modules/important/index';
 export {default as FileComponent } from './modules/files/index';
 export {default as TodosComponent } from './modules/todos/index';
-export {default as ChatComponent } from './modules/calender/ChatComponent';
-export {default as ChatComponents } from './modules/calender/';
+export {default as ChatComponent } from './modules/chat/ChatComponent';
+export {default as ChatComponents } from './modules/friends/ChatComponents'

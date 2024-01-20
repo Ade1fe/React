@@ -1,5 +1,5 @@
 import { Box, Image, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
-import { SearchIcon, BellIcon } from '@chakra-ui/icons';
+import { SearchIcon,  } from '@chakra-ui/icons';
 import { blackPic, avatarIcon } from '../../../assets';
 
 
@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ isSidebarOpen }) => {
           <InputRightElement bg='purple.500' children={<SearchIcon color='purple.300' />} />
         </InputGroup>
 
-        <BellIcon boxSize={6} />
+        {/* <BellIcon boxSize={6} /> */}
 
         <Image src={avatarIcon} w='40px' borderRadius='50%' />
       </Box>

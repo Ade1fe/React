@@ -3,7 +3,7 @@ import { ChatComponent, Dashboard } from "./pages";
 import { ForgotPassword, ResetPassword, SignIn, SignUp } from "./pages/auth";
 import Loader from "./pages/dashboard/Loader";
 import Screen from "./commom/components/navbar/Screen";
-import ChatComponents from "./pages/modules/calender/ChatsComponent";
+import ChatComponents from "./pages/modules/friends/ChatComponents";
 
 const Router = createBrowserRouter([
   {
