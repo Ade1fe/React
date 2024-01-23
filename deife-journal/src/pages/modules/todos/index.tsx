@@ -227,6 +227,7 @@ const Todos: React.FC = () => {
           <Input
             type="date"
             min="2024-01-17"
+            color='black'
             shadow='base'
             focusBorderColor="purple.500" 
             value={dueDate ? dueDate.toISOString().slice(0, 10) : ''}
@@ -234,6 +235,7 @@ const Todos: React.FC = () => {
           />
           <Input
             type="time"
+            color='black'
             shadow='base'
             focusBorderColor="purple.500" 
             value={dueDate ? dueDate.toISOString().slice(11, 16) : ''}

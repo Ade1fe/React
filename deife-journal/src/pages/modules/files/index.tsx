@@ -304,7 +304,7 @@ const FileComponent: React.FC = () => {
   
 
   return (
-    <Box display='flex' gap={['10px']} px={['5px']} justifyContent={['space-between']} flexDir={['column','row']}>
+    <Box display='flex'  gap={['10px']} px={['5px']} justifyContent={['space-between']} flexDir={['column','row']}>
       {/* Loading Spinner */}
       {loading && <Spinner mx='auto' size="md" color="purple.500" />}
 
@@ -360,8 +360,11 @@ const FileComponent: React.FC = () => {
 <Box mb={4}>
         <Input
           variant="flushed"
-          placeholder="Folder Name"
+          placeholder="Create a new Folder"
           value={newFolderName}
+          shadow='sm'
+          px={2}
+          mb={1}
           focusBorderColor="purple.500" 
           onChange={(e) => setNewFolderName(e.target.value)}
         />
@@ -374,7 +377,7 @@ const FileComponent: React.FC = () => {
           {/* File Section */}
           <Box mt={[5,8,12]}>
         <Select
-          // variant="flushed"
+          shadow='sm'
           focusBorderColor="purple.500" 
           placeholder="Select Folder"
           value={selectedFolder}
@@ -398,10 +401,13 @@ const FileComponent: React.FC = () => {
           placeholder="Title Name"
           value={inputTitle}
           focusBorderColor="purple.500" 
+          shadow='sm'
+          px={2}
           onChange={(e) => setInputTitle(e.target.value)}
         />
         <Textarea
           placeholder="File Content"
+          shadow='base'
           mt={4}
           value={inputContent}
           focusBorderColor="purple.500" 

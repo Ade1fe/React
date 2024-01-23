@@ -1311,7 +1311,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import { auth, firestore,  } from '../../../firebase';
-import { Box, Button, Textarea, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Textarea, Input, Text, Avatar } from '@chakra-ui/react';
 
 interface Message {
   id: string;
@@ -1481,39 +1481,63 @@ useEffect(() => {
     <Box>
       <Box>
         {messages.map((message) => (
-          <Box key={message.id} borderWidth="1px" p="4" my="2" borderRadius="md">
-            <Text>{message.text} - {usernames[message.userId]}</Text>
-            <Button colorScheme="purple" onClick={() => handleReply(message.id)}>Reply</Button>
-            <Button colorScheme="red" onClick={() => deleteMessage(message.id)}>Delete</Button>
+          <Box key={message.id} shadow='base' borderWidth="1px" p="4"  mb={4} borderRadius="md">
+            {/* <Text>{message.text} - {usernames[message.userId]}</Text> */}
+            <Box display="">
+              <Box display="" justifyContent=''>
+              <Avatar  shadow='base' size="md" name={usernames[message.userId] || 'Unknown'} />
+                <Text textTransform='capitalize' fontWeight='700'> {usernames[message.userId]} </Text>
+               
+              </Box>
+            
+           <Box mt="5px" shadow='sm' bg='#f1f1f1' px={2} py={3}>
+          
+           <Text>{message.text}  </Text>
+           </Box>
+            </Box>
+            <Box display="flex" gap={4} mt="20px">
+            <Button shadow='base' colorScheme="purple" onClick={() => handleReply(message.id)}>Reply</Button>
+            <Button  shadow='base' colorScheme="red" onClick={() => deleteMessage(message.id)}>Delete</Button>
+            </Box>
 
             {replyingTo === message.id && (
-              <Box mt="2">
+              <Box my="5">
                 <Textarea
                   placeholder="Write your reply..."
                   value={replyMessage}
                   onChange={(e) => setReplyMessage(e.target.value)}
                 />
-                <Button colorScheme="purple" onClick={sendReply}>Send Reply</Button>
+                <Button mt={2} colorScheme="purple" onClick={sendReply}>Send Reply</Button>
               </Box>
             )}
 
             {message.replies && message.replies.map((reply, index) => (
               <Box key={index} ml="4" mt="2" borderWidth="1px" p="2" borderRadius="md">
-                <Text>{reply.text} - {usernames[reply.userId]}</Text>
-                {/* <Button colorScheme="red" onClick={() => deleteReply(message.id, reply.id)}>Delete</Button> */}
+                {/* <Text>{reply.text} - {usernames[reply.userId]}</Text> */}
+                <Box display="flex" justifyContent='space-between'>
+                <Text>{reply.text}  </Text>
+             <Box className="">
+             <Avatar shadow='base' size="sm" name={usernames[reply.userId] || 'Unknown'} />
+              <Text>{usernames[reply.userId]}</Text>
+             </Box>
+             
+               
+              </Box>
+              
               </Box>
             ))}
           </Box>
         ))}
       </Box>
-      <Box mt="4">
+      <Box mt="4" >
         <Input
           type="text"
+          shadow='base'
           placeholder="Type your message..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <Button colorScheme="purple" ml="2" onClick={sendMessage}>Send</Button>
+        <Button shadow='base' mt={2} colorScheme="purple" ml="2" onClick={sendMessage}>Send</Button>
       </Box>
     </Box>
   );

@@ -70,10 +70,10 @@ const HomeComponent: React.FC = () => {
       case 0:
         return (
           <>
-            <Text>Popular Cate</Text>
+            <Text fontWeight="700" mb={2} fontSize={['medium', 'large',]}>POPULAR CATEGORIES: </Text>
             <Box
               className=""
-              mt={['1rem', '1rem', '1rem']}
+              mt={['0.05rem', '0.05rem', '0.05rem']}
               gap={['10px', '15px', '20px']}
               display='flex'
               justifyContent={['center', 'center', 'space-around']}
@@ -88,21 +88,21 @@ const HomeComponent: React.FC = () => {
       case 1:
         return (
           <>
-            <Text>Personal</Text>
+            <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Personal</Text>
             <PersonalComponent />
           </>
         );
       case 2:
         return (
           <>
-            <Text>Work</Text>
+            <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Work</Text>
             <WorkComponent />
           </>
         );
       case 3:
         return (
           <>
-            <Text>Writing</Text>
+            <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Writing</Text>
             <WriteComponent />
           </>
         );
@@ -110,7 +110,7 @@ const HomeComponent: React.FC = () => {
         case 4:
           return (
             <>
-              <Text>Business</Text>
+              <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Business</Text>
               <BusinessComponent />
             </>
           );
@@ -118,7 +118,7 @@ const HomeComponent: React.FC = () => {
           case 5:
             return (
               <>
-                <Text>Important</Text>
+                <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Important</Text>
                 <ImportantComponent />
               </>
             );
@@ -126,7 +126,7 @@ const HomeComponent: React.FC = () => {
           case 6:
             return (
               <>
-                <Text>Plans</Text>
+                <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Plans</Text>
                 <PlanComponent />
               </>
             );
@@ -134,7 +134,7 @@ const HomeComponent: React.FC = () => {
             case 7:
               return (
                 <>
-                  <Text>Tasks</Text>
+                  <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Tasks</Text>
                   <TasksComponent />
                 </>
               );
@@ -142,7 +142,7 @@ const HomeComponent: React.FC = () => {
               case 8:
                 return (
                   <>
-                    <Text>Idea</Text>
+                    <Text fontWeight="700" mb={2} fontSize={['medium', 'large', 'x-large']}>Idea</Text>
                     <IdeasComponent />
                   </>
                 );

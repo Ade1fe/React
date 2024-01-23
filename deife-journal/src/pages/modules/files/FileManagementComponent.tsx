@@ -25,22 +25,22 @@ interface FileListProps {
     <OrderedList>
       {files.map((file, index) => (
         <ListItem key={index} display='flex' gap={['10px']} alignItems="center">
-          <Text noOfLines={1} flex="1">  {file.title} </Text>
-          <Box className=''>
+          <Text noOfLines={1} flex="1" textTransform='capitalize'>  {file.title} </Text>
+          <Box color='red.500'>
             <FaTrash
               size={20}
               onClick={() => onDelete(index)}
               style={{ cursor: 'pointer', marginRight: '5px' }}
             />
           </Box>
-          <Box className=''>
+          <Box color='green.500'>
             <FaEdit
               size={20}
               onClick={() => onEdit(index)}
               style={{ cursor: 'pointer', marginRight: '5px' }}
             />
           </Box>
-          <Box className=''>
+          <Box color='blue.600'>
             <FaDownload
               size={20}
               onClick={() => onDownload(index)}
