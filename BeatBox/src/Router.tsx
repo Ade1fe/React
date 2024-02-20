@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { SignInComp, SignUpComp } from "./modules";
+import { DashboardComp, SignInComp, SignUpComp } from "./modules";
 import { ScreenOne } from "./components";
 import ScreenTwo from "./components/screens/ScreenTwo";
 import ScreenThree from "./components/screens/ScreenThree";
@@ -30,10 +30,10 @@ const Router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/signupsuccess",
-  //   element: <VerifyEmailModal />,
-  // },
+  {
+    path: "/dashboard",
+    element: <DashboardComp />,
+  },
 
 
 

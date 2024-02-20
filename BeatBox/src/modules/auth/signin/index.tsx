@@ -27,9 +27,9 @@ const SignInComp = () => {
 
   return (
     <OverLayComp>
-       <Image src={playbtn} boxSize={20} mt='4' mx='auto' className='slide-in-right' />
+       <Image src={playbtn} boxSize={20} mt='4' mb={7} mx='auto' className='slide-in-right' />
 
-       <Text mt={5} className='slide-in-right' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
+       <Text mt={8} className='slide-in-right' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
           Create Account
         </Text>
 
@@ -44,7 +44,7 @@ const SignInComp = () => {
         {({ values, handleBlur, handleChange, errors }) => (
           <Form>
             
-            <Flex w={['full', 'full', '70%', '60%']} mx='auto' fontFamily='Kanit, sans-serif' fontWeight='400' direction="column" gap={["15px", "33px"]} mb="20px">
+            <Flex w={['full', 'full', '70%', '60%']} mx='auto' mt={10} fontFamily='Kanit, sans-serif' fontWeight='400' direction="column" gap={["15px", "33px"]} mb="20px">
               <Input
                icon={<AiFillMail />}
                 error={errors.email}

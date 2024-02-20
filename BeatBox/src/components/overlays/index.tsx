@@ -10,7 +10,7 @@ const OverlayComp = ({ children }: OverlayCompProps) => {
     <Box
     color='white'
     position='relative'
-      p={6}
+      // p={6}
       // borderRadius="md"
       // boxShadow="lg"
       // bg="rgba(128,0,128,0.04)"
@@ -19,7 +19,7 @@ const OverlayComp = ({ children }: OverlayCompProps) => {
       // style={{ backdropFilter: 'blur(10px)' }}
       w={['100vw', '100vw', '100vw', '99vw']}
       padding={5}
-      h={["70vh", '80vh', "90vh", "100vh"]}
+      h={["80vh", '85vh', "90vh", "100vh"]}
       m='auto'
       textAlign="center"
     >
