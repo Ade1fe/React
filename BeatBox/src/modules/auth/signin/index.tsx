@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik'; // Import Formik and Form
+import { Formik, Form } from 'formik';
 import { CustomButton, OverLayComp } from '../../../components';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -11,17 +11,17 @@ import { AiFillMail } from 'react-icons/ai';
 import { playbtn } from '../../../assets';
 
 const SignInComp = () => {
-  const initialValues = { fullname: '', email: '', password: '' }; // Define initial values
+  const initialValues = { fullname: '', email: '', password: '' }; 
   const onSubmit = (values: any) => {
-    // Handle form submission
+
     console.log(values);
   };
 
   const signInValidation = (values: any) => {
-    // Define validation schema
+
     const errors = {};
     console.log(values);
-    // Your validation logic here
+   
     return errors;
   };
 
@@ -73,7 +73,7 @@ const SignInComp = () => {
                 placeholder="********"
                 backgroundcolor="rgba(128,0,128,0.2)"
               />
-                <Text fontSize="md" mb={7} textAlign='right' color='purple.500' >Forgot Password?</Text>
+                <Text fontSize="md" mb={7} textAlign='right' color='purple.100' >Forgot Password?</Text>
             </Flex>
 
           
@@ -106,7 +106,7 @@ const SignInComp = () => {
     
 <Box mt={[10,12,14,16]} fontSize="md">
 <ChakraLink as={ReactRouterLink} to='/auth/signup' >
-Don't have an account? <Text as='span' color='purple.500'> Create a new account</Text>
+Don't have an account? <Text as='span' color='purple.900'> Create a new account</Text>
 </ChakraLink>
 </Box>
     </OverLayComp>

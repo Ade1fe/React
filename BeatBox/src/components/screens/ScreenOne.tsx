@@ -10,17 +10,14 @@ const ScreenOne = () => {
 
   return (
     <OverLayComp>
-      <Image src={playbtn} boxSize={20} mt='10' mx='auto' className='slide-in-right' />
-      <Box display="flex" px={4} h='25vh' position='absolute' w='full' left='0' bottom='30px' flexDirection='column' justifyContent='space-evenly'>
-
+      <Image src={playbtn} boxSize={20}  mx='auto' className='slide-in-right' />
+      <Box px={4} display="flex" position='absolute' w='full' left='0' bottom='30px' flexDirection='column' justifyContent='space-evenly'>
         <Text className='slide-in-left' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
-          Event
+          Events
         </Text>
-
         <Text className='slide-in-right' fontFamily='Kanit, sans-serif' fontWeight='400' fontSize={['lg', 'x-large', 'xx-large']}>
-          Discover Great Music event all around the world.
+        Discover great music events all around the world.
         </Text>
-
         <CustomButton
           width="100px"
           padding="10px"
@@ -36,7 +33,6 @@ const ScreenOne = () => {
         >
           <Icon as={FaLongArrowAltRight} boxSize={[6, 7, 8, 9]} />
         </CustomButton>
-
       </Box>
     </OverLayComp>
   );

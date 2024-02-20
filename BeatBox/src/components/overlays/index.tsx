@@ -11,15 +11,16 @@ const OverlayComp = ({ children }: OverlayCompProps) => {
     color='white'
     position='relative'
       p={6}
-      borderRadius="md"
-      boxShadow="lg"
-      bg="rgba(128,0,128,0.04)"
-      border="1px solid rgba(81, 0, 135, 0.1)"
-      style={{ backdropFilter: 'blur(10px)' }}
-      w={['full', 'full', 'full', '99%']}
+      // borderRadius="md"
+      // boxShadow="lg"
+      // bg="rgba(128,0,128,0.04)"
+      // bg='red.400'
+      // border="1px solid rgba(81, 0, 135, 0.1)"
+      // style={{ backdropFilter: 'blur(10px)' }}
+      w={['100vw', '100vw', '100vw', '99vw']}
       padding={5}
-      h="100vh"
-      mx='auto'
+      h={["70vh", '80vh', "90vh", "100vh"]}
+      m='auto'
       textAlign="center"
     >
       <div className="">{children}</div>

@@ -10,7 +10,7 @@ const ScreenTwo = () => {
 
   return (
     <OverLayComp>
-      <Image src={playbtn} boxSize={20} mt='10' mx='auto' className='slide-in-left' />
+      <Image src={playbtn} boxSize={20} mx='auto' className='slide-in-left' />
       <Box  px={4}  display="flex" h='25vh' position='absolute' w='full' left='0' bottom='30px' flexDirection='column' justifyContent='space-evenly'>
         <Text className='slide-in-right' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
           Artists

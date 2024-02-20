@@ -10,8 +10,8 @@ const ScreenTwo = () => {
 
   return (
     <OverLayComp>
-      <Image src={playbtn} boxSize={20} mt='10' mx='auto' className='slide-in-right' />
-      <Box px={4} display="flex" h='25vh' position='absolute' w='full' left='0' bottom='30px' flexDirection='column' justifyContent='space-evenly'>
+      <Image src={playbtn} boxSize={20} mx='auto' className='slide-in-right' />
+      <Box px={4} display="flex" position='absolute' w='full' left='0' bottom='30px' flexDirection='column' justifyContent='space-evenly'>
         <Text className='slide-in-left' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
           Identify
         </Text>

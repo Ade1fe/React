@@ -1,13 +1,17 @@
-body {
-    background-color: rgba(151, 66, 230, 0.8) !important; 
-    background-image: url('/src/assets/images/pexels-anni-roenkae-4793467.jpg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    /* backdrop-filter: blur(20px) !important;  */
+
+   body {
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(10px) !important; 
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     background-repeat: no-repeat !important;
-    /* height:  100vh !important; */
+    box-sizing: border-box;
+    height: 100vh !important;
+    background: linear-gradient(45deg, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important;
+    /* background: linear-gradient(to right, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important; */
   }
-  
 
 
 
