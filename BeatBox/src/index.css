@@ -1,0 +1,45 @@
+body {
+    background-color: rgba(151, 66, 230, 0.8) !important; 
+    background-image: url('/src/assets/images/pexels-anni-roenkae-4793467.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    /* backdrop-filter: blur(20px) !important;  */
+    background-repeat: no-repeat !important;
+    /* height:  100vh !important; */
+  }
+  
+
+
+
+
+/* Define slide-in animation from left */
+.slide-in-left {
+  animation: slideLeft 1s ease forwards;
+}
+
+/* Define slide-in animation from right */
+.slide-in-right {
+  animation: slideRight 1s ease forwards;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
