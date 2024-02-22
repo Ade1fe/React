@@ -1,61 +1,66 @@
 
-   body {
-    margin: 0;
-    padding: 0;
-    backdrop-filter: blur(10px) !important; 
-    /* display: flex !important; */
-    /* justify-content: center !important; */
-    /* align-items: center !important; */
-    background-repeat: no-repeat !important;
-    box-sizing: border-box;
-    height: 100vh !important;
-    /* background: linear-gradient(45deg, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important; */
-    background: linear-gradient(45deg, #000 50%, rgba(151, 66, 230, 0.8) 50%) !important;
-    /* background: linear-gradient(to right, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important; */
+  html, body {
+    background: #000 ;
+    color: #fff;
+    
+  }
+  
+  .background{
+    background: linear-gradient(to right, #000 50%, rgba(151, 66, 230, 0.8) 50%) !important;
+  }
+
+  .comp-body{
+    backdrop-filter: blur(10px) !important;
+
   }
 
 
-
-
-/* Define slide-in animation from left */
-.slide-in-left {
-  animation: slideLeft 1s ease forwards;
-}
-
-/* Define slide-in animation from right */
-.slide-in-right {
-  animation: slideRight 1s ease forwards;
-}
-
-@keyframes slideLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
+  /* Define slide-in animation from left */
+  .slide-in-left {
+    animation: slideLeft 1s ease forwards;
   }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+  
+  /* Define slide-in animation from right */
+  .slide-in-right {
+    animation: slideRight 1s ease forwards;
   }
-}
-
-@keyframes slideRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
+  
+  @keyframes slideLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+  
+  @keyframes slideRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
-}
-
-.hr{
-  border: 2px solid rgba(151, 66, 230, 0.8) !important;
-  background-color: rgba(151, 66, 230, 0.8) !important;
-  color: rgba(151, 66, 230, 0.8) !important;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
+  
+  .hr{
+    border: 2px solid rgba(151, 66, 230, 0.8) !important;
+    background-color: rgba(151, 66, 230, 0.8) !important;
+    color: rgba(151, 66, 230, 0.8) !important;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+  
+  
+  
+      /* background: linear-gradient(45deg, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important; */
+      /* background: linear-gradient(45deg, #000 50%, rgba(151, 66, 230, 0.8) 50%) !important; */
+      /* background: linear-gradient(to right, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important; */
+  

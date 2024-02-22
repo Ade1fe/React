@@ -1,14 +1,24 @@
-import { Box } from "@chakra-ui/react"
-import { SidebarComp } from "../../components"
-
+import { useState } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+import { SidebarComp } from '../../components';
+import { ArtistPage, MenuPage } from '..';
 
 const DashboardComp = () => {
-  return (
-    <Box color='white'>
-      <SidebarComp />
-      {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat recusandae vero praesentium temporibus ducimus ullam harum nesciunt quaerat placeat! Odit!</p> */}
-    </Box>
-  )
-}
+  const [selectedItem, setSelectedItem] = useState<string>('Menu');
 
-export default DashboardComp
+  const handleSidebarItemClick = (item: string) => {
+    setSelectedItem(item);
+  };
+
+  return (
+    <Flex flexGrow={1} className='text-body' flexDirection={{ base: 'column', md: 'row' }} bg='#000' color='white'>
+      <SidebarComp onItemClick={handleSidebarItemClick} />
+      <Box p='20px' ml={{ base: '0', md: '260px' }} flex="1" overflow="auto">
+        {selectedItem === 'Menu' && <MenuPage />}
+        {selectedItem === 'Artist' && <ArtistPage />}
+      </Box>
+    </Flex>
+  );
+};
+
+export default DashboardComp;

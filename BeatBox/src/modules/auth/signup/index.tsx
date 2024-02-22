@@ -1,12 +1,15 @@
-import { Formik, Form } from 'formik'; 
+
+
+
+import { Formik, Form } from 'formik';
 import { CustomButton, OverLayComp } from '../../../components';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink,  } from 'react-router-dom'
 import { Link as ChakraLink,  } from '@chakra-ui/react'
 
 
 import Input from '../../../components/inputs';
-import { FaEye,  FaUser } from 'react-icons/fa';
+import { FaEye, FaUser,  } from 'react-icons/fa';
 import { AiFillMail } from 'react-icons/ai';
 import { playbtn } from '../../../assets';
 
@@ -27,16 +30,21 @@ const SignUpComp = () => {
 
   return (
     <OverLayComp>
-       <Image src={playbtn} boxSize={20} mt='4' mx='auto' className='slide-in-right' />
+    <Box  h='100%' display='flex' flexDir='column' justifyContent='center'>
 
-       <Text mt={5} className='slide-in-right' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
-          Create Account
-        </Text>
 
-        <Text mb={8} className='slide-in-left' fontFamily='Kanit, sans-serif' fontWeight='400' fontSize={[ 'sm' , 'md' ,'lg',]}>
-        create a new account
-        </Text>
-      <Formik
+<Image src={playbtn} boxSize={20} mb='14' mx='auto' className='slide-in-right' />
+
+<Text mt={5} className='slide-in-right' fontFamily='Kode Mono, monospace' fontWeight='bold' fontSize={['x-large', 'xx-large', 'xxx-large']}>
+   Create Account
+ </Text>
+
+ <Text  className='slide-in-left' mb='8' fontFamily='Kanit, sans-serif' fontWeight='400' fontSize={[ 'sm' , 'md' ,'lg',]}>
+ create a new account
+ </Text>
+
+
+ <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={signInValidation}
@@ -107,6 +115,7 @@ const SignUpComp = () => {
           fontSize='14px'
           borderRadius='10px'
           color='white'
+          mt='8'
         >
          Create Account
         </CustomButton>
@@ -114,16 +123,19 @@ const SignUpComp = () => {
         )}
       </Formik>
 
-   
 
-    
+
+
+
 <Box mt={[10,12,14,16]} fontSize="md">
 <ChakraLink as={ReactRouterLink} to='/auth/signin' >
-Already have an account? <Text as='span' color='purple.900'> login</Text>
+Already have an account? <Text as='span' color='purple.300'> login</Text>
 </ChakraLink>
 </Box>
+    </Box>
     </OverLayComp>
   );
 };
 
-export default SignUpComp;
+
+export default SignUpComp

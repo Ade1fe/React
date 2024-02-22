@@ -1,3 +1,4 @@
+
 import  { ReactNode } from 'react';
 import { Box } from '@chakra-ui/react';
 
@@ -8,22 +9,21 @@ interface OverlayCompProps {
 const OverlayComp = ({ children }: OverlayCompProps) => {
   return (
     <Box
-    color='white'
-    position='relative'
-      // p={6}
-      // borderRadius="md"
-      // boxShadow="lg"
-      // bg="rgba(128,0,128,0.04)"
-      // bg='red.400'
-      // border="1px solid rgba(81, 0, 135, 0.1)"
-      // style={{ backdropFilter: 'blur(10px)' }}
-      w={['100vw', '100vw', '100vw', '99vw']}
-      padding={5}
-      h={["80vh", '85vh', "90vh", "100vh"]}
-      m='auto'
-      textAlign="center"
+      color='white'
+   
+      height='100vh'
+      width='100vw'
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+     className='background'
+      zIndex={999}  
+      textAlign='center'
+
     >
-      <div className="">{children}</div>
+      <Box width='100%'  className='comp-body'   height='100%' padding={5}>
+        {children}
+      </Box>
     </Box>
   );
 };

@@ -26,3 +26,191 @@ https://www.behance.net/gallery/152504999/Spotify-Web-Redesign-?tracking_source=
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import { FaPlayCircle } from 'react-icons/fa';
+import { HeroCard } from '..';
+
+
+const token = import.meta.env.VITE_TOKEN;
+
+async function fetchWebApi(endpoint: string, method: string) {
+  const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method
+  });
+  return await res.json();
+}
+
+
+
+async function getTopTracks() {
+  return (await fetchWebApi(
+    'v1/me/top/tracks?time_range=long_term&limit=5',
+    'GET',
+  
+  )).items;
+}
+
+
+const HeroCarousel = () => {
+  const [topTracks, setTopTracks] = useState<any[]>([])
+
+  useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        const tracks = await getTopTracks();
+        setTopTracks(tracks);
+      } catch (error) {
+        console.error('Error fetching top tracks:', error);
+      }
+    };
+
+    fetchTracks();
+  }, []);
+
+  return (
+    <div>
+      <h1>Top Tracks</h1>
+      <div className="hero-carousel">
+        {topTracks.map(track => (
+          <HeroCard
+            key={track.id}
+            imageUrl={track.album.images[0]?.url} // Safely access the URL
+            musicType={track.name}
+            trackCount={track.artists.length}
+            playIcon={FaPlayCircle}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default HeroCarousel;
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { FaPlayCircle } from 'react-icons/fa';
+import { HeroCard } from '..';
+
+// Interface for track object
+interface Track {
+  id: string;
+  album: {
+    images: { url: string }[];
+  };
+  name: string;
+  artists: { name: string }[];
+}
+
+const HeroCarousel = () => {
+  const [genreSeeds, setGenreSeeds] = useState<string[]>([]);
+
+  const clientId = import.meta.env.VITE_CLIENT_ID;
+const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+
+
+  useEffect(() => {
+    // Function to fetch access token
+    const fetchAccessToken = async () => {
+      try {
+        const response = await axios.post('https://accounts.spotify.com/api/token', null, {
+          params: {
+            grant_type: 'client_credentials',
+          },
+          headers: {
+            'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+
+          },
+        });
+
+        const accessToken = response.data.access_token;
+        fetchGenreSeeds(accessToken);
+      } catch (error) {
+        console.error('Error fetching access token:', error);
+      }
+    };
+
+    // Function to fetch available genre seeds
+    const fetchGenreSeeds = async (accessToken: string) => {
+      try {
+        const response = await axios.get('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        });
+        console.log(response);
+        console.log(response.data);
+        console.log(response.data.genres)
+        setGenreSeeds(response.data.genres);
+      } catch (error) {
+        console.error('Error fetching genre seeds:', error);
+      }
+    };
+
+    // Call the fetchAccessToken function
+    fetchAccessToken();
+  }, []);
+
+  return (
+    <div>
+      {/* Render HeroCards for each genre */}
+      {genreSeeds.map(genre => (
+        <HeroCard
+          key={genre}
+          imageUrl={''}
+          musicType={genre}
+          trackCount={0}
+          playIcon={FaPlayCircle}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default HeroCarousel;
