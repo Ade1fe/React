@@ -48,7 +48,7 @@ const SearchArtistComp: React.FC<SearchBarProps> = ({ onSearch, }) => {
                   py={2}
                   pr={2}
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search artists in albums , tracks or featured..."
                 />
               </InputGroup>
             )}

@@ -74,3 +74,44 @@ export const fetchGenres = async (): Promise<Genre[]> => {
         return [];
     }
 };
+
+
+
+
+
+export const fetchSongsByGenre = async (genreId: string) => {
+  try {
+      const clientId = import.meta.env.VITE_CLIENT_ID;
+      const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+      const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+      const response = await axios.get(
+          `https://api.spotify.com/v1/browse/categories/${genreId}/playlists`,
+          {
+              headers: {
+                  'Authorization': `Bearer ${accessToken}`,
+              },
+          }
+      );
+
+      if (!response.data || !response.data.playlists || !response.data.playlists.items) {
+          console.error('Unexpected response format:', response.data);
+          return [];
+      }
+
+      const playlists = response.data.playlists.items;
+
+      // Assuming you retrieve songs from the playlist
+      const songs = playlists.map((playlist: any) => ({
+          id: playlist.id,
+          name: playlist.name,
+          // Add more properties as needed
+      }));
+
+      console.log("Songs for genre ID", genreId, ":", songs);
+      return songs;
+  } catch (error) {
+      console.error('Error fetching songs:', error);
+      throw error;
+  }
+};

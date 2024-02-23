@@ -12,9 +12,9 @@ import { ArtistCard } from "../../components";
 const SearchArtistsPage = () => {
     const [searchItem, setSearchItem] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState(""); 
+    const [searchTerm, ] = useState(""); 
     const [isOpen, setIsOpen] = useState(true);
-    const [noResults, setNoResults] = useState(false); 
+    const [, setNoResults] = useState(false); 
 
     const clientId = import.meta.env.VITE_CLIENT_ID;
     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -81,7 +81,7 @@ const SearchArtistsPage = () => {
     };
 
     return (
-        <Box>
+        <Box  mb='10'>
             <Box w={['full']}>
                 <SearchArtistComp
                     onSearch={handleSearch}
@@ -91,8 +91,8 @@ const SearchArtistsPage = () => {
          
 
 <Swiper
-      slidesPerView={5}
-      spaceBetween={15}
+      slidesPerView={6.40}
+      spaceBetween={10}
       pagination={{
         clickable: true,
       }}
@@ -140,7 +140,7 @@ const SearchArtistsPage = () => {
               spaceBetween: 20
             },
             1440: {
-              slidesPerView: 5.0,
+              slidesPerView: 6.0,
               spaceBetween: 20
             },
           }}
@@ -160,7 +160,7 @@ const SearchArtistsPage = () => {
           <div>Loading...</div>
         ) : (
           searchItem.map((item: any) => (
-            <SwiperSlide key={item.id}> {/* Add unique key prop */}
+            <SwiperSlide key={item.id}> 
               <ArtistCard artist={item} />
             </SwiperSlide>
           ))
