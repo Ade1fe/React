@@ -3,6 +3,7 @@ import { DashboardComp, SignInComp, SignUpComp } from "./modules";
 import { ScreenOne } from "./components";
 import ScreenTwo from "./components/screens/ScreenTwo";
 import ScreenThree from "./components/screens/ScreenThree";
+import Artist from "./modules/artist";
 
 const Router = createBrowserRouter([
   {
@@ -33,6 +34,11 @@ const Router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardComp />,
+  },
+
+  {
+    path: "/related-artist",
+    element: <Artist />,
   },
 
 

@@ -60,7 +60,7 @@ const TopMusicComp = () => {
                 recommendedTracks && recommendedTracks.length > 0 ? (
                     <OrderedList >
                         {recommendedTracks.map((track, index) => (
-                            <ListItem key={index} mb={4} fontFamily='Dancing Script, cursive'>
+                            <ListItem key={index} mb={4} fontFamily='Kanit, sans-serif'>
                                 <TopMusicCard 
                                     imageUrl={track.album.images[0].url}
                                     musicName={`${track.name} - ${track.artists.map(artist => artist.name).join(', ')}`}
