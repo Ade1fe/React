@@ -214,3 +214,240 @@ const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
 };
 
 export default HeroCarousel;
+
+
+
+
+import axios from "axios";
+
+// export const fetchAccessToken = async (clientId: string, clientSecret: string, fetchTopTracks: Function) => {
+//   try {
+//     const credentials = `${clientId}:${clientSecret}`;
+//     const encodedCredentials = btoa(credentials); 
+//     const response = await axios.post(
+//       'https://accounts.spotify.com/api/token',
+//       null,
+//       {
+//         params: {
+//           grant_type: 'client_credentials',
+//         },
+//         headers: {
+//           'Authorization': `Basic ${encodedCredentials}`,
+//           'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//       }
+//     );
+
+//     const accessToken = response.data.access_token;
+//     await fetchTopTracks(accessToken);
+//   } catch (error) {
+//     console.error('Error fetching access token:', error);
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+// import { Box, Select } from "@chakra-ui/react";
+// import { SearchBar } from "../../components";
+// import axios from 'axios';
+// import { useEffect, useState } from "react";
+// import { fetchAccessToken } from '../../AccessToken';
+
+// const SearchPage = () => {
+//     const [searchItem, setSearchItem] = useState<any[]>([]);
+//     const [loading, setLoading] = useState(true);
+//     const [searchType, setSearchType] = useState("album"); // Default search type
+
+//     const clientId = import.meta.env.VITE_CLIENT_ID;
+//     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+
+//     useEffect(() => {
+//         const fetchData = async () => {
+//             try {
+//                 setLoading(true);
+//                 const accessToken = await fetchAccessToken(clientId, clientSecret, fetchSearchItem);
+//                 setLoading(false);
+//             } catch (error) {
+//                 console.error('Error fetching access token:', error);
+//                 setLoading(false);
+//             }
+//         };
+
+//         fetchData();
+//     }, [clientId, clientSecret]);
+
+//     const handleSearch = (searchTerm: string) => {
+//         console.log('Performing search with term:', searchTerm);
+//         // Implement your search logic here, e.g., make an API request
+//     };
+
+//     const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//         setSearchType(event.target.value);
+//     };
+
+//     const fetchSearchItem = async (accessToken: string) => {
+//         try {
+//             const response = await axios.get(
+//                 'https://api.spotify.com/v1/search',
+//                 {
+//                     params: {
+//                         q: 'remaster%20track:Doxy%20artist:Miles%20Davis',
+//                         type: searchType, // Using selected search type
+//                         market: 'ES',
+//                         limit: 10,
+//                         offset: 5,
+//                         include_external: 'audio'
+//                     },
+//                     headers: {
+//                         'Authorization': `Bearer ${accessToken}`,
+//                     },
+//                 }
+//             );
+//             const items = response.data[searchType + "s"].items; // Assuming the response contains items based on the selected type
+//             setSearchItem(items);
+//         } catch (error) {
+//             console.error('Error fetching search results:', error);
+//         }
+//     };
+
+//     return (
+//         <Box>
+//             <SearchBar onSearch={handleSearch} />
+//             <Select value={searchType} onChange={handleTypeChange}>
+//                 <option value="album">Albums</option>
+//                 <option value="track">Tracks</option>
+//                 <option value="artist">Artists</option>
+//             </Select>
+//             <Box zIndex='9999999' className="">
+//                 {/* Render your search results here */}
+//                 {loading ? (
+//                     <div>Loading...</div>
+//                 ) : (
+//                     searchItem.map((item: any) => (
+//                         <div key={item.id}>{item.name}</div>
+                   
+//                     ))
+//                 )}
+//             </Box>
+//         </Box>
+//     );
+// };
+
+// export default SearchPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import { Formik, Form, Field, FieldProps } from 'formik';
+// import { InputGroup, InputLeftElement, Input, Button, Flex, Icon, Box } from '@chakra-ui/react';
+// import { FaSearch } from 'react-icons/fa';
+
+
+// interface SearchBarProps {
+//   onSearch: (searchTerm: string) => void;
+//   searchType: string;
+//   handleTypeChange: (searchType: string) => void;
+// }
+
+
+
+// const SearchBar: React.FC<SearchBarProps> = ({ onSearch, searchType, handleTypeChange }) => {
+//   const handleSubmit = (values: { searchTerm: string }, { resetForm }: { resetForm: () => void }) => {
+//     onSearch(values.searchTerm);
+//     resetForm();
+//   };
+
+//   return (
+//     <Formik
+//       initialValues={{ searchTerm: '' }}
+//       onSubmit={handleSubmit}
+//     >
+//       <Form>
+//         <Flex flexDirection={['column', 'column', 'row']} alignItems="center" w='full' gap='3' mb='6'>
+//       <Box display={['grid', "flex"]} w='full' alignItems="center" gap='1'>
+//       <Field name="searchTerm">
+//             {({ field }: FieldProps<string>) => (
+//               <InputGroup>
+//                 <InputLeftElement pointerEvents="none" mt={3} ml={3}>
+//                   <Icon as={FaSearch} color="gray.300" />
+//                 </InputLeftElement>
+//                 <Input
+//                   {...field}
+//                   _focus={{
+//                     outline: "none",
+//                   }}
+//                   w='full'
+//                   focusBorderColor='purple'
+//                   pl='10'
+//                   borderRadius='3xl'
+//                   bg="#111"
+//                   py={2}
+//                   pr={2}
+//                   type="text"
+//                   placeholder="Search..."
+//                 />
+//               </InputGroup>
+//             )}
+//           </Field>
+
+//         <Box>
+//         <select className='select' value={searchType} 
+//            onChange={(e) => handleTypeChange(e.target.value)} >
+//             <option value="album">Albums</option>
+//             <option value="track">Tracks</option>
+//             <option value="artist">Artists</option>
+//           </select>
+//         </Box>
+//       </Box>
+
+//         <Button type="submit" px='4' py='1' borderRadius='md'  ml={6} bg='purple.800' colorScheme="teal">Search</Button>
+//         </Flex>
+//       </Form>
+//     </Formik>
+//   );
+// };
+
+
+// export default SearchBar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
