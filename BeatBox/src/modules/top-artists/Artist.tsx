@@ -75,7 +75,7 @@ import axios from 'axios';
 import { fetchAccessToken } from '../../AccessToken';
 import { Input, Button } from '@chakra-ui/react';
 
-const Artist = () => {
+const ArtistCompoo = () => {
     const [artistName, setArtistName] = useState('');
     const [artistId, setArtistId] = useState(null);
     const [relatedArtists, setRelatedArtists] = useState([]);
@@ -157,4 +157,4 @@ const Artist = () => {
     );
 };
 
-export default Artist;
+export default ArtistCompoo;

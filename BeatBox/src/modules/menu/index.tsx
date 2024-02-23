@@ -2,7 +2,7 @@ import { Box, Image, Text } from '@chakra-ui/react'
 import { HeroCarousel } from '../../components'
 import SearchPage from '../searchpage'
 import { earphoneimg, musicnoteimg } from '../../assets'
-import { TopArtists, TopMusicComp } from '..'
+import { JobAdverts, TopArtists, TopMusicComp } from '..'
 
 
 const MenuPage = () => {
@@ -24,11 +24,14 @@ const MenuPage = () => {
    </Box>
 
    <TopMusicComp />
+   <JobAdverts />
    </Box>
 
   <Box flex="1">
   <TopArtists />
   </Box>
+
+
 </Box>
 
    </Box>
