@@ -41,7 +41,7 @@ const handleSongClick = async (song: any) => {
         const { id, name, imageUrl } = song;
 
         // Use the obtained id in the navigate function
-        navigate(`/show-songs/${id}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}`, { state: { playlistSongs } });
+        navigate(`/dashboard/show-songs/${id}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}`, { state: { playlistSongs } });
     } catch (error) {
         console.error('Error fetching songs in playlist:', error);
     }

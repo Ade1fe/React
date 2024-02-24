@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { fetchGenres, fetchSongsByGenre } from '../../AccessToken';
 import { Box, Image, Text } from '@chakra-ui/react';
@@ -35,7 +36,8 @@ const GenresComponent = () => {
         try {
             const songs = await fetchSongsByGenre(id);
             console.log("Songs for genre ID", id, ":", songs);
-          navigate(`/song-list/${id}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}`);
+            navigate(`/dashboard/song-list/${id}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}`);
+       
         } catch (error) {
             console.error('Error fetching songs:', error);
         }
