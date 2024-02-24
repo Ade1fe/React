@@ -79,39 +79,107 @@ export const fetchGenres = async (): Promise<Genre[]> => {
 
 
 
+
+
 export const fetchSongsByGenre = async (genreId: string) => {
   try {
-      const clientId = import.meta.env.VITE_CLIENT_ID;
-      const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
-      const accessToken = await fetchAccessToken(clientId, clientSecret);
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    const accessToken = await fetchAccessToken(clientId, clientSecret);
 
-      const response = await axios.get(
-          `https://api.spotify.com/v1/browse/categories/${genreId}/playlists`,
-          {
-              headers: {
-                  'Authorization': `Bearer ${accessToken}`,
-              },
-          }
+    const response = await axios.get(
+      `https://api.spotify.com/v1/browse/categories/${genreId}/playlists`,
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.data || !response.data.playlists || !response.data.playlists.items) {
+      console.error('Unexpected response format:', response.data);
+      return [];
+    }
+
+    const playlists = response.data.playlists.items;
+
+    // Fetch song images for each playlist and construct the songs array
+    const songs = await Promise.all(playlists.map(async (playlist: any) => {
+      // Fetch additional details for the playlist, including images
+      const playlistDetailsResponse = await axios.get(
+        `https://api.spotify.com/v1/playlists/${playlist.id}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        }
       );
 
-      if (!response.data || !response.data.playlists || !response.data.playlists.items) {
-          console.error('Unexpected response format:', response.data);
-          return [];
-      }
+      // Extract relevant data from the playlist details response
+      const playlistDetails = playlistDetailsResponse.data;
 
-      const playlists = response.data.playlists.items;
+      // Assuming playlist images are available in the playlistDetails.images array
+      const imageUrl = playlistDetails.images.length > 0 ? playlistDetails.images[0].url : null;
 
-      // Assuming you retrieve songs from the playlist
-      const songs = playlists.map((playlist: any) => ({
-          id: playlist.id,
-          name: playlist.name,
-          // Add more properties as needed
-      }));
+      return {
+        id: playlist.id,
+        name: playlist.name,
+        imageUrl: imageUrl,
+        // Add more properties as needed
+      };
+    }));
 
-      console.log("Songs for genre ID", genreId, ":", songs);
-      return songs;
+    console.log("Songs for genre ID", genreId, ":", songs);
+    return songs;
   } catch (error) {
-      console.error('Error fetching songs:', error);
-      throw error;
+    console.error('Error fetching songs:', error);
+    throw error;
+  }
+};
+
+
+
+
+
+export const fetchSongsInPlaylist = async (playlistId: string) => {
+  try {
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+    const response = await axios.get(
+      `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.data || !response.data.items) {
+      console.error('Unexpected response format:', response.data);
+      return [];
+    }
+
+    const tracks = response.data.items;
+    console.log("tracks", tracks);
+
+    const updatedTracks = tracks.map((track: any) => {
+      const album = track.track.album; // Access the album object
+      const imageUrl = album.images && album.images.length > 0 ? album.images[0].url : null; // Check if album has images
+     console.log("alblum", album);
+      return {
+        id: track.track.id,
+        name: track.track.name,
+        imageUrl: imageUrl,
+        // Add more properties as needed
+      };
+    });
+
+    console.log("Songs in playlist", playlistId, ":", updatedTracks);
+    return updatedTracks;
+  } catch (error) {
+    console.error('Error fetching songs in playlist:', error);
+    throw error;
   }
 };
