@@ -828,6 +828,70 @@ import axios from "axios";
 
 
 
+// import { Box, Image, Text } from '@chakra-ui/react';
+// import { useEffect, useState } from 'react';
+// import { useParams } from 'react-router-dom';
+// import { fetchSongsInPlaylist } from '../../AccessToken';
+
+// const ShowSongs = () => {
+//     const { id } = useParams<{ id?: string }>();
+//     const [playlistSongs, setPlaylistSongs] = useState<any[]>([]);
+//     const queryParams = new URLSearchParams(location.search);
+//     const name = queryParams.get('name') || 'Unknown Genre';
+//     const imageUrl = queryParams.get('imageUrl');
+
+//     useEffect(() => {
+//         const fetchData = async () => {
+//             try {
+//                 if (id) {
+//                     const songs = await fetchSongsInPlaylist(id);
+//                     setPlaylistSongs(songs);
+//                 }
+//             } catch (error) {
+//                 console.error('Error fetching songs in playlist:', error);
+//             }
+//         };
+
+//         fetchData();
+//     }, [id]);
+
+//     return (
+//         <Box>
+
+// <Box position="relative" height={['300px', '340px', '360px',  "390px"]} marginBottom="50px">
+//     <Box
+//         position="absolute"
+//         top="0"
+//         left="0"
+//         width="full"
+//         height={['300px', '340px', '360px',  "390px"]} 
+//         backgroundColor="rgba(0, 0, 0, 0.5)"
+//         // backdropBlur="blur(10px)"
+//     />
+//     <Text    position="absolute"
+//         top="20px"
+//         left="20px" fontFamily="Protest Revolution, sans-serif" fontWeight='600'  textShadow='2px 3px purple' fontSize={['lg', 'x-large', 'xx-large']}>{name}</Text>
+//     {imageUrl && <Image src={imageUrl} alt={name} height="full" width="full" objectFit="cover" />}
+// </Box>
+
+//             {playlistSongs.map((song: any, index: number) => (
+//                 <Box key={index} display="flex" alignItems="center" mb={4}>
+//                     {/* Check if imageUrl exists before rendering Image component */}
+//                     {song.imageUrl && <Image src={song.imageUrl} alt={song.name} width={100} height={100} borderRadius="md" mr={4} />}
+//                     <Box>
+//                         <Text fontWeight="bold">{song.name}</Text>
+//                         <Text>ID: {song.id}</Text>
+//                         {/* Check if primaryColor is not null before rendering */}
+//                         {song.primaryColor && <Text>Primary Color: {song.primaryColor}</Text>}
+//                     </Box>
+//                 </Box>
+//             ))}
+
+//         </Box>
+//     );
+// }
+
+// export default ShowSongs;
 
 
 

@@ -50,25 +50,41 @@ const handleSongClick = async (song: any) => {
 
     return (
         <Box>
-            <Box className="">
-                <Text>{name}</Text>
-                {imageUrl && <Image src={imageUrl} alt={name} />}
-            </Box>
-            <ul>
+          <Box position="relative" height={['300px', '340px', '360px',  "390px"]} marginBottom="50px">
+    <Box
+        position="absolute"
+        top="0"
+        left="0"
+        width="full"
+        height={['300px', '340px', '360px',  "390px"]} 
+        backgroundColor="rgba(0, 0, 0, 0.5)"
+        // backdropBlur="blur(10px)"
+    />
+    <Text    position="absolute"
+        top="20px"
+        left="20px" fontFamily="Protest Revolution, sans-serif" fontWeight='600'  textShadow='2px 3px purple' fontSize={['lg', 'x-large', 'xx-large']}>{name}</Text>
+    {imageUrl && <Image src={imageUrl} alt={name} height="full" width="full" objectFit="cover" />}
+</Box>
+
+            <Box display='grid' fontFamily='Kanit, sans-serif' gridTemplateColumns={['repeat(auto-fit, minmax(150px, 1fr))', 'repeat(auto-fit, minmax(200px, 1fr))']} gap='20px' >
                 {songs.map(song => (
-                    <li key={song.id} onClick={() => handleSongClick(song)}>
-                        <Box display="flex" alignItems="center" mb={4}>
-                            <Image src={song.imageUrl} alt={song.name} width={100} height={100} borderRadius="md" mr={4} />
-                            <Box>
-                                <Text fontWeight="bold">{song.name}</Text>
-                                <Text>ID: {song.id}</Text>
-                            </Box>
+                    <Box key={song.id} onClick={() => handleSongClick(song)}  _hover={{ transform: 'scale(1.05)', transition: 'transform 0.3s ease' }}>
+                        <Box display="grid" alignItems="center" mb={4} >
+                            <Image src={song.imageUrl} objectFit='cover'  alt={song.name} borderRadius="md" mr={4} />
+                          
                         </Box>
-                    </li>
+                    </Box>
                 ))}
-            </ul>
+            </Box>
         </Box>
     );
 }
 
 export default SongListsComp;
+
+
+
+  {/* <Box>
+                                <Text fontWeight="bold" noOfLines={1}>{song.name}</Text>
+                                <Text noOfLines={1}>ID: {song.id}</Text>
+                            </Box> */}

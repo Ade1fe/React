@@ -1,6 +1,30 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
+
+// Wrapper function to handle rate limiting
+const rateLimitedRequest = async (config: AxiosRequestConfig): Promise<AxiosResponse> => {
+  try {
+    const response = await axios(config);
+    return response;
+  } catch (error:any) {
+    if (error.response && error.response.status === 429) {
+      // If status code is 429, retry after the specified time
+      const retryAfter = error.response.headers['retry-after'];
+      if (retryAfter) {
+        const delayTime = parseInt(retryAfter, 10) * 1000; // Convert to milliseconds
+        await delay(delayTime);
+        // Retry the request
+        return rateLimitedRequest(config);
+      }
+    }
+    // For other errors or if retry-after header is not present, re-throw the error
+    throw error;
+  }
+};
+
+// Define a function to delay requests
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const fetchAccessToken = async (clientId: string, clientSecret: string, fetchTopTracks?: Function) => {
   try {
@@ -32,8 +56,15 @@ export const fetchAccessToken = async (clientId: string, clientSecret: string, f
 };
 
 
+const saveToLocalStorage = (key: string, data: any) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
 
 
+const getFromLocalStorage = (key: string) => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+};
 
 
 
@@ -68,6 +99,8 @@ export const fetchGenres = async (): Promise<Genre[]> => {
             imageUrl: item.icons.length > 0 ? item.icons[0].url : '',
         }));
         console.log("", genres);
+
+         saveToLocalStorage('genres', genres);
         return genres;
     } catch (error) {
         console.error('Error fetching genres:', error);
@@ -129,6 +162,7 @@ export const fetchSongsByGenre = async (genreId: string) => {
       };
     }));
 
+    saveToLocalStorage('songs', { [genreId]: songs });
     console.log("Songs for genre ID", genreId, ":", songs);
     return songs;
   } catch (error) {
@@ -136,6 +170,56 @@ export const fetchSongsByGenre = async (genreId: string) => {
     throw error;
   }
 };
+
+
+
+
+
+// export const fetchSongsInPlaylist = async (playlistId: string) => {
+//   try {
+//     const clientId = import.meta.env.VITE_CLIENT_ID;
+//     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+//     const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+//     const response = await axios.get(
+//       `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+//       {
+//         headers: {
+//           'Authorization': `Bearer ${accessToken}`,
+//         },
+//       }
+//     );
+
+//     if (!response.data || !response.data.items) {
+//       console.error('Unexpected response format:', response.data);
+//       return [];
+//     }
+
+//     const tracks = response.data.items;
+//     console.log("tracks", tracks);
+
+//     const updatedTracks = tracks.map((track: any) => {
+//       const album = track.track.album; // Access the album object
+//       const imageUrl = album.images && album.images.length > 0 ? album.images[0].url : null; // Check if album has images
+//      console.log("alblum", album);
+//       return {
+//         id: track.track.id,
+//         name: track.track.name,
+//         imageUrl: imageUrl,
+//         // Add more properties as needed
+//       };
+//     });
+// // Save tracks to localStorage
+//     saveToLocalStorage('playlistTracks', { [playlistId]: updatedTracks });
+//     console.log("Songs in playlist", playlistId, ":", updatedTracks);
+//     return updatedTracks;
+//   } catch (error) {
+//     console.error('Error fetching songs in playlist:', error);
+//     throw error;
+//   }
+// };
+
+
 
 
 
@@ -162,20 +246,30 @@ export const fetchSongsInPlaylist = async (playlistId: string) => {
     }
 
     const tracks = response.data.items;
-    console.log("tracks", tracks);
 
     const updatedTracks = tracks.map((track: any) => {
-      const album = track.track.album; // Access the album object
-      const imageUrl = album.images && album.images.length > 0 ? album.images[0].url : null; // Check if album has images
-     console.log("alblum", album);
+      const album = track.track.album;
+      const imageUrl = album.images && album.images.length > 0 ? album.images[0].url : null;
+      const artists = track.track.artists.map((artist: any) => artist.name);
+      const duration_ms = track.track.duration_ms;
+      const name = track.track.name;
+    
       return {
         id: track.track.id,
-        name: track.track.name,
+        name: name,
         imageUrl: imageUrl,
+        duration: duration_ms,
+        artists: artists,
+        album: album.name // Assuming you want the album name
         // Add more properties as needed
       };
     });
+    
+    console.log("Tracks:", tracks);
 
+
+    // Save tracks to localStorage
+    saveToLocalStorage('playlistTracks', { [playlistId]: updatedTracks });
     console.log("Songs in playlist", playlistId, ":", updatedTracks);
     return updatedTracks;
   } catch (error) {

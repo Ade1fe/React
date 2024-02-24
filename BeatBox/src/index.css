@@ -58,8 +58,12 @@
     -o-border-radius: 10px;
   }
 
- 
+
   
+  tr:hover {
+    background-color: rgb(19, 16, 20);
+  }
+ 
   
       /* background: linear-gradient(45deg, rgba(151, 66, 230, 0.8) 50%, #000 50%) !important; */
       /* background: linear-gradient(45deg, #000 50%, rgba(151, 66, 230, 0.8) 50%) !important; */
