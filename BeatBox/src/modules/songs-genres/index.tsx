@@ -1,8 +1,9 @@
 
 import { Box, Image, Text } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import{ useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { fetchSongsByGenre, fetchSongsInPlaylist } from '../../AccessToken';
+import { JobAdverts } from '..';
 
 const SongListsComp = () => {
     const navigate = useNavigate();
@@ -50,6 +51,7 @@ const handleSongClick = async (song: any) => {
 
     return (
         <Box>
+
           <Box position="relative" height={['300px', '340px', '360px',  "390px"]} marginBottom="50px">
     <Box
         position="absolute"
@@ -66,16 +68,20 @@ const handleSongClick = async (song: any) => {
     {imageUrl && <Image src={imageUrl} alt={name} height="full" width="full" objectFit="cover" />}
 </Box>
 
+    <JobAdverts />
+
             <Box display='grid' fontFamily='Kanit, sans-serif' gridTemplateColumns={['repeat(auto-fit, minmax(150px, 1fr))', 'repeat(auto-fit, minmax(200px, 1fr))']} gap='20px' >
-                {songs.map(song => (
-                    <Box key={song.id} onClick={() => handleSongClick(song)}  _hover={{ transform: 'scale(1.05)', transition: 'transform 0.3s ease' }}>
-                        <Box display="grid" alignItems="center" mb={4} >
-                            <Image src={song.imageUrl} objectFit='cover'  alt={song.name} borderRadius="md" mr={4} />
-                          
-                        </Box>
-                    </Box>
-                ))}
+                {songs.map((song, index) => (
+    <Box key={index} onClick={() => handleSongClick(song)} _hover={{ transform: 'scale(1.05)', transition: 'transform 0.3s ease' }}>
+        <Box display="grid" alignItems="center" mb={4} >
+            <Image src={song.imageUrl} objectFit='cover' alt={song.name} borderRadius="md" mr={4} />
+        </Box>
+    </Box>
+))}
+
             </Box>
+
+
         </Box>
     );
 }

@@ -1,25 +1,51 @@
 import React from 'react';
-import { Box, Icon, Image, Text } from '@chakra-ui/react';
-import { IconType } from 'react-icons/lib';
+import { useLocation } from 'react-router-dom';
 
-interface HeroCardProps {
-  imageUrl: string;
-  musicType: string;
-  trackCount: number;
-  playIcon: IconType;
+interface Track {
+    id: string;
+    name: string;
+    imageUrl: string;
+    // Add more properties if needed
 }
 
-const HeroCard: React.FC<HeroCardProps> = ({ imageUrl, musicType, trackCount, playIcon }) => {
-  return (
-    <Box color='white' bg='#000' h='250px' fontFamily='Kanit, sans-serif' pos='relative' zIndex='2' borderRadius='2xl' overflow='hidden'>
-      <Image objectFit='cover' h='100%' w='100%' src={imageUrl} />
-      <Box textAlign='left' bg='rgba(0, 0, 0, 0.8)'  pos='absolute' p='4' borderRadius='2xl'  bottom='0' w='full' zIndex='6'   >
-        <Text noOfLines={1} fontWeight='bold' fontSize={['md', 'lg', 'x-large']}>{musicType}</Text>
-        <Text  fontWeight='400' fontSize={['sm', 'md', 'lg']}>{trackCount} Tracks</Text>
-        <Icon pos='absolute' right='20px' bottom='20px' as={playIcon} boxSize={[7,8,9]} />
-      </Box>
-    </Box>
-  );
-};
+const ShowTracksInAlbums = () => {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const { state } = location;
+    const { playlistSongs } = state || {}; 
 
-export default HeroCard;
+    // Get the value of the 'name' parameter from the query string, defaulting to 'Unknown Genre'
+    const name = queryParams.get('name') || 'Unknown Genre';
+
+    // Get the value of the 'imageUrl' parameter from the query string
+    const imageUrl = queryParams.get('imageUrl');
+
+    return (
+        <div>
+            <h2>Tracks in Album</h2>
+            <p>Name: {name}</p>
+            {imageUrl && <img src={imageUrl} alt="Album Cover" />}
+            {/* Render tracks or handle the data as needed */}
+
+            <div>
+                <h2>Tracks in Album</h2>
+                {playlistSongs && playlistSongs.length > 0 ? (
+                    <div>
+                        {playlistSongs.map((track: Track, index: number) => (
+                            <div key={index}>
+                                <p>Name: {track.name}</p>
+                                {/* Display image for each track */}
+                                <img src={track.imageUrl} alt={`Track ${index + 1}`} />
+                                {/* Add more details if needed */}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p>No tracks available</p>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default ShowTracksInAlbums;

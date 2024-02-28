@@ -1,5 +1,5 @@
 
-import { Box, Select } from "@chakra-ui/react";
+import { Box,  } from "@chakra-ui/react";
 import { SearchBar } from "../../components";
 import axios from 'axios';
 import { useEffect, useState } from "react";

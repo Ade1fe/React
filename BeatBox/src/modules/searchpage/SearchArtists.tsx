@@ -38,7 +38,7 @@ const SearchArtistsPage = () => {
         fetchData();
     }, [clientId, clientSecret]);
 
-    const fetchSearchItem = async (searchTerm: string) => {
+  const fetchSearchItem = async (searchTerm: string) => {
         try {
             const accessToken = await fetchAccessToken(clientId, clientSecret);
             const response = await axios.get(
@@ -83,7 +83,7 @@ const SearchArtistsPage = () => {
     return (
         <Box  mb='10'>
             <Box w={['full']}>
-                <SearchArtistComp
+                <SearchArtistComp placholder={"Search artists in albums , tracks or featured..."}
                     onSearch={handleSearch}
                 />
             </Box>
@@ -161,7 +161,7 @@ const SearchArtistsPage = () => {
         ) : (
           searchItem.map((item: any) => (
             <SwiperSlide key={item.id}> 
-              <ArtistCard artist={item} />
+              <ArtistCard artist={item} albumName='Artist' />
             </SwiperSlide>
           ))
         )}

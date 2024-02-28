@@ -36,7 +36,7 @@ const SidebarComp: React.FC<SidebarProps> = () => {
         className='text-body'
         cursor='pointer'
       >
-        <Box display='grid' gap='3' pt="6" px="4" w='full'>
+        <Box display='grid' gap='3' pt="6" px={["4", '6', '8']} w='full'>
           <Box display="flex" alignItems='center' gap='3' mb={4}>
             <Image src={playbtn} boxSize={[6,7,8,9]} />
             <Text className='slide-in-right' fontFamily='Kode Mono, monospace' fontWeight='700' fontSize={['lg', 'x-large', 'xx-large']}>

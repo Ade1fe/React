@@ -288,3 +288,445 @@ export const fetchSongsInPlaylist = async (playlistId: string) => {
     throw error;
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { useLocation } from 'react-router-dom';
+// import { fetchRecommendations, fetchRelatedArtists } from '../../AccessToken';
+// import { Box, Image } from '@chakra-ui/react';
+
+// interface SongDetails {
+//     name: string | undefined;
+//     imageUrl: string | undefined;
+//     previewUrl: string | undefined;
+//     artistId: string | undefined;
+// }
+
+// const ShowDetails = () => {
+//     const location = useLocation();
+//     const [songDetails, setSongDetails] = useState<SongDetails>({
+//         name: undefined,
+//         imageUrl: undefined,
+//         previewUrl: undefined,
+//         artistId: undefined,
+//     });
+//     const [relatedArtists, setRelatedArtists] = useState<any[]>([]); 
+//     const [recommendations, setRecommendations] = useState<any[]>([]); 
+
+//     useEffect(() => {
+//         const searchParams = new URLSearchParams(location.search);
+//         const name = searchParams.get('name');
+//         const imageUrl = searchParams.get('imageUrl');
+//         const previewUrl = searchParams.get('previewUrl');
+//         const artistId = searchParams.get('artistId');
+
+//         console.log("location.search:", location.search);
+//         console.log("first id", artistId);
+
+//         setSongDetails({
+//             name: name ?? undefined,
+//             imageUrl: imageUrl ?? undefined,
+//             previewUrl: previewUrl ?? undefined,
+//             artistId: artistId ?? undefined,
+//         });
+
+//         console.log("fetch artistId", artistId);
+//         if (artistId) {
+            
+//             fetchRelatedArtists(artistId)
+//                 .then(relatedArtists => setRelatedArtists(relatedArtists));
+
+           
+//             fetchRecommendations([artistId], [], [])
+//                 .then(recommendations => setRecommendations(recommendations));
+//             console.log("fetch artists", relatedArtists);
+//         }
+//     }, [location.search]);
+
+//     useEffect(() => {
+//         console.log("useEffect triggered");
+//         const searchParams = new URLSearchParams(location.search);
+//         const artistId = searchParams.get('artistId');
+
+//         console.log("artistId:", artistId); 
+//         if (artistId) {
+//             fetchRelatedArtists(artistId)
+//                 .then(relatedArtists => setRelatedArtists(relatedArtists));
+
+//             fetchRecommendations([artistId], [], [])
+//                 .then(recommendations => setRecommendations(recommendations));
+//         }
+//     }, [location.search]);
+
+
+    
+
+//     return (
+//         <div>
+//             {songDetails && (
+//                 <>
+//                     <h1>{songDetails.name}</h1>
+//                     {songDetails.imageUrl && <img src={songDetails.imageUrl} alt="Album Cover" />}
+//                     {songDetails.previewUrl && <audio controls src={songDetails.previewUrl}></audio>}
+//                 </>
+//             )}
+
+//             <Box className="">
+//                 <h2>Related Artists</h2>
+//                 <Box bg='red.300'>
+//                     {relatedArtists.map(artist => (
+//                         <Box key={artist.id}>
+//                             {artist.name}
+//                             {artist.images && artist.images.length > 0 && <img src={artist.images[0].url} alt={artist.name} />}
+//                         </Box>
+//                     ))}
+//                 </Box>
+
+//                 <h2>Recommendations</h2>
+//                 <ul>
+//                     {recommendations.map(track => (
+//                         <li key={track.id}>
+//                             {track.name}
+//                             {track.album && track.album.images && track.album.images.length > 0 && <img src={track.album.images[0].url} alt={track.name} />}
+//                         </li>
+//                     ))}
+//                 </ul>
+//             </Box>
+//         </div>
+//     );
+// };
+
+// export default ShowDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { useLocation, useNavigate, useParams } from 'react-router-dom';
+// import { Box, Image } from '@chakra-ui/react';
+// import { fetchAccessToken, fetchRecommendations, fetchRelatedArtists } from '../../AccessToken';
+// import axios from 'axios';
+
+// interface SongDetails {
+//     name: string | undefined;
+//     imageUrl: string | undefined;
+//     previewUrl: string | undefined;
+//     artistId: string | undefined;
+// }
+
+// const ShowDetails = () => {
+//     const location = useLocation();
+//     const [songDetails, setSongDetails] = useState<SongDetails>({
+//         name: undefined,
+//         imageUrl: undefined,
+//         previewUrl: undefined,
+//         artistId: undefined,
+//     });
+//     const [relatedArtists, setRelatedArtists] = useState<any[]>([]);
+//     const [recommendations, setRecommendations] = useState<any[]>([]);
+
+//     useEffect(() => {
+//         const searchParams = new URLSearchParams(location.search);
+//         const name = searchParams.get('name');
+//         const imageUrl = searchParams.get('imageUrl');
+//         const previewUrl = searchParams.get('previewUrl');
+//         const artistId = searchParams.get('artistId');
+
+//         setSongDetails({
+//             name: name ?? undefined,
+//             imageUrl: imageUrl ?? undefined,
+//             previewUrl: previewUrl ?? undefined,
+//             artistId: artistId ?? undefined,
+//         });
+
+//         if (artistId) {
+//             fetchRelatedArtists(artistId)
+//                 .then(relatedArtists => setRelatedArtists(relatedArtists));
+
+//             fetchRecommendations([artistId], [], [])
+//                 .then(recommendations => setRecommendations(recommendations));
+//         }
+//     }, [location.search]);
+
+//     const navigate = useNavigate();
+
+//     const handleItemClick = async (artistId: string) => {
+//         try {
+//             const clientId = import.meta.env.VITE_CLIENT_ID;
+//             const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+        
+//             const accessToken = await fetchAccessToken(clientId, clientSecret);
+//             const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`, {
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`
+//                 }
+//             });
+
+//             const { tracks } = response.data;
+
+//             // Assuming you want to play the first track
+//             if (tracks.length > 0) {
+//                 const track = tracks[0]; // Get the first track
+//                 const { name, album, preview_url } = track;
+//                 const imageUrl = album.images.length > 0 ? album.images[0].url : undefined;
+
+//                 if (preview_url) {
+//                     navigate(`/dashboard/show-details/${artistId}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}&previewUrl=${encodeURIComponent(preview_url)}&artistId=${encodeURIComponent(artistId)}`);
+//                 } else {
+//                     console.log("Preview URL not available");
+//                 }
+//             } else {
+//                 console.log("No tracks found for the artist");
+//             }
+//         } catch (error) {
+//             console.error('Error fetching artist details:', error);
+//         }
+//     };
+
+//     return (
+//         <div>
+//             {songDetails && (
+//                 <>
+//                     <h1>{songDetails.name}</h1>
+//                     {songDetails.imageUrl && <img src={songDetails.imageUrl} alt="Album Cover" />}
+//                     {songDetails.previewUrl && <audio controls src={songDetails.previewUrl}></audio>}
+//                 </>
+//             )}
+
+//             <Box className="">
+//                 <h2>Related Artists</h2>
+//                 <Box bg='red.300'>
+//                     {relatedArtists.map(artist => (
+//                         <Box key={artist.id} onClick={() => handleItemClick(artist.id)}>
+//                             {artist.name}
+//                             {artist.images && artist.images.length > 0 && <img src={artist.images[0].url} alt={artist.name} />}
+//                         </Box>
+//                     ))}
+//                 </Box>
+
+//                 <h2>Recommendations</h2>
+//                 <ul>
+//                     {recommendations.map(track => (
+//                         <li key={track.id}>
+//                             {track.name}
+//                             {track.album && track.album.images && track.album.images.length > 0 && <img src={track.album.images[0].url} alt={track.name} />}
+//                         </li>
+//                     ))}
+//                 </ul>
+//             </Box>
+//         </div>
+//     );
+// };
+
+// export default ShowDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { useLocation, useNavigate, useParams } from 'react-router-dom';
+// import { Box, Image } from '@chakra-ui/react';
+// import { fetchAccessToken, fetchRecommendations, fetchRelatedArtists } from '../../AccessToken';
+// import axios from 'axios';
+
+// interface SongDetails {
+//     name: string | undefined;
+//     imageUrl: string | undefined;
+//     previewUrl: string | undefined;
+//     artistId: string | undefined;
+// }
+
+// const ShowDetails = () => {
+//     const location = useLocation();
+//     const [songDetails, setSongDetails] = useState<SongDetails>({
+//         name: undefined,
+//         imageUrl: undefined,
+//         previewUrl: undefined,
+//         artistId: undefined,
+//     });
+//     const [relatedArtists, setRelatedArtists] = useState<any[]>([]);
+//     const [recommendations, setRecommendations] = useState<any[]>([]);
+
+//     useEffect(() => {
+//         const searchParams = new URLSearchParams(location.search);
+//         const name = searchParams.get('name');
+//         const imageUrl = searchParams.get('imageUrl');
+//         const previewUrl = searchParams.get('previewUrl');
+//         const artistId = searchParams.get('artistId');
+
+//         setSongDetails({
+//             name: name ?? undefined,
+//             imageUrl: imageUrl ?? undefined,
+//             previewUrl: previewUrl ?? undefined,
+//             artistId: artistId ?? undefined,
+//         });
+
+//         if (artistId) {
+//             fetchRelatedArtists(artistId)
+//                 .then(relatedArtists => setRelatedArtists(relatedArtists));
+
+//             fetchRecommendations([artistId], [], [])
+//                 .then(recommendations => setRecommendations(recommendations));
+//         }
+//     }, [location.search]);
+
+//     const navigate = useNavigate();
+
+//     const handleItemClick = async (artistId: string) => {
+//         try {
+//             const clientId = import.meta.env.VITE_CLIENT_ID;
+//             const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+        
+//             const accessToken = await fetchAccessToken(clientId, clientSecret);
+//             const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`, {
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`
+//                 }
+//             });
+
+//             const { tracks } = response.data;
+
+//             // Assuming you want to play the first track
+//             if (tracks.length > 0) {
+//                 const track = tracks[0]; // Get the first track
+//                 const { name, album, preview_url } = track;
+//                 const imageUrl = album.images.length > 0 ? album.images[0].url : undefined;
+
+//                 if (preview_url) {
+//                     navigate(`/dashboard/show-details/${artistId}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}&previewUrl=${encodeURIComponent(preview_url)}&artistId=${encodeURIComponent(artistId)}`);
+//                 } else {
+//                     console.log("Preview URL not available");
+//                 }
+//             } else {
+//                 console.log("No tracks found for the artist");
+//             }
+//         } catch (error) {
+//             console.error('Error fetching artist details:', error);
+//         }
+//     };
+
+
+
+//     const handleTrackClick = async (trackId: string) => {
+//         try {
+//             const clientId = import.meta.env.VITE_CLIENT_ID;
+//             const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+        
+//             const accessToken = await fetchAccessToken(clientId, clientSecret);
+//             const response = await axios.get(`https://api.spotify.com/v1/tracks/${trackId}`, {
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`
+//                 }
+//             });
+    
+//             const track = response.data; // Access the single track object directly
+    
+//             // Assuming you want to play the first track
+//             const { name, album, preview_url } = track;
+//             const imageUrl = album && album.images && album.images.length > 0 ? album.images[0].url : undefined;
+    
+//             if (preview_url) {
+//                 navigate(`/dashboard/show-tracks/${trackId}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}&previewUrl=${encodeURIComponent(preview_url)}&artistId=${encodeURIComponent(trackId)}`);
+                
+//             } else {
+//                 console.log("Preview URL not available");
+//             }
+//         } catch (error) {
+//             console.error('Error fetching artist details:', error);
+//         }
+//     };
+    
+
+//     useEffect(() => {
+//         const searchParams = new URLSearchParams(location.search);
+//         const artistId = searchParams.get('artistId');
+
+//         if (artistId) {
+//             fetchRecommendations([artistId], [], [])
+//                 .then(recommendations => setRecommendations(recommendations));
+//         }
+//     }, [location.search]);
+
+//     return (
+//         <div>
+//             {songDetails && (
+//                 <>
+//                     <h1>{songDetails.name}</h1>
+//                     {songDetails.imageUrl && <img src={songDetails.imageUrl} alt="Album Cover" />}
+//                     {songDetails.previewUrl && <audio controls src={songDetails.previewUrl}></audio>}
+//                 </>
+//             )}
+
+//             <Box className="">
+//                 <h2>Related Artists</h2>
+//                 <Box bg='red.300'>
+//                     {relatedArtists.map(artist => (
+//                         <Box key={artist.id} onClick={() => handleItemClick(artist.id)}>
+//                             {artist.name}
+//                             {artist.images && artist.images.length > 0 && <img src={artist.images[0].url} alt={artist.name} />}
+//                         </Box>
+//                     ))}
+//                 </Box>
+
+//                 <h2>Recommendations</h2>
+//                 <ul>
+//                     {recommendations.map(track => (
+//                         <li key={track.id} onClick={() => handleTrackClick(track.id)}>
+//                             {track.name}
+//                             {track.album && track.album.images && track.album.images.length > 0 && <img src={track.album.images[0].url} alt={track.name} />}
+//                         </li>
+//                     ))}
+//                 </ul>
+//             </Box>
+//         </div>
+//     );
+// };
+
+// export default ShowDetails;
+
+
+
+
+
+
+
+

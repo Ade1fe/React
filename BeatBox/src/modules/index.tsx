@@ -1,4 +1,10 @@
 
+export { default as ShowTracksInAlbums} from './albums/ShowTracksInAlbums';
+export { default as GetSeveralAlbums}from './albums/GetSeveralAlbums';
+export { default as SearchAlbums}  from './searchpage/SearchAlbums';
+export { default as AlbumPage} from './albums/index';
+export { default as TrackSongs} from './songs-genres/TrackSongs';
+export { default as ShowDetails}  from './songs-genres/ShowDetails';
 export { default as ShowSongs} from './songs-genres/ShowSongs';
 export { default as SongListsComp} from './songs-genres/index';
 export { default as SearchArtistComp}  from '../components/search/SearchArtistComp';
@@ -10,6 +16,6 @@ export { default as ArtistPage}from './artist/index';
 export { default as MenuPage} from './menu/index';
 export { default as DashboardComp} from './dashboard/index';
 export { default as GenresComponent} from './genres/GenresComponent';
-// export { default as ShowSongs} from './genres/GenresComponent';
+// export { default as ShowTracksInAlbums} from './genres/GenresComponent';
 export { default as SignUpComp} from './auth/signup/index';
 export { default as SignInComp} from './auth/signin/index';

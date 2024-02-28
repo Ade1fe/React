@@ -1,3 +1,5 @@
+
+
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
@@ -175,56 +177,6 @@ export const fetchSongsByGenre = async (genreId: string) => {
 
 
 
-// export const fetchSongsInPlaylist = async (playlistId: string) => {
-//   try {
-//     const clientId = import.meta.env.VITE_CLIENT_ID;
-//     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
-//     const accessToken = await fetchAccessToken(clientId, clientSecret);
-
-//     const response = await axios.get(
-//       `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-//       {
-//         headers: {
-//           'Authorization': `Bearer ${accessToken}`,
-//         },
-//       }
-//     );
-
-//     if (!response.data || !response.data.items) {
-//       console.error('Unexpected response format:', response.data);
-//       return [];
-//     }
-
-//     const tracks = response.data.items;
-//     console.log("tracks", tracks);
-
-//     const updatedTracks = tracks.map((track: any) => {
-//       const album = track.track.album; // Access the album object
-//       const imageUrl = album.images && album.images.length > 0 ? album.images[0].url : null; // Check if album has images
-//      console.log("alblum", album);
-//       return {
-//         id: track.track.id,
-//         name: track.track.name,
-//         imageUrl: imageUrl,
-//         // Add more properties as needed
-//       };
-//     });
-// // Save tracks to localStorage
-//     saveToLocalStorage('playlistTracks', { [playlistId]: updatedTracks });
-//     console.log("Songs in playlist", playlistId, ":", updatedTracks);
-//     return updatedTracks;
-//   } catch (error) {
-//     console.error('Error fetching songs in playlist:', error);
-//     throw error;
-//   }
-// };
-
-
-
-
-
-
-
 export const fetchSongsInPlaylist = async (playlistId: string) => {
   try {
     const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -253,6 +205,11 @@ export const fetchSongsInPlaylist = async (playlistId: string) => {
       const artists = track.track.artists.map((artist: any) => artist.name);
       const duration_ms = track.track.duration_ms;
       const name = track.track.name;
+      const  uri = track.track.uri;
+      const songId = track.track.id;
+      const external_urls = track.track.external_urls;
+      const preview_url = track.track.preview_url;
+      const hrefs = track.track.href;
     
       return {
         id: track.track.id,
@@ -260,7 +217,12 @@ export const fetchSongsInPlaylist = async (playlistId: string) => {
         imageUrl: imageUrl,
         duration: duration_ms,
         artists: artists,
-        album: album.name // Assuming you want the album name
+        album: album.name,
+        uri: uri,
+        songId: songId,
+        external_urls: external_urls,
+        preview_url: preview_url,
+        hrefs: hrefs,
         // Add more properties as needed
       };
     });
@@ -274,6 +236,265 @@ export const fetchSongsInPlaylist = async (playlistId: string) => {
     return updatedTracks;
   } catch (error) {
     console.error('Error fetching songs in playlist:', error);
+    throw error;
+  }
+};
+
+
+
+
+
+
+
+
+
+//accesstoken.tsx
+
+// Fetch related artists
+export const fetchRelatedArtists = async (artistId: any) => {
+  const clientId = import.meta.env.VITE_CLIENT_ID;
+  const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+  const accessToken = await fetchAccessToken(clientId, clientSecret);
+  try {
+      const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}/related-artists`, {
+          headers: {
+              'Authorization': `Bearer ${accessToken}`
+          }
+      });
+    
+      const relatedArtists = response.data.artists;
+      return relatedArtists;
+  } catch (error) {
+      console.error('Error fetching related artists:', error);
+      return [];
+  }
+};
+
+
+// Fetch recommendations
+export const fetchRecommendations = async (seedArtists: string[], seedTracks: string[], seedGenres: string[]) => {
+  const clientId = import.meta.env.VITE_CLIENT_ID;
+  const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+  const accessToken = await fetchAccessToken(clientId, clientSecret);
+  try {
+      const response = await axios.get('https://api.spotify.com/v1/recommendations', {
+          headers: {
+              'Authorization': `Bearer ${accessToken}`
+          },
+          params: {
+              seed_artists: seedArtists.join(','), // Comma-separated list of artist IDs
+              seed_tracks: seedTracks.join(','), // Comma-separated list of track IDs
+              seed_genres: seedGenres.join(','), // Comma-separated list of genre IDs
+          }
+      });
+      const recommendations = response.data.tracks;
+      return recommendations;
+  } catch (error) {
+      console.error('Error fetching recommendations:', error);
+      return [];
+  }
+};
+
+
+
+
+
+
+export const fetchSongsByArtist = async (artistId: string) => {
+  try {
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+    const response = await axios.get(
+      `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`,
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.data || !response.data.tracks) {
+      console.error('Unexpected response format:', response.data);
+      return [];
+    }
+
+    const tracks = response.data.tracks;
+
+    // Extract relevant data from each track
+    const songs = tracks.map((track: any) => {
+      const imageUrl = track.album.images.length > 0 ? track.album.images[0].url : null;
+
+      return {
+        id: track.id,
+        name: track.name,
+        imageUrl: imageUrl,
+        // Add more properties as needed
+      };
+    });
+
+    console.log("Songs for artist ID", artistId, ":", songs);
+    return songs;
+  } catch (error) {
+    console.error('Error fetching songs by artist:', error);
+    throw error;
+  }
+};
+
+
+
+
+
+
+
+export const fetchTracksByIds = async (trackIds: string[]) => {
+  try {
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+    const trackDetailsPromises = trackIds.map(async (trackId: string) => {
+      const response = await axios.get(
+        `https://api.spotify.com/v1/tracks/${trackId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (!response.data) {
+        console.error('Unexpected response format for track ID:', trackId);
+        return null;
+      }
+
+      const track = response.data;
+      console.log("track", track)
+      const imageUrl = track.album.images.length > 0 ? track.album.images[0].url : null;
+
+      return {
+        id: track.id,
+        name: track.name,
+        imageUrl: imageUrl,
+        // Add more properties as needed
+      };
+    });
+
+    const trackDetails = await Promise.all(trackDetailsPromises);
+    console.log("Track details:", trackDetails);
+    return trackDetails.filter(Boolean); // Filter out any null values
+  } catch (error) {
+    console.error('Error fetching tracks by IDs:', error);
+    throw error;
+  }
+};
+
+
+
+
+
+
+
+
+// export const fetchTracksByAlbumIds = async (albumIds: string[]) => {
+//   try {
+//     const clientId = import.meta.env.VITE_CLIENT_ID;
+//     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+//     const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+//     const trackDetailsPromises = albumIds.map(async (albumId: string) => {
+//       const response = await axios.get(
+//         `https://api.spotify.com/v1/albums/${albumId}/tracks`,
+//         {
+//           headers: {
+//             'Authorization': `Bearer ${accessToken}`,
+//           },
+//         }
+//       );
+
+//       if (!response.data || !response.data.items) {
+//         console.error('Unexpected response format for album ID:', albumId);
+//         return [];
+//       }
+
+//       const tracks = response.data.items;
+//       const trackDetails = tracks.map((track: any) => {
+//         // Ensure the album object exists and has images
+//         const album = track.album;
+//         const imageUrl = album && album.images && album.images.length > 0 ? album.images[0].url : null;
+//         console.log("imageUrl", imageUrl,)
+//         return {
+//           id: track.id,
+//           name: track.name,
+//           imageUrl: imageUrl,
+//           // Add more properties as needed
+//         };
+//       });
+
+//       return trackDetails;
+//     });
+
+//     const albumTracks = await Promise.all(trackDetailsPromises);
+//     const allTracks = albumTracks.reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
+//     console.log("Tracks for albums:", allTracks);
+//     return allTracks;
+//   } catch (error) {
+//     console.error('Error fetching tracks by album IDs:', error);
+//     throw error;
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+export const fetchTracksByAlbumIds = async (albumIds: string[]) => {
+  try {
+    const clientId = import.meta.env.VITE_CLIENT_ID;
+    const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+    const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+    const trackDetailsPromises = albumIds.map(async (albumId: string) => {
+      const response = await axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.data || !response.data.items) {
+        console.error('Unexpected response format for album ID:', albumId);
+        return [];
+      }
+
+      const tracks = response.data.items;
+      const trackDetails = tracks.map((track: any) => {
+        // Ensure the album object exists and has images
+        const album = track.album;
+        console.log("album", track.album);
+        const imageUrl = album && album.images && album.images.length > 0 ? album.images[0].url : null;
+        return {
+          id: track.id,
+          name: track.name,
+          imageUrl: imageUrl,
+          // Add more properties as needed
+        };
+      });
+
+      return trackDetails;
+    });
+
+    const albumTracks = await Promise.all(trackDetailsPromises);
+    const allTracks = albumTracks.reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
+    return allTracks;
+  } catch (error) {
+    console.error('Error fetching tracks by album IDs:', error);
     throw error;
   }
 };

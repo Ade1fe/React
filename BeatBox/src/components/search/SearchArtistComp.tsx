@@ -11,11 +11,12 @@ interface SearchBarProps {
   onSearch: (searchTerm: string) => void;
   // searchType: string;
   // handleTypeChange: (searchType: string) => void;
+  placholder?: string;
 }
 
 
 
-const SearchArtistComp: React.FC<SearchBarProps> = ({ onSearch, }) => {
+const SearchArtistComp: React.FC<SearchBarProps> = ({ onSearch, placholder}) => {
   const handleSubmit = (values: { searchTerm: string }, { resetForm }: { resetForm: () => void }) => {
     onSearch(values.searchTerm);
     resetForm();
@@ -48,7 +49,7 @@ const SearchArtistComp: React.FC<SearchBarProps> = ({ onSearch, }) => {
                   py={2}
                   pr={2}
                   type="text"
-                  placeholder="Search artists in albums , tracks or featured..."
+                  placeholder={placholder}
                 />
               </InputGroup>
             )}

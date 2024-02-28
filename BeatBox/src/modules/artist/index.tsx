@@ -1,10 +1,11 @@
 import { Box } from '@chakra-ui/react'
-import { GenresComponent, SearchArtistsPage } from '..'
+import { GenresComponent, JobAdverts, SearchArtistsPage } from '..'
 
 const ArtistPage = () => {
   return (
     <Box  color='white'>
       <SearchArtistsPage />
+      <JobAdverts />
       <GenresComponent />
    
     </Box>

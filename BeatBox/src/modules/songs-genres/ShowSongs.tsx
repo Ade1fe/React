@@ -1,8 +1,10 @@
 
 import { Box, Image, Text, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchSongsInPlaylist } from '../../AccessToken';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchAccessToken, fetchSongsInPlaylist } from '../../AccessToken';
+import axios from 'axios';
+
 
 const ShowSongs = () => {
     const { id } = useParams<{ id?: string }>();
@@ -10,6 +12,7 @@ const ShowSongs = () => {
     const queryParams = new URLSearchParams(location.search);
     const name = queryParams.get('name') || 'Unknown Genre';
     const imageUrl = queryParams.get('imageUrl');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,6 +32,54 @@ const ShowSongs = () => {
         fetchData();
     }, [id]);
 
+
+
+
+
+
+    const handleItemClick = async (songId: string) => {
+        try {
+            const clientId = import.meta.env.VITE_CLIENT_ID;
+            const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+        
+            const accessToken = await fetchAccessToken(clientId, clientSecret);
+            const response = await axios.get(`https://api.spotify.com/v1/tracks/${songId}`, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+            console.log("response.data" , response.data,)
+            const { name, album, external_urls ,preview_url, artists } = response.data;
+            const imageUrl = album.images[0]?.url;
+            const audioUrl = external_urls?.spotify;
+            const previewurl = preview_url;
+            const artistId = artists[0].id; 
+    
+            console.log("previ " , previewurl)
+    
+            console.log("Clicked Song:", name);
+            console.log("Image URL:", imageUrl);
+            console.log("Audio URL:", audioUrl);
+            console.log("artistId:", artistId);
+
+            
+    
+            if (previewurl) {
+                navigate(`/dashboard/show-details/${artistId}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}&previewUrl=${encodeURIComponent(previewurl)}&artistId=${encodeURIComponent(artistId)}`, { state: { playlistSongs } });
+                console.log("artistId", artistId);
+            }
+            else {
+                // Handle the case where preview_url doesn't exist
+                console.log("Preview URL not available");
+            }
+        } catch (error) {
+            console.error('Error fetching song details:', error);
+        }
+    };
+    
+
+
+    
     return (
         <Box>
             <Box position="relative" height={['300px', '340px', '360px',  "390px"]} marginBottom="50px">
@@ -55,10 +106,10 @@ const ShowSongs = () => {
             </Box>
 
 
-            <Box overflowX="auto" w="full" maxW="1400px"> 
-            <Table  w='full' textAlign='left' bg='#000' overflowX="scroll">
-                <Thead bg='#000'>
-                    <Tr bg='#000'>
+            <Box textAlign="left" bg="#000" overflowX="scroll"> 
+            <Table   w={['800px', '1000px', '1200px', "1400px"]} mx='auto'  textAlign='left' bg='#000' overflowX="scroll">
+                <Thead bg='#000' fontSize={['lg', 'x-large', 'xx-large']}>
+                    <Tr bg='#000'   fontFamily="Protest Revolution, sans-serif">
                         {/* <Th>Image</Th> */}
                         <Th py='2'>Title</Th>
                         <Th py='2'>Album</Th>
@@ -68,17 +119,17 @@ const ShowSongs = () => {
                 </Thead>
                 <Tbody mt='200px'>
                     {playlistSongs.map((song: any, index: number) => (
-                        <Tr key={index} my='2'>
-                            {/* <Td>
-                                {song.imageUrl && <Image borderRadius='2xl' my='2' src={song.imageUrl} alt={song.name} height="70px" width="70px" objectFit="cover" />}
-                            </Td> */}
-                            <Td display='flex' alignItems='center' gap='3' >
+                      <Tr key={index} my='2' onClick={() => handleItemClick(song.id)} fontFamily='Kanit, sans-serif'>
+
+                            <Td whiteSpace='nowrap' display='flex' alignItems='center' gap='3' pr='20px'>
                             {song.imageUrl && <Image borderRadius='2xl' my='2' src={song.imageUrl} alt={song.name} height="70px" width="70px" objectFit="cover" />}
                                 {song.name}
                                 </Td>
-                            <Td>{song.album}</Td>
-                            <Td>{song.artists}</Td>
-                            <Td>{msToMinutesAndSeconds(song.duration)}</Td>
+                            <Td pr='20px' whiteSpace='nowrap'>{song.album}</Td>
+                            <Td pr='20px' whiteSpace='nowrap'>{song.artists}</Td>
+                            <Td pr='20px' whiteSpace='nowrap'>{msToMinutesAndSeconds(song.duration)}</Td>
+                            {/* <Td>{song.songId}</Td> */}
+                            
                         </Tr>
                     ))}
                 </Tbody>
