@@ -498,3 +498,47 @@ export const fetchTracksByAlbumIds = async (albumIds: string[]) => {
     throw error;
   }
 };
+
+
+
+
+
+
+export const fetchTracksByAlbumId = async (albumId: any) => {
+  try {
+      const clientId = import.meta.env.VITE_CLIENT_ID;
+      const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+      const accessToken = await fetchAccessToken(clientId, clientSecret);
+
+      const response = await axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`
+          }
+      });
+
+      if (!response.data || !response.data.items) {
+          console.error('Unexpected response format for album ID:', albumId);
+          return [];
+      }
+
+      const tracks = response.data.items;
+      console.log(tracks);
+      const trackDetails = tracks.map((track: { album: any; id: any; name: any; }) => {
+          // Ensure the album object exists and has images
+          const album = track.album;
+          const imageUrl = album && album.images && album.images.length > 0 ? album.images[0].url : null;
+          console.log("images", imageUrl)
+          return {
+              id: track.id,
+              name: track.name,
+              imageUrl: imageUrl,
+              // Add more properties as needed
+          };
+      });
+
+      return trackDetails;
+  } catch (error) {
+      console.error('Error fetching tracks by album ID:', error);
+      throw error;
+  }
+};

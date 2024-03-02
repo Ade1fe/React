@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { FaPlayCircle } from 'react-icons/fa';
-import { HeroCard } from '..'; 
+import { HeroCard, HeroCards } from '..'; 
 import axios from 'axios';
 import { fetchAccessToken } from '../../AccessToken';
 
@@ -118,11 +118,11 @@ import { fetchAccessToken } from '../../AccessToken';
     >
       {topTracks.map((track) => (
         <SwiperSlide key={track.id}>
-          <HeroCard
+          <HeroCards
             imageUrl={track.album.images[0]?.url}
+            title={track.name}
             musicType={track.name}
-            trackCount={track.artists.length}
-            playIcon={FaPlayCircle}
+            trackCount={track.artists.length}      
           />
         </SwiperSlide>
       ))}

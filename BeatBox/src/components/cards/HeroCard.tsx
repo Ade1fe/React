@@ -1,10 +1,10 @@
-import React from 'react';
+
 import { useLocation } from 'react-router-dom';
 
 interface Track {
     id: string;
     name: string;
-    imageUrl: string;
+    imageUrl: string; // Make sure imageUrl is defined in the Track interface
     // Add more properties if needed
 }
 

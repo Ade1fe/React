@@ -128,6 +128,7 @@ const GetSeveralAlbums = () => {
       // Obtain name and imageUrl from the album object
       const { name, images } = album;
       const imageUrl = images.length > 0 ? images[0].url : '';
+      console.log("imageUrl", imageUrl)
   
       // Navigate to the ShowTracksInAlbums component with the necessary data
       navigate(`/dashboard/show-tracks/${album.id}?name=${encodeURIComponent(name)}&imageUrl=${encodeURIComponent(imageUrl)}`, { state: { playlistSongs: albumTracks } });
