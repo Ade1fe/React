@@ -4,8 +4,8 @@ import { HeroOne, Navbar } from '../../components'
 const Homepage = () => {
   return (
     <Box className='text-fonts'>
-      <Box className="">  <Navbar /> </Box>
-      <Box className=""> <HeroOne /> </Box>
+      <Box px="20px">  <Navbar /> </Box>
+      <Box px="20px"> <HeroOne /> </Box>
       Homepage
     </Box>
   )

@@ -8,7 +8,7 @@ import { TfiShoppingCart } from 'react-icons/tfi';
 
 const Navbar = () => {
   return (
-    <Box  className='subtitle' maxWidth='1440px' mx='auto' display={['block', 'flex']} justifyContent={['center', 'space-between']} gap='4' py='4' alignItems='center'>
+    <Box  className='subtitle' maxWidth='1340px' mx='auto' display={['block', 'flex']} justifyContent={['center', 'space-between']} gap='4' py='4' alignItems='center'>
 
       <Box className="">
         <Text className='headTitle' textAlign={['center', 'left']} fontSize={['x-large', 'xx-large']} textShadow='1px 1px orange' fontWeight='700'> TastyTrails </Text>
@@ -33,12 +33,12 @@ const Navbar = () => {
         </InputGroup>
       </Box>
 
-      <Box px='3' shadow='base'  py='2' display={['flex',null, 'none']} w={['full']} bottom='0' left='0' pos={['fixed']} justifyContent='space-between' gap='4' fontSize={['md','lg']}>
-        <Text> <Icon as={BiHomeAlt} /> </Text>
-        <Text> <Icon as={ImMenu} />  </Text>
-        <Text> <Icon as={GrServicePlay} /> </Text>
-        <Text> <Icon as={BiSolidDrink} /> </Text>
-        <Text> <Icon as={TfiShoppingCart} /> </Text>
+      <Box px='20px' bg='white' shadow='base'  py='2' display={['flex',null, 'none']} w={['full']} bottom='0' left='0' pos={['fixed']} justifyContent='space-between' gap='4' fontSize={['md','lg']}>
+        <Text> <Icon as={BiHomeAlt} boxSize={['5','6', '6']} /> </Text>
+        <Text> <Icon as={ImMenu}  boxSize={['5','6', '6']} />  </Text>
+        <Text> <Icon as={GrServicePlay} boxSize={['5','6', '6']}  /> </Text>
+        <Text> <Icon as={BiSolidDrink} boxSize={['5','6', '6']}  /> </Text>
+        <Text> <Icon as={TfiShoppingCart} boxSize={['5','6', '6']}  /> </Text>
       </Box>
      
     </Box>
