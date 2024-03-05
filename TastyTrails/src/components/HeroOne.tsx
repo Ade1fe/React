@@ -3,7 +3,7 @@ import { Abstractimg, bikemanimg, herocardsimg, playbtnimg } from '../assets';
 
 const HeroOne = () => {
   return (
-    <Box className='subtitle' fontFamily='300' my={['20px']} display={['block', 'block', 'block', 'flex']} justifyContent='space-between' maxWidth='1340px' mx='auto' gap={['20px']}>
+    <Box className='subtitle'   fontFamily='300' my={['20px']} display={['block', 'block', 'block', 'flex']} justifyContent='space-between' maxWidth='1340px' mx='auto' gap={['20px']} mt={['3rem']}>
       <Box w={["full", 'full', 'full', "470px"]} mb={['2rem', '3rem', '4rem', '0']}>
         <Image src={bikemanimg} w={['200px']} mb={['20px', '30px', '40px']} />
         <Text lineHeight={['normal', '38px', '50px', '65px', '70px']} mb={['20px', '30px', '40px']} fontSize={['x-large', 'xx-large', 'xxx-large', '60px']}>
