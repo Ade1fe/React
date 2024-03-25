@@ -1,11 +1,8 @@
 
 import { PopularMenuCard } from '.';
 import { Box, Button, Icon,  } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-// Import Swiper React components
+import  { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
@@ -26,6 +23,7 @@ const PopularMenu = () => {
     return parseFloat((Math.random() * (max - min) + min).toFixed(1));
   }
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [meals, setMeals] = useState<any[]>([]);
 
 

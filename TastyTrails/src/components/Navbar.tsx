@@ -1,10 +1,13 @@
 
-import { Box, Icon, Input, InputGroup, InputLeftAddon, InputRightAddon, Text } from '@chakra-ui/react';
-import { FaCartPlus, FaSearch } from 'react-icons/fa';
+import { Box, Icon, Text } from '@chakra-ui/react';
 import { BiHomeAlt, BiSolidDrink } from 'react-icons/bi';
 import { ImMenu } from 'react-icons/im';
 import { GrServicePlay } from 'react-icons/gr';
 import { TfiShoppingCart } from 'react-icons/tfi';
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ChakraLink } from '@chakra-ui/react'
+
+
 
 const Navbar = () => {
   return (
@@ -15,13 +18,18 @@ const Navbar = () => {
       </Box>
 
       <Box  display={['none',null, 'flex']} justifyContent='space-between' gap='4' fontSize={['md','lg']}>
-        <Text> Home</Text>
-        <Text> Menu</Text>
+      <ChakraLink as={ReactRouterLink} to='/'>
+  Home
+</ChakraLink>
+       
+        <ChakraLink as={ReactRouterLink} to='/menu-page'>
+  Menu
+</ChakraLink>
         <Text>Service </Text>
         <Text>Shop </Text>
       </Box>
 
-      <Box >
+      {/* <Box >
         <InputGroup shadow='base' py={1} px='3' borderRadius='10px'>
           <InputLeftAddon>
             <Icon as={FaSearch} />
@@ -31,9 +39,14 @@ const Navbar = () => {
             <Icon as={FaCartPlus} />
           </InputRightAddon>
         </InputGroup>
+      </Box> */}
+
+      <Box fontSize={['md','lg']} display='flex' justifyContent='space-between' gap='4'>
+        <Text className="">Login</Text>
+        <Text className="">Sign Up</Text>
       </Box>
 
-      <Box px='20px' bg='white' shadow='base'  py='2' display={['flex',null, 'none']} w={['full']} bottom='0' left='0' pos={['fixed']} justifyContent='space-between' gap='4' fontSize={['md','lg']}>
+      <Box px='20px'  bg='white' shadow='base' py='10px' zIndex='99999' display={['flex',null, 'none']} w={['full']} bottom='0' left='0' pos={['fixed']} justifyContent='space-between' gap='4' fontSize={['md','lg']}>
         <Text> <Icon as={BiHomeAlt} boxSize={['5','6', '6']} /> </Text>
         <Text> <Icon as={ImMenu}  boxSize={['5','6', '6']} />  </Text>
         <Text> <Icon as={GrServicePlay} boxSize={['5','6', '6']}  /> </Text>

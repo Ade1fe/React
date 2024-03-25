@@ -1,8 +1,14 @@
-// export {default as Services }from './homepage/index';
+// export {default as MenuNavbar }from './homepage/index';
+export {default as AllFood } from './cards/AllFood';
+export {default as MenuCard }  from './cards/MenuCard';
+export {default as MenuSwippers } from './swipersjs/MenuSwippers';
+export {default as MenuNavbar }from './MenuNavbar';
+export {default as Footer } from './Footer';
+export {default as NewsLetter } from './NewsLetter';
 export {default as Services } from './Services';
 export {default as PopularMenuCard } from './cards/PopularMenuCard';
 export {default as PopularMenu } from './PopularMenu';
 export {default as InfoComp } from './InfoComp';
 export {default as HeroOne }from './HeroOne';
 export {default as Navbar } from './Navbar';
-// export {default as PopularMenuCard }from './homepage/index';
+// export {default as AllFood } from './homepage/index';
