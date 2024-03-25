@@ -9,7 +9,7 @@ import { TfiShoppingCart } from 'react-icons/tfi';
 
 const MenuNavbar = () => {
   return (
-    <Box py='4' px={['20px','20px', '20px', '0', '0']} className='subtitle' maxWidth='1340px' mx='auto'>
+    <Box py='4' px={['20px','20px', '20px', '0', '0']} className='subtitle' >
 
    <Box display="flex" justifyContent='space-between' gap={['25px','20px',"15px", '10px']}>
    <ChakraLink as={ReactRouterLink} to='/'>

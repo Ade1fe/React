@@ -1,11 +1,11 @@
 
-import { MenuNavbar, MenuSwippers } from '../../components'
+import {  MenuSwippers } from '../../components'
 import { Box } from '@chakra-ui/react'
 
 const MenuPage = () => {
   return (
     <Box>
-        <MenuNavbar />
+        {/* <MenuNavbar /> */}
         <div className="">
           <MenuSwippers />
         </div>
