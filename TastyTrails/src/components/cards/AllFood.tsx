@@ -1,7 +1,11 @@
 
 
-import { Box, Button, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Image, Text, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { app } from '../../firebase';
+import { getAuth } from 'firebase/auth';
+import { collection, doc, getDocs, getFirestore, query, setDoc, updateDoc, where } from 'firebase/firestore';
+
 
 interface AllFoodProps {
   id: string;
@@ -10,8 +14,24 @@ interface AllFoodProps {
   price: number;
 }
 
+
+
 const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name,price }) => {
+  // Get the Firestore instance using getFirestore
+  const auth = getAuth(app);
   const [quantity, setQuantity] = useState<number>(0);
+
+  // Get the Firestore instance using getFirestore
+  const firestoreInstance = getFirestore();
+  const user = getAuth().currentUser;
+  const userId = user ? user.uid : null;
+ 
+
+  const toast = useToast();
+
+
+  console.log(user)
+
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);
@@ -23,10 +43,69 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name,price }) => {
     }
   };
 
-  const handleAddToCart = () => {
-    // Here you can access the meal ID (id) and perform any action you need
-    console.log("Meal ID:", id);
+
+  console.log(userId)
+
+
+
+  const handleAddToCart = async () => {
+    try {
+      if (!userId) {
+        throw new Error('User is not authenticated. Unable to add to cart.');
+      }
+  
+      if (!id) {
+        throw new Error('Meal ID is not defined. Unable to add to cart.');
+      }
+  
+      if (!name) {
+        throw new Error('Name is not defined. Unable to add to cart.');
+      }
+  
+      const cartItemsRef = collection(firestoreInstance, 'cartItems');
+      const cartItemQuery = query(
+        cartItemsRef,
+        where('userId', '==', userId),
+        where('name', '==', name) // Check by name as well
+      );
+      const cartItemSnapshot = await getDocs(cartItemQuery);
+  
+      if (!cartItemSnapshot.empty) {
+        const existingCartItem = cartItemSnapshot.docs[0];
+        const existingCartItemData = existingCartItem.data();
+        const updatedQuantity = existingCartItemData.quantity + quantity; // Add to existing quantity
+        await updateDoc(existingCartItem.ref, { quantity: updatedQuantity });
+      } else {
+        // This block should only execute if the item doesn't exist in the cart
+        const newItemDocRef = doc(cartItemsRef);
+        await setDoc(newItemDocRef, {
+          userId: userId,
+          id: newItemDocRef.id,
+          name: name,
+          price: price,
+          quantity: quantity,
+        });
+      }
+  
+      toast({
+        title: "Item added to cart",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+  
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      console.error('Error adding item to cart:', error);
+    }
   };
+  
 
   return (
     <Box

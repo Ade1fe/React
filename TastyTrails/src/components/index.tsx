@@ -1,4 +1,7 @@
-// export {default as MenuNavbar }from './homepage/index';
+// export {default as SignUpComp }from './homepage/index';
+export {default as CartPage }  from './CartPage';
+export {default as SignUpComp } from './SignUpComp';
+export {default as SignInComp } from './SignInComp';
 export {default as AllFood } from './cards/AllFood';
 export {default as MenuCard }  from './cards/MenuCard';
 export {default as MenuSwippers } from './swipersjs/MenuSwippers';
@@ -11,4 +14,4 @@ export {default as PopularMenu } from './PopularMenu';
 export {default as InfoComp } from './InfoComp';
 export {default as HeroOne }from './HeroOne';
 export {default as Navbar } from './Navbar';
-// export {default as AllFood } from './homepage/index';
+// export {default as CartPage } from './homepage/index';
