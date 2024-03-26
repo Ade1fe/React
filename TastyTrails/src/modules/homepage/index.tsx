@@ -12,7 +12,7 @@ const Homepage = () => (
       <PopularMenu />
     </Box>
     <Box px="20px"><Services /></Box>
-    <Box className="" bg='black'><NewsLetter /></Box>
+    <Box className="" bg='black' mb={['9rem']}><NewsLetter /></Box>
     <div className=""> <Footer /> </div>
     {/* Homepage */}
   </Box>

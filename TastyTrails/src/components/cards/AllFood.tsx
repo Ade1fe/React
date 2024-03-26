@@ -30,14 +30,14 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name,price }) => {
 
   return (
     <Box
-      display={["block", 'flex', 'block', 'flex']}
+      display={["block", 'flex', 'flex', 'flex', 'flex']}
       borderTopWidth='1px'
       px='10px'
       borderTopColor='#f1f1f1'
       borderBottomWidth='1px'
       borderBottomColor='#f1f1f1'
       py='20px'
-      textAlign={['center','left', 'center','left']}
+      textAlign={['center','left', 'left','left']}
       alignItems="center"
       cursor='pointer'
     >
@@ -45,10 +45,10 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name,price }) => {
         <Image src={imageUrl} alt="food" />
       </Box>
       <Box flex="1" mx='10px' >
-        <Text fontSize={['md','lg', "xl"]} fontWeight="bold" mb="1" noOfLines={1}>
+        <Text fontSize={['md','lg',]} fontWeight="bold" mb="1" noOfLines={1}>
           {name}
         </Text>
-        <Text color='gray.400' fontSize={['sm','md', "lg"]} noOfLines={2}>
+        <Text color='gray.400' fontSize={['sm','md',]} noOfLines={2}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, modi?
         </Text>
         <Text className="">$ {price} </Text>

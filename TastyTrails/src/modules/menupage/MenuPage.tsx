@@ -1,5 +1,5 @@
 
-import {  MenuSwippers } from '../../components'
+import {  Footer, MenuSwippers } from '../../components'
 import { Box } from '@chakra-ui/react'
 
 const MenuPage = () => {
@@ -8,6 +8,7 @@ const MenuPage = () => {
         {/* <MenuNavbar /> */}
         <div className="">
           <MenuSwippers />
+          <Footer />
         </div>
       
     </Box>
