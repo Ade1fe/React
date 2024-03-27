@@ -1,4 +1,5 @@
 // export {default as SignUpComp }from './homepage/index';
+export {default as CartCard } from './cards/CartCard';
 export {default as CartPage }  from './CartPage';
 export {default as SignUpComp } from './SignUpComp';
 export {default as SignInComp } from './SignInComp';
@@ -14,4 +15,4 @@ export {default as PopularMenu } from './PopularMenu';
 export {default as InfoComp } from './InfoComp';
 export {default as HeroOne }from './HeroOne';
 export {default as Navbar } from './Navbar';
-// export {default as CartPage } from './homepage/index';
+// export {default as CartCard } from './homepage/index';

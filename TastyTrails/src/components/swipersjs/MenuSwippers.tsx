@@ -17,6 +17,7 @@ interface Meal {
   idMeal: string;
   strMeal: string;
   strMealThumb: string;
+  mealId: string;
 }
 
 const MenuSwippers: React.FC = () => {
@@ -83,12 +84,14 @@ const MenuSwippers: React.FC = () => {
 
   const handleMealClick = (imageUrl: string) => {
     setSelectedMealImage(imageUrl);
+
   };
 
   function generateRandomPrice(min: number, max: number) {
     const price = (Math.random() * (max - min) + min).toFixed(2);
     return parseFloat(price);
   }
+
 
 
 
@@ -117,7 +120,7 @@ const MenuSwippers: React.FC = () => {
         ) : (
           meals.map((meal) => (
             <div key={meal.idMeal} onClick={() => handleMealClick(meal.strMealThumb)}>
-              <AllFood imageUrl={meal.strMealThumb} name={meal.strMeal} id={meal.idMeal} price={generateRandomPrice(10, 20)} />
+              <AllFood imageUrl={meal.strMealThumb} name={meal.strMeal} id={meal.idMeal} price={generateRandomPrice(10, 20)}  mealId={meal.idMeal}  />
             </div>
           ))
         )}
