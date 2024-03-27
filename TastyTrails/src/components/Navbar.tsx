@@ -42,8 +42,8 @@ const Navbar = () => {
       </Box> */}
 
       <Box fontSize={['md','lg']} display='flex' justifyContent='space-between' gap='4'>
-        <Text className="">Login</Text>
-        <Text className="">Sign Up</Text>
+        <ChakraLink as={ReactRouterLink} to='/sign-up'>Login</ChakraLink>
+        <ChakraLink as={ReactRouterLink} to='/sign-in'>Sign Up</ChakraLink>
       </Box>
 
       <Box px='20px'  bg='white' shadow='base' py='10px' zIndex='99999' display={['flex',null, 'none']} w={['full']} bottom='0' left='0' pos={['fixed']} justifyContent='space-between' gap='4' fontSize={['md','lg']}>
