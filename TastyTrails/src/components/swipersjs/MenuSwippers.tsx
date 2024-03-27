@@ -119,9 +119,9 @@ const MenuSwippers: React.FC = () => {
           <Text>No meals found.</Text>
         ) : (
           meals.map((meal) => (
-            <div key={meal.idMeal} onClick={() => handleMealClick(meal.strMealThumb)}>
+            <Box key={meal.idMeal} onClick={() => handleMealClick(meal.strMealThumb)} pr='2'>
               <AllFood imageUrl={meal.strMealThumb} name={meal.strMeal} id={meal.idMeal} price={generateRandomPrice(10, 20)}  mealId={meal.idMeal}  />
-            </div>
+            </Box>
           ))
         )}
       </Box>

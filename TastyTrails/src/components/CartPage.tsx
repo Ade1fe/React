@@ -1,525 +1,10 @@
-// import React, { useState, useEffect } from 'react';
-// import { Box, Text, Button } from '@chakra-ui/react';
-// import { getAuth } from 'firebase/auth';
-// import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-// import { CartCard } from '.';
-
-
-// interface CartItem {
-//   id: string;
-//   name: string;
-//   price: number;
-//   quantity: number;
-// }
-
-// const CartPage: React.FC = () => {
-//   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-//   const user = getAuth().currentUser;
-//   const userId = user ? user.uid : null; 
-
-  
-
-//   useEffect(() => {
-//     const fetchCartItems = async () => {
-//       try {
-//         const firestoreInstance = getFirestore();
-//         const cartItemsRef = collection(firestoreInstance, 'cartItems');
-//         const cartItemQuery = query(
-//           cartItemsRef,
-//           where('userId', '==', userId)
-//         );
-//         const cartItemSnapshot = await getDocs(cartItemQuery);
-//         const items: CartItem[] = [];
-//         cartItemSnapshot.forEach(doc => {
-//           const data = doc.data();
-//           items.push({
-//             id: doc.id,
-//             name: data.name,
-//             price: data.price,
-//             quantity: data.quantity
-//           });
-//         });
-//         setCartItems(items);
-//       } catch (error) {
-//         console.error('Error fetching cart items:', error);
-//       }
-//     };
-
-//     fetchCartItems();
-//   }, [userId]);
-
-//   return (
-//     <Box p="4">
-//       <Text fontSize="2xl" fontWeight="bold" mb="4">Shopping Cart</Text>
-//       {cartItems.length === 0 ? (
-//         <Text>No items in the cart</Text>
-//       ) : (
-//         <Box>
-//           {cartItems.map(item => (
-//             <Box key={item.id} mb="4">
-//               <Text>{item.name}</Text>
-//               <Text>Price: ${item.price}</Text>
-//               <Text>Quantity: {item.quantity}</Text>
-//               <CartCard id={item.id} imageUrl={''} quantity={item.quantity} name={item.name} price={item.price} subtotal={0} />
-//             </Box>
-//           ))}
-//           <Button colorScheme="orange">Checkout</Button>
-//         </Box>
-//       )}
-
-     
-//     </Box>
-//   );
-// };
-
-// export default CartPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import { Box, Text, Button } from '@chakra-ui/react';
-// import { getAuth } from 'firebase/auth';
-// import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-// import { CartCard } from '.';
-
-
-// interface CartItem {
-//   id: string;
-//   name: string;
-//   price: number;
-//   quantity: number;
-// }
-
-// const CartPage: React.FC = () => {
-//   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-//   const user = getAuth().currentUser;
-//   const userId = user ? user.uid : null; 
-
-//   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
-//   const [subTotal, setSubTotal] = useState<number>(0); // State to hold total cost
-
-//   const handleIncrement = (itemId: string) => {
-//     setQuantities(prevQuantities => ({
-//       ...prevQuantities,
-//       [itemId]: (prevQuantities[itemId] || 0) + 1
-//     }));
-//   };
-
-//   const handleDecrement = (itemId: string) => {
-//     if (quantities[itemId] > 0) {
-//       setQuantities(prevQuantities => ({
-//         ...prevQuantities,
-//         [itemId]: prevQuantities[itemId] - 1
-//       }));
-//     }
-//   };
-
-//   useEffect(() => {
-//     const fetchCartItems = async () => {
-//       try {
-//         const firestoreInstance = getFirestore();
-//         const cartItemsRef = collection(firestoreInstance, 'cartItems');
-//         const cartItemQuery = query(
-//           cartItemsRef,
-//           where('userId', '==', userId)
-//         );
-//         const cartItemSnapshot = await getDocs(cartItemQuery);
-//         const items: CartItem[] = [];
-//         let totalSubTotal = 0; // Variable to hold total subtotal
-
-//         const quantities: { [key: string]: number } = {};
-//         cartItemSnapshot.forEach(doc => {
-//           const data = doc.data();
-//           items.push({
-//             id: doc.id,
-//             name: data.name,
-//             price: data.price,
-//             quantity: data.quantity
-//           });
-//           quantities[doc.id] = data.quantity;
-//           totalSubTotal += data.price * data.quantity; // Calculate subtotal for each item and sum up
-//         });
-//         setCartItems(items);
-//         setQuantities(quantities);
-//         setSubTotal(totalSubTotal); // Set the total subtotal
-//       } catch (error) {
-//         console.error('Error fetching cart items:', error);
-//       }
-//     };
-
-//     fetchCartItems();
-//   }, [userId]);
-
-//   return (
-//     <Box p="4">
-//       <Text fontSize="2xl" fontWeight="bold" mb="4">Shopping Cart</Text>
-//       {cartItems.length === 0 ? (
-//         <Text>No items in the cart</Text>
-//       ) : (
-//         <Box>
-//           {cartItems.map(item => (
-//             <Box key={item.id} mb="4">
-              
-            
-//               <CartCard
-//                 id={item.id}
-//                 imageUrl={''}
-//                 quantity={quantities[item.id] || 0} 
-//                 name={item.name}
-//                 price={item.price}
-//                 subtotal={item.price * (quantities[item.id] || 0)} 
-//                 handleIncrement={() => handleIncrement(item.id)}
-//                 handleDecrement={() => handleDecrement(item.id)} 
-//               />
-//             </Box>
-//           ))}
-//           <Text>Total Subtotal: ${subTotal}</Text> {/* Display total subtotal */}
-//           <Button colorScheme="orange">Checkout</Button>
-//         </Box>
-//       )}
-//     </Box>
-//   );
-// };
-
-// export default CartPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import { Box, Text, Button, Table, Tbody, Td, Th, Thead, Tr, Image, TableContainer } from '@chakra-ui/react';
-// import { getAuth } from 'firebase/auth';
-// import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-
-// interface CartItem {
-//   id: string;
-//   name: string;
-//   price: number;
-//   quantity: number;
-// }
-
-// const CartPage: React.FC = () => {
-//   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-//   const user = getAuth().currentUser;
-//   const userId = user ? user.uid : null; 
- 
-//   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
-
-//   const handleIncrement = (itemId: string) => {
-//     setQuantities(prevQuantities => ({
-//       ...prevQuantities,
-//       [itemId]: (prevQuantities[itemId] || 0) + 1
-//     }));
-//   };
-
-//   const handleDecrement = (itemId: string) => {
-//     if (quantities[itemId] > 0) {
-//       setQuantities(prevQuantities => ({
-//         ...prevQuantities,
-//         [itemId]: prevQuantities[itemId] - 1
-//       }));
-//     }
-//   };
-
-//   useEffect(() => {
-//     const fetchCartItems = async () => {
-//       try {
-//         const firestoreInstance = getFirestore();
-//         const cartItemsRef = collection(firestoreInstance, 'cartItems');
-//         const cartItemQuery = query(
-//           cartItemsRef,
-//           where('userId', '==', userId)
-//         );
-//         const cartItemSnapshot = await getDocs(cartItemQuery);
-//         const items: CartItem[] = [];
-//         const quantities: { [key: string]: number } = {};
-//         cartItemSnapshot.forEach(doc => {
-//           const data = doc.data();
-//           items.push({
-//             id: doc.id,
-//             name: data.name,
-//             price: data.price,
-//             quantity: data.quantity
-//           });
-//           quantities[doc.id] = data.quantity;
-//         });
-       
-//         setCartItems(items);
-//         setQuantities(quantities);
-//       } catch (error) {
-//         console.error('Error fetching cart items:', error);
-//       }
-//     };
-
-//     fetchCartItems();
-//   }, [userId]);
-
-//   return (
-//     <Box p="4">
-//       <Text fontSize="2xl" fontWeight="bold" mb="4">Shopping Cart</Text>
-//     <TableContainer 
-//             overflowX="auto"
-//             pb='00px'
-//             sx={{
-//               '&::-webkit-scrollbar': { width: "2px" },
-//               '&::-webkit-scrollbar-track': { background: "#fff" },
-//               '&::-webkit-scrollbar-thumb': { background:  "#fff" },
-//               '&::-webkit-scrollbar-thumb:hover': { background:  "#fff" }
-//             }}
-//     >
-//     <Table variant="striped" colorScheme="teal" size='md' width="100%" minW="xl">
-//         <Thead>
-//           <Tr textTransform='capitalize' textAlign='left'>
-//           <Th fontSize={['md', 'lg']}></Th>
-//             <Th fontSize={['md', 'lg']}>Product</Th>
-//             <Th fontSize={['md', 'lg']} px='8'>Price</Th>
-//             <Th fontSize={['md', 'lg']} px='4'>Quantity</Th>
-//             <Th fontSize={['md', 'lg']} px='8'>Subtotal</Th>
-//           </Tr>
-//         </Thead>
-//         <Tbody>
-//           {cartItems.map(item => (
-//             <Tr key={item.id} >
-//                <Td>
-//           <Image src='' boxSize='100px' rounded='xl' overflow='hidden' objectFit='cover' />
-//         </Td>
-//               <Td>{item.name}</Td>
-//               <Td px='8'>${item.price}</Td>
-//               <Td>
-//                 <Button fontSize="22px" shadow='base' rounded='md' px='8px' mx="4" onClick={() => handleDecrement(item.id)}>-</Button>
-//                 {quantities[item.id] || 0}
-//                 <Button fontSize="22px" mx="4" shadow='base' rounded='md' px='8px'onClick={() => handleIncrement(item.id)}>+</Button>
-//               </Td>
-//               <Td px='8'>${(quantities[item.id] || 0) * item.price}</Td>
-//               <Td>{item.id}</Td>
-//             </Tr>
-//           ))}
-//         </Tbody>
-//       </Table>
-//     </TableContainer>
-//       <Button colorScheme="orange">Checkout</Button>
-//     </Box>
-//   );
-// };
-
-// export default CartPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import { Box, Text, Button, Table, Tbody, Td, Th, Thead, Tr, Image, TableContainer } from '@chakra-ui/react';
-// import { getAuth } from 'firebase/auth';
-// import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-
-// interface CartItem {
-//   id: string;
-//   name: string;
-//   price: number;
-//   quantity: number;
-//   mealId: string;
-// }
-
-// const CartPage: React.FC = () => {
-//   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-//   const user = getAuth().currentUser;
-//   const userId = user ? user.uid : null;
-//   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
-
-//   const handleIncrement = (itemId: string) => {
-//     setQuantities(prevQuantities => ({
-//       ...prevQuantities,
-//       [itemId]: (prevQuantities[itemId] || 0) + 1
-//     }));
-//   };
-
-//   const handleDecrement = (itemId: string) => {
-//     if (quantities[itemId] > 0) {
-//       setQuantities(prevQuantities => ({
-//         ...prevQuantities,
-//         [itemId]: prevQuantities[itemId] - 1
-//       }));
-//     }
-//   };
-
-//   useEffect(() => {
-//     const fetchCartItems = async () => {
-//       try {
-//         const firestoreInstance = getFirestore();
-//         const cartItemsRef = collection(firestoreInstance, 'cartItems');
-//         const cartItemQuery = query(
-//           cartItemsRef,
-//           where('userId', '==', userId)
-//         );
-//         const cartItemSnapshot = await getDocs(cartItemQuery);
-//         const items: CartItem[] = [];
-//         const quantities: { [key: string]: number } = {};
-//         cartItemSnapshot.forEach(doc => {
-//           const data = doc.data();
-//           items.push({
-//             id: doc.id,
-//             name: data.name,
-//             price: data.price,
-//             quantity: data.quantity,
-//             mealId: data.mealId
-//           });
-//           quantities[doc.id] = data.quantity;
-//           console.log('Meal ID:', data.mealId);
-//         });
-//         setCartItems(items);
-//         setQuantities(quantities);
-//       } catch (error) {
-//         console.error('Error fetching cart items:', error);
-//       }
-//     };
-
-//     fetchCartItems();
-//   }, [userId]);
-
-//   return (
-//     <Box p="4">
-//       <Text fontSize="2xl" fontWeight="bold" mb="4">Shopping Cart</Text>
-//       <TableContainer 
-//         overflowX="auto"
-//         pb='00px'
-//         sx={{
-//           '&::-webkit-scrollbar': { width: "2px" },
-//           '&::-webkit-scrollbar-track': { background: "#fff" },
-//           '&::-webkit-scrollbar-thumb': { background:  "#fff" },
-//           '&::-webkit-scrollbar-thumb:hover': { background:  "#fff" }
-//         }}
-//       >
-//         <Table variant="striped" colorScheme="teal" size='md' width="100%" minW="xl">
-//           <Thead>
-//             <Tr textTransform='capitalize' textAlign='left'>
-//               <Th fontSize={['md', 'lg']}></Th>
-//               <Th fontSize={['md', 'lg']}>Product</Th>
-//               <Th fontSize={['md', 'lg']} px='8'>Price</Th>
-//               <Th fontSize={['md', 'lg']} px='4'>Quantity</Th>
-//               <Th fontSize={['md', 'lg']} px='8'>Subtotal</Th>
-//             </Tr>
-//           </Thead>
-//           <Tbody>
-//             {cartItems.map(item => (
-//               <Tr key={item.id} >
-//                 <Td>
-//                   {/* Fetch image based on mealId */}
-//                   <Image src={`https://www.themealdb.com/images/media/meals/${item.mealId}-medium.jpg`} boxSize='100px' rounded='xl' overflow='hidden' objectFit='cover' />
-//                 </Td>
-//                 <Td>{item.name}</Td>
-//                 <Td px='8'>${item.price}</Td>
-//                 <Td>
-//                   <Button fontSize="22px" shadow='base' rounded='md' px='8px' mx="4" onClick={() => handleDecrement(item.id)}>-</Button>
-//                   {quantities[item.id] || 0}
-//                   <Button fontSize="22px" mx="4" shadow='base' rounded='md' px='8px' onClick={() => handleIncrement(item.id)}>+</Button>
-//                 </Td>
-//                 <Td px='8'>${(quantities[item.id] || 0) * item.price}</Td>
-//                 <Td>{item.id}</Td>
-//               </Tr>
-//             ))}
-//           </Tbody>
-//         </Table>
-//       </TableContainer>
-//       <Button colorScheme="orange">Checkout</Button>
-//     </Box>
-//   );
-// };
-
-// export default CartPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 import React, { useEffect, useState } from 'react';
-import { Box, Text, Button, Table, Tbody, Td, Th, Thead, Tr, Image, TableContainer } from '@chakra-ui/react';
+import { Box, Text, Button, Table, Tbody, Td, Th, Thead, Tr, Image, TableContainer, GridItem } from '@chakra-ui/react';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { Footer, Navbar } from '.';
 
 interface CartItem {
   id: string;
@@ -527,14 +12,19 @@ interface CartItem {
   price: number;
   quantity: number;
   mealId: string;
-  mealImage: string; // Add mealImage to CartItem interface
+  mealImage: string; 
 }
 
 const CartPage: React.FC = () => {
+
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [subtotal, setSubtotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [total, setTotal] = useState(0);
   const user = getAuth().currentUser;
   const userId = user ? user.uid : null; 
-  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+ 
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -580,6 +70,7 @@ const CartPage: React.FC = () => {
     
 
     fetchCartItems();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const fetchMealImage = async (mealId: string) => {
@@ -600,41 +91,64 @@ const CartPage: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    // Calculate subtotal
+    const subtotalValue = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    setSubtotal(subtotalValue);
+
+    // Calculate tax (let's assume tax is 10% of subtotal)
+    const taxValue = subtotalValue * 0.1;
+    setTax(taxValue);
+
+    // Calculate total
+    const totalValue = subtotalValue + taxValue;
+    setTotal(totalValue);
+  }, [cartItems]);
 
   const handleIncrement = (itemId: string) => {
-    setQuantities(prevQuantities => ({
-      ...prevQuantities,
-      [itemId]: (prevQuantities[itemId] || 0) + 1
-    }));
+    const updatedCartItems = cartItems.map(item => {
+      if (item.id === itemId) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCartItems(updatedCartItems);
   };
 
   const handleDecrement = (itemId: string) => {
-    if (quantities[itemId] > 0) {
-      setQuantities(prevQuantities => ({
-        ...prevQuantities,
-        [itemId]: prevQuantities[itemId] - 1
-      }));
-    }
+    const updatedCartItems = cartItems.map(item => {
+      if (item.id === itemId && item.quantity > 0) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCartItems(updatedCartItems);
   };
 
   return (
-    <Box p="4">
+    <Box px='4'> 
+    <Navbar />
+    <Box display={['block', 'block', 'flex']} alignItems='flex-start' maxW='1340px' mx='auto' gap='20px'> 
+    <Box p="4"    w={['100%', '100%', '60%', '70%',]}>
       <Text fontSize="2xl" fontWeight="bold" mb="4">Shopping Cart</Text>
       <TableContainer 
         overflowX="auto"
-        pb='00px'
+        overflowY="auto" maxHeight="calc(100vh - 250px)"
+        pr='20px'
+        pb='20px'
         sx={{
-          '&::-webkit-scrollbar': { width: "2px" },
+          '&::-webkit-scrollbar': { width: "3px", height: "4px", borderRadius: "10px" },
           '&::-webkit-scrollbar-track': { background: "#fff" },
-          '&::-webkit-scrollbar-thumb': { background:  "#fff" },
-          '&::-webkit-scrollbar-thumb:hover': { background:  "#fff" }
+          '&::-webkit-scrollbar-thumb': { background:  "#000" },
+          '&::-webkit-scrollbar-thumb:hover': { background:  "#222" }
         }}
+    
       >
         <Table variant="striped" colorScheme="teal" size='md' width="100%" minW="xl">
-          <Thead>
-            <Tr textTransform='capitalize' textAlign='left' pb='30px'>
-              <Th fontSize={['md', 'lg']} pb='10px' textColor='white'  px={['3','4','4','2']}>aaaaaaaaaa</Th>
-              <Th fontSize={['md', 'lg']} pb='10px'>Product</Th>
+          <Thead borderBottom='1px'>
+            <Tr textTransform='capitalize' textAlign='left' pb='10px' >
+              <Th fontSize={['md', 'lg']} pb='10px' textColor='white'  px={['4','4','4','2']}>aaaaaaa</Th>
+              <Th fontSize={['md', 'lg']} pb='10px' px='4'>Product</Th>
               <Th fontSize={['md', 'lg']} pb='10px' px='8'>Price</Th>
               <Th fontSize={['md', 'lg']} pb='10px' px='4'>Quantity</Th>
               <Th fontSize={['md', 'lg']} pb='10px' px='8'>Subtotal</Th>
@@ -642,28 +156,46 @@ const CartPage: React.FC = () => {
           </Thead>
           <Tbody>
             {cartItems.map(item => (
-              <Tr key={item.id} >
-                <Td pb='10px'>
-                  <Image src={item.mealImage} boxSize='100px' rounded='xl' overflow='hidden' objectFit='cover' />
+              <Tr key={item.id} borderBottom='1px'>
+                <Td   boxSize='100px' py='10px'>
+                  <Image src={item.mealImage} rounded='xl' overflow='hidden' objectFit='cover' />
                   {/* {item.name} */}
                 </Td>
-                <Td>{item.name}</Td>
+                <Td px='4'>{item.name}</Td>
                 <Td px='8'>${item.price}</Td>
                 <Td>
-                  <Button fontSize="22px" shadow='base' rounded='md' px='8px' mx="4" onClick={() => handleDecrement(item.id)}>-</Button>
-                  {quantities[item.id] || 0}
-                  <Button fontSize="22px" mx="4" shadow='base' rounded='md' px='8px' onClick={() => handleIncrement(item.id)}>+</Button>
-                </Td>
-                <Td px='8'>${(quantities[item.id] || 0) * item.price}</Td>
+                    <Button fontSize="22px" shadow='base' rounded='md' px='8px' mx="4" onClick={() => handleDecrement(item.id)}>-</Button>
+                    {item.quantity}
+                    <Button fontSize="22px" mx="4" shadow='base' rounded='md' px='8px' onClick={() => handleIncrement(item.id)}>+</Button>
+                  </Td>
+                <Td px='8'>${item.quantity * item.price}</Td>
                 {/* <Td>{item.id}</Td> */}
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
-      <Button colorScheme="orange">Checkout</Button>
     </Box>
+
+
+    <Box display="grid"   gridTemplateColumns="repeat(2, 1fr)" gap={2} w={['100%', '70%', '40%', '30%',]} mt={['2rem','3rem','4rem', '5rem']} border='1px' p='4' mx={['0', 'auto']}>
+        <GridItem textTransform='capitalize' fontSize={['lg']} fontWeight='bold' colSpan={2}>Order Summary</GridItem>
+        <Text>SubTotal</Text>
+        <Text textAlign="right">${subtotal.toFixed(2)}</Text>
+        <Text>Tax (10%)</Text>
+        <Text textAlign="right">${tax.toFixed(2)}</Text>
+        <Text>Total</Text>
+        <Text textAlign="right">${total.toFixed(2)}</Text>
+        <GridItem colSpan={2} bg='black' color='white' p='3'>
+          <Button colorScheme="orange" width="100%">Checkout</Button>
+        </GridItem>
+      </Box>
+
+</Box>
+<Footer />
+</Box>
   );
 };
 
 export default CartPage;
+
