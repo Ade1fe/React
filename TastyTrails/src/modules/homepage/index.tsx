@@ -20,7 +20,7 @@ const Homepage = () => {
   
   return (
     <div>
-      <Box className="subtitle">
+      <Box className='text-fonts'>
         <Box px="20px">
         <Navbar isAuthenticated={isAuthenticated} /> 
         </Box>

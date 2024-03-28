@@ -5,7 +5,7 @@ import { FiMapPin, FiPhone } from "react-icons/fi"
 
 const InfoComp = () => {
   return (
-    <Box className="subtitle" textAlign='center' display='flex' flexWrap='wrap' gap={[5,8,12,14,16]} justifyContent='center' maxWidth='1340px' mx='auto' mt={['3rem']}>
+    <Box className='text-fonts' textAlign='center' display='flex' flexWrap='wrap' gap={[5,8,12,14,16]} justifyContent='center' maxWidth='1340px' mx='auto' mt={['3rem']}>
         <Box className="" p={9}>
             <Icon as={AiOutlineClockCircle} color='white' bg='orange.400' p='3' borderRadius='50%' boxSize={[10]}  />
             <Text fontWeight='600' fontSize={['md', 'lg']}>Today 10:00am - 10:00pm</Text>

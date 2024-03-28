@@ -4,7 +4,7 @@ import { logos } from "../assets";
 
 const Footer = () => {
   return (
-    <Box as="footer"  color="black" pt="8" mt={['4rem',]} mb={['60px','60px', '30px']}>
+    <Box as="footer" className='text-fonts'  color="black" pt="8" mt={['4rem',]} mb={['60px','60px', '30px']}>
       <Box maxW="1340px" mx="auto" px="4">
         <Stack direction={['column', 'column', 'row']} spacing={['4', '4', '8', '12']} justify="space-between" align="flex-start">
           <Box flex="1" mb={['4', '4', '0']}>

@@ -126,7 +126,7 @@ const MenuSwippers: React.FC = () => {
   );
 
   const renderMealList = () => (
-    <Box overflowY="auto" maxHeight="calc(100vh - 250px)">
+    <Box overflowY="auto" maxHeight="calc(100vh - 250px)" >
       <Text>All Food</Text>
       <Box minWidth="100%" display='grid' gap='25px'>
         {meals.length === 0 ? (
@@ -150,7 +150,7 @@ const MenuSwippers: React.FC = () => {
         </Box>
       )}
 
-      <Box display={['none','none', 'none', 'block']} maxW="1340px" mx="auto">
+      <Box display={['none','none', 'none', 'block']} maxW="1340px" mx="auto" className='text-fonts'>
         <Box display='flex'>
           <Box display="flex" w='45%' flexDir='column' gap='20px'>
             <MenuNavbar fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
@@ -163,7 +163,7 @@ const MenuSwippers: React.FC = () => {
         </Box>
       </Box>
 
-      <Box display={['block','block', 'block', 'none']}>
+      <Box display={['block','block', 'block', 'none']} className='text-fonts'>
         <Box display="" maxW="1340px" mx="auto">
           <Box display="flex" flexDir='column' gap='20px' gridTemplateColumns={{ base: "100%", md: "40% 60%" }} gridTemplateRows="auto auto">
             <MenuNavbar fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />

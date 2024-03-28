@@ -6,7 +6,7 @@ const NewsLetter = () => {
     <Box mt={['10rem']} py={10} color='white' zIndex="1" maxWidth='1340px' mx='auto' textAlign='center' pos='relative' display='flex' justifyContent='left' alignItems='center'>
       <Image src={burgerImg} boxSize={['200px', '480px']} pos='absolute' top='-100px' display={['none','none', 'block']} left={0} zIndex="2" />
       <Box zIndex="3" w={['full', 'full', '60%']} ml='auto' >
-        <Text fontSize="xl" fontWeight="bold" mb="4">Subscribe To Our Newsletter</Text>
+        <Text fontSize="xl" fontWeight="bold" mb="4" className='subtitle'>Subscribe To Our Newsletter</Text>
         <Text fontSize="md" w={['80%', '70%', '60%']} mx="auto" mb="8">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus mauris sem sed urna venenatis vivamus.
           Egestas in velit nulla viverra turpis id ac. Amet faucibus tempus.

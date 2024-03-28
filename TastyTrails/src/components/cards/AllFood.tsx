@@ -79,6 +79,7 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
       toast({
         title: "Item added to cart",
         status: "success",
+        position: 'top-left',
         duration: 3000,
         isClosable: true,
       });
@@ -87,9 +88,11 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
       toast({
         title: "Error",
         description: error.message,
+        position: 'top-left',
         status: "error",
         duration: 3000,
         isClosable: true,
+        
       });
       console.error('Error adding item to cart:', error);
     }
@@ -107,6 +110,7 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
       textAlign={['center','left', 'left','left']}
       alignItems="center"
       cursor='pointer'
+      className='text-fonts'
     >
       <Box mr="4" shadow='base' boxSize={['200px','100px','150px', '100px']} rounded='md' overflow='hidden'  mx={['auto', '0', 'auto', '0']} >
         <Image src={imageUrl} alt="food" />
@@ -129,7 +133,7 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
           +
         </Button>
       </Box>
-      <Button bg='white' onClick={handleAddToCart} mt={['10px', '0','10px','0']} px='15px' rounded='lg' py='5px' borderColor='orange.500' borderWidth='2px' textAlign={['center']} mx='auto'>Add</Button>
+      <Button bg='white' _hover={{bg: "white"}} onClick={handleAddToCart} mt={['10px', '0','10px','0']} px='15px' rounded='lg' py='5px' borderColor='orange.500' borderWidth='2px' textAlign={['center']} mx='auto'>Add</Button>
     </Box>
   );
 };

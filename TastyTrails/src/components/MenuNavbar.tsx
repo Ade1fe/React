@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Icon, Input, InputGroup, InputLeftAddon, Text, Button } from '@chakra-ui/react';
+import { Box, Icon, Input, InputGroup, Text, Button, InputRightAddon } from '@chakra-ui/react';
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
@@ -98,17 +98,15 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
 
 
   return (
-    <Box pt='10' pb='4' pl={['20px', '20px', '20px', '2', '2']} pr={['20px', '20px', '20px', '2', '2']}  className='subtitle'>
-      <Box display="flex" justifyContent='space-between' gap={['25px', '20px', "15px", '30px']} alignItems='center'>
+    <Box pt='10' pb='4' px={['20px']}  className='subtitle'>
+      <Box display="flex" justifyContent='space-between' gap={['25px', '20px', "15px", '20px']} alignItems='center'>
         <ChakraLink as={ReactRouterLink} to='/'>
           <Text className='headTitle' textAlign={['center', 'left']} fontSize={['x-large', 'xx-large']} textShadow='1px 1px orange' fontWeight='700'> TastyTrails </Text>
         </ChakraLink>
         <Box w='full'>
           <form onSubmit={handleSubmit}>
-            <InputGroup shadow='sm' border='1px' borderColor='#f1f1f1' py={1} px='3' borderRadius='10px' >
-              <InputLeftAddon  bg='white' border='none'>
-                <Icon as={FaSearch} bg='white' />
-              </InputLeftAddon>
+            <InputGroup shadow='sm' border='1px' borderColor='#f1f1f1' borderRadius='10px' >
+           
               <Input
                 placeholder='Search for food ...'
                 w='full'
@@ -116,11 +114,14 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
                 mx={2}
                 py={1}
                 outlineColor='white'
+                outline='none'
                 border='none'
                 value={searchQuery}
                 onChange={handleInputChange}
               />
-              <Button type="submit" bg='white'>Search</Button>
+                 <InputRightAddon  bg='white' border='none' p='0' >
+               <Button size='sm' type="submit" bg='white' p='0'> <Icon as={FaSearch} bg='white' /></Button>
+             </InputRightAddon>
             </InputGroup>
           </form>
         </Box>

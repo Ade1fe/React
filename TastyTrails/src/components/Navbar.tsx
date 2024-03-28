@@ -98,7 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
   };
 
   return (
-    <Box className='subtitle' maxWidth='1340px' mx='auto' display={['flex', 'flex']} justifyContent={[ 'space-between']} gap='4' py='4' alignItems='center'>
+    <Box className='text-fonts' maxWidth='1340px' mx='auto' display={['flex', 'flex']} justifyContent={[ 'space-between']} gap='4' py='4' alignItems='center'>
       <Box className="">
         <Text className='headTitle' textAlign={['center', 'left']} fontSize={['x-large', 'xx-large']} textShadow='1px 1px orange' fontWeight='700'> TastyTrails </Text>
       </Box>
