@@ -12,8 +12,8 @@ const NewsLetter = () => {
           Egestas in velit nulla viverra turpis id ac. Amet faucibus tempus.
         </Text>
         <Box p='2' bg='white' display='flex' w={['90%','90%','70%','60%']}  mx='auto' rounded="md" borderRadius='14px'>
-          <Input placeholder="Type your email.." flex='3' p='2' outlineColor='white' color='black'/>
-          <Button p='2' bg='orange.400' flex='1' ml="2" borderRadius='9px'>SUBSCRIBE</Button>
+          <Input border='none' placeholder="Type your email.." flex='3' p='2' outlineColor='white' color='black'/>
+          <Button py='2' px='4' bg='orange.400' flex='1' ml="2" borderRadius='9px' fontSize='md'>SUBSCRIBE</Button>
         </Box>
       </Box>
     </Box>

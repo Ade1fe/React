@@ -121,15 +121,15 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
         <Text className="">$ {price} </Text>
       </Box>
       <Box display="flex" alignItems="center" mx='10px' my={['10px','0','10px','0']} justifyContent={['center','flex-start','center', 'flex-start']}>
-        <Button onClick={handleDecrement} fontSize="22px" shadow='base' rounded='md' px='8px' mr="2">
+        <Button bg='white' onClick={handleDecrement} fontSize="22px" shadow='base' rounded='md' px='8px' mr="2">
           -
         </Button>
         <Text>{quantity}</Text>
-        <Button onClick={handleIncrement} fontSize="22px" ml="2" shadow='base' rounded='md' px='8px'>
+        <Button bg='white' onClick={handleIncrement} fontSize="22px" ml="2" shadow='base' rounded='md' px='8px'>
           +
         </Button>
       </Box>
-      <Button onClick={handleAddToCart} mt={['10px', '0','10px','0']} px='15px' rounded='lg' py='5px' borderColor='orange.500' borderWidth='2px' textAlign={['center']} mx='auto'>Add</Button>
+      <Button bg='white' onClick={handleAddToCart} mt={['10px', '0','10px','0']} px='15px' rounded='lg' py='5px' borderColor='orange.500' borderWidth='2px' textAlign={['center']} mx='auto'>Add</Button>
     </Box>
   );
 };

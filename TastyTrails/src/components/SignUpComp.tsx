@@ -78,6 +78,7 @@ const SignUpComp: React.FC = () => {
 
       setLoginStatus('success');
       navigate('/');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err:any) {
       console.error('Sign Up failed!', err);
       setLoginStatus('error');

@@ -11,7 +11,7 @@ const HeroOne = () => {
         </Text>
         <Text fontSize={["md", "lg",]}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus officiis facilis vel iste illo aperiam, nostrum aut repellendus consequuntur quasi?</Text>
         <Button mt={['20px', '30px', '40px']} bg='orange.400' _hover={{ shadow: "base", bg: "orange.700" }} borderRadius='5px' px='4' py='3' color='white'>Order Now</Button>
-        <Button mt={['20px', '30px', '40px']} ml={['0px', '30px']} _hover={{ color: "orange.400" }} borderRadius='5px'> <Image src={playbtnimg} boxSize={['60px']} /> Order Process</Button>
+        <Button mt={['20px', '30px', '40px']} bg='white' ml={['0px', '30px']} _hover={{ color: "orange.400" }} borderRadius='5px'> <Image src={playbtnimg} boxSize={['60px']} /> Order Process</Button>
       </Box>
 
       <Box maxWidth="200px" maxHeight='200px' display={['none', 'none', 'none', 'none', 'block']} mt='auto' mb='auto'>

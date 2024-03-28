@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import '../css/MenuSwipper.css';
 import { AllFood, MenuCard, MenuNavbar } from '..';
 import { BreakPoints } from '../Breakpoint';
+import { getAuth } from 'firebase/auth';
 
 interface Category {
   idCategory: string;
@@ -27,6 +28,19 @@ const MenuSwippers: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [, setError] = useState<string | null>(null);
   const [selectedMealImage, setSelectedMealImage] = useState<string | null>(null); 
+
+
+  const auth = getAuth();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setIsAuthenticated(!!user); // Update isAuthenticated state based on user authentication
+    });
+
+    return () => unsubscribe(); 
+  }, [auth]);
 
   const baseUrl: string = 'https://www.themealdb.com/api/json/v1/1/';
 
@@ -139,7 +153,7 @@ const MenuSwippers: React.FC = () => {
       <Box display={['none','none', 'none', 'block']} maxW="1340px" mx="auto">
         <Box display='flex'>
           <Box display="flex" w='45%' flexDir='column' gap='20px'>
-            <MenuNavbar fetchMeals={fetchMealsByCategory} />
+            <MenuNavbar fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
             <Box maxW="700px" px='3'>{renderCategorySwiper()}</Box>
             {renderMealList()}
           </Box>
@@ -152,7 +166,7 @@ const MenuSwippers: React.FC = () => {
       <Box display={['block','block', 'block', 'none']}>
         <Box display="" maxW="1340px" mx="auto">
           <Box display="flex" flexDir='column' gap='20px' gridTemplateColumns={{ base: "100%", md: "40% 60%" }} gridTemplateRows="auto auto">
-            <MenuNavbar fetchMeals={fetchMealsByCategory} />
+            <MenuNavbar fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
           <Box px="10px">   {renderCategorySwiper()} </Box>
             <Box bg="transparent" height={['270px','300px','350px']}>
               {selectedMealImage && <Image w='full' objectFit='cover' h='full' src={selectedMealImage} alt="Selected Meal" />}
