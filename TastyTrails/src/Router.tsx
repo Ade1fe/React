@@ -1,6 +1,6 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import { Homepage, MenuPage } from "./modules";
+import { Homepage, MenuPage, SettingsPage } from "./modules";
 import { CartPage, SignInComp, SignUpComp } from "./components";
 
 
@@ -24,8 +24,11 @@ const Router = createBrowserRouter([
   {
     path: "cart",
     element: <CartPage />
-  }
-
+  },
+  {
+    path: "settings",
+    element: <SettingsPage />
+  },
   
 ]);
 

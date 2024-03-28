@@ -147,7 +147,7 @@ const CartPage: React.FC = () => {
        <Navbar isAuthenticated={isAuthenticated} /> 
       <Box mt={['0','0', '1rem']} display={['block', 'block', 'flex']} alignItems='flex-start' maxW='1340px' mx='auto' gap='20px'> 
         <Box p="4"    w={['100%', '100%', '60%', '70%',]}>
-          <Text fontSize="2xl" fontWeight="600" mb="4">Shopping Cart</Text>
+          <Text fontSize="2xl" fontWeight="600" my={'1.5rem'} >Shopping Cart</Text>
           <TableContainer 
             overflowX="auto"
             overflowY="auto" maxHeight="calc(100vh - 250px)"
@@ -174,7 +174,7 @@ const CartPage: React.FC = () => {
                 {cartItems.map(item => (
                   <Tr key={item.id} borderBottom='1px'>
                     <Td   boxSize='100px' py='15px' pos='relative'>
-                    <Text bg='white' shadow='base' border='1px' borderColor='#ddd' size='sm' color='black' py='1' px='2' pos='absolute' top='8px' rounded='md' right='10px' onClick={() => handleDelete(item.id)}>x</Text>
+                    <Text bg='white' cursor='pointer' shadow='base' border='1px' borderColor='#ddd' size='sm' color='black' py='1' px='2' pos='absolute' top='8px' rounded='md' right='10px' onClick={() => handleDelete(item.id)}>x</Text>
                       <Image src={item.mealImage} rounded='xl' overflow='hidden' objectFit='cover' />
                     </Td>
                     <Td px='4'>{item.name}</Td>
@@ -202,7 +202,7 @@ const CartPage: React.FC = () => {
             <Text>Total</Text>
             <Text textAlign="right">${total.toFixed(2)}</Text>
             <GridItem colSpan={2} bg="black" color='white'>
-              <Button bg="black" py='6' color='white' width="100%">Checkout</Button>
+              <Button bg="black" _hover={{bg: "black"}} py='6' color='white' width="100%">Checkout</Button>
             </GridItem>
           </Box>
       </Box>
