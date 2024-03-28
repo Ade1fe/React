@@ -1,6 +1,6 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import { Homepage, MenuPage, SettingsPage } from "./modules";
+import { CheckoutPage, Homepage, MenuPage, SettingsPage } from "./modules";
 import { CartPage, SignInComp, SignUpComp } from "./components";
 
 
@@ -28,6 +28,10 @@ const Router = createBrowserRouter([
   {
     path: "settings",
     element: <SettingsPage />
+  },
+  {
+    path: "check-out",
+    element: <CheckoutPage />
   },
   
 ]);

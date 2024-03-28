@@ -51,7 +51,7 @@ const SettingsPage = () => {
         return () => unsubscribe();
     }, [auth]);
 
-    const handleSave = () => {
+  const handleSave = () => {
         const user = auth.currentUser;
         if (user) {
             updateProfile(user, { displayName })

@@ -4,7 +4,7 @@ import { Box, Text, Button, Table, Tbody, Td, Th, Thead, Tr, Image, TableContain
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where,deleteDoc,doc } from 'firebase/firestore';
 import { Footer, Navbar } from '.';
-// import { firestore } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 interface CartItem {
   id: string;
@@ -24,14 +24,15 @@ const CartPage: React.FC = () => {
   const user = auth.currentUser;
   const userId = user ? user.uid : null;
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Listen for authentication state changes
     const unsubscribe = auth.onAuthStateChanged(user => {
-      setIsAuthenticated(!!user); // Update isAuthenticated state based on user authentication
+      setIsAuthenticated(!!user); 
     });
 
-    return () => unsubscribe(); // Cleanup function to unsubscribe from the listener
+    return () => unsubscribe(); 
   }, [auth]);
 
   useEffect(() => {
@@ -142,6 +143,18 @@ const CartPage: React.FC = () => {
     }
   };
 
+
+  const sendCheckoutDetails = () => {
+    const checkoutData = {
+      cartItems,
+      subtotal,
+      tax,
+      total
+    };
+
+    navigate('/check-out', { state: { checkoutData } });
+  };
+
   return (
     <Box px='4' className='text-fonts'> 
        <Navbar isAuthenticated={isAuthenticated} /> 
@@ -201,8 +214,8 @@ const CartPage: React.FC = () => {
             <Text textAlign="right">${tax.toFixed(2)}</Text>
             <Text>Total</Text>
             <Text textAlign="right">${total.toFixed(2)}</Text>
-            <GridItem colSpan={2} bg="black" color='white'>
-              <Button bg="black" _hover={{bg: "black"}} py='6' color='white' width="100%">Checkout</Button>
+            <GridItem colSpan={2} bg="black" color='white' py='2' textAlign='center'>
+              <Button  bg='black'  onClick={sendCheckoutDetails}  mx='auto' w='full' fontSize='lg' _hover={{bg: "black"}}  color='white'>Checkout</Button>
             </GridItem>
           </Box>
       </Box>

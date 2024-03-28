@@ -83,6 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
     signOut(auth)
       .then(() => {
         console.log('User signed out successfully.');
+        localStorage.clear();
         navigate('/');
         window.location.reload();
       })
