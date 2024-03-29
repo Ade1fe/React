@@ -1,4 +1,6 @@
 // export {default as SignUpComp }from './homepage/index';
+export {default as AllDrink } from './cards/AllDrink';
+export {default as DrinkSwiper } from './swipersjs/DrinkSwiper';
 export {default as CartCard } from './cards/CartCard';
 export {default as CartPage }  from './CartPage';
 export {default as SignUpComp } from './SignUpComp';
@@ -15,4 +17,4 @@ export {default as PopularMenu } from './PopularMenu';
 export {default as InfoComp } from './InfoComp';
 export {default as HeroOne }from './HeroOne';
 export {default as Navbar } from './Navbar';
-// export {default as CartCard } from './homepage/index';
+// export {default as AllDrink } from './homepage/index';

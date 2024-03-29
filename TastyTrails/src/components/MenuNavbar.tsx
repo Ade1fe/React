@@ -40,8 +40,9 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
     const unsubscribe = onSnapshot(cartItemQuery, (snapshot) => {
       let count = 0;
       snapshot.forEach(doc => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const data = doc.data();
-        console.log(data)
+        // console.log(data)
         count++;
       });
       setCartItemCount(count);
@@ -71,8 +72,9 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
     const unsubscribe = onSnapshot(cartItemQuery, (snapshot) => {
       let count = 0;
       snapshot.forEach(doc => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const data = doc.data();
-        console.log(data)
+        // console.log(data)
         count++;
       });
       setCartItemCount(count);
@@ -139,7 +141,7 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
     <ChakraLink as={ReactRouterLink} to='/menu-page'> <Icon as={GiHamburger} boxSize={['5', '6', '6']} /> </ChakraLink>
   </Tooltip>
   <Tooltip label="Drinks">
-    <Text> <Icon as={BiSolidDrink} boxSize={['5', '6', '6']} /> </Text>
+    <ChakraLink as={ReactRouterLink} to="/cocktails"> <Icon as={BiSolidDrink} boxSize={['5', '6', '6']} /> </ChakraLink>
   </Tooltip>
   <Tooltip label="Cart"> 
   <ChakraLink as={ReactRouterLink} to='/cart' pos='relative' mr='4'>

@@ -10,10 +10,10 @@ interface AllFoodProps {
   imageUrl: string;
   name: string;
   price: number;
-  mealId: string; 
+  drinkId: string; 
 }
 
-const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) => {
+const AllDrink: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, drinkId }) => {
 
   // const auth = getAuth(app);
   // console.log(auth)
@@ -55,7 +55,7 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
       );
       const cartItemSnapshot = await getDocs(cartItemQuery);
 
- console.log('Meal ID:', mealId);
+ console.log('drinkId ID:', drinkId);
 
       if (!cartItemSnapshot.empty) {
         const existingCartItem = cartItemSnapshot.docs[0];
@@ -70,7 +70,7 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
           name: name,
           price: price,
           quantity: quantity,
-          mealId: mealId, // Add mealId to the cart item
+          drinkId: drinkId, // Add drinkId to the cart item
         });
       }
 
@@ -138,4 +138,5 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
   );
 };
 
-export default AllFood;
+
+export default AllDrink

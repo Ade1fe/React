@@ -194,11 +194,11 @@ const CheckoutPage: React.FC = () => {
   <Box display="grid"   gridTemplateColumns="repeat(2, 1fr)" gap={2} w={['100%', '70%', '40%', '35%',]} mt={['2rem','3rem','4rem', '5rem']} border='1px' p='4' mx={['auto', 'auto', '0']}>
             <GridItem textTransform='capitalize' fontSize={['lg']} fontWeight='bold' colSpan={2}>Order Summary</GridItem>
             <Text>SubTotal</Text>
-            <Text textAlign="right">${checkoutData?.subtotal}</Text>
+            <Text textAlign="right">${checkoutData?.subtotal.toFixed(2)}</Text>
             <Text>Tax (10%)</Text>
-            <Text textAlign="right">${checkoutData?.tax}</Text>
+            <Text textAlign="right">${checkoutData?.tax.toFixed(2)}</Text>
             <Text>Total</Text>
-            <Text textAlign="right">${checkoutData?.total}</Text>
+            <Text textAlign="right">${checkoutData?.total.toFixed(2)}</Text>
             <GridItem colSpan={2} bg="black" color='white' py='1' textAlign='center'>
               <Button  bg='black'    mx='auto' w='full' fontSize='lg' _hover={{bg: "#222"}}  color='white'>Make Payment</Button>
             </GridItem>

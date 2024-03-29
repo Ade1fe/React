@@ -163,9 +163,9 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
           </ChakraLink>
         </Tooltip>
         <Tooltip label="Drinks">
-          <Text>
+          <ChakraLink as={ReactRouterLink} to="/cocktails">
             <Icon as={BiSolidDrink} boxSize={['5', '6', '6']} />
-          </Text>
+          </ChakraLink>
         </Tooltip>
         <Tooltip label="Cart">
           <ChakraLink as={ReactRouterLink} to="/cart" pos="relative" mr="4">
