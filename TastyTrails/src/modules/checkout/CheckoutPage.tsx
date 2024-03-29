@@ -6,6 +6,7 @@ import { getAuth } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { firestore } from "../../firebase";
 import { FaCheck } from 'react-icons/fa';
+import { Footer, Navbar } from '../../components';
 
 interface PaymentInfo {
   cardNumber: string;
@@ -30,6 +31,17 @@ const CheckoutPage: React.FC = () => {
   const checkoutData: CheckoutData = location.state && location.state.checkoutData;
 
   
+  const auth = getAuth();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setIsAuthenticated(!!user); // Update isAuthenticated state based on user authentication
+    });
+
+    return () => unsubscribe(); 
+  }, [auth]);
 
     const fetchUserData = async () => {
     const auth = getAuth();
@@ -89,9 +101,11 @@ const CheckoutPage: React.FC = () => {
   
 
   return (
-<Box display={['block', 'flex']} alignItems='flex-start' maxW='1340px' mx='auto'>
+ <div className="">
+     <Navbar isAuthenticated={isAuthenticated} /> 
+<Box display={['block', 'block', 'flex']} alignItems='flex-start' justifyContent='space-between' maxW='1340px' mx='auto' gap='20px' px='20px'>
 
-<Box className="" w={['50%']}>
+<Box className="" w={['100%', '85%', '80%', '50%']} mx={['auto', 'auto', '0']}>
 <Text fontSize="2xl" fontWeight="bold" mb="4">
         Product Checkout
       </Text>
@@ -146,8 +160,8 @@ const CheckoutPage: React.FC = () => {
             />
           </FormControl>
       
-       <Box display={['flex']} alignItems='center'>
-       <FormControl mb="4" display="inline-block" mr="4">
+       <Box display={['block', 'flex']} alignItems='center' w='full' gap='10px'>
+       <FormControl mb="4" display="inline-block" w={['100%', '40%']}>
             <FormLabel>Expiration Date</FormLabel>
             <Input
               type="text"
@@ -156,7 +170,7 @@ const CheckoutPage: React.FC = () => {
               onChange={(e) => handleInputChange(e, 'expirationDate')}
             />
           </FormControl>
-          <FormControl mb="4" display="inline-block">
+          <FormControl mb="4" display="inline-block" w={['100%', '40%']}>
             <FormLabel>CVV</FormLabel>
             <Input
               type="text"
@@ -165,7 +179,7 @@ const CheckoutPage: React.FC = () => {
               onChange={(e) => handleInputChange(e, 'cvv')}
             />
           </FormControl>
-          <Button type="submit" colorScheme="blue" mt="4">
+          <Button type="submit" _hover={{bg: "#222"}}  fontSize={['sm']} px='20px' color='white' bg="black" mt="4" w={['100%', '20%']}>
             Pay Now
           </Button>
        </Box>
@@ -176,15 +190,8 @@ const CheckoutPage: React.FC = () => {
 
     </Box>
 
-{/* <Box mt="2rem" border="1px" p="4">
-  <Text fontWeight="bold" fontSize="lg">Order Summary</Text>
-  <Text>SubTotal: {checkoutData?.subtotal}</Text>
-  <Text>Tax (10%): {checkoutData?.tax}</Text>
-  <Text>Total: {checkoutData?.total}</Text>
-  <Button>Pay now</Button>
-</Box> */}
 
-<Box display="grid"   gridTemplateColumns="repeat(2, 1fr)" gap={2} w={['100%', '70%', '40%', '30%',]} mt={['2rem','3rem','4rem', '5rem']} border='1px' p='4' mx={['0', 'auto']}>
+  <Box display="grid"   gridTemplateColumns="repeat(2, 1fr)" gap={2} w={['100%', '70%', '40%', '35%',]} mt={['2rem','3rem','4rem', '5rem']} border='1px' p='4' mx={['auto', 'auto', '0']}>
             <GridItem textTransform='capitalize' fontSize={['lg']} fontWeight='bold' colSpan={2}>Order Summary</GridItem>
             <Text>SubTotal</Text>
             <Text textAlign="right">${checkoutData?.subtotal}</Text>
@@ -192,12 +199,14 @@ const CheckoutPage: React.FC = () => {
             <Text textAlign="right">${checkoutData?.tax}</Text>
             <Text>Total</Text>
             <Text textAlign="right">${checkoutData?.total}</Text>
-            <GridItem colSpan={2} bg="black" color='white' py='2' textAlign='center'>
-              <Button  bg='black'    mx='auto' w='full' fontSize='lg' _hover={{bg: "black"}}  color='white'>Pay Now</Button>
+            <GridItem colSpan={2} bg="black" color='white' py='1' textAlign='center'>
+              <Button  bg='black'    mx='auto' w='full' fontSize='lg' _hover={{bg: "#222"}}  color='white'>Make Payment</Button>
             </GridItem>
           </Box>
 
 </Box>
+<Footer />
+ </div>
   );
 };
 
