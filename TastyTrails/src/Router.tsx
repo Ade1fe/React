@@ -1,7 +1,7 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import { CheckoutPage, Homepage, MenuPage, SettingsPage } from "./modules";
-import { CartPage, DrinkSwiper, SignInComp, SignUpComp } from "./components";
+import { CheckoutPage, DrinkPage, Homepage, MenuPage, SettingsPage } from "./modules";
+import { CartPage, SignInComp, SignUpComp } from "./components";
 
 
 const Router = createBrowserRouter([
@@ -35,7 +35,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "cocktails",
-    element: <DrinkSwiper />
+    element: <DrinkPage />
   },
   
 ]);

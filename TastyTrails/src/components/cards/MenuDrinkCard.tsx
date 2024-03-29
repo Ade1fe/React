@@ -25,7 +25,7 @@ const MenuDrinkCard: React.FC<MenuCardProps> = ({ categoryName }) => {
           const response = await axios.get('https://api.unsplash.com/photos/random', {
             params: {
               query: 'drink',
-              client_id: 'G_xmFKtE1MzocNX9nsPgbrxyYw0YqBAgGLwwXRZhkAg', // Replace 'YOUR_ACCESS_KEY' with your actual Unsplash Access Key
+              client_id: 'qP7pqke6xGMdxY8ABFlRPslGexIuzeUYsDV79ZqYwvA', // Replace 'YOUR_ACCESS_KEY' with your actual Unsplash Access Key
             }
           });
 

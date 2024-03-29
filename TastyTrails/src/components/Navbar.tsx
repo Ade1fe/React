@@ -31,6 +31,23 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
   const userId = user ? user.uid : null;
 
   useEffect(() => {
+    console.log("Local Storage:", localStorage);
+  }, []);
+
+  // Function to clear local storage except for specific keys related to categories
+  const clearLocalStorageExceptCategories = () => {
+    const categoryKeys = Object.keys(localStorage).filter(key => key.startsWith('drinkImageURL_'));
+    const keysToKeep = new Set(categoryKeys);
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && !keysToKeep.has(key)) {
+        localStorage.removeItem(key);
+      }
+    }
+  };
+
+  useEffect(() => {
     const firestoreInstance = getFirestore();
     const cartItemsRef = collection(firestoreInstance, 'cartItems');
     const cartItemQuery = query(cartItemsRef, where('userId', '==', userId));
@@ -71,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
       } catch (error) {
         console.log('Error getting document:', error);
       } finally {
-        setLoading(false); // Set loading state to false regardless of success or failure
+        setLoading(false); 
       }
     };
 
@@ -83,9 +100,9 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
     signOut(auth)
       .then(() => {
         console.log('User signed out successfully.');
-        localStorage.clear();
         navigate('/');
         window.location.reload();
+        clearLocalStorageExceptCategories(); 
       })
       .catch((error) => {
         console.error('Error signing out:', error);

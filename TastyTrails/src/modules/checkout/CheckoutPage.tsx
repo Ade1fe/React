@@ -115,7 +115,7 @@ const CheckoutPage: React.FC = () => {
  
   <FormControl id="address" mt="4">
     <FormLabel p='0' fontWeight='700'>Address Book <Icon as={FaCheck} /> </FormLabel>
-    <Input value={address} px='1' border='none' focusBorderColor='white' outline='none' outlineColor='none' onChange={(e) => setAddress(e.target.value)} />
+    <Input value={address} px='1' placeholder='Enter address' border='none' focusBorderColor='white' outline='none' outlineColor='none' onChange={(e) => setAddress(e.target.value)} />
   </FormControl>
 </Box>
 
@@ -127,7 +127,7 @@ const CheckoutPage: React.FC = () => {
  
  <FormControl id="email" mt="4" >
    <FormLabel p='0' fontWeight='700'>Email Address *</FormLabel>
-   <Input type="email" px='1' border='none' focusBorderColor='white' outline='none' outlineColor='none' value={email} readOnly onChange={(e) => setEmail(e.target.value)} />
+   <Input type="email" px='1' border='none' placeholder='Enter email' focusBorderColor='white' outline='none' outlineColor='none' value={email}  onChange={(e) => setEmail(e.target.value)} />
  </FormControl>
 
 </Box>
@@ -135,7 +135,7 @@ const CheckoutPage: React.FC = () => {
 <Box  border='1px' px='3' pt='1' pb='15px'>
 <FormControl id="phoneNumber" mt="4">
    <FormLabel fontWeight='700'>Phone Number *</FormLabel>
-   <Input type="tel" px='1' border='none' focusBorderColor='white' outline='none' outlineColor='none' value={phoneNumber}  onChange={(e) => setPhoneNumber(e.target.value)} />
+   <Input type="tel" px='1' border='none' placeholder='Enter phone-number' focusBorderColor='white' outline='none' outlineColor='none' value={phoneNumber}  onChange={(e) => setPhoneNumber(e.target.value)} />
  </FormControl>
 </Box>
 </Box>

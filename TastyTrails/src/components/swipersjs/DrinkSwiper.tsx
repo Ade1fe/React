@@ -146,7 +146,7 @@ const DrinkSwiper: React.FC = () => {
       <Box display={['none','none', 'none', 'block']} maxW="1340px" mx="auto" className='text-fonts'>
         <Box display='flex'>
           <Box display="flex" w='45%' flexDir='column' gap='20px'>
-            <MenuNavbar fetchMeals={fetchDrinksByCategory} isAuthenticated={isAuthenticated} />
+            <MenuNavbar placeholder={"Search for drinks .."} fetchMeals={fetchDrinksByCategory} isAuthenticated={isAuthenticated} />
             <Box maxW="700px" px='3'>{renderCategorySwiper()}</Box>
             {renderDrinkList()}
           </Box>
@@ -159,7 +159,7 @@ const DrinkSwiper: React.FC = () => {
       <Box display={['block','block', 'block', 'none']} className='text-fonts'>
         <Box display="" maxW="1340px" mx="auto">
           <Box display="flex" flexDir='column' gap='20px' gridTemplateColumns={{ base: "100%", md: "40% 60%" }} gridTemplateRows="auto auto">
-            <MenuNavbar fetchMeals={fetchDrinksByCategory} isAuthenticated={isAuthenticated} />
+            <MenuNavbar placeholder={"Search for drinks .."} fetchMeals={fetchDrinksByCategory} isAuthenticated={isAuthenticated} />
             <Box px="10px">{renderCategorySwiper()}</Box>
             <Box bg="transparent" height={['270px','300px','350px']}>
               {selectedDrinkImage && <Image w='full' objectFit='cover' h='full' src={selectedDrinkImage} alt="Selected Drink" />}

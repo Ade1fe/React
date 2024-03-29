@@ -17,9 +17,10 @@ import { FiLogIn } from 'react-icons/fi';
 interface MenuNavbarProps {
   fetchMeals: (searchQuery: string) => void;
   isAuthenticated: boolean;
+  placeholder: string;
 }
 
-const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) => {
+const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated,placeholder }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [cartItemCount, setCartItemCount] = useState(0);
   const navigate = useNavigate();
@@ -110,7 +111,7 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
             <InputGroup shadow='sm' border='1px' borderColor='#f1f1f1' borderRadius='10px' >
            
               <Input
-                placeholder='Search for food ...'
+                placeholder={placeholder}
                 w='full'
                 px='2'
                 mx={2}
@@ -151,10 +152,11 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated }) =
           </Tooltip>
   <Box bg='white' display='flex' justifyContent='space-between' gap={['8', '9', '12', '16']} fontSize={['md', 'lg']}>
     {isAuthenticated ? (
-    
+    <ChakraLink as={ReactRouterLink} to="/settings"> 
       <Tooltip label="Settings">
       <Text>  <Icon as={AiFillSetting} boxSize={['5', '6', '6']} /> </Text>
     </Tooltip>
+    </ChakraLink>
     ) : (
       <>
         <Text>Kindly login</Text>

@@ -153,7 +153,7 @@ const MenuSwippers: React.FC = () => {
       <Box display={['none','none', 'none', 'block']} maxW="1340px" mx="auto" className='text-fonts'>
         <Box display='flex'>
           <Box display="flex" w='45%' flexDir='column' gap='20px'>
-            <MenuNavbar fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
+            <MenuNavbar placeholder={"Search for food .."} fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
             <Box maxW="700px" px='3'>{renderCategorySwiper()}</Box>
             {renderMealList()}
           </Box>
@@ -166,7 +166,7 @@ const MenuSwippers: React.FC = () => {
       <Box display={['block','block', 'block', 'none']} className='text-fonts'>
         <Box display="" maxW="1340px" mx="auto">
           <Box display="flex" flexDir='column' gap='20px' gridTemplateColumns={{ base: "100%", md: "40% 60%" }} gridTemplateRows="auto auto">
-            <MenuNavbar fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
+            <MenuNavbar placeholder={"Search for food .."} fetchMeals={fetchMealsByCategory} isAuthenticated={isAuthenticated} />
           <Box px="10px">   {renderCategorySwiper()} </Box>
             <Box bg="transparent" height={['270px','300px','350px']}>
               {selectedMealImage && <Image w='full' objectFit='cover' h='full' src={selectedMealImage} alt="Selected Meal" />}
