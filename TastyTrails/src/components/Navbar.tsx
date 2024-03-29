@@ -122,9 +122,9 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
           Home
         </ChakraLink>
         <ChakraLink as={ReactRouterLink} to="/menu-page">
-          Menu
+          Meals
         </ChakraLink>
-        <Text>Service</Text>
+        <ChakraLink as={ReactRouterLink} to="/cocktails">Drinks</ChakraLink>
       </Box>
 
       <Box px="10px" zIndex="99999" bg="white" shadow="sm" py="10px" justifyContent="space-between" gap="4" fontSize={['md', 'lg']}>
@@ -174,7 +174,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated }) => {
             <Icon as={BiHomeAlt} boxSize={['5', '6', '6']} />
           </ChakraLink>
         </Tooltip>
-        <Tooltip label="Menu">
+        <Tooltip label="Meal">
           <ChakraLink as={ReactRouterLink} to="/menu-page">
             <Icon as={GiHamburger} boxSize={['5', '6', '6']} />
           </ChakraLink>
