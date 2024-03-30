@@ -34,6 +34,7 @@ const SignInComp = () => {
         formData.email,
         formData.password
       );
+      console.log(userCredential)
 
       navigate(`/`);
       setLoginStatus('success'); 

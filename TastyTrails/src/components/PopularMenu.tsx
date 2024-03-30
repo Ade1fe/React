@@ -1,11 +1,12 @@
 
 import { PopularMenuCard } from '.';
-import { Box, Button, Icon,  } from '@chakra-ui/react';
+import { Box, Button, Icon, Link as ChakraLink,  } from '@chakra-ui/react';
 import  { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 import '../components/css/Grid.css';
 
@@ -83,7 +84,7 @@ const PopularMenu = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Button bg='orange.400' mt='2rem' color='white' borderRadius='10px' fontWeight='600' p='2' w='200px' textAlign='center' mx='auto'>See More Products <Icon ml='20px' as={FaArrowUpRightFromSquare} /> </Button>
+      <ChakraLink as={ReactRouterLink} to="/menu-page"  bg='orange.400' mt='2rem' color='white' borderRadius='10px' fontWeight='600' px='2' pt='3' pb='2' w='200px' textAlign='center' mx='auto'>See More Products <Icon ml='20px' as={FaArrowUpRightFromSquare} /> </ChakraLink>
     </Box>
   );
 };

@@ -1,5 +1,6 @@
-import { Box, Button, Image, Text } from '@chakra-ui/react';
+import { Box, Image, Text, Link as ChakraLink, } from '@chakra-ui/react';
 import { Abstractimg, bikemanimg, herocardsimg, playbtnimg } from '../assets';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const HeroOne = () => {
   return (
@@ -10,8 +11,10 @@ const HeroOne = () => {
           The Fastest Delivery In <Text as='span' color='orange.400'>Your City</Text>
         </Text>
         <Text fontSize={["md", "lg",]}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus officiis facilis vel iste illo aperiam, nostrum aut repellendus consequuntur quasi?</Text>
-        <Button mt={['20px', '30px', '40px']} bg='orange.400' _hover={{ shadow: "base", bg: "orange.700" }} borderRadius='5px' px='4' py='3' color='white'>Order Now</Button>
-        <Button mt={['20px', '30px', '40px']} bg='white' ml={['0px', '30px']} _hover={{ color: "orange.400" }} borderRadius='5px'> <Image src={playbtnimg} boxSize={['60px']} /> Order Process</Button>
+       <Box display="flex" gap='2' mt={['20px', '30px', '40px']} alignItems='center'>
+       <ChakraLink as={ReactRouterLink} to="/menu-page"  bg='orange.400' _hover={{ shadow: "base", bg: "orange.700" }} borderRadius='5px' px='4' pt='3' pb='2' color='white'>Order Now</ChakraLink>
+        <ChakraLink display="flex" gap='3' p='0' alignItems='center' as={ReactRouterLink} to="/cocktails"  bg='white' ml={['0px', '30px']} _hover={{ color: "orange.400" }} borderRadius='5px'> <Image src={playbtnimg} boxSize={['60px']} /> Order Process</ChakraLink>
+       </Box>
       </Box>
 
       <Box maxWidth="200px" maxHeight='200px' display={['none', 'none', 'none', 'none', 'block']} mt='auto' mb='auto'>

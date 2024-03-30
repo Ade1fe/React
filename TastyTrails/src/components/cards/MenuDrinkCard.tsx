@@ -46,10 +46,10 @@ const MenuDrinkCard: React.FC<MenuCardProps> = ({ categoryName }) => {
 
   return (
     <Box mt='10px'>
-      <Box overflow='hidden' boxSize={['100px']} borderRadius='50%'>
+      <Box overflow='hidden' boxSize={['80px','100px']} borderRadius='50%'>
         <Image src={imageURL} alt={categoryName} w='full' h='full' objectFit='contain' />
       </Box>
-      <Text className="" fontSize='sm'>{categoryName}</Text>
+      <Text className="" mt='2' fontSize='sm'>{categoryName}</Text>
     </Box>
   );
 };

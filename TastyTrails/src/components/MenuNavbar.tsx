@@ -30,28 +30,28 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated,plac
   const user = getAuth().currentUser;
   const userId = user ? user.uid : null;
 
-  useEffect(() => {
-    const firestoreInstance = getFirestore();
-    const cartItemsRef = collection(firestoreInstance, 'cartItems');
-    const cartItemQuery = query(
-      cartItemsRef,
-      where('userId', '==', userId)
-    );
+  // useEffect(() => {
+  //   const firestoreInstance = getFirestore();
+  //   const cartItemsRef = collection(firestoreInstance, 'cartItems');
+  //   const cartItemQuery = query(
+  //     cartItemsRef,
+  //     where('userId', '==', userId)
+  //   );
 
-    const unsubscribe = onSnapshot(cartItemQuery, (snapshot) => {
-      let count = 0;
-      snapshot.forEach(doc => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const data = doc.data();
-        // console.log(data)
-        count++;
-      });
-      setCartItemCount(count);
+  //   const unsubscribe = onSnapshot(cartItemQuery, (snapshot) => {
+  //     let count = 0;
+  //     snapshot.forEach(doc => {
+  //       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  //       const data = doc.data();
+  //       console.log(data)
+  //       count++;
+  //     });
+  //     setCartItemCount(count);
      
-    });
+  //   });
 
-    return () => unsubscribe(); 
-  }, [userId]);
+  //   return () => unsubscribe(); 
+  // }, [userId]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -75,7 +75,7 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated,plac
       snapshot.forEach(doc => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const data = doc.data();
-        // console.log(data)
+        console.log(data)
         count++;
       });
       setCartItemCount(count);
@@ -85,6 +85,19 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated,plac
     return () => unsubscribe();
   }, [userId]);
 
+   // Function to clear local storage except for specific keys related to categories
+   const clearLocalStorageExceptCategories = () => {
+    const categoryKeys = Object.keys(localStorage).filter(key => key.startsWith('drinkImageURL_'));
+    const keysToKeep = new Set(categoryKeys);
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && !keysToKeep.has(key)) {
+        localStorage.removeItem(key);
+      }
+    }
+  };
+
   const handleSignOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -92,6 +105,7 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated,plac
         console.log('User signed out successfully.');
         navigate('/');
         window.location.reload();
+        clearLocalStorageExceptCategories(); 
       })
       .catch((error) => {
         console.error('Error signing out:', error);

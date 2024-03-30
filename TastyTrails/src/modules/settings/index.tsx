@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, FormControl, FormLabel, Input, Button, Image,Text, useToast } from "@chakra-ui/react";
 import { Footer, Navbar } from "../../components";
 import { getAuth, updateProfile } from 'firebase/auth';
