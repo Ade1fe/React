@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, FormControl, FormLabel, Input, Select, Button, Image, Text } from '@chakra-ui/react';
 import { logoimg, signupimg } from '../assets/imgs';
+import { Link } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
@@ -48,23 +49,23 @@ const SignUp: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <FormControl id="name" mb={4}>
             <FormLabel>Name</FormLabel>
-            <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <Input type="text" border='none'  bg="#030b10"  value={name} onChange={(e) => setName(e.target.value)} />
           </FormControl>
           <FormControl id="email" mb={4}>
             <FormLabel>Email address</FormLabel>
-            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input type="email" border='none'  bg="#030b10"  value={email} onChange={(e) => setEmail(e.target.value)} />
           </FormControl>
           <FormControl id="password" mb={4}>
             <FormLabel>Password</FormLabel>
-            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input type="password" border='none'  bg="#030b10"  value={password} onChange={(e) => setPassword(e.target.value)} />
           </FormControl>
-          <FormControl id="depositAmount" mb={4}>
+          <FormControl id="depositAmount" mb={4} >
             <FormLabel>Deposit Amount</FormLabel>
-            <Input type="number" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} />
+            <Input type="number" border='none'  bg="#030b10"  value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} />
           </FormControl>
           <FormControl id="gender" mb={4}>
             <FormLabel>Gender</FormLabel>
-            <Select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <Select value={gender}  border='none'  bg="#030b10"  onChange={(e) => setGender(e.target.value)}>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -72,7 +73,7 @@ const SignUp: React.FC = () => {
           </FormControl>
           <FormControl id="status" mb={4}>
             <FormLabel>Status</FormLabel>
-            <Select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <Select value={status}  border='none'  bg="#030b10"  onChange={(e) => setStatus(e.target.value)}>
               <option value="single">Single</option>
               <option value="married">Married</option>
               <option value="divorced">Divorced</option>
@@ -81,11 +82,13 @@ const SignUp: React.FC = () => {
           </FormControl>
           <FormControl id="work" mb={4}>
             <FormLabel>Work</FormLabel>
-            <Input type="text" value={work} onChange={(e) => setWork(e.target.value)} />
+            <Input type="text"  border='none'  bg="#030b10"  value={work} onChange={(e) => setWork(e.target.value)} />
           </FormControl>
-          <Button type="submit" colorScheme="blue">Sign Up</Button>
+          <Button type="submit"  border='none' w='200px'  bg="blue.900"  colorScheme="blue">Sign Up</Button>
         </form>
+       <Box className="" mt='2rem' pb='2rem' textAlign='center'> <Link to='/sign-in' className="">Already have an account? sign in</Link></Box>
       </Box>
+    
     </Box>
   );
 };
