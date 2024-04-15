@@ -44,11 +44,11 @@ const Modal: React.FC<ModalProps> = ({ closeModal, action, itemType }) => {
             {itemType !== "Send Money" && (
                 <Box display='flex' flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
                     {[...Array(10).keys()].map((digit) => (
-                        <Button key={digit} _hover={{ bg: "gray.600" }} color="white" fontSize={['md', 'lg', "x-large"]} shadow='xl' boxSize='60px' mx='auto' bg='#081e2b' borderRadius='50%' onClick={() => handleDigitClick(digit.toString())}>
+                        <Button key={digit} _hover={{ bg: "gray.600" }} color="black" fontSize={['md', 'lg', "x-large"]} shadow='xl' boxSize='60px' mx='auto' bg='#081e2b' borderRadius='50%' onClick={() => handleDigitClick(digit.toString())}>
                             {digit}
                         </Button>
                     ))}
-                    <Button mt='20px' bg="#081e2b" _hover={{ bg: "gray.600" }} w='150px' color='white' borderRadius='md' onClick={handleDeleteClick}>Delete</Button>
+                    <Button mt='20px' bg="#081e2b" _hover={{ bg: "gray.600" }} w='150px' color='black' borderRadius='md' onClick={handleDeleteClick}>Delete</Button>
                 </Box>
             )}
             <Input

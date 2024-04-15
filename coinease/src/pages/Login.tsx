@@ -11,19 +11,16 @@ const Login: React.FC = () => {
   const [activeInputField, setActiveInputField] = useState<string>('');
 
   const handleDigitClick = (digit: string) => {
-    // Update cardNumber or pin based on the active input field
     if (activeInputField === 'cardNumber') {
       setCardNumber(prevCardNumber => prevCardNumber + digit);
     } else if (activeInputField === 'pin') {
       setPin(prevPin => prevPin + digit);
     }
 
-    // Log the clicked digit
     console.log('Clicked Digit:', digit);
   };
 
   const handleDeleteClick = () => {
-    // Delete last digit from cardNumber or pin based on the active input field
     if (activeInputField === 'cardNumber') {
       setCardNumber(prevCardNumber => prevCardNumber.slice(0, -1));
     } else if (activeInputField === 'pin') {
@@ -32,9 +29,7 @@ const Login: React.FC = () => {
   };
 
   const handleInputFocus = (inputId: string) => {
-    // Set the active input field ID when it gains focus
     setActiveInputField(inputId);
-    // Set focus to the input element
     const inputElement = document.getElementById(inputId);
     if (inputElement) {
       inputElement.focus();
@@ -51,14 +46,14 @@ const Login: React.FC = () => {
   };
 
   return (
-  <Box  className='texts' mx='auto' maxW={'1340px'} px='20px' color="white" pos='relative'>
+  <Box  className='texts' mx='auto' maxW={'1340px'} px='20px' color="black" pos='relative'>
         <Box display='flex' alignItems='center' gap='1' pos={['static','static', 'absolute']} zIndex='9999' top='20px'  mt={['1rem','2.5rem', '0']} mb={['3rem', '5rem', 0]} right='40px'>
           <Image boxSize='50px' src={logoimg} alt="Logo" />
           <Text ml='-10px' className='logo' fontSize={['lg', 'x-large']}>COINEASE Bank</Text>
         </Box>
 
 
-    <Box  mx="auto"  color='white'>
+    <Box  mx="auto"  color='black'>
       <form onSubmit={handleSubmit}>
 
    <Box display={['block', "block", 'flex']} w='full' gap={['20px', "30px", "40px"]} justifyContent='space-between' alignItems={"center"}> 
@@ -71,12 +66,12 @@ const Login: React.FC = () => {
     <FormControl mb={4}>
           <FormLabel>Email address</FormLabel>
           <Input type="email"  border="none"
-            bg="#030b10" value={email} onChange={(e) => setEmail(e.target.value)} />
+            bg="#f1f1f1" value={email} onChange={(e) => setEmail(e.target.value)} />
         </FormControl>
         <FormControl mb={4}>
           <FormLabel>Password</FormLabel>
           <Input type="password"  border="none"
-            bg="#030b10" value={password} onChange={(e) => setPassword(e.target.value)} />
+            bg="#f1f1f1" value={password} onChange={(e) => setPassword(e.target.value)} />
         </FormControl>
         <FormControl mb={4}>
           <FormLabel>Card Number</FormLabel>
@@ -84,7 +79,7 @@ const Login: React.FC = () => {
             id="cardNumber"
             type="text"
             border="none"
-            bg="#030b10"
+            bg="#f1f1f1"
             value={cardNumber}
             onChange={(e) => setCardNumber(e.target.value)}
             onFocus={() => handleInputFocus('cardNumber')}
@@ -96,7 +91,7 @@ const Login: React.FC = () => {
             id="pin"
             type="password"
             border="none"
-            bg="#030b10"
+            bg="#f1f1f1"
             value={pin}
             onChange={(e) => setPin(e.target.value)}
             onFocus={() => handleInputFocus('pin')}
@@ -107,11 +102,11 @@ const Login: React.FC = () => {
      <Box  w={['80%', '60%',  "60%", "40%", "20%"]} mx='auto' className="" >
      <Box display='flex' flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
           {[...Array(10).keys()].map((digit) => (
-            <Button key={digit} _hover={{bg: "gray.600"}} color="white" fontSize={['md', 'lg', "x-large"]} shadow='xl' boxSize='60px' mx='auto'  bg='#081e2b' borderRadius='50%' onClick={() => handleDigitClick(digit.toString())}>
+            <Button key={digit} _hover={{bg: "gray.600"}} color="black" fontSize={['md', 'lg', "x-large"]} shadow='md' boxSize='60px' mx='auto'  bg="#f1f1f1" borderRadius='50%' onClick={() => handleDigitClick(digit.toString())}>
               {digit}
             </Button>
           ))}
-          <Button mt='20px' bg="#081e2b" _hover={{bg: "gray.600"}}  w='150px' color='white'  borderRadius='md' onClick={handleDeleteClick}>Delete</Button>
+          <Button mt='20px' bg="#f1f1f1" _hover={{bg: "gray.600"}}  w='150px' color='black'  shadow='md'  borderRadius='md' onClick={handleDeleteClick}>Delete</Button>
         </Box>
         <Button type="submit" mt='1rem' w='200px' colorScheme="blue">
           Login

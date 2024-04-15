@@ -5,7 +5,7 @@ import { Hero } from '../components';
 
 const LandingPage = () => {
   return (
-    <Box color='white' mx='auto' maxW={'1340px'} px='20px'>
+    <Box color='black' mx='auto' maxW={'1340px'} px='20px'>
         <Navbar />
         <Hero />
       <Text> </Text>

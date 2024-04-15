@@ -40,7 +40,7 @@ const SignUp: React.FC = () => {
         <Box className="" pos='absolute' top="0" left="0" bg='rgba(0, 0, 0, 0.3)' w="full" h='100%'></Box>
         <Image src={signupimg} w='full' h='full' objectFit='cover' />
       </Box>
-      <Box borderRadius="md" boxShadow="md" color='white' w={["100%", "100%", "60%"]} mt={['0', '6rem']}>
+      <Box borderRadius="md" color='black' w={["100%", "100%", "60%"]} mt={['0', '6rem']}>
         <Box display='flex' alignItems='center' gap='1' pos={['static', 'absolute']} top='20px' mt={['2rem', '0']} mb={['1rem', 0]} right='40px'>
           <Image boxSize='50px' src={logoimg} alt="Logo" />
           <Text ml='-10px' className='logo' fontSize={['lg', 'x-large']}>COINEASE Bank</Text>
@@ -49,23 +49,23 @@ const SignUp: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <FormControl id="name" mb={4}>
             <FormLabel>Name</FormLabel>
-            <Input type="text" border='none'  bg="#030b10"  value={name} onChange={(e) => setName(e.target.value)} />
+            <Input type="text" border='none'  bg="#f1f1f1"  value={name} onChange={(e) => setName(e.target.value)} />
           </FormControl>
           <FormControl id="email" mb={4}>
             <FormLabel>Email address</FormLabel>
-            <Input type="email" border='none'  bg="#030b10"  value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input type="email" border='none'  bg="#f1f1f1"  value={email} onChange={(e) => setEmail(e.target.value)} />
           </FormControl>
           <FormControl id="password" mb={4}>
             <FormLabel>Password</FormLabel>
-            <Input type="password" border='none'  bg="#030b10"  value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input type="password" border='none'  bg="#f1f1f1"  value={password} onChange={(e) => setPassword(e.target.value)} />
           </FormControl>
           <FormControl id="depositAmount" mb={4} >
             <FormLabel>Deposit Amount</FormLabel>
-            <Input type="number" border='none'  bg="#030b10"  value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} />
+            <Input type="number" border='none'  bg="#f1f1f1"  value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} />
           </FormControl>
           <FormControl id="gender" mb={4}>
             <FormLabel>Gender</FormLabel>
-            <Select value={gender}  border='none'  bg="#030b10"  onChange={(e) => setGender(e.target.value)}>
+            <Select value={gender}  border='none'  bg="#f1f1f1"  onChange={(e) => setGender(e.target.value)}>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -73,7 +73,7 @@ const SignUp: React.FC = () => {
           </FormControl>
           <FormControl id="status" mb={4}>
             <FormLabel>Status</FormLabel>
-            <Select value={status}  border='none'  bg="#030b10"  onChange={(e) => setStatus(e.target.value)}>
+            <Select value={status}  border='none'  bg="#f1f1f1"  onChange={(e) => setStatus(e.target.value)}>
               <option value="single">Single</option>
               <option value="married">Married</option>
               <option value="divorced">Divorced</option>
@@ -82,7 +82,7 @@ const SignUp: React.FC = () => {
           </FormControl>
           <FormControl id="work" mb={4}>
             <FormLabel>Work</FormLabel>
-            <Input type="text"  border='none'  bg="#030b10"  value={work} onChange={(e) => setWork(e.target.value)} />
+            <Input type="text"  border='none'  bg="#f1f1f1"  value={work} onChange={(e) => setWork(e.target.value)} />
           </FormControl>
           <Button type="submit"  border='none' w='200px'  bg="blue.900"  colorScheme="blue">Sign Up</Button>
         </form>

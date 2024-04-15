@@ -6,4 +6,6 @@ export {default as mastar } from './Maestro_logo-removebg-preview.png';
 export {default as visa } from './payment-card-visa-icon-1024x818-0pg0i244-removebg-preview.png';
 export {default as signupimg } from './sign-up-form-button-graphic-concept.jpg';
 export {default as signinimg } from './woman-using-digital-tablet-technology.jpg';
+export {default as atmimg } from './ATM machine-pana.svg';
+export {default as atmcardimg } from './Plain credit card-amico.svg';
 

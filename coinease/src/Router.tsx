@@ -1,6 +1,6 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import { HomePage, LandingPage, Login, SignUp } from "./pages";
+import { BillPayment, HomePage, LandingPage, Login, SendMoney, SignUp, WithdrawMoney } from "./pages";
 
 
 
@@ -20,6 +20,18 @@ const Router = createBrowserRouter([
   {
     path: "/sign-in",
     element: <Login />,
+  },
+  {
+    path: "/with-draw-money",
+    element: <WithdrawMoney />,
+  },
+  {
+    path: "/sendMoney",
+    element: <SendMoney />,
+  }, 
+  {
+    path: "/bill-payment",
+    element: <BillPayment />,
   },
   
 ]);
