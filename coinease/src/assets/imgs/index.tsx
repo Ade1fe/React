@@ -8,4 +8,5 @@ export {default as signupimg } from './sign-up-form-button-graphic-concept.jpg';
 export {default as signinimg } from './woman-using-digital-tablet-technology.jpg';
 export {default as atmimg } from './ATM machine-pana.svg';
 export {default as atmcardimg } from './Plain credit card-amico.svg';
+export {default as smartimg } from './20870393.jpg';
 
