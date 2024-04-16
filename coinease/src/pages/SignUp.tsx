@@ -1,7 +1,5 @@
-
-
 import React, { useState } from 'react';
-import { Box, FormControl, FormLabel, Input, Select, Button, Image, Text, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay,Spinner } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Select, Button, Image, Text, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import { logoimg, signupimg } from '../assets/imgs';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -31,14 +29,15 @@ const SignUp: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Define Yup schema for form validation
-  const schema = Yup.object().shape({
-    name: Yup.string().matches(/^[a-zA-Z\s]+$/, 'Name should contain letters and spaces only').required('Name is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('Password is required'),
-    depositAmount: Yup.number().required('Deposit Amount is required'),
-    pin: Yup.string().matches(/^\d{4}$/, 'Pin should be 4 numbers only').required('Pin is required'),
-  });
+// Define Yup schema for form validation
+const schema = Yup.object().shape({
+  name: Yup.string().matches(/^[a-zA-Z\s]+$/, 'Name should contain letters and spaces only').required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().min(4, 'Password should be at least 4 characters').required('Password is required'),
+  depositAmount: Yup.number().max(999999, 'Maximum deposit amount is 999999').required('Deposit Amount is required'),
+  pin: Yup.string().matches(/^\d{4}$/, 'Pin should be 4 numbers only').required('Pin is required'),
+});
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +57,7 @@ const SignUp: React.FC = () => {
       const userId = userCredential.user.uid;
       const userDocRef = doc(firestore, `coinbaseusers/${userId}`);
 
-      const generatedCardNumber = Math.floor(10000000000 + Math.random() * 900000000000000);
+      const generatedCardNumber = Math.floor(1000000000000000 + Math.random() * 900000000000);
       const generatedAccountNumber = Math.floor(1000000000 + Math.random() * 90000000000);
 
       await setDoc(userDocRef, {
@@ -120,7 +119,23 @@ const SignUp: React.FC = () => {
         <Box className="" pos='absolute' top="0" left="0" bg='rgba(0, 0, 0, 0.3)' w="full" h='100%'></Box>
         <Image src={signupimg} w='full' h='full' objectFit='cover' />
       </Box>
+
+      <Modal isOpen={isModalOpen} onClose={() => navigate('/')} >
+        <ModalOverlay />
+        <ModalContent >
+          <ModalHeader>New Card Number</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody maxW={'700px'}>
+            <Text>Your new card number: {newCardNumber}</Text>
+            <Text>Your Account number: {newAccountNumber}</Text>
+            <Text>Please copy this number as you will need it to login to your account.</Text>
+          </ModalBody>
+          <ModalFooter>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Box borderRadius="md" color='black' w={["100%", "100%", "60%"]} mt={['0', '6rem']}>
+        {error && <Box color="red.500" mt={4}>{error}</Box>}
         <Box display='flex' alignItems='center' gap='1' pos={['static', 'absolute']} top='20px' mt={['2rem', '0']} mb={['1rem', 0]} right='40px'>
           <Image boxSize='50px' src={logoimg} alt="Logo" />
           <Text ml='-10px' className='logo' fontSize={['lg', 'x-large']}>COINEASE Bank</Text>
@@ -174,35 +189,24 @@ const SignUp: React.FC = () => {
             <Input type="text" border='none' required bg="#f1f1f1" value={work} onChange={(e) => setWork(e.target.value)} />
           </FormControl>
           <Button
-  type="submit"
-  isLoading={loading}
-  _hover={{ bg: "green.600", color: "white" }}
-  border='none'
-  w='200px'
-  bg="blue.900"
-  colorScheme="blue"
->
-  {loading ? "loading..." : "Sign Up"}
-</Button>
+            type="submit"
+            isLoading={loading}
+            loadingText="Loading"
+            _hover={{ bg: loading ? "blue.900" : "green.600", color: "white" }}
+            border='none'
+            w='200px'
+            bg={loading ? "blue.900" : "blue.900"}
+            color="white"
+            disabled={loading}
+          >
+            Sign Up
+          </Button>
+
         </form>
         <Box className="" mt='2rem' pb='2rem' textAlign='center'> <Link to='/sign-in' className="">Already have an account? sign in</Link></Box>
       </Box>
-      <Modal isOpen={isModalOpen} onClose={() => navigate('/')}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>New Card Number</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Your new card number: {newCardNumber}</Text>
-            <Text>Your Account number: {newAccountNumber}</Text>
-            <Text>Please copy this number as you will need it to login to your account.</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" onClick={() => navigate('/')}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-      {error && <Box color="red.500" mt={4}>{error}</Box>}
+
+
     </Box>
   );
 };
