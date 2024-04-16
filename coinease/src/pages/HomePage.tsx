@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
                 {gridItems.map((item, index) => (
                     <GridItem key={index} style={{ gridColumn: index === 0 || index === 4 ? 'span 2' : 'span 1' }} cursor='pointer' shadow='md' h='200px' bg='red' w={['220px','210px', "initial"]}>
                         <Box textAlign="center" px='4' py='12' bg={index === 0 || index === 4  ? '#ddd' : '#f1f1f1'} onClick={item.action} h='200px' whiteSpace='nowrap' display='flex' flexDir='column' justifyContent='center' alignItems='center'>
-                            <Icon as={item.icon} boxSize={8} bg='transparent' />
+                            <Icon as={item.icon} boxSize={20} bg='transparent' shadow='lg' borderRadius='50%' p='5' />
                             <Text mt={2} bg={index === 0 || index === 4  ? '#ddd' : '#f1f1f1'}>{item.label}</Text>
                         </Box>
                     </GridItem>

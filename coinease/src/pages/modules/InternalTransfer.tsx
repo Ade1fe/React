@@ -43,10 +43,10 @@ const InternalTransfer = () => {
   return (
     <LayoutComp desc='Enter the amount you want to send'>
       <Box display={['block', 'flex']} >
-        <Box className="" w={['full', 'full', '40%']}>
+        <Box className="" w={['full', 'full', '35%']}>
           <Image src={atmimg} />
         </Box>
-        <Box className="" w={['full', 'full', '60%']} pos='relative'>
+        <Box className="" w={['full', 'full', '65%']} pos='relative'>
         <TwoFieldsButtons
   placeholder="Enter something"
   inputIds={inputIds}
@@ -61,9 +61,9 @@ const InternalTransfer = () => {
   nextButtonText={nextButtonText} 
 />
 
-          <Link to='/home-page'>
-            <Box className="" pos='absolute' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['30%']} left='20px'> Cancel</Box>
-          </Link>
+<Link to='/home-page'>
+        <Box  mt={['2rem', '2rem', '2rem', '0']} textAlign='center' pos={[ 'static', 'static', 'static', 'absolute']} bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px'> Cancel</Box>
+      </Link>
         </Box>
       </Box>
     </LayoutComp>

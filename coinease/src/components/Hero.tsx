@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const Hero = () => {
     const navigate = useNavigate();
     const goToNextPage = () => {
-      navigate("/home-page")
+      navigate("/sign-up")
     }
 
   return (
