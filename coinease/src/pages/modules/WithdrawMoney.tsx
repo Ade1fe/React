@@ -18,14 +18,14 @@ const WithdrawMoney = () => {
 
   return (
     <LayoutComp desc='Enter the amount you want to withdraw'>
-    <Box display={['block', 'flex']} >
+    <Box display={['block', 'block', 'flex']} >
     <Box className="" w={['full', 'full', '40%']}>
       <Image src={atmimg} />
     </Box>
     <Box className="" w={['full', 'full', '60%']} pos='relative'>
       <Buttons imageText={atmcardimg} title="Enter amount to withdraw" placeholder="1.000" inputId="amount" onDigitClick={handleDigitClick} onDeleteClick={handleDeleteClick} />
       <Link to='/home-page'>
-        <Box className="" pos='absolute' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['30%']} left='20px'> Cancel</Box>
+        <Box className="" pos={[ 'static', 'static', 'static', 'absolute']} bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['30%']} left='20px'> Cancel</Box>
       </Link>
     </Box>
     </Box>

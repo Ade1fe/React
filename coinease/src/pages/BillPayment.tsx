@@ -1,6 +1,7 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, Select, Input, FormControl, FormHelperText, FormLabel, Text, Image } from '@chakra-ui/react';
 import { LayoutComp } from '.';
-import { smartimg } from '../assets/imgs';
+import { airtimeimg, lightdimg, smartimg } from '../assets/imgs';
+import { Link } from 'react-router-dom';
 
 interface CustomBoxProps {
   title?: string;
@@ -13,7 +14,7 @@ interface CustomBoxProps {
 const CustomBox = ({ title, amount, cashback, children, }: CustomBoxProps) => {
   
   return (
-    <Box className="" p="4" shadow="md" rounded="md"  w={['200px']} my='2'>
+    <Box className="" p="4" shadow="md" rounded="md"  w={['150px','170px', '185px', '200px']} my='2' mx={['auto', ]}>
       <Text mb='2' fontSize={['md', 'lg']}>
         {title}
       </Text>
@@ -32,7 +33,7 @@ const CustomBox = ({ title, amount, cashback, children, }: CustomBoxProps) => {
 const AirtimeBox = ({  amount, cashback, children, }: CustomBoxProps) => {
   
   return (
-    <Box className="" p="4" shadow="md" rounded="md"  w={['200px']} my='2' >
+    <Box className="" p="4" shadow="md" rounded="md" w={['150px','170px', '185px', '200px']} my='2' mx={['auto', '0']}>
   
       <Text fontSize={['sm', 'lg']} textAlign='center'>
         {amount}
@@ -48,16 +49,17 @@ const AirtimeBox = ({  amount, cashback, children, }: CustomBoxProps) => {
 const BillPayment = () => {
   return (
     <LayoutComp desc='Select a transaction'>
-      <Box className="">
+      <Box className="" w={['100%','93%','95%',"100%" ]} mx='auto'>
         <Tabs variant='enclosed'>
           <TabList >
             <Tab textTransform='capitalize'>TV</Tab>
             <Tab textTransform='capitalize'>Electric</Tab>
             <Tab textTransform='capitalize'>Airtime</Tab>
+            <Link to="/home-page"> <Tab textTransform='capitalize'>Cancel</Tab> </Link> 
           </TabList>
           <TabPanels>
-            <TabPanel p='0' display={['block', 'flex']} justifyContent='space-between'>
-              <Box w={['50%']}>
+            <TabPanel p='0' display={['block','block','block', 'flex']} justifyContent='space-between'>
+              <Box w={['100%','100%','100%', '50%']} mx={['auto','auto', '0']}>
                 <Select placeholder="Select TV service" my='5'>
                   <option value="gotv">GOtv</option>
                   <option value="dstv">DStv</option>
@@ -75,7 +77,7 @@ const BillPayment = () => {
              
 
               {/* Reusable Box component with additional styling */}
-             <Box display={['flex']} flexWrap='wrap' gap='4' className="">
+             <Box display={['flex']} flexWrap='wrap' justifyContent='space-evenly' gap='4' className="">
              <CustomBox
                 title="Jinja/month"
                 amount="#2700"
@@ -113,12 +115,12 @@ const BillPayment = () => {
              </Box>
                </Box>
 
-               <Box className="" w={['full' ,'30%']}>
-                <Image src={smartimg} />
+               <Box className="" w={['full' ,'90%','80%' ,'45%' ,'40%']} mt={['1rem','1rem', '1rem', '0']} mx={['auto','auto','auto','0']} >
+                <Image src={smartimg} w='full' h='full' objectFit='contain' />
                </Box>
             </TabPanel>
-            <TabPanel p='0' display={['block', 'flex']} justifyContent='space-between'>
-              <Box w={['50%']}>
+            <TabPanel p='0' display={['block','block','block', 'flex']} justifyContent='space-between'>
+              <Box w={['100%','100%','100%', '50%']} mx={['auto','auto', '0']}>
                 <Select placeholder="Select Biller" my='5'>
                   <option value="gotv">Ikeja Electric</option>
                   <option value="dstv">Ibadan Electric</option>
@@ -143,7 +145,7 @@ const BillPayment = () => {
 
               {/* Reusable Box component with additional styling */}
               <Text className="">Select Amount</Text>
-             <Box display={['flex']} flexWrap='wrap' gap='4' className="">
+             <Box display={['flex']} flexWrap='wrap' justifyContent='space-evenly' gap='4' className="">
              <AirtimeBox
                 // title="Jinja/month"
                 amount="#2700"
@@ -181,12 +183,12 @@ const BillPayment = () => {
              </Box>
                </Box>
 
-               <Box className="" w={['full' ,'30%']}>
-                <Image src={smartimg} />
+               <Box className="" w={['full' ,'90%','80%' ,'45%' ,'40%']} mt={['1rem','1rem', '1rem', '0']} mx={['auto','auto','auto','0']}>
+                <Image src={lightdimg} />
                </Box>
             </TabPanel>
-            <TabPanel p='0' display={['block', 'flex']} justifyContent='space-between'>
-              <Box w={['50%']}>
+            <TabPanel p='0' display={['block','block','block', 'flex']} justifyContent='space-between'>
+              <Box w={['100%','100%','100%', '50%']} mx={['auto','auto', '0']}>
                 <Select placeholder="Select a network " my='5'>
                   <option value="gotv">Airtel</option>
                   <option value="dstv">MTN</option>
@@ -204,7 +206,7 @@ const BillPayment = () => {
 
               {/* Reusable Box component with additional styling */}
               <Text className="">Select Amount</Text>
-             <Box display={['flex']} flexWrap='wrap' gap='4' className="">
+           <Box display={['flex']} flexWrap='wrap' justifyContent='space-evenly' gap='4' className="">
              <AirtimeBox
                 amount="#2700"
                 cashback="#20 cashback"
@@ -240,10 +242,11 @@ const BillPayment = () => {
              </Box>
                </Box>
 
-               <Box className="" w={['full' ,'30%']}>
-                <Image src={smartimg} />
+               <Box className="" w={['full' ,'90%','80%' ,'45%' ,'40%']} mt={['1rem','1rem', '1rem', '0']} mx={['auto','auto','auto','0']}>
+                <Image src={airtimeimg} />
                </Box>
             </TabPanel>
+
           </TabPanels>
         </Tabs>
       </Box>

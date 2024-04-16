@@ -40,12 +40,12 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, t
   };
 
   return (
-    <Box display='flex' justifyContent='space-between'>
+    <Box display={['block', 'block', 'flex']} justifyContent='space-between'>
      <Box className=""  w={['100%', '100%', '40%', '50%']} >
      <Box w={['full']} h={['150px']} >
      <Image src={imageText} w='full' h='full' objectFit='contain' />
      </Box>
-     <Text textAlign='center' textTransform='capitalize' fontSize={['md', 'lg', '20px', ]} mb={['10px']}> {title} </Text>
+     <Text textAlign='center' textTransform='capitalize' fontSize={['md', 'lg','18px', '20px', ]} mb={['10px']}> {title} </Text>
       <Input
         ref={inputRef}
         id={inputId}
@@ -54,7 +54,7 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, t
        
       />
      </Box>
-      <Box display='flex'  w={['100%', '100%', '40%' , "30%", "30%"]} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
+      <Box display='flex'  w={['80%', '55%', '50%' , "60%", "30%"]} mx='auto' mt={['1rem', '1rem', '0']} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
         {[...Array(10).keys()].map((digit) => (
           <Button
             key={digit}

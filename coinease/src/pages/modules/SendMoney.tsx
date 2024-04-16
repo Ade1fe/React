@@ -44,11 +44,11 @@ const SendMoney = () => {
     setSelectedBank(bankValue);
   };
 
-  const nextButtonText = activeIndex === inputIds.length ? 'Withdraw' : 'Next';
+  const nextButtonText = activeIndex === inputIds.length ? 'Send' : 'Next';
 
   return (
     <LayoutComp desc='Enter the amount you want to send'>
-      <Box display={['block', 'flex']} >
+      <Box display={['block', 'block', 'flex']} >
         <Box className="" w={['full', 'full', '40%']}>
           <Image src={atmimg} />
         </Box>
@@ -69,7 +69,7 @@ const SendMoney = () => {
             nextButtonText={nextButtonText} 
           />
           <Link to='/home-page'>
-            <Box className="" pos='absolute' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['30%']} left='20px'> Cancel</Box>
+            <Box className=""  pos={[ 'static', 'static', 'static', 'absolute']} bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['30%']} left='20px'> Cancel</Box>
           </Link>
         </Box>
       </Box>

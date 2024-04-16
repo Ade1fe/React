@@ -1,4 +1,6 @@
-// export {default as BillPayment } from './homepage/index';
+// export {default as BankStatements } from './homepage/index';
+export {default as BankStatements } from './modules/BankStatements';
+export {default as MoneyDeposit } from './modules/MoneyDeposit';
 export {default as BillPayment } from './BillPayment';
 export {default as LayoutComp } from './modules/LayoutComp';
 export {default as SendMoney} from './modules/SendMoney';

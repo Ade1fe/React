@@ -1,6 +1,7 @@
 
 import { createBrowserRouter } from "react-router-dom";
-import { BillPayment, HomePage, LandingPage, Login, SendMoney, SignUp, WithdrawMoney } from "./pages";
+import { BankStatements, BillPayment, HomePage, LandingPage, Login, MoneyDeposit, SendMoney, SignUp, WithdrawMoney } from "./pages";
+import InternalTransfer from "./pages/modules/InternalTransfer";
 
 
 
@@ -32,6 +33,18 @@ const Router = createBrowserRouter([
   {
     path: "/bill-payment",
     element: <BillPayment />,
+  },
+  {
+    path: "/money-deposit",
+    element: <MoneyDeposit />,
+  },
+  {
+    path: "/internal-transfer",
+    element: <InternalTransfer />,
+  },
+  {
+    path: "/bank-statements",
+    element: <BankStatements />,
   },
   
 ]);
