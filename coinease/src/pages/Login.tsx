@@ -5,8 +5,12 @@ import { Box, FormControl, Image, Text, FormLabel, Input, Button } from '@chakra
 import { logoimg, signinimg } from '../assets/imgs';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import {  signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+// import {  signInWithEmailAndPassword } from 'firebase/auth';
+// import { auth } from '../firebase';
+import { useToast } from '@chakra-ui/react'
+import { firestore } from '../firebase'; 
+import { collection, query, where, getDocs } from 'firebase/firestore';
+
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -16,11 +20,11 @@ const Login: React.FC = () => {
   const [activeInputField, setActiveInputField] = useState<string>('');
   const [error, setError] = useState<string>('');
   
-
+  const toast = useToast();
 
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [passwordError, ] = useState('');
 
 
 
@@ -54,27 +58,6 @@ const Login: React.FC = () => {
   };
 
 
-  const validateCardAndPIN = (email: string, cardNumber: string, pin: string): boolean => {
-    // Here you would implement the logic to validate the card number and PIN
-    // For example, you could fetch user data from a database or an API and compare the provided card number and PIN
-  
-    // For demonstration purposes, let's assume the card number and PIN are stored in an object
-    const userData = {
-      userEmail: email,
-      userCardNumber: cardNumber,
-      userPIN: pin,
-    };
-  
-    // Check if the provided email matches the user's email
-    if (userData.userEmail === email) {
-      // Check if the provided card number and PIN match the user's card number and PIN
-      if (userData.userCardNumber === cardNumber && userData.userPIN === pin) {
-        return true; // Card number and PIN are valid
-      }
-    }
-  
-    return false; // Card number and PIN are not valid
-  };
   
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -84,25 +67,33 @@ const Login: React.FC = () => {
     try {
       await schema.validate({ email, password }, { abortEarly: false });
   
-      const userCredential = await signInWithEmailAndPassword(auth, email!, password!);
-
-      console.log('Login successful', userCredential.user);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // const userCredential = await signInWithEmailAndPassword(auth, email!, password!);
   
-      // Validate card number and PIN
-      if (userCredential !== null && userCredential.user !== null && userCredential.user.email !== null) {
-        const isCardAndPINValid = validateCardAndPIN(userCredential.user.email, cardNumber, pin);
-        
-        if (isCardAndPINValid) {
+      const usersRef = collection(firestore, 'coinbaseusers'); 
+      const q = query(usersRef, where('email', '==', email));
+      const querySnapshot = await getDocs(q);
+  
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+        if (userData.cardNumber === cardNumber && userData.pin === pin) {
           console.log('Card number and PIN are valid.');
+          toast({
+            title: `Card number and PIN are valid.`,
+            position: "top-right",
+            isClosable: true,
+          });
           // Redirect or do whatever you want after successful login and validation
         } else {
           console.error('Invalid card number or PIN.');
           setError('Invalid card number or PIN.');
+          toast({
+            title: `Invalid card number or PIN.`,
+            position: "top-right",
+            isClosable: true,
+          });
         }
-      } else {
-        console.error('User not found.');
-        setError('User not found.');
-      }
+      });
   
       // Clear form fields and error state on successful login
       setEmail('');
@@ -111,13 +102,13 @@ const Login: React.FC = () => {
       setPin('');
       setEmailError('');
       setError('');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('Login failed!', err);
   
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach((error) => {
           if (error.path === 'email') setEmailError(error.message);
-          if (error.path === 'password') setPasswordError(error.message);
         });
       } else {
         setError('Login failed! An error occurred. Please try again later.');
@@ -130,7 +121,7 @@ const Login: React.FC = () => {
 
   return (
     <Box className='texts' mx='auto' maxW={'1340px'} px='20px' color="black" pos='relative'>
-      <Box display='flex' alignItems='center' gap='1' pos={['static', 'static', 'absolute']} zIndex='9999' top='20px' mt={['1rem', '2.5rem', '0']} mb={['3rem', '5rem', 0]} right='40px'>
+      <Box display='flex' alignItems='center' gap='1' pos={['static', 'static', 'absolute']} zIndex='5' top='20px' mt={['1rem', '2.5rem', '0']} mb={['3rem', '5rem', 0]} right='40px'>
         <Image boxSize='50px' src={logoimg} alt="Logo" />
         <Text ml='-10px' className='logo' fontSize={['lg', 'x-large']}>COINEASE Bank</Text>
       </Box>
@@ -167,7 +158,6 @@ const Login: React.FC = () => {
                   onChange={(e) => setCardNumber(e.target.value)}
                   onFocus={() => handleInputFocus('cardNumber')}
                 />
-                {/* {cardNumberError && <Box color="red.500">{cardNumberError}</Box>}  */}
               </FormControl>
               <FormControl mb={4}>
                 <FormLabel>PIN</FormLabel>
@@ -181,7 +171,6 @@ const Login: React.FC = () => {
                   onChange={(e) => setPin(e.target.value)}
                   onFocus={() => handleInputFocus('pin')}
                 />
-                 {/* {pinError && <Box color="red.500">{pinError}</Box>} */}
               </FormControl>
             </Box>
 
@@ -216,4 +205,5 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
 

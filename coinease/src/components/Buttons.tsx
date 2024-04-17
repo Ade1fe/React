@@ -8,6 +8,7 @@ interface ButtonsProps {
   onDeleteClick?: () => void;
   title?: string;
   imageText?: string;
+  value?: string;
 }
 
 const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, title ,imageText }) => {

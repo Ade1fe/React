@@ -6,6 +6,8 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, firestore } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import * as Yup from 'yup';
+import { useToast } from '@chakra-ui/react'
+
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('');
@@ -28,6 +30,8 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  const toast = useToast();
 
 // Define Yup schema for form validation
 const schema = Yup.object().shape({
@@ -77,8 +81,19 @@ const schema = Yup.object().shape({
       setAccountNumber(generatedAccountNumber.toString());
       setIsModalOpen(true);
       setSignupStatus('success');
+      toast({
+        title: `Successful`,
+        position: "top-right",
+        isClosable: true,
+      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('Sign Up failed!', err);
+      toast({
+        title: `Sign Up failed!', ${err}`,
+        position: "top-right",
+        isClosable: true,
+      });
       setSignupStatus('error');
 
       if (err instanceof Yup.ValidationError) {
@@ -105,8 +120,18 @@ const schema = Yup.object().shape({
         });
       } else if (err.code === 'auth/invalid-email') {
         setError('Invalid Email');
+        toast({
+          title: `Invalid Email.`,
+          position: "top-right",
+          isClosable: true,
+        });
       } else {
         setError('Sign Up failed! An error occurred. Please try again later.');
+        toast({
+          title: `Sign Up failed! An error occurred. Please try again later.`,
+          position: "top-right",
+          isClosable: true,
+        });
       }
     } finally {
       setLoading(false);
