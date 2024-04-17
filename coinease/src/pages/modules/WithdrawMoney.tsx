@@ -1,56 +1,3 @@
-// import  { useState } from 'react';
-// import { Box, Image } from "@chakra-ui/react";
-// import { Buttons } from "../../components";
-// import { atmcardimg, atmimg } from "../../assets/imgs";
-// import { Link } from "react-router-dom";
-// import { LayoutComp } from '..';
-
-// const WithdrawMoney = () => {
-//   const [, setAmount] = useState('');
-
-//   const handleDigitClick = (digit: string) => {
-//     setAmount(prevAmount => prevAmount + digit);
-//   };
-
-//   const handleDeleteClick = () => {
-//     setAmount(prevAmount => prevAmount.slice(0, -1));
-//   };
-
-//   return (
-//     <LayoutComp desc='Enter the amount you want to withdraw'>
-//     <Box display={['block', 'block', 'flex']} >
-//     <Box className="" w={['full', 'full', '35%']}>
-//       <Image src={atmimg} />
-//     </Box>
-//     <Box className="" w={['full', 'full', '65%']} pos='relative'>
-//       <Buttons imageText={atmcardimg} title="Enter amount to withdraw" placeholder="1.000" inputId="amount" onDigitClick={handleDigitClick} onDeleteClick={handleDeleteClick} />
-//       <Link to='/home-page'>
-//         <Box  mt={['2rem', '2rem', '2rem', '0']} textAlign='center' pos={[ 'static', 'static', 'static', 'absolute']} bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px'> Cancel</Box>
-//       </Link>
-//     </Box>
-//     </Box>
-//   </LayoutComp>
-  
-//   );
-// };
-
-
-// export default WithdrawMoney;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 import React, { useState, useEffect } from 'react';
@@ -60,7 +7,7 @@ import { atmcardimg, atmimg } from "../../assets/imgs";
 import { Link } from "react-router-dom";
 import { LayoutComp } from '..';
 import { auth, firestore,} from '../../firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetStateAction<number | null>> }) => {
   const [amount, setAmount] = useState('');
@@ -98,7 +45,7 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
   };
 
     fetchBalance();
-  }, [setBalance]); // Run fetchBalance only when setBalance changes
+  }, [setBalance]); 
 
   const handleDigitClick = (digit: string) => {
     setAmount(prevAmount => prevAmount + digit);
@@ -109,9 +56,9 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
   };
 
   const handleWithdrawal = async () => {
-    if (amount.trim() === '') return; // Prevent empty withdrawals
+    if (amount.trim() === '') return; 
     const withdrawalAmount = Number(amount);
-    if (isNaN(withdrawalAmount)) return; // Ensure the input is a valid number
+    if (isNaN(withdrawalAmount)) return; 
   
     try {
       const user = auth.currentUser;
@@ -121,7 +68,7 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
       }
       const uid = user.uid;
   
-      const userDocRef = doc(firestore, 'coinbaseusers', uid); // Ensure firestore is correctly imported and initialized
+      const userDocRef = doc(firestore, 'coinbaseusers', uid);
       const userDocSnapshot = await getDoc(userDocRef);
       if (!userDocSnapshot.exists()) {
         console.error('User document not found');
@@ -136,6 +83,16 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
         // Update deposit amount in the database
         await setDoc(userDocRef, { depositAmount: updatedDepositAmount }, { merge: true });
   
+        // Save transaction
+        const transactionData = {
+          amount: withdrawalAmount,
+          type: 'withdrawal',
+          timestamp: new Date(),
+          currentBalance: updatedDepositAmount,
+         
+        };
+        await addDoc(collection(firestore, 'transactions'), transactionData);
+  
         // Update balance state
         setBalance(updatedDepositAmount);
         setWithdrawnAmount(withdrawalAmount);
@@ -147,6 +104,7 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
       console.error('Error handling withdrawal:', error);
     }
   };
+  
   
 
   return (
@@ -175,6 +133,17 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
 };
 
 export default WithdrawMoney;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
