@@ -1,11 +1,10 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Box, Table, TableContainer, Tbody, Td, Th, Thead, Tr, Spinner } from "@chakra-ui/react";
 import { LayoutComp } from '..';
 import { Link } from "react-router-dom";
-import { firestore } from '../../firebase'; 
-import { collection, getDocs } from 'firebase/firestore';
+import { firestore, auth } from '../../firebase'; 
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 interface Transaction {
   id: string;
@@ -14,44 +13,51 @@ interface Transaction {
   timestamp: string;
   currentBalance: number | string;
   selectedBank: string | '-';
-  date?: Date;
-  accountName?: string;
-  cardNumber?: string;
-  balance?: number;
-  accountNumber?: string | number;
+  accountNumber: string | number;
+  bankReceiverAccountNumber: string | number;
+  bankName: string | number;
 }
 
 const BankStatements: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]); 
-  const [loading, setLoading] = useState(true); // State to track loading
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
+        const user = auth.currentUser;
+        if (!user) {
+          throw new Error('No user signed in');
+        }
+
         const transactionsCollection = collection(firestore, 'transactions');
-        const snapshot = await getDocs(transactionsCollection);
+        const userTransactionsQuery = query(transactionsCollection, where('userId', '==', user.uid));
+        const snapshot = await getDocs(userTransactionsQuery);
+
         const transactionsData: Transaction[] = snapshot.docs.map(doc => {
           const data = doc.data();
-          // Check if the timestamp exists and is a function before calling toDate()
-          const timestamp =
-            data.timestamp && typeof data.timestamp.toDate === 'function'
-              ? data.timestamp.toDate().toLocaleString()
-              : '';
+          const timestamp = data.timestamp ? data.timestamp.toDate().toLocaleString() : '';
+          console.log("bankName,", data.bankName);
           return {
             id: doc.id,
             amount: data.amount || '-', 
             type: data.type,
             timestamp: timestamp,
-            currentBalance: data.currentBalance || '-', // Use '-' if currentBalance is not available
-            selectedBank: data.selectedBank || '-', // Use '-' if selectedBank is not available
-            accountNumber: data.accountNumber || '-', // Use '-' if accountNumber is not available
+            currentBalance: data.currentBalance || '-', 
+            selectedBank: data.selectedBank || '-', 
+            accountNumber: data.accountNumber || '-', 
+            bankReceiverAccountNumber: data.bankReceiverAccountNumber || '-',
+            bankName: data.bankName || '-', // Default to '-' if bankName is not available
           };
         });
+
+       
+
         setTransactions(transactionsData);
-        setLoading(false); // Set loading to false when data is fetched
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching transactions:', error);
-        setLoading(false); // Set loading to false even if there's an error
+        setLoading(false);
       }
     };
     
@@ -61,7 +67,7 @@ const BankStatements: React.FC = () => {
   return (
     <LayoutComp desc="'Hey, here's your ">
       <Box>
-        {loading ? ( // Display loading spinner if loading is true
+        {loading ? ( 
           <Spinner  thickness='4px'
           speed='0.65s'
           emptyColor='gray.200'
@@ -69,29 +75,27 @@ const BankStatements: React.FC = () => {
           size='xl'/>
         ) : (
           <TableContainer overflow="auto" maxHeight="calc(100vh - 200px)">
-            <Table minWidth="100%">
+            <Table minWidth="100%" >
               <Thead>
-                <Tr fontSize={['sm']}>
-                  <Th fontSize={['sm']}>Date</Th>
-                  <Th fontSize={['sm']}>Account Name</Th>
-                  <Th fontSize={['sm']}>CardNumber</Th>
-                  <Th fontSize={['sm']}>Withdraw</Th>
-                  <Th fontSize={['sm']}>Deposit</Th>
-                  <Th fontSize={['sm']}>Send Money</Th>
-                  <Th fontSize={['sm']}>Bank Name</Th>
-                  <Th isNumeric fontSize={['sm']}>Balance</Th>
+                <Tr fontSize={['xs']}>
+                  <Th fontSize={['xs']}>Date</Th>
+                  <Th fontSize={['xs']}>Account Name</Th>
+                  <Th fontSize={['xs']}>Withdraw</Th>
+                  <Th fontSize={['xs']}>Deposit</Th>
+                  <Th fontSize={['xs']}>Send Money</Th>
+                  <Th fontSize={['xs']}>Bank Name</Th>
+                  <Th isNumeric fontSize={['xs']}>Balance</Th>
                 </Tr>
               </Thead>
               <Tbody fontSize={['sm']}>
                 {transactions.map((transaction, index) => (
                   <Tr key={index}>
                     <Td>{transaction.timestamp}</Td>
-                    <Td>{transaction.accountName ? transaction.amount : '-'}</Td>
-                    <Td>{transaction.cardNumber ? transaction.amount : '-'}</Td>
+                    <Td>{transaction.accountNumber}</Td>
                     <Td>{transaction.type === 'withdrawal' ? transaction.amount : '-'}</Td>
                     <Td>{transaction.type === 'deposit' ? transaction.amount : '-'}</Td>
                     <Td>{transaction.type === 'send-money' ? transaction.amount : '-'}</Td>
-                    <Td>{transaction.selectedBank}</Td>
+                    <Td>{transaction.selectedBank !== '-' ? transaction.selectedBank : transaction.bankName}</Td>
                     <Td isNumeric>{transaction.currentBalance}</Td>
                   </Tr>
                 ))}

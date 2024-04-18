@@ -67,6 +67,7 @@ const SendMoney = () => {
               timestamp: new Date(),
               userId: currentUser.uid,
               currentBalance: updatedDepositAmount,
+              bankReceiverAccountNumber: accountNumber,
             });
   
             // Update deposit amount in the database

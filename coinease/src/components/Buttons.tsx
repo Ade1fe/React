@@ -52,6 +52,7 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, t
         id={inputId}
         placeholder={placeholder}
         onFocus={() => handleInputFocus(inputId)}
+        type="number"
        
       />
      </Box>

@@ -12,7 +12,7 @@ import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetStateAction<number | null>> }) => {
   const [amount, setAmount] = useState('');
   const [withdrawnAmount, setWithdrawnAmount] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(false); // Add isLoading state
+  const [isLoading, setIsLoading] = useState(false); 
 
   useEffect(() => {
     const fetchBalance = async () => {
