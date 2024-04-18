@@ -1,18 +1,28 @@
 
-
 import { useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
-import { auth, firestore, onAuthStateChanged } from '../firebase';
+import { auth, firestore } from '../firebase'; 
+import { User } from 'firebase/auth';
 
 const useBalance = () => {
   const [balance, setBalance] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setIsLoading(false);
+    });
+    console.log("unscribe", unsubscribe);
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (currentUser) {
         try {
-          const uid = user.uid;
-          const userDocRef = doc(firestore, 'coinbaseusers', uid);
+          const userDocRef = doc(firestore, 'coinbaseusers', currentUser.uid);
           const userDocSnapshot = await getDoc(userDocRef);
           if (userDocSnapshot.exists()) {
             const userData = userDocSnapshot.data();
@@ -26,16 +36,16 @@ const useBalance = () => {
           }
         } catch (error) {
           console.error('Error fetching balance:', error);
+        } finally {
+          setIsLoading(false);
         }
-      } else {
-        console.error('No user signed in');
       }
-    });
+    };
 
-    return unsubscribe;
-  }, []);
+    fetchBalance();
+  }, [currentUser]);
 
-  return balance;
+  return { balance, isLoading };
 };
 
 export default useBalance;

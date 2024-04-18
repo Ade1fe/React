@@ -1,3 +1,5 @@
+
+
 import { Box, Button, Image, Input, Text } from '@chakra-ui/react';
 import React, { useState, useRef } from 'react';
 
@@ -11,7 +13,7 @@ interface ButtonsProps {
   value?: string;
 }
 
-const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, title ,imageText }) => {
+const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, onDeleteClick, title, imageText, value }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [activeInputField, setActiveInputField] = useState<string>('');
 
@@ -27,36 +29,41 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, t
     setActiveInputField(inputId);
     if (inputRef.current) {
       const currentInputValue = inputRef.current.value;
-      inputRef.current.value = currentInputValue + digit; 
-      inputRef.current.focus(); 
+      inputRef.current.value = currentInputValue + digit;
+      inputRef.current.focus();
     }
   };
 
   const handleDeleteClick = () => {
     if (inputRef.current) {
       const currentInputValue = inputRef.current.value;
-      inputRef.current.value = currentInputValue.slice(0, -1); 
+      inputRef.current.value = currentInputValue.slice(0, -1);
       inputRef.current.focus();
+      if (onDeleteClick) {
+        onDeleteClick();
+      }
     }
   };
 
   return (
     <Box display={['block', 'block', 'flex']} justifyContent='space-between'>
-     <Box className=""  w={['100%', '100%', '40%', '50%']} >
-     <Box w={['full']} h={['150px']} >
-     <Image src={imageText} w='full' h='full' objectFit='contain' />
-     </Box>
-     <Text textAlign='center' textTransform='capitalize' fontSize={['md', 'lg','18px', '20px', ]} mb={['10px']}> {title} </Text>
-      <Input
-        ref={inputRef}
-        id={inputId}
-        placeholder={placeholder}
-        onFocus={() => handleInputFocus(inputId)}
-        type="number"
-       
-      />
-     </Box>
-      <Box display='flex'  w={['80%', '55%', '50%' , "60%", "30%"]} mx='auto' mt={['1rem', '1rem', '0']} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
+      <Box className="" w={['100%', '100%', '40%', '50%']} >
+        <Box w={['full']} h={['150px']} >
+          <Image src={imageText} w='full' h='full' objectFit='contain' />
+        </Box>
+        <Text textAlign='center' textTransform='capitalize' fontSize={['md', 'lg', '18px', '20px',]} mb={['10px']}> {title} </Text>
+        <Input
+          ref={inputRef}
+          id={inputId}
+          placeholder={placeholder}
+          onFocus={() => handleInputFocus(inputId)}
+          type="number"
+          required
+          value={value}
+          onChange={(e) => onDigitClick(e.target.value)}
+        />
+      </Box>
+      <Box display='flex' w={['80%', '55%', '50%', "60%", "30%"]} mx='auto' mt={['1rem', '1rem', '0']} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
         {[...Array(10).keys()].map((digit) => (
           <Button
             key={digit}

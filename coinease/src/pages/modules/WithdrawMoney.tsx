@@ -6,49 +6,55 @@ import { Buttons } from "../../components";
 import { atmcardimg, atmimg } from "../../assets/imgs";
 import { Link } from "react-router-dom";
 import { LayoutComp } from '..';
-import { auth, firestore,} from '../../firebase';
+import { auth, firestore } from '../../firebase';
 import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { User } from 'firebase/auth'; // Import User type from firebase/auth
 
-const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetStateAction<number | null>> }) => {
+const WithdrawMoney: React.FC<{ setBalance: React.Dispatch<React.SetStateAction<number | null>> }> = ({ setBalance }) => {
   const [amount, setAmount] = useState('');
   const [withdrawnAmount, setWithdrawnAmount] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setIsLoading(false); // Set loading to false when user state changes
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const fetchBalance = async () => {
-      try {
-          const user = auth.currentUser;
-          if (!user) {
-              console.error('No user signed in');
-              return;
-          }
-          const uid = user.uid;
-  
-          const userDocRef = doc(firestore, 'coinbaseusers', uid); // Ensure firestore is correctly imported and initialized
+      if (currentUser) {
+        try {
+          const userDocRef = doc(firestore, 'coinbaseusers', currentUser.uid);
           const userDocSnapshot = await getDoc(userDocRef);
-          if (!userDocSnapshot.exists()) {
-              console.error('User document not found');
-              return;
-          }
-  
-          const userData = userDocSnapshot.data();
-          if (userData && userData.depositAmount) {
+          if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            if (userData && userData.depositAmount) {
               setBalance(userData.depositAmount);
-          } else {
+            } else {
               console.error('Deposit amount not found in user document');
+            }
+          } else {
+            console.error('User document not found');
           }
-      } catch (error) {
+        } catch (error) {
           console.error('Error fetching balance:', error);
-      } finally {
-          setIsLoading(false); 
+        } finally {
+          setIsLoading(false); // Set loading to false after fetching balance
+        }
       }
-  };
+    };
 
     fetchBalance();
-  }, [setBalance]); 
+  }, [currentUser, setBalance]);
 
   const handleDigitClick = (digit: string) => {
     setAmount(prevAmount => prevAmount + digit);
+    console.log(" ", digit);
   };
 
   const handleDeleteClick = () => {
@@ -56,19 +62,19 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
   };
 
   const handleWithdrawal = async () => {
-    if (amount.trim() === '') return; 
+    if (amount.trim() === '') return;
+    
+    // Capture the withdrawal amount before processing
     const withdrawalAmount = Number(amount);
-    if (isNaN(withdrawalAmount)) return; 
+    if (isNaN(withdrawalAmount)) return;
   
     try {
-      const user = auth.currentUser;
-      if (!user) {
+      if (!currentUser) {
         console.error('No user signed in');
         return;
       }
-      const uid = user.uid;
   
-      const userDocRef = doc(firestore, 'coinbaseusers', uid);
+      const userDocRef = doc(firestore, 'coinbaseusers', currentUser.uid);
       const userDocSnapshot = await getDoc(userDocRef);
       if (!userDocSnapshot.exists()) {
         console.error('User document not found');
@@ -89,14 +95,13 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
           type: 'withdrawal',
           timestamp: new Date(),
           currentBalance: updatedDepositAmount,
-         
         };
         await addDoc(collection(firestore, 'transactions'), transactionData);
   
-        // Update balance state
+        // Update state
+        setAmount('');
         setBalance(updatedDepositAmount);
         setWithdrawnAmount(withdrawalAmount);
-        setAmount('');
       } else {
         console.error('Deposit amount not found in user document');
       }
@@ -104,7 +109,6 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
       console.error('Error handling withdrawal:', error);
     }
   };
-  
   
 
   return (
@@ -116,7 +120,7 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
         <Box className="" w={['full', 'full', '65%']} pos='relative'>
           <Buttons imageText={atmcardimg} title="Enter amount to withdraw" placeholder="1.000" inputId="amount" onDigitClick={handleDigitClick} onDeleteClick={handleDeleteClick} value={amount} />
           <Text mt={4} textAlign="center">
-            {isLoading && 'Loading...'} {/* Show loading message while fetching balance */}
+            {isLoading && 'Loading...'}
             {withdrawnAmount !== null && `You have successfully withdrawn $${withdrawnAmount}`}
           </Text>
           <Box mt={4} textAlign='center'>
@@ -125,7 +129,6 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
           <Link to='/home-page'>
             <Box mt={2} textAlign='center' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px' onClick={() => setAmount('')}> Cancel</Box>
           </Link>
-        
         </Box>
       </Box>
     </LayoutComp>
@@ -133,20 +136,3 @@ const WithdrawMoney = ({ setBalance }: { setBalance: React.Dispatch<React.SetSta
 };
 
 export default WithdrawMoney;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

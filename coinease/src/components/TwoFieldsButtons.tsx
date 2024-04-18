@@ -61,6 +61,7 @@ const TwoFieldsButtons: React.FC<TwoFieldsButtonsProps> = ({
             value={amount}
             onChange={(e) => onDigitClick(e.target.value, inputIds[activeIndex])}
             type="number"
+            required
           />
         ) : activeIndex === 1 ? (
           <Input
@@ -69,6 +70,7 @@ const TwoFieldsButtons: React.FC<TwoFieldsButtonsProps> = ({
             value={accountNumber}
             onChange={(e) => onDigitClick(e.target.value, inputIds[activeIndex])}
             type="number"
+            required
           />
         ) : activeIndex === 2 ? (
           <>

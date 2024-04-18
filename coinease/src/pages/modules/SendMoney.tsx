@@ -1,7 +1,7 @@
 
 
-import React, { useState, useEffect } from 'react';
-import { Box, Image, Spinner, Button } from "@chakra-ui/react";
+import { useState, useEffect } from 'react';
+import { Box, Image, Spinner, useToast } from "@chakra-ui/react";
 import { TwoFieldsButtons } from "../../components";
 import { atmimg } from "../../assets/imgs";
 import { Link } from "react-router-dom";
@@ -16,9 +16,11 @@ const SendMoney = () => {
   const [selectedBank, setSelectedBank] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [sending, setSending] = useState(false);
+  const [, setSending] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [nextButtonText, setNextButtonText] = useState('Next');
+
+  const toast = useToast();
 
   const inputIds = ['amountInput', 'accountInput'];
   const inputTitles = ['Enter Amount', 'Enter Account Number', 'Choose Bank']; 
@@ -39,11 +41,34 @@ const SendMoney = () => {
 
   const handleNextClick = async () => {
     if (activeIndex < inputIds.length) {
+      // Check if all fields are filled
+      if (
+        activeIndex === inputIds.length - 1 &&
+        (amount === '' || accountNumber === '')
+      ) {
+        toast({
+          title: `Please fill in all fields`,
+          position: "top-right",
+          isClosable: true,
+        });
+        return;
+      }
+  
       setActiveIndex(activeIndex + 1);
       if (activeIndex === inputIds.length - 1) {
         setNextButtonText('Send');
       }
     } else {
+      // Validate account number length
+      if (accountNumber.length !== 11) {
+        toast({
+          title: `Account number must be 11 characters long`,
+          position: "top-right",
+          isClosable: true,
+        });
+        return;
+      }
+  
       try {
         setSending(true);
         if (!currentUser) return;
@@ -87,6 +112,7 @@ const SendMoney = () => {
       }
     }
   };
+  
   
   
 
@@ -135,7 +161,7 @@ const SendMoney = () => {
               onDeleteClick={(inputId) => handleDeleteClick(inputId)}
               onNextClick={handleNextClick}
               activeIndex={activeIndex}
-              nextButtonText={nextButtonText}
+              nextButtonText={loading ? 'Loading...' : nextButtonText} 
             />
             <Link to='/home-page'>
               <Box  mt={['2rem', '2rem', '2rem', '0']} textAlign='center' pos={[ 'static', 'static', 'static', 'absolute']} bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px'> Cancel</Box>

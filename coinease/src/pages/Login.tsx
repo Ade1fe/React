@@ -139,7 +139,7 @@ const Login: React.FC = () => {
             </Box>
 
             <Box>
-              <Box className="" display={['block','block', "flex"]}>
+              <Box className="" display={['block','block', "flex"]} justifyContent={['center',"center", "space-around"]}>
                 <Box w={['100%','100%', '40%']}>
                   {error && <Box color="red.500" mb={4}>{error}</Box>}
                   <FormControl mb={4}>
@@ -179,7 +179,7 @@ const Login: React.FC = () => {
                   </FormControl>
                 </Box>
 
-                <Box mx='auto' className="" w={['80%','50%',  '44%', '40%',  '40%']} >
+                <Box mx={['auto', 'auto', '0']} className="" w={['80%','50%',  '44%', '40%',  '30%']} >
                   <Box display='flex' flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
                     {[...Array(10).keys()].map((digit) => (
                       <Button key={digit} _hover={{ bg: "gray.600" }} color="black" fontSize={['md', 'lg', "x-large"]} shadow='md' boxSize='60px' mx='auto' bg="#f1f1f1" borderRadius='50%' onClick={() => handleDigitClick(digit.toString())}>
