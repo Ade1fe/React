@@ -85,7 +85,7 @@ const SendMoney = () => {
             // Add the transaction to Firestore
             const transactionsCollection = collection(firestore, 'transactions');
             await addDoc(transactionsCollection, {
-              amount: parseFloat(amount),
+              amount: -parseFloat(amount),
               accountNumber,
               selectedBank,
               type: 'send-money',
