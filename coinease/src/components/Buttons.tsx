@@ -1,5 +1,4 @@
 
-
 import { Box, Button, Image, Input, Text } from '@chakra-ui/react';
 import React, { useState, useRef } from 'react';
 
@@ -8,14 +7,18 @@ interface ButtonsProps {
   inputId: string;
   onDigitClick: (digit: string) => void;
   onDeleteClick?: () => void;
+  onWithdrawClick?: () => void;
   title?: string;
   imageText?: string;
   value?: string;
+  buttonText?: string;
+
 }
 
-const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, onDeleteClick, title, imageText, value }) => {
+const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, onDeleteClick, title, imageText, value , onWithdrawClick, buttonText}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [activeInputField, setActiveInputField] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleInputFocus = (inputId: string) => {
     setActiveInputField(inputId);
@@ -45,8 +48,19 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, o
     }
   };
 
+  const handleWithdrawClick = () => {
+    setIsLoading(true); // Set loading state to true
+    // Perform withdrawal logic
+    // Once completed, set isLoading back to false
+    if (onWithdrawClick) {
+      onWithdrawClick();
+      setIsLoading(false);
+    }
+  };
+
+
   return (
-    <Box display={['block', 'block', 'flex']} justifyContent='space-between'>
+    <Box display={['block', 'block', 'flex']} justifyContent='space-between' gap='4'>
       <Box className="" w={['100%', '100%', '40%', '50%']} >
         <Box w={['full']} h={['150px']} >
           <Image src={imageText} w='full' h='full' objectFit='contain' />
@@ -62,7 +76,14 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, o
           value={value}
           onChange={(e) => onDigitClick(e.target.value)}
         />
+         <Box display='flex' w='100%' justifyContent='center' mb={['2rem', '2.5rem','0']}>
+          <Button mt='20px' isLoading={isLoading}  loadingText="Processing" bg="#f1f1f1" _hover={{ bg: 'gray.600', color: "white" }} w='150px' color='black' borderRadius='md' onClick={handleWithdrawClick} >
+            {buttonText}
+          </Button>
+        </Box>
       </Box>
+
+     
       <Box display='flex' w={['80%', '55%', '50%', "60%", "30%"]} mx='auto' mt={['1rem', '1rem', '0']} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
         {[...Array(10).keys()].map((digit) => (
           <Button
@@ -89,3 +110,5 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, o
 };
 
 export default Buttons;
+
+

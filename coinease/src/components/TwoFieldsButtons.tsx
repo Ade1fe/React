@@ -51,7 +51,7 @@ const TwoFieldsButtons: React.FC<TwoFieldsButtonsProps> = ({
   };
 
   return (
-    <Box display={['block', 'block', 'flex']} justifyContent='space-between' alignItems='center'>
+    <Box display={['block', 'block', 'flex']} justifyContent='space-between' alignItems='center' gap='4'>
       <Box className="" w={['100%', '100%', '40%', '50%']}>
         <Text textAlign='center' textTransform='capitalize' fontSize={['md', 'lg','18px', '20px', ]} mb={['10px']}> {titles[activeIndex]} </Text>
         {activeIndex === 0 ? (
@@ -94,7 +94,7 @@ const TwoFieldsButtons: React.FC<TwoFieldsButtonsProps> = ({
             )}
           </>
         ) : null}
-        <Box display='flex' w='100%' justifyContent='center'>
+        <Box display='flex' w='100%' justifyContent='center' mb={['2rem', '2.5rem','0']}>
           <Button mt='20px' bg="#f1f1f1" _hover={{ bg: 'gray.600', color: "white" }} w='150px' color='black' borderRadius='md' onClick={handleNextClick}>
             {nextButtonText}
           </Button>
