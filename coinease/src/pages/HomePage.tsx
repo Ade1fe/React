@@ -85,7 +85,7 @@ const HomePage: React.FC = () => {
                         </GridItem>
                     ))}
                 </Grid>
-                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isCentered>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>New Card Number</ModalHeader>

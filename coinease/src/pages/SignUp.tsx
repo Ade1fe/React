@@ -145,7 +145,7 @@ const schema = Yup.object().shape({
         <Image src={signupimg} w='full' h='full' objectFit='cover' />
       </Box>
 
-      <Modal isOpen={isModalOpen} onClose={() => navigate('/')} >
+      <Modal isOpen={isModalOpen} onClose={() => navigate('/homepage')} isCentered>
         <ModalOverlay />
         <ModalContent >
           <ModalHeader>New Card Number</ModalHeader>

@@ -5,7 +5,7 @@ import { Box, Table, TableContainer, Tbody, Td, Th, Thead, Tr, Spinner, Text } f
 import { LayoutComp } from '..';
 import { Link } from "react-router-dom";
 import { auth, firestore } from '../../firebase'; 
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { User } from 'firebase/auth';
 
 interface Transaction {
@@ -73,6 +73,20 @@ const BankStatements: React.FC = () => {
   }, [currentUser]);
   
 
+
+  const handleDelete = async (itemId: string) => {
+    try {
+      const firestoreInstance = getFirestore();
+      const itemDocRef = doc(firestoreInstance, 'transactions', itemId); 
+      await deleteDoc(itemDocRef);
+      const updatedTransactions = transactions.filter(item => item.id !== itemId);
+      setTransactions(updatedTransactions);
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
+  };
+  
+
   return (
     <LayoutComp desc="'Hey, here's your ">
       <Box>
@@ -102,6 +116,7 @@ const BankStatements: React.FC = () => {
                       <Td>{transaction.amount}</Td>
                       <Td>{transaction.selectedBank !== '-' ? transaction.selectedBank : transaction.bankName}</Td>
                       <Td isNumeric>{transaction.type === 'receive-money' ? '-' : transaction.currentBalance}</Td>
+                      <Td> <Text bg='white' cursor='pointer' shadow='base' border='1px' borderColor='#ddd' size='sm' color='black' py='1' px='2'  rounded='md'  onClick={() => handleDelete(transaction.id)}>x</Text></Td>
                     </Tr>
                   ))}
                 </Tbody>

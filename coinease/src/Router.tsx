@@ -1,9 +1,9 @@
 
 
 import { createBrowserRouter } from 'react-router-dom';
-import { BankStatements, BillPayment, HomePage, LandingPage, Login, SendMoney, SignUp,  } from './pages';
+import { BankStatements, HomePage, LandingPage, Login, SendMoney, SignUp,  } from './pages';
 import InternalTransfer from './pages/modules/InternalTransfer';
-import { MoneyDepositWithBalance, WithdrawMoneyWithBalance } from './pages/file';
+import { BillPaymentWithBalance, MoneyDepositWithBalance, WithdrawMoneyWithBalance } from './pages/file';
 
 const Router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ const Router = createBrowserRouter([
   }, 
   {
     path: '/bill-payment',
-    element: <BillPayment />,
+    element: <BillPaymentWithBalance />,
   },
   {
     path: '/money-deposit',

@@ -16,7 +16,7 @@ const SendMoney = () => {
   const [selectedBank, setSelectedBank] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [, setSending] = useState(false);
+  const [ sending, setSending] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [nextButtonText, setNextButtonText] = useState('Next');
 
