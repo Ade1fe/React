@@ -129,7 +129,7 @@ const WithdrawMoney: React.FC<{ setBalance: React.Dispatch<React.SetStateAction<
           </Text>
          
           <Link to='/home-page'>
-            <Box mt={['2rem', '2rem', '2rem', '0']} textAlign='center' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px' onClick={() => setAmount('')}> Cancel</Box>
+            <Box mt={['2rem', '2rem', '2rem', '0']} w='fit-content' textAlign='center' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px' onClick={() => setAmount('')}> Cancel</Box>
           </Link>
         </Box>
       </Box>

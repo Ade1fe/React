@@ -36,7 +36,7 @@ const Router = createBrowserRouter([
   },
   {
     path: '/money-deposit',
-    element: <MoneyDepositWithBalance />, // Use the version with balance here
+    element: <MoneyDepositWithBalance />,
   },
   {
     path: '/internal-transfer',

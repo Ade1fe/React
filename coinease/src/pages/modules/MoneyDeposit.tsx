@@ -96,7 +96,7 @@ const MoneyDeposit: React.FC<MoneyDepositProps> = ({ setBalance }) => {
         // Update deposit amount in the database
         await setDoc(userDocRef, { 
           depositAmount: updatedDepositAmount,
-          userId: uid // Adding userId to the document data
+          userId: uid 
         }, { merge: true });
   
         const transactionData = {
@@ -132,12 +132,11 @@ const MoneyDeposit: React.FC<MoneyDepositProps> = ({ setBalance }) => {
           <Buttons imageText={atmcardimg} title="Enter amount to deposit" placeholder="1.000" inputId="amount" onDigitClick={handleDigitClick} onDeleteClick={handleDeleteClick} onWithdrawClick={handleDeposit} buttonText='Deposit' />
           <Text textAlign='center' className=""> {isLoading && 'Loading...'}</Text>
         
-          <Text textAlign='center' className="">  {moneyToDeposit !== null && `You have successfully deposited $${moneyToDeposit}`}</Text>
-          {/* <Box mt={4} textAlign='center'>
-            <button onClick={handleDeposit}>Deposit</button>
-          </Box> */}
-          <Link to='/home-page'>
-            <Box  mt={['2rem', '2rem', '2rem', '0']} textAlign='center' pos={[ 'static', 'static', 'static', 'absolute']} bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px'> Cancel</Box>
+          <Text textAlign='center' my='2rem' className="">  {moneyToDeposit !== null && `You have successfully deposited $${moneyToDeposit}`}</Text>
+         
+
+           <Link to='/home-page'>
+            <Box mt={['2rem', '2rem', '2rem', '0']} w={[ '' , '' , 'fit-content']} textAlign='center' bg='blue.900' py='3' px='6' color='white' borderRadius='20px' bottom={['15%']} left='20px' onClick={() => setAmount('')}> Cancel</Box>
           </Link>
         </Box>
       </Box>

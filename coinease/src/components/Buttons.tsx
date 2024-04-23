@@ -84,7 +84,7 @@ const Buttons: React.FC<ButtonsProps> = ({ placeholder, inputId, onDigitClick, o
       </Box>
 
      
-      <Box display='flex' w={['80%', '55%', '50%', "60%", "30%"]} mx='auto' mt={['1rem', '1rem', '0']} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
+      <Box display='flex' w={['80%', '55%', '50%', "55%", "30%"]} mx='auto' mt={['1rem', '1rem', '0']} flexWrap='wrap' gap={4} mb={4} justifyContent='center' bg='transparent'>
         {[...Array(10).keys()].map((digit) => (
           <Button
             key={digit}
