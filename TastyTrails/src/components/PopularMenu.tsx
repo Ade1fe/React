@@ -1,6 +1,6 @@
 
 import { PopularMenuCard } from '.';
-import { Box, Button, Icon, Link as ChakraLink,  } from '@chakra-ui/react';
+import { Box, Icon, Link as ChakraLink,  } from '@chakra-ui/react';
 import  { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -25,7 +25,7 @@ const PopularMenu = () => {
     return parseFloat((Math.random() * (max - min) + min).toFixed(1));
   }
   
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  
   const [meals, setMeals] = useState<any[]>([]);
 
 
@@ -46,10 +46,9 @@ const PopularMenu = () => {
           throw new Error('No meals found');
         }
 
-        setMeals(data.meals.slice(0, 8)); // Return first 8 meals
+        setMeals(data.meals.slice(0, 8));
       } catch (error) {
         console.error(error);
-        // Handle error gracefully
       }
     };
 

@@ -42,7 +42,7 @@ const MenuDrinkCard: React.FC<MenuCardProps> = ({ categoryName }) => {
     };
 
     fetchImages();
-  }, [categoryName]); // Run the effect whenever the categoryName prop changes
+  }, [categoryName]); 
 
   return (
     <Box mt='10px'>

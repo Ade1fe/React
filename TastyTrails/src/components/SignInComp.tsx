@@ -112,7 +112,7 @@ const SignInComp = () => {
             mt='30px'
             disabled={loading}
           >
-           {loading ? "Loading..." : "Sign Up"}
+           {loading ? "Loading..." : "Sign In"}
           </Button>
         </form>
         <Box>

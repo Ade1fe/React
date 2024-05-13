@@ -24,34 +24,11 @@ const MenuNavbar: React.FC<MenuNavbarProps> = ({ fetchMeals,isAuthenticated,plac
   const [searchQuery, setSearchQuery] = useState('');
   const [cartItemCount, setCartItemCount] = useState(0);
   const navigate = useNavigate();
-  // const [userName, setUserName] = useState<string | null>(null);
-  // const [loading, setLoading] = useState(true);  
+
 
   const user = getAuth().currentUser;
   const userId = user ? user.uid : null;
 
-  // useEffect(() => {
-  //   const firestoreInstance = getFirestore();
-  //   const cartItemsRef = collection(firestoreInstance, 'cartItems');
-  //   const cartItemQuery = query(
-  //     cartItemsRef,
-  //     where('userId', '==', userId)
-  //   );
-
-  //   const unsubscribe = onSnapshot(cartItemQuery, (snapshot) => {
-  //     let count = 0;
-  //     snapshot.forEach(doc => {
-  //       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //       const data = doc.data();
-  //       console.log(data)
-  //       count++;
-  //     });
-  //     setCartItemCount(count);
-     
-  //   });
-
-  //   return () => unsubscribe(); 
-  // }, [userId]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);

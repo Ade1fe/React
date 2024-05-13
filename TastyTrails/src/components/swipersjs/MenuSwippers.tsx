@@ -19,6 +19,7 @@ interface Meal {
   strMeal: string;
   strMealThumb: string;
   mealId: string;
+  strMealDescription: string; 
 }
 
 const MenuSwippers: React.FC = () => {
@@ -87,14 +88,37 @@ const MenuSwippers: React.FC = () => {
         setMeals([]);
         throw new Error('No meals found');
       }
-      setMeals(data.meals);
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error:any) {
+  
+      // Fetch meal details for each meal to get the description
+      const mealDetails = await Promise.all(data.meals.map(async (meal: Meal) => {
+        try {
+          const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch meal details');
+          }
+          const mealData = await response.json();
+          const mealDetail = mealData.meals ? mealData.meals[0] : null;
+          return {
+            ...meal,
+            strMealDescription: mealDetail?.strInstructions || '' 
+          };
+        } catch (error) {
+          console.error('Error fetching meal details:', error);
+          return {
+            ...meal,
+            strMealDescription: ''
+          };
+        }
+      }));
+  
+      setMeals(mealDetails);
+    } catch (error) {
       setError(error.message);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const handleMealClick = (imageUrl: string) => {
     setSelectedMealImage(imageUrl);
@@ -134,7 +158,7 @@ const MenuSwippers: React.FC = () => {
         ) : (
           meals.map((meal) => (
             <Box key={meal.idMeal} onClick={() => handleMealClick(meal.strMealThumb)} pr='2'>
-              <AllFood imageUrl={meal.strMealThumb} name={meal.strMeal} id={meal.idMeal} price={generateRandomPrice(10, 20)}  mealId={meal.idMeal}  />
+              <AllFood imageUrl={meal.strMealThumb} name={meal.strMeal} id={meal.idMeal} price={generateRandomPrice(10, 20)}   description={meal.strMealDescription}   mealId={meal.idMeal}  />
             </Box>
           ))
         )}

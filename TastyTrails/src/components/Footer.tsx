@@ -8,9 +8,9 @@ const Footer = () => {
       <Box maxW="1340px" mx="auto" px="4">
         <Stack direction={['column', 'column', 'row']} spacing={['4', '4', '8', '12']} justify="space-between" align="flex-start">
           <Box flex="1" mb={['4', '4', '0']}>
-            <Text fontWeight="bold" mb="2">About Company</Text>
-            <Text fontSize={['sm', 'md']} fontWeight="500" color="gray.600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt dolore possimus minus tempora nostrum rerum.</Text>
-            <Flex mt="4" gap="2">
+          <Text fontWeight="bold" mb="2">About Company</Text>
+  <Text fontSize={['sm', 'md']} fontWeight="500" color="gray.600">Welcome to our company! We're dedicated to providing top-quality products/services and exceptional customer satisfaction. Our team is driven by innovation and integrity, ensuring that every interaction with us exceeds your expectations.</Text>
+       <Flex mt="4" gap="2">
               <Icon boxSize="6" color="blue.300" as={FaFacebook} />
               <Icon boxSize="6" color="red.400" as={FaInstagram} />
               <Icon boxSize="6" color="blue.500" as={FaTwitter} />

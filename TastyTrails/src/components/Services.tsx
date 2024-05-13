@@ -11,19 +11,19 @@ const Services = () => {
         <Box p='10' shadow='base' h='300px' display='flex' flexDir='column' alignItems='center' justifyContent='center' gap='6' borderRadius='20px'> 
           <Image src={forkImg} boxSize='70px' bg='orange.200' p='4' borderRadius='50%' mx='auto' />
           <Text mb='0px'>Quality Food</Text>
-          <Text mb='0px'>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born.</Text>
-        </Box>
+          <Text mb='0px'>Experience exquisite flavors and freshness. Elevate your dining with us!</Text>
+           </Box>
 
         <Box p='10' shadow='2xl' h='300px' display='flex' flexDir='column' alignItems='center' justifyContent='center' gap='6' borderRadius='20px'> 
           <Image src={busImg} boxSize='70px' bg='orange.200' p='4' borderRadius='50%' mx='auto' />
           <Text mb='0px'>Fast Delivery</Text>
-          <Text mb='0px'>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born.</Text>
-        </Box>
+          <Text mb='0px'>Experience how we prioritize speed without compromising quality and reliability.</Text>
+           </Box>
 
         <Box p='10' shadow='base' h='300px' display='flex' flexDir='column' alignItems='center' justifyContent='center' gap='6' borderRadius='20px'> 
           <Image src={spoonImg} boxSize='70px' bg='orange.200' p='4' borderRadius='50%' mx='auto' />
-          <Text mb='0px'>Healthy Food</Text>
-          <Text mb='0px'>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born.</Text>
+          <Text mb='0px'>Healthy Foods</Text>
+          <Text mb='0px'>Savor nutritious delights, crafted with care for your well-being.</Text>
         </Box>
       </Box>
     </Box>

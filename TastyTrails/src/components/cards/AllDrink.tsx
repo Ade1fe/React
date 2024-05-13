@@ -11,9 +11,10 @@ interface AllFoodProps {
   name: string;
   price: number;
   drinkId: string; 
+  description: string; 
 }
 
-const AllDrink: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, drinkId }) => {
+const AllDrink: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, drinkId, description }) => {
 
   // const auth = getAuth(app);
   // console.log(auth)
@@ -120,7 +121,7 @@ const AllDrink: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, drinkId }
           {name}
         </Text>
         <Text color='gray.400' fontSize={['sm','md',]} noOfLines={2}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, modi?
+        {description}
         </Text>
         <Text className="">$ {price} </Text>
       </Box>

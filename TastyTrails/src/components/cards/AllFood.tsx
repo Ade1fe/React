@@ -11,9 +11,10 @@ interface AllFoodProps {
   name: string;
   price: number;
   mealId: string; 
+  description: string; 
 }
 
-const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) => {
+const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId, description }) => {
 
   // const auth = getAuth(app);
   // console.log(auth)
@@ -119,9 +120,14 @@ const AllFood: React.FC<AllFoodProps> = ({ id, imageUrl, name, price, mealId }) 
         <Text fontSize={['md','lg',]} fontWeight="bold" mb="1" noOfLines={1}>
           {name}
         </Text>
-        <Text color='gray.400' fontSize={['sm','md',]} noOfLines={2}>
+
+        <Text fontSize={['sm','md',]} color='gray.400' noOfLines={2}>
+  {description}
+</Text>
+
+        {/* <Text color='gray.400' fontSize={['sm','md',]} noOfLines={2}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, modi?
-        </Text>
+        </Text> */}
         <Text className="">$ {price} </Text>
       </Box>
       <Box display="flex" alignItems="center" mx='10px' my={['10px','0','10px','0']} justifyContent={['center','flex-start','center', 'flex-start']}>

@@ -17,6 +17,7 @@ interface Drink {
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
+  strDrinkDescription: string; 
 }
 
 const DrinkSwiper: React.FC = () => {
@@ -72,6 +73,24 @@ const DrinkSwiper: React.FC = () => {
     }
   }, [drinks]);
 
+ 
+  const fetchDrinkDetails = async (drinkId: string) => {
+    try {
+      const response = await fetch(`${baseUrl}lookup.php?i=${drinkId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch drink details');
+      }
+      const data = await response.json();
+      if (!data.drinks || data.drinks.length === 0) {
+        throw new Error('No drink details found');
+      }
+      return data.drinks[0]; // Return the first drink detail
+    } catch (error) {
+      console.error('Error fetching drink details:', error);
+      return null;
+    }
+  };
+  
   const fetchDrinksByCategory = async (category: string) => {
     setLoading(true);
     try {
@@ -84,14 +103,33 @@ const DrinkSwiper: React.FC = () => {
         setDrinks([]);
         throw new Error('No drinks found');
       }
-      setDrinks(data.drinks);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
+
+      // Fetch drink details for each drink to get the description
+      const drinkDetails = await Promise.all(data.drinks.map(async (drink: any) => {
+        try {
+          const drinkDetail = await fetchDrinkDetails(drink.idDrink);
+          return {
+            ...drink,
+            strDrinkDescription: drinkDetail?.strInstructions || '' // Use strInstructions for drink description
+          };
+        } catch (error) {
+          console.error('Error fetching drink details:', error);
+          return {
+            ...drink,
+            strDrinkDescription: '' // Set empty string for description if fetching fails
+          };
+        }
+      }));
+
+      setDrinks(drinkDetails);
+    } catch (error) {
       setError(error.message);
     } finally {
       setLoading(false);
     }
   };
+
+  
 
   const handleDrinkClick = (imageUrl: string) => {
     setSelectedDrinkImage(imageUrl);
@@ -127,7 +165,7 @@ const DrinkSwiper: React.FC = () => {
         ) : (
           drinks.map((drink) => (
             <Box key={drink.idDrink} onClick={() => handleDrinkClick(drink.strDrinkThumb)} pr='2'>
-              <AllDrink imageUrl={drink.strDrinkThumb} name={drink.strDrink} id={drink.idDrink} price={generateRandomPrice(10, 20)} drinkId={drink.idDrink} />
+              <AllDrink imageUrl={drink.strDrinkThumb} name={drink.strDrink} id={drink.idDrink} price={generateRandomPrice(10, 20)} description={drink.strDrinkDescription}  drinkId={drink.idDrink} />
             </Box>
           ))
         )}
