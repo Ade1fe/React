@@ -1,0 +1,65 @@
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+
+// Define TypeScript types for fetched data
+interface Movie {
+  backdrop_path: string | null;
+  title: string;
+  overview: string;
+}
+
+const LandingPage: React.FC = () => {
+  const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
+  const [images, setImages] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`;
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        // Map fetched data to the Movie type
+        const firstThreeImages: Movie[] = data.results.slice(0, 3).map((movie: any) => ({
+          backdrop_path: movie.backdrop_path,
+          title: movie.title,
+          overview: movie.overview,
+        }));
+
+        setImages(firstThreeImages);
+        console.log(data);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <Box p="4">
+      <Heading as="h1" size="xl" mb="4">Popular Movies</Heading>
+      {images.map((movie, index) => (
+        <Box key={index} mb="4">
+          {movie.backdrop_path && (
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt={movie.title}
+              borderRadius="md"
+              mb="2"
+            />
+          )}
+          <Heading as="h2" size="md" mb="2">{movie.title}</Heading>
+          <Text>{movie.overview}</Text>
+        </Box>
+      ))}
+    </Box>
+  );
+}
+
+export default LandingPage;

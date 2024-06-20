@@ -1,0 +1,357 @@
+import React, { useState } from 'react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Button,
+  Text,
+  useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  Image,
+  VStack,
+} from '@chakra-ui/react';
+import { Navbar } from '..';
+
+
+const LandingPage = () => {
+  const [messages, setMessages] = useState<{ user: string; chatbot: string[] }[]>([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [modalMovie, setModalMovie] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toast = useToast();
+
+  const apiKey = '68bd4f569df65f9feb2dac611c38f06e';
+
+  const sendMessage = () => {
+    if (newMessage.trim() !== '') {
+      handleChatbotResponse(newMessage);
+      setNewMessage('');
+    }
+  };
+
+  const handleChatbotResponse = async (message: string) => {
+    let responses: string[] = [];
+    const lowerMessage = message.toLowerCase();
+
+    if (lowerMessage.includes('hi') || lowerMessage.includes('hello')) {
+      responses.push('Hello! How can I help you today?');
+    } else if (lowerMessage.includes('recommend') || lowerMessage.includes(`${lowerMessage}`) || lowerMessage.includes('suggest')) {
+      const genre = extractGenre(lowerMessage);
+      const cast = extractCast(lowerMessage);
+      if (genre) {
+        const recommendations = await recommendMoviesByGenre(genre);
+        responses.push(recommendations);
+      } else if (cast) {
+        const recommendations = await recommendMoviesByCast(cast);
+        responses.push(recommendations);
+      } else {
+        responses.push('Please specify a genre or cast name for recommendations.');
+      }
+    } else if (lowerMessage.includes('top movies') || lowerMessage.includes('top movie') ||  lowerMessage.includes('popular movies') ||  lowerMessage.includes('popular movie')) {
+      const topMovies = await getTopMovies();
+      responses.push(...topMovies);
+    } else if (lowerMessage.includes('list genres')) {
+      const genresList = await listGenres();
+      responses.push(genresList);
+    } else {
+      responses.push("I'm sorry, I didn't understand that. How can I assist you?");
+    }
+
+    setMessages(prevMessages => [...prevMessages, { user: message, chatbot: responses }]);
+  };
+
+  const extractGenre = (message: string): keyof typeof genreMap | null => {
+    const genres = ['thriller', 'action', 'comedy', 'drama', 'horror', 'romance', 'sci-fi'] as const;
+    const genreMap: Record<typeof genres[number], string[]> = {
+      thriller: ['thriller', 'thrillers'],
+      action: ['action', 'actions'],
+      comedy: ['comedy', 'comedies'],
+      drama: ['drama', 'dramas'],
+      horror: ['horror', 'horrors'],
+      romance: ['romance', 'romances'],
+      'sci-fi': ['sci-fi', 'science fiction'],
+    };
+
+    for (let genre of genres) {
+      if (genreMap[genre].some(g => message.includes(g))) {
+        return genre;
+      }
+    }
+    return null;
+  };
+
+  const extractCast = (message: string): string | null => {
+    const castPattern = /by (actor|actress|cast|star|featuring)? ?([a-zA-Z ]+)/i;
+    const match = message.match(castPattern);
+    return match ? match[2].trim() : null;
+  };
+
+  const recommendMoviesByGenre = async (genre: string) => {
+    try {
+      const genreId = await getGenreId(genre);
+      if (!genreId) {
+        return `Sorry, I couldn't find the genre "${genre}".`;
+      }
+      const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&language=en-US&page=1`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const recommendedMovies = data.results.slice(0, 10).map((movie: any) => movie.title);
+      return `Recommended ${genre} movies: ${recommendedMovies.join(', ')}`;
+    } catch (error) {
+      console.error(`Error fetching ${genre} movies:`, error);
+      return `Sorry, I couldn't recommend ${genre} movies right now.`;
+    }
+  };
+
+  const recommendMoviesByCast = async (cast: string) => {
+    try {
+      const castId = await getCastId(cast);
+      if (!castId) {
+        return `Sorry, I couldn't find the cast member "${cast}".`;
+      }
+      const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_cast=${castId}&language=en-US&page=1`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const recommendedMovies = data.results.slice(0, 10).map((movie: any) => movie.title);
+      return `Movies featuring ${cast}: ${recommendedMovies.join(', ')}`;
+    } catch (error) {
+      console.error(`Error fetching movies featuring ${cast}:`, error);
+      return `Sorry, I couldn't recommend movies featuring ${cast} right now.`;
+    }
+  };
+
+  const getTopMovies = async () => {
+    try {
+      const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const topMovies = data.results.slice(0, 10).map((movie: any) => movie.title);
+      return topMovies;
+    } catch (error) {
+      console.error('Error fetching top movies:', error);
+      return [];
+    }
+  };
+
+  const listGenres = async () => {
+    try {
+      const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const genres = data.genres.map((genre: any) => genre.name);
+      return `Available genres: ${genres.join(', ')}`;
+    } catch (error) {
+      console.error('Error fetching genres:', error);
+      return `Sorry, I couldn't fetch genres right now.`;
+    }
+  };
+
+  const getGenreId = async (genre: string) => {
+    try {
+      const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const genreObject = data.genres.find((g: any) => g.name.toLowerCase() === genre.toLowerCase());
+      if (!genreObject) {
+        throw new Error('Genre not found');
+      }
+      return genreObject.id;
+    } catch (error) {
+      console.error('Error fetching genre ID:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch genre ID. Please try again later.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return null;
+    }
+  };
+
+  const getCastId = async (cast: string) => {
+    try {
+      const apiUrl = `https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(
+        cast
+      )}`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      if (data.results.length === 0) {
+        throw new Error('Cast member not found');
+      }
+      return data.results[0].id;
+    } catch (error) {
+      console.error('Error fetching cast ID:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch cast ID. Please try again later.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return null;
+    }
+  };
+
+  const openMovieModal = async (movieTitle: string) => {
+    try {
+      const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+        movieTitle
+      )}`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+
+      if (data.results.length === 0) {
+        throw new Error(`Movie "${movieTitle}" not found`);
+      }
+
+      const movieId = data.results[0].id;
+      const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
+      const movieDetailsResponse = await fetch(movieDetailsUrl);
+
+      if (!movieDetailsResponse.ok) {
+        throw new Error('Network response for movie details was not ok');
+      }
+
+      const movieDetailsData = await movieDetailsResponse.json();
+
+      const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
+      const creditsResponse = await fetch(creditsUrl);
+
+      if (!creditsResponse.ok) {
+        throw new Error('Network response for credits was not ok');
+      }
+
+      const creditsData = await creditsResponse.json();
+      movieDetailsData.credits = creditsData;
+
+      setModalMovie(movieDetailsData);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error(`Error fetching movie details for ${movieTitle}:`, error);
+      toast({
+        title: 'Error',
+        description: `Failed to fetch movie details for "${movieTitle}". Please try again later.`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const MovieModal = ({ movie, isOpen, onClose }: { movie: any; isOpen: boolean; onClose: () => void }) => {
+    if (!movie) return null;
+
+    const { title, overview, poster_path, credits } = movie;
+    const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+
+    return (
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{title}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Flex mb="4">
+              <Image src={imageUrl} alt={title} boxSize="200px" objectFit="cover" />
+              <VStack ml="4" align="flex-start">
+                <Text>{overview}</Text>
+                <Text fontWeight="bold">Cast:</Text>
+                <Text>{credits?.cast.slice(0, 15).map((cast: any) => cast.name).join(', ')}</Text>
+              </VStack>
+            </Flex>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    );
+  };
+
+  return (
+    <Flex direction="column" height="100vh">
+    <Box  borderRadius="lg" boxShadow="lg" flex="1">
+      <Heading as="h2" pt='1.5rem' size="lg" mb="4" textAlign="center">
+        FilmHive Ai
+      </Heading>
+      <Box minH='80%' overflowY="scroll" mb="4" borderWidth="1px" borderRadius="md" p="2" bg="white">
+        {messages.map((messageObj, index) => (
+          <React.Fragment key={index}>
+            <Flex justifyContent="flex-end" mb="2">
+              <Box bg="blue.100" p="2" borderRadius="md" maxWidth="70%" textAlign="right">
+                <Text>{`You: ${messageObj.user}`}</Text>
+              </Box>
+            </Flex>
+            {messageObj.chatbot.flatMap((response, resIndex) =>
+              response.split(', ').map((movie, movieIndex) => (
+                <Flex justifyContent="flex-start" mb="2" key={`${resIndex}-${movieIndex}`}>
+                  <Box
+                    bg="gray.100"
+                    p="2"
+                    borderRadius="md"
+                    maxWidth="70%"
+                    textAlign="left"
+                    onClick={() => openMovieModal(movie)}
+                    cursor="pointer"
+                  >
+                    <Text>{`Chatbot: ${movie}`}</Text>
+                  </Box>
+                </Flex>
+              ))
+            )}
+          </React.Fragment>
+        ))}
+      </Box>
+      <InputGroup mb="4">
+        <Input
+          placeholder="Type your message here..."
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              sendMessage();
+            }
+          }}
+        />
+        <InputRightElement width="4.5rem">
+          <Button h="1.75rem" size="sm" onClick={sendMessage}>
+            Send
+          </Button>
+        </InputRightElement>
+      </InputGroup>
+    </Box>
+
+    <MovieModal movie={modalMovie} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+  </Flex>
+  );
+};
+
+
+export default LandingPage;
