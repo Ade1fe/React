@@ -9,16 +9,16 @@ import {
   Button,
   Text,
   useToast,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
   Image,
   VStack,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerCloseButton,
 } from '@chakra-ui/react';
-import { Navbar } from '..';
+import { Usage } from '..';
 
 
 const LandingPage = () => {
@@ -38,14 +38,18 @@ const LandingPage = () => {
   };
 
   const handleChatbotResponse = async (message: string) => {
-    let responses: string[] = [];
-    const lowerMessage = message.toLowerCase();
+    const responses = await getChatbotResponse(message.toLowerCase());
+    setMessages((prevMessages) => [...prevMessages, { user: message, chatbot: responses }]);
+  };
 
-    if (lowerMessage.includes('hi') || lowerMessage.includes('hello')) {
+  const getChatbotResponse = async (message: string) => {
+    let responses: string[] = [];
+
+    if (greetingIntent(message)) {
       responses.push('Hello! How can I help you today?');
-    } else if (lowerMessage.includes('recommend') || lowerMessage.includes(`${lowerMessage}`) || lowerMessage.includes('suggest')) {
-      const genre = extractGenre(lowerMessage);
-      const cast = extractCast(lowerMessage);
+    } else if (recommendationIntent(message)) {
+      const genre = extractGenre(message);
+      const cast = extractCast(message);
       if (genre) {
         const recommendations = await recommendMoviesByGenre(genre);
         responses.push(recommendations);
@@ -55,21 +59,32 @@ const LandingPage = () => {
       } else {
         responses.push('Please specify a genre or cast name for recommendations.');
       }
-    } else if (lowerMessage.includes('top movies') || lowerMessage.includes('top movie') ||  lowerMessage.includes('popular movies') ||  lowerMessage.includes('popular movie')) {
+    } else if (topMoviesIntent(message)) {
       const topMovies = await getTopMovies();
-      responses.push(...topMovies);
-    } else if (lowerMessage.includes('list genres')) {
+      responses.push(`Top 10 movies: ${topMovies.join(', ')}`);
+    } else if (listGenresIntent(message)) {
       const genresList = await listGenres();
       responses.push(genresList);
     } else {
       responses.push("I'm sorry, I didn't understand that. How can I assist you?");
     }
 
-    setMessages(prevMessages => [...prevMessages, { user: message, chatbot: responses }]);
+    return responses;
   };
 
+  const greetingIntent = (message: string) =>
+    ['hi', 'hello', 'sup', 'there', 'flim'].some((word) => message.includes(word));
+
+  const recommendationIntent = (message: string) =>
+    ['recommend', 'suggest'].some((word) => message.includes(word));
+
+  const topMoviesIntent = (message: string) =>
+    ['top movies', 'top movie', 'popular movies', 'popular movie'].some((phrase) => message.includes(phrase));
+
+  const listGenresIntent = (message: string) => message.includes('list genres');
+
   const extractGenre = (message: string): keyof typeof genreMap | null => {
-    const genres = ['thriller', 'action', 'comedy', 'drama', 'horror', 'romance', 'sci-fi'] as const;
+    const genres = ['thriller', 'action', 'comedy', 'drama', 'horror', 'romance', 'sci-fi', 'fantasy', 'animation'] as const;
     const genreMap: Record<typeof genres[number], string[]> = {
       thriller: ['thriller', 'thrillers'],
       action: ['action', 'actions'],
@@ -78,15 +93,18 @@ const LandingPage = () => {
       horror: ['horror', 'horrors'],
       romance: ['romance', 'romances'],
       'sci-fi': ['sci-fi', 'science fiction'],
+      fantasy: ['fantasy', 'fantasies'],
+      animation: ['animation', 'animated'],
     };
-
+  
     for (let genre of genres) {
-      if (genreMap[genre].some(g => message.includes(g))) {
+      if (genreMap[genre].some((g) => message.includes(g))) {
         return genre;
       }
     }
     return null;
   };
+  
 
   const extractCast = (message: string): string | null => {
     const castPattern = /by (actor|actress|cast|star|featuring)? ?([a-zA-Z ]+)/i;
@@ -106,7 +124,7 @@ const LandingPage = () => {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      const recommendedMovies = data.results.slice(0, 10).map((movie: any) => movie.title);
+      const recommendedMovies = data.results.slice(0, 20).map((movie: any) => movie.title);
       return `Recommended ${genre} movies: ${recommendedMovies.join(', ')}`;
     } catch (error) {
       console.error(`Error fetching ${genre} movies:`, error);
@@ -126,7 +144,7 @@ const LandingPage = () => {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      const recommendedMovies = data.results.slice(0, 10).map((movie: any) => movie.title);
+      const recommendedMovies = data.results.slice(0, 20).map((movie: any) => movie.title);
       return `Movies featuring ${cast}: ${recommendedMovies.join(', ')}`;
     } catch (error) {
       console.error(`Error fetching movies featuring ${cast}:`, error);
@@ -142,7 +160,7 @@ const LandingPage = () => {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      const topMovies = data.results.slice(0, 10).map((movie: any) => movie.title);
+      const topMovies = data.results.slice(0, 20).map((movie: any) => movie.title);
       return topMovies;
     } catch (error) {
       console.error('Error fetching top movies:', error);
@@ -275,83 +293,84 @@ const LandingPage = () => {
     const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
     return (
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Flex mb="4">
-              <Image src={imageUrl} alt={title} boxSize="200px" objectFit="cover" />
+      <Drawer isOpen={isOpen} onClose={onClose} size='md'>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader>{title}</DrawerHeader>
+          <DrawerCloseButton />
+          <DrawerBody>
+            <Flex mb="4" flexDir='column'>
+              <Image mb='1rem' src={imageUrl} alt={title} w='full' h={["50%"]} objectFit="cover" />
               <VStack ml="4" align="flex-start">
                 <Text>{overview}</Text>
                 <Text fontWeight="bold">Cast:</Text>
-                <Text>{credits?.cast.slice(0, 15).map((cast: any) => cast.name).join(', ')}</Text>
+                <Text>{credits?.cast.slice(0, 55).map((cast: any) => cast.name).join(', ')}</Text>
               </VStack>
             </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     );
   };
 
   return (
-    <Flex direction="column" height="100vh">
-    <Box  borderRadius="lg" boxShadow="lg" flex="1">
-      <Heading as="h2" pt='1.5rem' size="lg" mb="4" textAlign="center">
-        FilmHive Ai
-      </Heading>
-      <Box minH='80%' overflowY="scroll" mb="4" borderWidth="1px" borderRadius="md" p="2" bg="white">
-        {messages.map((messageObj, index) => (
-          <React.Fragment key={index}>
-            <Flex justifyContent="flex-end" mb="2">
-              <Box bg="blue.100" p="2" borderRadius="md" maxWidth="70%" textAlign="right">
-                <Text>{`You: ${messageObj.user}`}</Text>
-              </Box>
-            </Flex>
-            {messageObj.chatbot.flatMap((response, resIndex) =>
-              response.split(', ').map((movie, movieIndex) => (
-                <Flex justifyContent="flex-start" mb="2" key={`${resIndex}-${movieIndex}`}>
-                  <Box
-                    bg="gray.100"
-                    p="2"
-                    borderRadius="md"
-                    maxWidth="70%"
-                    textAlign="left"
-                    onClick={() => openMovieModal(movie)}
-                    cursor="pointer"
-                  >
-                    <Text>{`Chatbot: ${movie}`}</Text>
-                  </Box>
-                </Flex>
-              ))
-            )}
-          </React.Fragment>
-        ))}
+    <Flex direction="column" height="100vh"  bg='red' px={['10px', '10px', '10px', '2rem', '3rem']}>
+      <Box borderRadius="lg" flex="1" bg='yellow' height="85%" >
+        <Heading display='flex' justifyContent='space-between' alignItems='center' as="h2" pt='1.5rem' size="lg" mb="2" textAlign="center">
+          FilmHive Ai
+          <Text as='span' className=""><Usage /></Text>
+        </Heading>
+        <Box boxShadow="sm"  h='77%' overflowY="scroll" mb="4" borderWidth="1px" borderRadius="md" p="2" bg='green' >
+          {messages.map((messageObj, index) => (
+            <React.Fragment key={index}>
+              <Flex py='10px' justifyContent="flex-end" mb="2" pr='10px'>
+                <Box shadow='base' bg="blue.100" p="2" borderRadius="md" maxWidth="70%" textAlign="right">
+                  <Text>{`You: ${messageObj.user}`}</Text>
+                </Box>
+              </Flex>
+              {messageObj.chatbot.flatMap((response, resIndex) =>
+                response.split(', ').map((movie, movieIndex) => (
+                  <Flex pl='10px' justifyContent="flex-start" mb="2" key={`${resIndex}-${movieIndex}`}>
+                    <Box
+                      shadow='base'
+                      bg="gray.100"
+                      p="2"
+                      borderRadius="md"
+                      maxWidth="70%"
+                      textAlign="left"
+                      onClick={() => openMovieModal(movie)}
+                      cursor="pointer"
+                    >
+                      <Text>{`Chatbot: ${movie}`}</Text>
+                    </Box>
+                  </Flex>
+                ))
+              )}
+            </React.Fragment>
+          ))}
+        </Box>
+        <InputGroup mb="4" boxShadow="lg">
+          <Input
+            placeholder="Type your message here..."
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                sendMessage();
+              }
+            }}
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={sendMessage}>
+              Send
+            </Button>
+          </InputRightElement>
+        </InputGroup>
       </Box>
-      <InputGroup mb="4">
-        <Input
-          placeholder="Type your message here..."
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              sendMessage();
-            }
-          }}
-        />
-        <InputRightElement width="4.5rem">
-          <Button h="1.75rem" size="sm" onClick={sendMessage}>
-            Send
-          </Button>
-        </InputRightElement>
-      </InputGroup>
-    </Box>
 
-    <MovieModal movie={modalMovie} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-  </Flex>
+      <MovieModal movie={modalMovie} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </Flex>
   );
 };
-
 
 export default LandingPage;
