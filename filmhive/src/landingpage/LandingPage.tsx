@@ -247,6 +247,7 @@ const LandingPage = () => {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
+      console.log("data", data.results);
 
       if (data.results.length === 0) {
         throw new Error(`Movie "${movieTitle}" not found`);
@@ -289,7 +290,7 @@ const LandingPage = () => {
   const MovieModal = ({ movie, isOpen, onClose }: { movie: any; isOpen: boolean; onClose: () => void }) => {
     if (!movie) return null;
 
-    const { title, overview, poster_path, credits } = movie;
+    const { title, overview, poster_path, credits ,release_date,} = movie;
     const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
     return (
@@ -301,8 +302,8 @@ const LandingPage = () => {
           <DrawerBody>
             <Flex mb="4" flexDir='column'>
               <Image mb='1rem' src={imageUrl} alt={title} w='full' h={["50%"]} objectFit="cover" />
-              <VStack ml="4" align="flex-start">
-                <Text>{overview}</Text>
+              <VStack  align="flex-start">
+                <Text>{overview}    <Text as='span' pl='10px' fontWeight='600'>Date:{release_date}</Text></Text>
                 <Text fontWeight="bold">Cast:</Text>
                 <Text>{credits?.cast.slice(0, 55).map((cast: any) => cast.name).join(', ')}</Text>
               </VStack>
@@ -314,13 +315,13 @@ const LandingPage = () => {
   };
 
   return (
-    <Flex direction="column" height="100vh"  bg='red' px={['10px', '10px', '10px', '2rem', '3rem']}>
-      <Box borderRadius="lg" flex="1" bg='yellow' height="85%" >
+    <Flex direction="column" height="100vh"   px={['10px', '10px', '10px', '2rem', '3rem']}>
+      <Box borderRadius="lg" flex="1"  height="85%" >
         <Heading display='flex' justifyContent='space-between' alignItems='center' as="h2" pt='1.5rem' size="lg" mb="2" textAlign="center">
           FilmHive Ai
           <Text as='span' className=""><Usage /></Text>
         </Heading>
-        <Box boxShadow="sm"  h='77%' overflowY="scroll" mb="4" borderWidth="1px" borderRadius="md" p="2" bg='green' >
+        <Box boxShadow="sm"  h='77%' overflowY="scroll" mb="4" borderWidth="1px" borderRadius="md" p="2" bg='white' >
           {messages.map((messageObj, index) => (
             <React.Fragment key={index}>
               <Flex py='10px' justifyContent="flex-end" mb="2" pr='10px'>
